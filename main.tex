@@ -1,0 +1,667 @@
+\documentclass[10pt]{article}
+
+% add links to document
+\PassOptionsToPackage{hyphens}{url}\usepackage[hidelinks]{hyperref}
+
+% add some packages
+\usepackage{xcolor}
+\usepackage[english]{babel}
+\usepackage{nameref}
+\usepackage{footnote}
+\usepackage{refcount}
+\usepackage{makecell}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{titlesec}
+\usepackage{graphicx,import}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{amsmath,amsfonts,amssymb}
+%\usepackage{indentfirst}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pdfpages}
+\usepackage{svg}
+\usepackage{pstricks}
+\usepackage{color,soul}
+\usepackage{pst-plot}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[style=verbose-ibid,backend=bibtex]{biblatex}
+\bibliography{references}
+
+% document settings
+\author{Björn Hempel <bjoern@hempel.li>}
+
+% add nice formated tables
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+
+% add automatic numbering
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+\setlength\bibitemsep{1.5\itemsep}
+
+% some formating settings
+\setlength{\parindent}{20pt}
+\setlength{\parskip}{5pt}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Footmarks always at the end of the page
+\usepackage[bottom]{footmisc}
+
+% allow some special characters
+\DeclareUnicodeCharacter{2212}{-}
+
+% pgf figures with images (add function \inputpgf)
+\newcommand\inputpgf[2]{{
+\let\pgfimageWithoutPath\pgfimage
+\renewcommand{\pgfimage}[2][]{\pgfimageWithoutPath[##1]{#1/##2}}
+\input{#1/#2}
+}}
+
+% import function of tex files
+\newcommand{\includetex}[1]{
+    \def\svgwidth{\columnwidth}
+    \import{images/other/}{#1.pdf_tex}
+}
+
+% add language switcher functions \de and \en
+\newif\ifen
+\newif\ifde
+\newcommand{\en}[1]{\ifen#1\fi}
+\newcommand{\de}[1]{\ifde#1\fi}
+
+% language switcher
+%\detrue
+\entrue
+
+
+
+% -------------------- %
+% Start document %
+% -------------------- %
+\begin{document}
+
+
+
+	% -------------------- %
+	% Flyleaf %
+	% -------------------- %
+	\input{pages/0_1_flyleaf}
+	\pagebreak
+
+
+
+	% -------------------- %
+	% Empty page %
+	% -------------------- %
+    \newpage\null\thispagestyle{empty}\newpage
+
+
+
+	% -------------------- %
+	% Abstract %
+	% -------------------- %
+	\section*{Abstract}
+		\de{Neuronale Netze sind außerordentlich gut darin Muster in Daten zu finden. Hierzu müssen diese Netze vorher mit bekannten Datensätzen trainiert und entsprechend angepasst werden. Datensätze sind meist sehr teuer in der Beschaffung und sollten deshalb mit Bedacht und guter Qualität eingesetzt werden. Das Training des Netzes findet unter von vielen verschiedenen Parametern und Verfahrenstechniken statt. Dabei ist darauf zu achten das bestmögliche Modell mit seinen bestmöglichen Parametern zu verwenden. In dieser Arbeit werden gängige moderne Methoden der Bildklassifikation vorgestellt und miteinander verglichen. Das Hauptziel der Arbeit ist es, optimale Parameter und Techniken für die Klassifikation zu finden, die es auch ermöglichen, mit wenig Trainingsdaten ein optimales Modell zu erstellen.}
+		\en{Neural networks are extraordinarily good at finding patterns in data. For this purpose, these networks must be trained with known data sets and adapted accordingly. Data sets are usually very expensive to obtain and should therefore be used with care and good quality. The training of the network takes place under many different parameters and process techniques. Care must be taken to use the best possible model with its best possible parameters. In this thesis, common modern methods of image classification will be presented and compared with each other. The main goal of the work is to find optimal parameters and techniques for the classification, which also allow to create an optimal model with little training data.}
+	\pagebreak
+
+
+
+	% -------------------- %
+	% Table of contents %
+	% -------------------- %
+	\tableofcontents
+	\pagebreak
+
+
+	% -------------------- %
+	% Introduction %
+	% -------------------- %
+	\section{Introduction}
+		\de{In dieser Arbeit werden verschiedene Techniken der Bildklassifizierung verglichen. Variable Parameter beim Training werden einen entscheidenden Einfluss auf die Genauigkeit des Modells haben und werden hier im Detail verglichen. Nicht immer ist nur die Genauigkeit ein ausschlaggebender Faktor. Auch die benötigte Rechenzeit, welche notwendig ist das Modell zu bestimmen, soll nicht außer Acht gelassen werden und mit in die Auswertung einbezogen werden. Ich gehe davon aus, dass eine kleine Lernrate verbunden mit vielen Lern-Epochen und entsprechend mehr benötigter Rechenzeit bessere Ergebnisse erzielen werden, als wenige Lernepochen verbunden mit einer hohe Lernrate (langsame Anpassung vs. schnelle Anpassung). Auch gehe ich davon aus, dass eine hohe Qualität und eine größere Menge an Daten das Ergebnis entschieden positiv beeinflussen werden. Neue und komplexere Convolutional Neuronale Netzwerke stufe ich erfolgreicher in der Modellgenauigkeit ein als schön etwas ältere und kleinere Modelle.}
+		\en{In this thesis different techniques of image classification are compared. Variable parameters during training will have a decisive influence on the accuracy of the model and are compared here in detail. Not always only the accuracy is a decisive factor. Also the required computing time, which is necessary to determine the model, should not be disregarded and should be included in the evaluation. I assume that a small learning rate combined with many learning epochs and correspondingly more computing time required will achieve better results than a few learning epochs combined with a high learning rate (slow adaptation vs. fast adaptation). I also assume that a high quality and a larger amount of data will have a decidedly positive influence on the result. New and more complex convolutional neural networks are more successful in model accuracy than older and smaller models.}
+
+
+	% -------------------- %
+	% Background %
+	% -------------------- %
+	\section{Background}
+
+		\subsection{Image Classification}
+			\de{Klassifizierungen sind ein Prozess der Identifizierung, zu welcher Klasse ein unbeobachtetes Objekt gehört. Hierbei können eine Reihe von vordefinierten Klassen vorgegeben und anhand deren Eigenschaften versucht werden unbekannte und bisher unbeobachtete Objekt einzuordnen. Bei der Bildklassifizierung wird analog vorgegangen. Bei den zuvor genannten Objekten handelt es sich nun schlichtweg um Bilder.}
+			\en{Classifications are a process of identifying to which class an unobserved object belongs. A number of predefined classes can be specified and, based on their properties, an attempt can be made to classify unknown and previously unobserved objects. The procedure for image classification is similar. The previously mentioned objects are now simply images.}
+
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.4\textwidth]{images/cat_dog}
+				\caption[Is it a dog or a cat?]{Is it a dog or a cat?\footnotemark}
+				\label{fig:cat_or_dog}
+			\end{figure}
+			\footnotetext{Source: \url{https://towardsdatascience.com/image-classifier-cats-vs-dogs-with-convolutional-neural-networks-cnns-and-google-colabs-4e9af21ae7a8}}
+
+			\de{Lange Zeit galt die automatische Erkennung von Objekten, Personen und Szenen in Bildern durch Computer als unmöglich. Die Komplexität schien zu groß, als dass man sie einem Algorithmus programmatisch beibringen könnte. Bis noch vor einigen Jahrzehnten hat man so versucht Bildklassifikation durch manuell entwickelte Algorithmen zu erreichen. Die automatisierte Klassifikation anhand von vorgegebenen und vorklassifizierten Bildern und dem automatisierten Erstellen von Modellen war ein neuer Schritt in eine neue Vorgehensweise. Die dabei entwickelten neuronale Netze spielten eine gewaltige Rolle und änderten dramatisch die Art der Herangehensweise! Mittlerweile ist die Bilderkennung ein weit verbreitetes Anwendungsgebiet des maschinellen Lernens. Häufig werden für Bilder sogenannte "Convolutional Neural Networks\footnote{Convolutional neural network, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}" or "ConvNets" are often used for images.}
+			\en{For a long time, the automatic recognition of objects, people and scenes in images by computers was considered impossible. The complexity seemed too great to be programmatically taught to an algorithm. Until a few decades ago, attempts were made to achieve image classification by manually developed algorithms. Automated classification based on given and pre-classified images and the automated creation of models was a new step into a new approach. The neural networks developed in this process played a huge role and dramatically changed the way of approach! In the meantime, image recognition has become a widespread application area of machine learning. So-called "Convolutional Neural Networks\footnote{Convolutional neural network, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}" or "ConvNets" are often used for images.}
+
+			\de{Der Bildklassifizierungsalgorithmus nimmt ein Bild als Eingabe und klassifiziert es in eine der Ausgabekategorien. Deep Learning hat den Bereich der Bildklassifizierung revolutioniert und großartige Ergebnisse erzielt. Verschiedene Deep Learning Netzwerke, wie ResNet, DenseNet, Inception, etc. wurden als hochpräzise Netzwerke für die Bildklassifikation entwickelt. Gleichzeitig wurden Bilddatensätze angelegt, um getaggte Bilddaten zu erfassen. Diese werden jetzt vorrangig dazu verwendet um bestehende Netzwerke zu trainieren und alljährliche Challenges zu veranstalten, welche sich mit den bisher bekannten und schon entwickelten Modellgenauigkeiten messen. ImageNet ist ein solch großer Datensatz mit mehr als 11 Millionen Bildern und über 11.000 Kategorien. Wenn ein Netzwerk einmal mit ImageNet-Daten trainiert wurde, kann es durch einfache Neuanpassung oder Optimierung mit anderen Datensätzen verallgemeinert werden. Bei diesem Transfer-Lernansatz wird ein Netzwerk mit Gewichten initialisiert, welche aus einem zuvor trainierten Netzwerk stammen. Dieses zuvor initialisierte Netzwerk wird nun für eine neue Bildklassifikationsaufgabe lediglich entsprechend angepasst.}
+			\en{The image classification algorithm takes an image as input and classifies it into one of the output categories. Deep Learning has revolutionized the field of image classification and has achieved great results. Various Deep Learning networks, such as ResNet, DenseNet, Inception, etc. have been developed as high-precision networks for image classification. At the same time, image data sets were created to capture tagged image data. These are now primarily used to train existing networks and to organize annual challenges that compete with the model accuracies already known and developed. ImageNet is such a large data set with more than 11 million images and over 11,000 categories. Once a network has been trained with ImageNet data, it can be generalized with other data sets by simple re-compilation or optimization. In this transfer learning approach, a network is initialized with weights that come from a previously trained network. This previously initialized network is now simply adapted for a new image classification task.}
+
+			\de{Die hier zugrunde liegende Arbeit beschäftigt sich hauptsächlich mit überwachtem Lernen, bei dem ein mathematisches Modell aufgrund bestehender bekannter Datensätze trainiert wird. Das Ziel des trainierten Modells ist es dabei auch für unbekannte Bilder bestmögliche Vorhersagen zu treffen. Diese bekannten Datensätze werden meist händisch erstellt (Ontologe), automatisiert aufgrund bekannter Tatsachen bestimmt oder auch in einem halbautomatischen Prozess ermittelt.}
+			\en{The underlying work here is mainly concerned with supervised learning, in which a mathematical model is trained based on existing known data sets. The goal of the trained model is to make best possible predictions even for unknown images. These known data sets are usually created manually (ontologist), automatically determined based on known facts or determined in a semi-automatic process.}
+			
+		\subsubsection{Deductive approach}
+			\de{Seit den späten 1960er Jahren hat man versucht, Bilder mit selbstgeschriebenen Algorithmen zu klassifizieren. Dieser Teil der Computer Vision beschäftigt sich mit Techniken wie Bildentstehung, Bildbearbeitung und Bildsegmentierung. Im Bereich der Bildverarbeitung reihen sich bekannte Verfahren wie Kantenerkennungen, Merkmalsdetektoren, Randverknüpfungen, Kontrastverbesserungen, etc.\footnote{Szeliski, R.: Computer Vision: Algorithms and Applications,  Springer Science Business Media, 10 (2010)\label{springer_10}} Allen Techniken gemein ist die Verwendung des deduktiven Ansatzes. Beim deduktiven Ansatz erstellt man Regeln (Merkmalsdetektoren), welche das gewünschte Ergebnis vorhersagen sollen. Diese Regeln werden vorgegeben und beschrieben und erlauben damit später eine Klassifizierung von unbekannten Objekten. Da das Modell und sein Algorithmus hinreichend bekannt ist, wird dieses Verfahren White-Box-Verfahren genannt.}
+			\en{Since the late 1960s, attempts have been made to classify images with self-written algorithms. This part of Computer Vision deals with techniques such as image creation, image processing and image segmentation. In the field of image processing, well-known techniques such as edge detection, feature detectors, edge linking, contrast enhancement, etc. are used\footnote{Szeliski, R.: Computer Vision: Algorithms and Applications,  Springer Science Business Media, 10 (2010)\label{springer_10}}. Common to all techniques is the use of the deductive approach. With the deductive approach, one creates rules (feature detectors) which are supposed to predict the desired result. These rules are given and described and thus allow later classification of unknown objects. Since the model and its algorithm are sufficiently well known, this procedure is called white-box procedure.}
+
+			\begin{figure}[H]
+				\begin{center}
+					\scalebox{1.0}{\includetex{deductive_approach}}
+				\end{center}
+				\caption{Deductive approach}
+				\label{fig:overview_deductive_approach}
+			\end{figure}
+
+			\de{}
+
+		\subsubsection{Inductive approach}
+			\de{Der induktive Ansatz hingegen verfolgt einen anderen Ansatz Bilder zu klassifizieren. Das Ziel ist nicht die Vorgabe einer Regel, sondern das Vorgehen aus schon bekannten einzelnen Objekten eine Regel (Modell) automatisiert zu erlernen. Ein Modell meist eine komplexe Funktion und eine mathematische Abbildung eines Raumes (VC Dimension\footnote{Vapnik–Chervonenkis dimension, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Vapnik\%E2\%80\%93Chervonenkis_dimension}}), in welcher einzelne Objekte mit ihren Eigenschaften abgebildet und getrennt werden können. Das Modell wird Stück für Stück den bekannten Objekten so angepasst, dass der Eingabewert dem Ausgabewert entspricht bzw. weitgehend entspricht (Backpropagation). Das Ziel ist es mit diesem Modell eine Funktion zu erstellen, welche in der Lage ist auch unbekannte Objekte bestmöglichst zu klassifizieren. Da der Raum dieses Modell meist fern der Vorstellungskraft und der Erklärungsmöglichkeit liegt, wird dieses Verfahren auch Black-Box-Verfahren genannt. Der hier beschriebene Vorgang wird meist bei jeder Art von \hyperref[sec:section_supervised_classification]{überwachtem Lernen} angewendet und ist ein Teil des \hyperref[sec:section_machine_learning]{maschinellem Lernens}.}
+			\en{The inductive approach, on the other hand, takes a different approach to classifying images. The goal is not to specify a rule, but to learn a rule (model) automatically from already known individual objects. A model is usually a complex function and a mathematical representation of a space (VC dimension\footnote{Vapnik–Chervonenkis dimension, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Vapnik\%E2\%80\%93Chervonenkis_dimension}}), in which individual objects with their properties can be mapped and separated. The model is adapted piece by piece to the known objects in such a way that the input value corresponds to the output value or corresponds to a large extent (backpropagation). The goal is to create a function with this model, which is able to classify unknown objects in the best possible way. Because the space of this model is mostly far away from the imagination and the possibility of explanation, this procedure is also called black box procedure. The procedure described here is mostly used for any kind of \hyperref[sec:section_supervised_classification]{supervised learning} and is a part of \hyperref[sec:section_machine_learning]{machine learning}.}
+
+			\begin{figure}[H]
+				\begin{center}
+					\scalebox{1.0}{\includetex{inductive_approach}}
+				\end{center}
+				\caption{Inductive approach}
+				\label{fig:overview_inductive_approach}
+			\end{figure}
+
+		\subsubsection{Balanced training data set}
+		\label{sec:section_balanced_training_data_set}
+			\de{Neuronale Netze haben in den letzten Jahren enorme Fortschritte im Bereich der Mustererkennung gemacht. Dabei ist ein entscheidender Faktor, dass die Daten zum Lernen eine hohe Qualität und eine einfache Verarbeitung für das Netzwerk aufweisen müssen. Falsch klassifizierte oder irrelevante Daten könnten dazu führen, dass das Netzwerk was Falsches lernt. Das gilt auch für eine nicht vorhandene bzw. nicht geeignete Vorverarbeitung.}
+			\en{Neural networks have made enormous progress in the field of pattern recognition in recent years. A decisive factor is that the data for learning must be of high quality and easy for the network to process. Wrongly classified or irrelevant data could cause the network to learn something wrong. This also applies to non-existent or unsuitable pre-processing\autocite{osinga2019data}.}
+
+			\de{Mit dem Beginn eines Klassifizierungsprojektes steht die Frage was genau man klassifizieren möchte und wie umfangreich die Klassifzierung ausfallen soll. Angenommen man möchte verschiedene Klassen von Essen identifizieren, so könnten das Klassen wie Pizza, Burger, Donuts und Lasagne sein (etc.). Zu diesen Klassen benötigt man nun eine große Anzahl an Bildern. Diese Daten sollten im Idealfall die Realität möglichst gut widerspiegeln. Eine große Variation ist von Vorteil (ausbalancierter Datenset): verschiedene Blickwinkel, Größe, Position, Farbhelligkeiten, Variationen, Anzahl, etc. Bilder von z.B. nur einer Farbhelligkeit oder nur einem Blickwinkel sollten vermieden werden. Sind die Daten nicht ausbalanciert, so müssen diese entsprechend korrigiert werden: z.B. durch Hinzufügen weiterer Daten, Bildverarbeitung oder durch Entfernen von Daten, welche für eine Unausgewogenheit sorgen. Weiterhin sollten die ausgewählten Klassen untereinander klar optisch trennbar sein. Sind sich zwei Klassen optisch sehr ähnlich und selbst durch einen Menschen nicht wirklich unterscheidbar, sollte darüber nachgedacht werden diese zusammenzufassen (z.B. "burger" und "veggie burger"):}
+			\en{With the beginning of a classification project the question is what exactly you want to classify and how extensive the classification should be. Assuming you want to identify different classes of food, this could be classes like pizza, burgers, donuts and lasagna (etc.). For these classes you now need a large number of images. Ideally, this data should reflect reality as well as possible. A large variation is advantageous (balanced data set): different viewing angles, size, position, colour brightness, variations, number, etc. Images of e.g. only one colour brightness or only one viewing angle should be avoided. If the data are not balanced, they must be corrected accordingly: e.g. by adding further data, image processing or by removing data that causes an imbalance. Furthermore, the selected classes should be clearly optically separable from each other. If two classes are visually very similar and not really distinguishable even by a human, consideration should be given to combining them (e.g. "burger" and "veggie burger"):}
+
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.19\textwidth]{images/data/burger/burger28.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/burger/burger77.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/burger/burger89.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/burger/burger162.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/burger/burger449.jpeg}
+				\caption[Example pictures of a burger class]{Example pictures of a burger class}
+				\label{fig:class_burger}
+			\end{figure}
+
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.19\textwidth]{images/data/donut/donut116.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/donut/donut155.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/donut/donut176.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/donut/donut205.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/donut/donut440.jpg}
+				\caption[Example pictures of a donut class]{Example pictures of a donut class}
+				\label{fig:class_donut}
+			\end{figure}
+
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza73.png}
+				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza76.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza92.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza108.jpg}
+				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza239.jpg}
+				\caption[Example pictures of a pizza class]{Example pictures of a pizza class}
+				\label{fig:class_pizza}
+			\end{figure}
+
+			\de{An Daten zu gelangen ist oftmals nicht so einfach. Jede Datenquelle hat ihre eigenen Besonderheiten. Eine Möglichkeit an Daten zu gelangen wäre ein automatische Crawling von Bilddatenbanken, Suchmaschinen oder Rezensionen, in welchen Bilder vorkommen. Ein gewisses Maß an Kreativität ist von Vorteil:}
+			\en{Accessing data is often not that easy. Every data source has its own special features. One way to access data would be an automatic crawling of image databases, search engines or reviews in which images appear. A certain amount of creativity is advantageous:}
+
+			\begin{itemize}
+				\item Google
+				\item Bing
+				\item Flickr
+				\item TripAdvisor
+				\item ...
+			\end{itemize}
+			
+			\de{Die wahrscheinlich teuerste Variante an Daten zu gelangen ist die händische Suche und Klassifizierung durch z.B. einen Ontologen. Dieser beurteilt und sucht verschiedenen Bilder und ordnet diese händisch in die entsprechenden Klassen ein. Auch eine kombinierte Variante ist möglich und wahrscheinlich zu bevorzugen: Automatisches Crawling und händisches aussortieren falscher, ungünstiger oder irrelevanter Bilder.}
+			\en{Probably the most expensive way to obtain data is to search and classify them manually, e.g. by an ontologist. The ontologist evaluates and searches for different images and manually classifies them in the appropriate classes. A combined variant is also possible and probably preferable: automatic crawling and manual sorting out of incorrect, unfavorable or irrelevant images.}
+
+		\subsubsection{Training, test and evaluation data set}
+		\label{sec:section_training_test_and_evaluation}
+			\de{Vor dem Beginn mit dem Training von ausbalancierten Bildern müssen diese in einen Trainings-, einen Test- und eventuell in einen Validierungsdatensatz aufgeteilt werden. Dies ist notwendig, da neuronale Netze zu einem Teil nicht verallgemeinern, sondern auswendig lernen werden (overfitting\footnote{Overfitting, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Overfitting}}). Die Idee ist es mit einem Trainingsdatensatz zu trainieren, während mit dem Validierungsdatensatz die Allgemeingültigkeit des Netzes und seiner Parameter überwacht wird. Anhand der Ergebnisse werden zur Laufzeit Anpassungen vorgenommen. Da die Anpassung der Parameter anhand der Testdaten vorgenommen wird, gibt es noch einen unabhängigen Testdatensatz, welcher eine erneute Überprüfung des Modells auf bisher unbeteiligte Daten vornimmt. Dieser stellt sicher, dass nicht versehentlich Hyperparameter nur speziell für den Validierungsdatensatz optimiert werden\autocite{osinga2019data}. Die Verwendung des Testdatensatz ist optional und simuliert das Modell unter realen Bedingungen. Ist die Anzahl der Daten begrenzt und kann dieser Datensatz z.B. auch dem Trainingsdatensatz hinzugefügt werden. In dieser Arbeit wir auf den Testdatensatz verzichtet und sämtliche Auswertungen beziehen sich auf den Validierungsdatensatz.}
+			\en{Before starting the training of balanced images, they must be divided into a training, a test and possibly a validation data set. This is necessary because neural networks will not generalize to some extent, but will learn by heart (overfitting\footnote{Overfitting, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Overfitting}}). The idea is to train with a training data set, while the validation data set is used to monitor the general validity of the network and its parameters. Based on the results, adjustments are made at runtime. Since the adjustment of the parameters is carried out using the test data, there is also an independent test data set, which carries out a renewed check of the model for previously uninvolved data. This ensures that hyperparameters are not inadvertently optimized for the validation data set only\autocite{osinga2019data}. The use of the test data set is optional and simulates the model under real conditions. If the number of data is limited, this data record can also be added to the training data record, for example. In this thesis, the test data set is not used and all evaluations refer to the validation data set.}
+
+			\de{Eine optimale Aufteilung des Trainings- und Validierungsdatensatzes ist abhängig von dem vorliegenden Klassifizierungsproblem und die Anzahl der Daten, welche zur Verfügung stehen.}
+			\en{An optimal division of the training and validation data set depends on the existing classification problem and the amount of data available.}
+
+			
+
+		\subsubsection{Unsupervised Classification}
+		\label{sec:section_unsupervised_classification}
+			\de{Unüberwachtes Lernen bezieht sich auf maschinelles Lernen, ohne im Voraus bekannte Zielwerte zu kennen. In diesem Papier wird auf diese Technik nicht weiter eingegangen\autocite{geron2017supervisedlearning}.}
+			\en{Unsupervised learning refers to machine learning without knowing in advance known target values. This paper will not go into this technique any further\autocite{geron2017supervisedlearning}.}
+
+			\hl{...}
+
+		\subsubsection{Supervised Classification}
+		\label{sec:section_supervised_classification}
+			\de{Überwachtes Lernen bezieht sich auf maschinelles Lernen mit bekannten Trainingsdatensätzen. Lernen bezieht sich auf die Fähigkeit einer künstlichen Intelligenz, Regelmäßigkeiten und Muster zu reproduzieren. Die Ergebnisse sind durch Naturgesetze oder Expertenwissen bekannt und werden für die Lehre des Systems verwendet. Der Lernalgorithmus versucht, eine Hypothese zu finden, die möglichst genaue Vorhersagen ermöglicht. Eine Hypothese ist ein Bild, das jedem Eingabewert den angenommenen Ausgabewert zuordnet. Dieses Paper macht ausgiebigen Gebrauch von überwachtem Lernen.}
+			\en{Supervised learning refers to machine learning with known training data sets. Learning refers to the ability of an artificial intelligence to reproduce regularities and patterns. The results are known by laws of nature or expert knowledge and are used to teach the system. The learning algorithm tries to find a hypothesis that makes the most accurate predictions possible. A hypothesis is an image that assigns the assumed output value to each input value. This paper makes extensive use of supervised learning.\autocite{geron2017supervisedlearning}}
+
+			\de{Beim Überwachten Lernen wird dem KNN ein Eingangsmuster gegeben und die Ausgabe, die das neuronale Netz in seinem aktuellen Zustand produziert, mit dem Wert verglichen, den es eigentlich ausgeben soll. Durch Vergleich von Soll- und Istausgabe kann auf die vorzunehmenden Änderungen der Netzkonfiguration geschlossen werden. Bei einlagigen Perzeptrons kann die Delta-Regel (auch Perzeptron-Lernregel) angewendet werden. Mehrlagige Perzeptrons werden in der Regel mit Backpropagation trainiert, was eine Verallgemeinerung der Delta-Regel darstellt.}
+
+			\hl{...}
+
+		\subsubsection{Classification Metrics}
+
+			\noindent ...
+
+			\paragraph{Top-1 accuracy}
+				The \textbf{top-1 accuracy} is the most important accuracy, which means that the model response (the one with the highest probability) must be exactly the expected response.
+
+				\hl{...}
+
+			\paragraph{Top-5 accuracy}
+				\hl{...}
+	
+	
+		\subsection{Machine Learning}
+		\label{sec:section_machine_learning}
+			Maschinelles Lernen ist ein Oberbegriff für die künstliche Generierung von Wissen aus Erfahrung. Es verfolgt den Ansatz des induktiven Lernens.
+		
+			\subsubsection{Neuronal Network}
+
+				\noindent Explain the development of a neuronal network here...
+
+				In künstlichen neuronalen Netzen bezeichnet die Topologie die Struktur des Netzes. Damit ist im Allgemeinen gemeint, wie viele künstliche Neuronen sich auf wie vielen Schichten befinden, und wie diese miteinander verbunden sind. Künstliche Neuronen können auf vielfältige Weise zu einem künstlichen neuronalen Netz verbunden werden. Dabei werden Neuronen bei vielen Modellen in hintereinander liegenden Schichten (englisch layers) angeordnet; bei einem Netz mit nur einer trainierbaren Neuronenschicht spricht man von einem einschichtigen Netz.
+
+				Unter Verwendung eines Graphen können die Neuronen als Knoten und ihre Verbindungen als Kanten dargestellt werden. Die Eingaben werden gelegentlich auch als Knoten dargestellt.
+
+				Die hinterste Schicht des Netzes, deren Neuronenausgaben meist als einzige außerhalb des Netzes sichtbar sind, wird Ausgabeschicht (englisch output layer) genannt. Davorliegende Schichten werden entsprechend als verdeckte Schicht (englisch hidden layer) bezeichnet.
+	
+				Let us imagine a simple classification function, where \(\bar{x}\) represents the coordinates of the individual class points and \(\bar{w}\) and \(b\) are learnable parameters:
+	
+				\begin{equation}
+					f(\bar{x}, \bar{\omega}, b) = sgn(\bar{\omega}^\intercal \cdot \bar{x} + b)
+				\end{equation}
+
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.5}{\input{images/pgf/linear_classifier.pgf}}
+					\end{center}
+					\caption{Simple class shattering}
+					\label{fig:evaluation_simple_class_shattering}
+				\end{figure}
+	
+				With this linear function it is easy to classify the above problem. The function corresponds to a neural network without hidden layer and contains only one input and one output layer. The dimension that this function can separate is 2 and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. This function can separate exactly 2 classes. But what about nonlinear problems? In this case let's look at the following classification:
+	
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=1.0\textwidth]{images/shattering2}
+					\caption[Linear vs. non-linear classificatioin]{Linear vs. non-linear classificatioin\footnotemark}
+					\label{fig:beispiel3}
+				\end{figure}
+				\footnotetext{Source: \url{http://www.statistics4u.info/fundstat_germ/cc_linvsnonlin.html}}
+	
+				For the second problem we can still adjust the function. For the third nonlinear problem, the classification space is no longer sufficient and requires a different algorithm.
+	
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=1.0\textwidth]{images/simple_neuronal_network}
+					\caption[Simple neuronal network with one hidden layer]{Simple neuronal network with one hidden layer\footnotemark}
+					\label{fig:beispiel4}
+				\end{figure}
+				\footnotetext{Source: \url{http://playground.tensorflow.org/}}
+		
+			\subsubsection{Convolutional Neuronal Network}
+				\noindent A neural network processes a vector. A convolutional neural network, on the other hand, can process a matrix. Describe more here. 
+	
+			\subsubsection{Transfer Learning}
+	
+				\noindent Explain here the technique of Convolutional Neuronal Networks.
+			
+				\paragraph{Transfer Learning Models}
+		
+					\hl{...}
+			
+					\begin{figure}[H]
+						\centering
+						\includegraphics[width=1.0\textwidth]{images/tl_models}
+						\caption[Overview of known transfer learning models.]{Overview of known transfer learning models.\footnotemark}
+						\label{fig:beispiel5}
+					\end{figure}
+					\footnotetext{Source: \url{https://towardsdatascience.com/neural-network-architectures-156e5bad51ba}}
+		
+					\hl{...}
+
+		\subsection{Related work}
+			\en{This is an example citation \autocite{deng2010does}.}
+
+
+	% -------------------- %
+	% Validation process %
+	% -------------------- %
+	\section{Validation process}
+
+		\hl{This is the part where I explain my approach.}
+	
+		\subsection{Preamble}
+			In the following, the best possible accuracy is to be achieved by testing various parameters.
+			A learning set with the following properties was used:
+	
+			\begin{itemize}
+				\item 14865 images
+				\item classified within 50 classes
+				\item different number of images per class (unbalanced)
+			\end{itemize}
+	
+			With the exception of the model tests, all tests were based on the following parameters
+			(whereby one value of the parameters varied depending on the chapter):
+		
+			\begin{itemize}
+				\item model: resnet18
+				\item learning rate: 0,001 (decreases every 7 epochs to 10\% of the previous value)
+				\item batch size: 48
+				\item epochs: 21 (learning rate from epoch 15 to 21: 0,00001)
+				\item image size: 224x224 pixels
+				\item the entire training and validation set (14865 images)
+			\end{itemize}
+		
+			Different models were tried out in chapter \flqq\nameref{usedModels}\footnote{
+				see on page \pageref{usedModels}
+				chapter \ref{usedModels}
+				\flqq\nameref{usedModels}\frqq
+			}\frqq{} with the same
+			parameters as above:
+		
+			\begin{itemize}
+				\item ResNet18
+				\item ResNet50
+				\item ResNet152
+				\item AlexNet
+				\item VGG
+				\item SqueezeNet
+				\item DenseNet
+				\item Inception v3
+			\end{itemize}
+			
+		\subsection{Working environment}
+	
+			\hl{Explain in this part of the thesis the frameworks, environments and hardware used, etc.}
+			
+		\subsection{Splitting and preparing the data}
+		
+			\subsubsection{Situation}
+			
+				We have 14866 images differently distributed in 50 classes (unbalanced). We would like to divide these into 80\% training and 20\% validation images.
+				
+			\subsubsection{Unbalanced}
+			
+				The unbalanced dispersion data set is divided exactly in the same ratio:
+				
+				\begin{itemize}
+					\item 2953 images for the training
+					\item 11913 images for validation
+				\end{itemize}
+				
+				For training with different training elements, the validation dataset of 2953 images is retained for a comparable result. The number of training elements deviating from the total data set results from this:
+				
+				\begin{equation}
+					n_{train} = k \cdot 500;  k \in 1 \dots 26
+				\end{equation}
+			
+			\subsubsection{Balanced}
+		
+				\noindent ...
+	
+		\subsection{Performance}
+		
+			\noindent ...
+		
+		\pagebreak
+	
+		\subsection{Accuracy and evaluations}
+
+			\noindent ...
+
+			\subsubsection{Influence of number of trained images on accuracy}
+	
+				\noindent ...
+
+				\begin{figure}[H]
+					\begin{center}
+						\input{images/evaluation/number_train_files.pgf}
+					\end{center}
+					\caption{Overview of influence of number of trained images on accuracy}
+					\label{fig:evaluation_number_train_files}
+				\end{figure}
+
+				\noindent ...
+		
+			\subsubsection{Comparison of different CNN models}
+
+				\noindent ...
+
+				\begin{figure}[H]
+					\begin{center}
+						\input{images/evaluation/different_models.pgf}
+					\end{center}
+					\caption{Overview of known transfer learning models}
+					\label{fig:evaluation_different_models}
+				\end{figure}
+
+				\noindent ...
+		
+			\subsubsection{Use of the transfer learning approach}
+	
+				\noindent ...
+
+				\begin{figure}[H]
+					\begin{center}
+						\input{images/evaluation/transfer_learning.pgf}
+					\end{center}
+					\caption{Overview of use of the transfer learning approach}
+					\label{fig:evaluation_transfer_learning}
+				\end{figure}
+
+				\noindent ...
+
+			\subsubsection{Influence of different error optimizers}
+
+				\paragraph{Comparison Optimizer}
+
+				\noindent ...
+
+				\begin{figure}[H]
+					\begin{center}
+						\input{images/evaluation/best_optimizer.pgf}
+					\end{center}
+					\caption{Overview of best optimizer}
+					\label{fig:evaluation_momentum}
+				\end{figure}
+
+				\noindent ...
+
+				\paragraph{Influence of the momentum and the Nesterov momentum}
+
+				\noindent ...
+
+				\begin{figure}[H]
+					\begin{center}
+						\inputpgf{images/evaluation}{momentum.pgf}
+					\end{center}
+					\caption{Overview momentum vs nesterov momentum}
+					\label{fig:evaluation_momentum}
+				\end{figure}
+
+				\noindent ...
+		
+			\subsubsection{Influence of the number of trained layers on the accuracy}
+	
+				\noindent ...
+
+				\begin{figure}[H]
+					\begin{center}
+						\inputpgf{images/evaluation}{number_trainable_layers.pgf}
+					\end{center}
+					\caption{Overview of influence of the number of trained layers}
+					\label{fig:evaluation_number_trainable_layers}
+				\end{figure}
+
+				\noindent ...
+		
+			\subsubsection{Influence of a dynamic learning rate on accuracy (scheduling)}
+
+				\noindent ...
+
+				\begin{figure}[H]
+					\begin{center}
+						\inputpgf{images/evaluation}{scheduling_learning_rate.pgf}
+					\end{center}
+					\caption{Overview of a dynamic learning rate on accuracy}
+					\label{fig:evaluation_scheduling_learning_rate}
+				\end{figure}
+
+				\noindent ...
+		
+			\subsubsection{Different batch sizes}
+	
+				\noindent ...
+		
+			\subsubsection{Different image sizes}
+	
+				\noindent ...
+		
+			\subsubsection{Different number of learned epochs}
+	
+				\noindent ...
+
+
+	
+	% -------------------- %
+	% Optimization process %
+	% -------------------- %
+	\section{Optimization process}
+		This chapter contains ideas, approaches and evaluations of more complex ideas, which do not fit into the range of simple parameter changes.
+	
+		\subsection{Preamble}
+			\noindent ...
+
+		\subsection{Data augmentation}
+			\noindent ...
+
+			\begin{figure}[H]
+				\begin{center}
+					\inputpgf{images/pgf}{augment.pgf}
+				\end{center}
+				\caption{Data Augmentation}
+				\label{fig:data_augmentation}
+			\end{figure}
+
+		\subsection{Enrichment of the data set from other data sources}
+			\noindent ...
+		
+		\subsection{Analyses with multidimensional scaling}
+			\noindent ...
+		
+		\subsection{Hierarchical classification}
+			\de{Durch die Verwendung eines einzigen Modelles für alle Klassen, sind die bisherigen Klassifikatoren darauf trainiert, den Verlust am Klassenausgabevektor zu minimieren. Jede bisher verwendete Klasse hat den gleichen Rang sowohl beim Training, als auch bei der Klassifizierung. Die Vorhersage von "Pizza" kostet genauso viel wie die Vorhersage von "Martini".}
+			\en{By using a single model for all classes, previous classifiers have been trained to minimize the loss of the class output vector. Each class used so far has the same rank in both training and classification. The prediction of "Pizza" costs the same as the prediction of "Martini".}
+
+			\de{Die menschliche Fähigkeit Objekte einordnen zu können, funktioniert nicht nur auf einer Ebene. Kategorien werden sich natürlich überlappen und eine hierarchische Struktur aufweisen. So wird ein Mensch ein Bild beispielsweise unter "Pizza", "Thunfischpizza" oder sogar "Fastfood" einordnen, was so gesehen korrekt ist. Je nach Einordnung findet hier lediglich ein "Informationsverlust" statt. Jedoch wird der Mensch eine "Pizza" meist nicht fälschlicherweise als "Martini" verwechseln, welcher eher der Kategorie "Getränk" oder "Cocktail" einzuordnen ist\autocite{rosch2004basic}.}
+			\en{The human ability to classify objects does not only work on one level. Categories will naturally overlap and have a hierarchical structure. For example, a human will classify a picture under "pizza", "tuna pizza" or even "fast food", which is correct from this point of view. Depending on the classification, there will only be a "loss of information". However, a person will not mistake a "pizza" as a "Martini", which is more likely to be classified as a "drink" or "cocktail"\autocite{rosch2004basic}.}
+		
+		\subsection{Binary classifiers}
+			\noindent ...
+		
+		\subsection{Evaluation}
+			\noindent ...
+		
+		\subsection{Use of the model across programming languages}
+			\noindent ...
+
+
+
+	% -------------------- %
+	% Summary and outlook %
+	% -------------------- %
+	\pagebreak
+	\section{Summary and outlook}
+		\hl{What's the outcome? What else is possible? How can this work be continued? In here!}
+
+
+	% -------------------- %
+	% List of figures %
+	% -------------------- %
+	\pagebreak
+	\renewcommand{\listfigurename}{List of figures}
+	\addcontentsline{toc}{section}{List of figures}
+	\listoffigures
+	
+
+
+	% -------------------- %
+	% List of literature %
+	% -------------------- %
+	\pagebreak	
+	\section*{List of literature}
+		\addcontentsline{toc}{section}{List of literature}
+		\printbibliography[heading=none]
+	
+
+
+	% -------------------- %
+	% List of literature %
+	% -------------------- %
+	\pagebreak	
+	\section*{List of links}
+		\addcontentsline{toc}{section}{List of links}
+		\begin{itemize}
+			\item Deep learning unbalanced training data?
+			\begin{itemize}
+				\item \url{https://towardsdatascience.com/deep-learning-unbalanced-training-data-solve-it-like-this-6c528e9efea6}
+			\end{itemize}
+			\item Data Augmentation
+			\begin{itemize}
+				\item \url{https://machinelearningmastery.com/how-to-configure-image-data-augmentation-when-training-deep-learning-neural-networks/}
+			\end{itemize}
+			\item Stop Feeding Garbage To Your Model! — The 6 biggest mistakes with datasets and how to avoid them.
+			\begin{itemize}
+				\item \url{https://hackernoon.com/stop-feeding-garbage-to-your-model-the-6-biggest-mistakes-with-datasets-and-how-to-avoid-them-3cb7532ad3b7}
+			\end{itemize}
+		\end{itemize}
+	
+
+
+	% -------------------- %
+	% Declaration %
+	% -------------------- %
+	\pagebreak
+	\section*{Declaration}
+		\thispagestyle{empty}
+		
+		\noindent I hereby declare that the work presented in this thesis is solely my work and that to the best of my
+		knowledge this work is original, except where indicated by references to other authors. No part of this
+		work has been submitted for any other degree or diploma. 
+		
+		\begin{displaymath}
+		% use packages: array
+		\begin{array}{ll}
+		Signature:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		& Place, Date:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		\end{array}
+		\end{displaymath}
+
+\end{document}

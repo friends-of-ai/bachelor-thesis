@@ -1,0 +1,62 @@
+\documentclass[9pt]{article}
+
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+\setlength{\parindent}{20pt}
+\setlength{\parskip}{5pt}
+
+\usepackage{xcolor}
+\usepackage[english]{babel}
+\usepackage{nameref}
+\usepackage{footnote}
+\usepackage{refcount}
+\usepackage{makecell}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{amsmath,amsfonts,amssymb}
+%\usepackage{indentfirst}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{color,soul}
+\usepackage{tabularx}	
+
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\usepackage[bottom]{footmisc}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\newcommand\inputpgf[2]{{
+\let\pgfimageWithoutPath\pgfimage
+\renewcommand{\pgfimage}[2][]{\pgfimageWithoutPath[##1]{#1/##2}}
+\input{#1/#2}
+}}
+
+% table col separation
+\setlength\tabcolsep{0pt}
+
+
+% -------------------- %
+% Start document %
+% -------------------- %
+\begin{document}
+
+	% -------------------- %
+	% Python content %
+	% -------------------- %
+	\input{pages/python-food-50-80-20-without-data-augmentation}
+	\pagebreak
+
+\end{document}
