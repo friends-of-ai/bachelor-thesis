@@ -31,6 +31,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 \usepackage[style=verbose-ibid,backend=bibtex]{biblatex}
+
+% italic blockquotes
+\renewcommand{\mkbegdispquote}[2]{\itshape}
+\renewcommand{\mkbegdispquote}[2]{\openautoquote}
+\renewcommand{\mkenddispquote}[2]{\closeautoquote#1#2}
+
+% literature reference
 \bibliography{references}
 
 % document settings
@@ -136,6 +143,9 @@
 	% -------------------- %
 	\section{Background}
 
+		% -------------------- %
+		% Image Classification %
+		% -------------------- %
 		\subsection{Image Classification}
 			\de{Klassifizierungen sind ein Prozess der Identifizierung, zu welcher Klasse ein unbeobachtetes Objekt gehört. Hierbei können eine Reihe von vordefinierten Klassen vorgegeben und anhand deren Eigenschaften versucht werden unbekannte und bisher unbeobachtete Objekt einzuordnen. Bei der Bildklassifizierung wird analog vorgegangen. Bei den zuvor genannten Objekten handelt es sich nun schlichtweg um Bilder.}
 			\en{Classifications are a process of identifying to which class an unobserved object belongs. A number of predefined classes can be specified and, based on their properties, an attempt can be made to classify unknown and previously unobserved objects. The procedure for image classification is similar. The previously mentioned objects are now simply images.}
@@ -157,7 +167,11 @@
 			\de{Die hier zugrunde liegende Arbeit beschäftigt sich hauptsächlich mit überwachtem Lernen, bei dem ein mathematisches Modell aufgrund bestehender bekannter Datensätze trainiert wird. Das Ziel des trainierten Modells ist es dabei auch für unbekannte Bilder bestmögliche Vorhersagen zu treffen. Diese bekannten Datensätze werden meist händisch erstellt (Ontologe), automatisiert aufgrund bekannter Tatsachen bestimmt oder auch in einem halbautomatischen Prozess ermittelt.}
 			\en{The underlying work here is mainly concerned with supervised learning, in which a mathematical model is trained based on existing known data sets. The goal of the trained model is to make best possible predictions even for unknown images. These known data sets are usually created manually (ontologist), automatically determined based on known facts or determined in a semi-automatic process.}
 			
+		% -------------------- %
+		% Deductive approach %
+		% -------------------- %
 		\subsubsection{Deductive approach}
+		\label{sec:section_deductive_approach}
 			\de{Seit den späten 1960er Jahren hat man versucht, Bilder mit selbstgeschriebenen Algorithmen zu klassifizieren. Dieser Teil der Computer Vision beschäftigt sich mit Techniken wie Bildentstehung, Bildbearbeitung und Bildsegmentierung. Im Bereich der Bildverarbeitung reihen sich bekannte Verfahren wie Kantenerkennungen, Merkmalsdetektoren, Randverknüpfungen, Kontrastverbesserungen, etc.\footnote{Szeliski, R.: Computer Vision: Algorithms and Applications,  Springer Science Business Media, 10 (2010)\label{springer_10}} Allen Techniken gemein ist die Verwendung des deduktiven Ansatzes. Beim deduktiven Ansatz erstellt man Regeln (Merkmalsdetektoren), welche das gewünschte Ergebnis vorhersagen sollen. Diese Regeln werden vorgegeben und beschrieben und erlauben damit später eine Klassifizierung von unbekannten Objekten. Da das Modell und sein Algorithmus hinreichend bekannt ist, wird dieses Verfahren White-Box-Verfahren genannt.}
 			\en{Since the late 1960s, attempts have been made to classify images with self-written algorithms. This part of Computer Vision deals with techniques such as image creation, image processing and image segmentation. In the field of image processing, well-known techniques such as edge detection, feature detectors, edge linking, contrast enhancement, etc. are used\footnote{Szeliski, R.: Computer Vision: Algorithms and Applications,  Springer Science Business Media, 10 (2010)\label{springer_10}}. Common to all techniques is the use of the deductive approach. With the deductive approach, one creates rules (feature detectors) which are supposed to predict the desired result. These rules are given and described and thus allow later classification of unknown objects. Since the model and its algorithm are sufficiently well known, this procedure is called white-box procedure.}
 
@@ -171,7 +185,11 @@
 
 			\de{}
 
+		% -------------------- %
+		% Inductive approach %
+		% -------------------- %
 		\subsubsection{Inductive approach}
+		\label{sec:section_inductive_approach}
 			\de{Der induktive Ansatz hingegen verfolgt einen anderen Ansatz Bilder zu klassifizieren. Das Ziel ist nicht die Vorgabe einer Regel, sondern das Vorgehen aus schon bekannten einzelnen Objekten eine Regel (Modell) automatisiert zu erlernen. Ein Modell meist eine komplexe Funktion und eine mathematische Abbildung eines Raumes (VC Dimension\footnote{Vapnik–Chervonenkis dimension, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Vapnik\%E2\%80\%93Chervonenkis_dimension}}), in welcher einzelne Objekte mit ihren Eigenschaften abgebildet und getrennt werden können. Das Modell wird Stück für Stück den bekannten Objekten so angepasst, dass der Eingabewert dem Ausgabewert entspricht bzw. weitgehend entspricht (Backpropagation). Das Ziel ist es mit diesem Modell eine Funktion zu erstellen, welche in der Lage ist auch unbekannte Objekte bestmöglichst zu klassifizieren. Da der Raum dieses Modell meist fern der Vorstellungskraft und der Erklärungsmöglichkeit liegt, wird dieses Verfahren auch Black-Box-Verfahren genannt. Der hier beschriebene Vorgang wird meist bei jeder Art von \hyperref[sec:section_supervised_classification]{überwachtem Lernen} angewendet und ist ein Teil des \hyperref[sec:section_machine_learning]{maschinellem Lernens}.}
 			\en{The inductive approach, on the other hand, takes a different approach to classifying images. The goal is not to specify a rule, but to learn a rule (model) automatically from already known individual objects. A model is usually a complex function and a mathematical representation of a space (VC dimension\footnote{Vapnik–Chervonenkis dimension, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Vapnik\%E2\%80\%93Chervonenkis_dimension}}), in which individual objects with their properties can be mapped and separated. The model is adapted piece by piece to the known objects in such a way that the input value corresponds to the output value or corresponds to a large extent (backpropagation). The goal is to create a function with this model, which is able to classify unknown objects in the best possible way. Because the space of this model is mostly far away from the imagination and the possibility of explanation, this procedure is also called black box procedure. The procedure described here is mostly used for any kind of \hyperref[sec:section_supervised_classification]{supervised learning} and is a part of \hyperref[sec:section_machine_learning]{machine learning}.}
 
@@ -183,6 +201,9 @@
 				\label{fig:overview_inductive_approach}
 			\end{figure}
 
+		% -------------------- %
+		% Balanced training data set %
+		% -------------------- %
 		\subsubsection{Balanced training data set}
 		\label{sec:section_balanced_training_data_set}
 			\de{Neuronale Netze haben in den letzten Jahren enorme Fortschritte im Bereich der Mustererkennung gemacht. Dabei ist ein entscheidender Faktor, dass die Daten zum Lernen eine hohe Qualität und eine einfache Verarbeitung für das Netzwerk aufweisen müssen. Falsch klassifizierte oder irrelevante Daten könnten dazu führen, dass das Netzwerk was Falsches lernt. Das gilt auch für eine nicht vorhandene bzw. nicht geeignete Vorverarbeitung.}
@@ -232,49 +253,122 @@
 				\item Bing
 				\item Flickr
 				\item TripAdvisor
-				\item ...
+				\item etc.
 			\end{itemize}
 			
 			\de{Die wahrscheinlich teuerste Variante an Daten zu gelangen ist die händische Suche und Klassifizierung durch z.B. einen Ontologen. Dieser beurteilt und sucht verschiedenen Bilder und ordnet diese händisch in die entsprechenden Klassen ein. Auch eine kombinierte Variante ist möglich und wahrscheinlich zu bevorzugen: Automatisches Crawling und händisches aussortieren falscher, ungünstiger oder irrelevanter Bilder.}
 			\en{Probably the most expensive way to obtain data is to search and classify them manually, e.g. by an ontologist. The ontologist evaluates and searches for different images and manually classifies them in the appropriate classes. A combined variant is also possible and probably preferable: automatic crawling and manual sorting out of incorrect, unfavorable or irrelevant images.}
 
+		% -------------------- %
+		% Training, test and evaluation data set %
+		% -------------------- %
 		\subsubsection{Training, test and evaluation data set}
 		\label{sec:section_training_test_and_evaluation}
-			\de{Vor dem Beginn mit dem Training von ausbalancierten Bildern müssen diese in einen Trainings-, einen Test- und eventuell in einen Validierungsdatensatz aufgeteilt werden. Dies ist notwendig, da neuronale Netze zu einem Teil nicht verallgemeinern, sondern auswendig lernen werden (overfitting\footnote{Overfitting, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Overfitting}}). Die Idee ist es mit einem Trainingsdatensatz zu trainieren, während mit dem Validierungsdatensatz die Allgemeingültigkeit des Netzes und seiner Parameter überwacht wird. Anhand der Ergebnisse werden zur Laufzeit Anpassungen vorgenommen. Da die Anpassung der Parameter anhand der Testdaten vorgenommen wird, gibt es noch einen unabhängigen Testdatensatz, welcher eine erneute Überprüfung des Modells auf bisher unbeteiligte Daten vornimmt. Dieser stellt sicher, dass nicht versehentlich Hyperparameter nur speziell für den Validierungsdatensatz optimiert werden\autocite{osinga2019data}. Die Verwendung des Testdatensatz ist optional und simuliert das Modell unter realen Bedingungen. Ist die Anzahl der Daten begrenzt und kann dieser Datensatz z.B. auch dem Trainingsdatensatz hinzugefügt werden. In dieser Arbeit wir auf den Testdatensatz verzichtet und sämtliche Auswertungen beziehen sich auf den Validierungsdatensatz.}
-			\en{Before starting the training of balanced images, they must be divided into a training, a test and possibly a validation data set. This is necessary because neural networks will not generalize to some extent, but will learn by heart (overfitting\footnote{Overfitting, Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Overfitting}}). The idea is to train with a training data set, while the validation data set is used to monitor the general validity of the network and its parameters. Based on the results, adjustments are made at runtime. Since the adjustment of the parameters is carried out using the test data, there is also an independent test data set, which carries out a renewed check of the model for previously uninvolved data. This ensures that hyperparameters are not inadvertently optimized for the validation data set only\autocite{osinga2019data}. The use of the test data set is optional and simulates the model under real conditions. If the number of data is limited, this data record can also be added to the training data record, for example. In this thesis, the test data set is not used and all evaluations refer to the validation data set.}
+			\de{Vor dem Beginn mit dem Training von ausbalancierten Bildern müssen diese in einen Trainings-, einen Test- und eventuell in einen Validierungsdatensatz aufgeteilt werden. Dies ist notwendig, da neuronale Netze zu einem Teil nicht verallgemeinern, sondern auswendig lernen werden (overfitting\footnote{``Overfitting'', Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Overfitting}}). Die Idee ist es mit einem Trainingsdatensatz zu trainieren, während mit dem Validierungsdatensatz die Allgemeingültigkeit des Netzes und seiner Parameter überwacht wird. Anhand der Ergebnisse werden zur Laufzeit Anpassungen vorgenommen. Da die Anpassung der Parameter anhand der Testdaten vorgenommen wird, gibt es noch einen unabhängigen Testdatensatz, welcher eine erneute Überprüfung des Modells auf bisher unbeteiligte Daten vornimmt. Dieser stellt sicher, dass nicht versehentlich Hyperparameter nur speziell für den Validierungsdatensatz optimiert werden\autocite{osinga2019data}. Die Verwendung des Testdatensatz ist optional und simuliert das Modell unter realen Bedingungen. Ist die Anzahl der Daten begrenzt und kann dieser Datensatz z.B. auch dem Trainingsdatensatz hinzugefügt werden. In dieser Arbeit wird auf den Testdatensatz verzichtet und sämtliche Auswertungen beziehen sich auf den Validierungsdatensatz.}
+			\en{Before starting the training of balanced images, they must be divided into a training, a test and possibly a validation data set. This is necessary because neural networks will not generalize to some extent, but will learn by heart (overfitting\footnote{``Overfitting'', Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Overfitting}}). The idea is to train with a training data set, while the validation data set is used to monitor the general validity of the network and its parameters. Based on the results, adjustments are made at runtime. Since the adjustment of the parameters is carried out using the test data, there is also an independent test data set, which carries out a renewed check of the model for previously uninvolved data. This ensures that hyperparameters are not inadvertently optimized for the validation data set only\autocite{osinga2019data}. The use of the test data set is optional and simulates the model under real conditions. If the number of data is limited, this data record can also be added to the training data record, for example. In this thesis, the test data set is not used and all evaluations refer to the validation data set.}
 
-			\de{Eine optimale Aufteilung des Trainings- und Validierungsdatensatzes ist abhängig von dem vorliegenden Klassifizierungsproblem und die Anzahl der Daten, welche zur Verfügung stehen.}
-			\en{An optimal division of the training and validation data set depends on the existing classification problem and the amount of data available.}
+			\de{Eine optimale Aufteilung des Trainings- und Validierungsdatensatzes ist abhängig von dem vorliegenden Klassifizierungsproblem und die Anzahl der Daten, welche zur Verfügung stehen. In dieser Arbeit wird ein Verhältnis aus 80 Prozent Trainingsdaten und 20 Prozent Validierungsdaten verwendet, sofern nicht anders angegeben.}
+			\en{An optimal division of the training and validation data set depends on the existing classification problem and the amount of data available. In this paper a ratio of 80 percent training data and 20 percent validation data is used, unless otherwise stated.}
 
+			\de{\hl{Hier muss die Frage noch geklärt werden warum 80 Prozent Trainingsdaten und 20 Prozent Validierungsdaten verwendet werden. Gibt es ein Paper bzw. eine Studie dazu? Oder ist noch ein Test erforderlich?}}
+			\en{\hl{The question of why 80 percent training data and 20 percent validation data are used remains to be clarified. Is there a paper or a study on this? Or is another test required?}}			
+
+		% -------------------- %
+		% Methods of machine learning %
+		% -------------------- %
+		\subsubsection{Methods of machine learning}
+		\label{sec:section_methods_of_machine_learning}
+			\de{Je nach Art und Vorgehensweise der Überwachung des Trainings lassen sich verschiedene Machine-Learning-System einordnen. Dabei wird unterschieden, welche Art von Daten uns vorliegen oder diese selbst bestimmt werden müssen.}
+			\en{Different machine learning systems can be classified according to the type and procedure of monitoring the training. A distinction is made between the type of data we have or the data we need to determine ourselves.}
+
+			% -------------------- %
+			% Supervised learning %
+			% -------------------- %
+			\paragraph{Supervised learning}
+			\label{sec:section_supervised_learning}
+				\de{Das überwachte Lernen bezieht sich auf ein maschinelles Lernen mit bekannten Trainingsdatensätzen (siehe auch Kapitel ``induktiver Ansatz''\hyperref[sec:section_inductive_approach]). Der Lernprozess wiederrum bezieht sich auf die Fähigkeit einer künstlichen Intelligenz, Regelmäßigkeiten und Muster zu reproduzieren. Die Ergebnisse sind durch Naturgesetze oder Expertenwissen bekannt und werden für die Lehre des Systems verwendet, in dem ein Trainingsset erstellt wird, welcher die gewünschten Lösungen enthält. Man nennt dies auch gelabelte Daten. Der Lernalgorithmus versucht nun epochenweise eine Hypothese zu finden, die eine möglichst genaue Vorhersagen auf unbekannten Daten ermöglicht. Eine Hypothese ist in diesem Fall ein Bild, das jedem Eingabewert (das Bild selbst) den angenommenen Ausgabewert (die vorhergesagte Klasse) zuordnet. Diese Arbeit macht ausgiebigen Gebrauch von überwachtem Lernen.}
+				\en{Supervised learning refers to machine learning with known training data sets (see also chapter ``inductive approach''\hyperref[sec:section_inductive_approach]). The learning process in turn refers to the ability of an artificial intelligence to reproduce regularities and patterns. The results are known by laws of nature or expert knowledge and are used to teach the system by creating a training set containing the desired solutions. This is also called labelled data. The learning algorithm now tries to find a hypothesis epoch by epoch, which allows the most accurate predictions on unknown data. A hypothesis in this case is an image that assigns the assumed output value (the predicted class) to each input value (the image itself). This work makes extensive use of supervised learning.}
+	
+				\de{Beim Überwachten Lernen wird einer Klassifizierungsfunktion (meist ein künstliches neuronales Netz) ein Eingangsvektor zugeführt. Der Eingangsvektor erzeugt mit Hilfe der Klassifizierungsfunktion einen Ausgabevektor, die dieses neuronale Netz in seinem aktuellen Zustand produziert\footnote{Das neuronale Netzwerk besteht aus vielen (meist Millionen) Parametern, welche während des Lernprozesses angepasst werden können, um den Fehler zu minimieren.}. Dieser Wert wird mit dem Wert verglichen, den es eigentlich ausgeben soll. Der Vergleich des Soll- und Istzustandes gibt Auskunft wie und in welcher Form Änderungen am Netzwerk vorgenommen werden müssen, um dem Istzustand weiter anzugleichen und den Fehler zu minimieren. Für künstliche neuronale Netzwerke ohne versteckter Schicht (einlagiges Perzeptron\footnote{``Perceptron'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Perceptron}}) kann die Delta-Regel\footnote{``Least mean squares'' filter also known as ``delta rule'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Least_mean_squares_filter}} für die Korrektur vorgenommen werden. Bei Netzwerken mit einer oder mehreren versteckten Schichten verwendet man Backpropagation\footnote{``Backpropagation'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Backpropagation}} um den Fehler zu minimieren. Backpropagation ist eine Verallgemeinerung der Delta-Regel.}
+				\en{In supervised learning, an input vector is fed to a classification function (usually an artificial neural network). The input vector generates an output vector using the classification function, which produces this neural network in its current state\footnote{The neural network consists of many (usually millions) parameters, which can be adjusted during the learning process to minimize the error.}. This value is compared with the value that it should actually output. The comparison of the nominal and actual state provides information on how and in what form changes must be made to the network in order to further approximate the actual state and minimize the error. For artificial neural networks without a hidden layer (single-layer perceptron\footnote{``Perceptron'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Perceptron}}), the delta rule\footnote{``Least mean squares'' filter also known as ``delta rule'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Least_mean_squares_filter}} for correction can be applied. For networks with one or more hidden layers backpropagation\footnote{``Backpropagation'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Backpropagation}} is used to minimize the error. Backpropagation is a generalization of the delta rule.}
+				
+				\de{Das neuronale Netzwerke ist nur ein Algorithmus aus der Kategorie der überwachten Lernalgorithmen. Der Vollständigkeit hier noch eine Liste von weiteren Verfahren:}
+				\en{The neural network is only one algorithm from the category of supervised learning algorithms. For completeness here is a list of further algorithms:}
+				
+				\begin{itemize}
+					\item k-nearest neighbors\footnote{``k-nearest neighbors algorithm'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}}
+					\item Linear regression\footnote{``Linear regression'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Linear_regression}}
+					\item Logistic regression\footnote{``Logistic regression'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Logistic_regression}}
+					\item Support-vector machine\footnote{``Support-vector machine'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Support-vector_machine}}
+					\item Random forest\footnote{``Random forest'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Random_forest}}
+					\item etc.
+				\end{itemize}
+		
+			% -------------------- %
+			% Unsupervised learning %
+			% -------------------- %
+			\paragraph{Unsupervised learning}
+			\label{sec:section_unsupervised_learning}
+				\de{Beim unüberwachtem Lernen versucht man auch ohne gelabelte Daten an eine Kenntnis von Mustern zu erlangen. Angenommen man hätte mehrere Bilder von Burgern, Pizza und Donuts, welche sich unsortiert in einem Datenset befinden. Das unüberwachte Lernen versucht nun Ähnlichkeiten zu finden, um diese Bilder zu gruppieren. Im besten Fall erhält man am Ende drei unbenannte Gruppen \(A\), \(B\) und \(C\). Analysten werden sich diese Gruppen im Nachgang genauer anschauen und ein Fazit daraus ziehen, sofern dies möglich ist: Gruppe \(A\) sind Burger, Gruppe \(B\) sind Pizzen, etc.}
+				\en{In unsupervised learning, one tries to gain knowledge of patterns even without labelled data. Suppose you have several pictures of burgers, pizza and donuts, which are unsorted in a data set. Unsupervised learning now tries to find similarities in order to cluster these images. In the best case you get three unnamed groups \(A\), \(B\) and \(C\) at the end. Analysts will take a closer look at these groups afterwards and draw a conclusion if possible: Group \(A\) is burgers, group \(B\) is pizzas, etc. }
+				
+				\de{\noindent Folgende unüberwachte Lernalgorithmen können zur Gruppierung verwendet werden:}
+				\en{\noindent The following unsupervised learning algorithms can be used for clustering:}
+				
+				\begin{itemize}
+					\item k-means\footnote{``k-means clustering'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/K-means_clustering}}
+					\item Hierarchical clustering\footnote{``Hierarchical clustering'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Hierarchical_clustering}}
+					\item Expectation–maximization \footnote{``Expectation–maximization algorithm'', Wikipedia contributors, February 2, 2020, \url{Expectation–maximization algorithm}}
+					\item etc.
+				\end{itemize}
 			
+				\de{Eine Technik, die hierarchische Clusteranalyse, wird später verwendet um die Einführung von Hierarchien zu erleichtern. Für die allgemeine Analyse, den Finden von optimalen Parametern für das Lernen von Modellen, wird diese Art des Lernens in dieser Arbeit nicht verwendet.}
+				\en{One technique, hierarchical clustering, is used later to facilitate the introduction of hierarchies. For the general analysis, the finding of optimal parameters for learning models, this kind of learning is not used in this thesis.}
 
-		\subsubsection{Unsupervised Classification}
-		\label{sec:section_unsupervised_classification}
-			\de{Unüberwachtes Lernen bezieht sich auf maschinelles Lernen, ohne im Voraus bekannte Zielwerte zu kennen. In diesem Papier wird auf diese Technik nicht weiter eingegangen\autocite{geron2017supervisedlearning}.}
-			\en{Unsupervised learning refers to machine learning without knowing in advance known target values. This paper will not go into this technique any further\autocite{geron2017supervisedlearning}.}
+			% -------------------- %
+			% Reinforcement learning %
+			% -------------------- %
+			\paragraph{Reinforcement learning}
+			\label{sec:section_reinforcement_learning}
+				\de{Reinforcement learning\footnote{``Reinforcement learning'', Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Reinforcement_learning}} ist eine Art des maschinellen Lernens, bei der ein Agent selbstständig die bestmögliche Strategie für die Erreichung eines Zieles erlernt. Für die Erreichung des Ziels sind Aktionen notwendig, welche zu bestimmten Zeitpunkten Belohnungen hervorbringen. Diese Belohnungen können auch negative sein (Bestrafung). Anhand dieser Belohnungen gilt es in Summe den bestmöglichen Belohnungswert zu erzielen. Bei der Klassifizierung von Bildern ist diese Art des Lernens nicht relevant, weshalb hier auch nicht weiter darauf eingegangen wird.}
+				\en{Reinforcement learning\footnote{``Reinforcement learning'', Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Reinforcement_learning}} is a type of machine learning in which an agent independently learns the best possible strategy for achieving a goal. To achieve the goal, actions are necessary which produce rewards at certain points in time. These rewards can also be negative (punishment). Based on these rewards, the aim is to achieve the best possible reward value. This type of learning is not relevant for the classification of images, which is why it will not be discussed further here.}
 
-			\hl{...}
 
-		\subsubsection{Supervised Classification}
-		\label{sec:section_supervised_classification}
-			\de{Überwachtes Lernen bezieht sich auf maschinelles Lernen mit bekannten Trainingsdatensätzen. Lernen bezieht sich auf die Fähigkeit einer künstlichen Intelligenz, Regelmäßigkeiten und Muster zu reproduzieren. Die Ergebnisse sind durch Naturgesetze oder Expertenwissen bekannt und werden für die Lehre des Systems verwendet. Der Lernalgorithmus versucht, eine Hypothese zu finden, die möglichst genaue Vorhersagen ermöglicht. Eine Hypothese ist ein Bild, das jedem Eingabewert den angenommenen Ausgabewert zuordnet. Dieses Paper macht ausgiebigen Gebrauch von überwachtem Lernen.}
-			\en{Supervised learning refers to machine learning with known training data sets. Learning refers to the ability of an artificial intelligence to reproduce regularities and patterns. The results are known by laws of nature or expert knowledge and are used to teach the system. The learning algorithm tries to find a hypothesis that makes the most accurate predictions possible. A hypothesis is an image that assigns the assumed output value to each input value. This paper makes extensive use of supervised learning.\autocite{geron2017supervisedlearning}}
 
-			\de{Beim Überwachten Lernen wird dem KNN ein Eingangsmuster gegeben und die Ausgabe, die das neuronale Netz in seinem aktuellen Zustand produziert, mit dem Wert verglichen, den es eigentlich ausgeben soll. Durch Vergleich von Soll- und Istausgabe kann auf die vorzunehmenden Änderungen der Netzkonfiguration geschlossen werden. Bei einlagigen Perzeptrons kann die Delta-Regel (auch Perzeptron-Lernregel) angewendet werden. Mehrlagige Perzeptrons werden in der Regel mit Backpropagation trainiert, was eine Verallgemeinerung der Delta-Regel darstellt.}
-
-			\hl{...}
-
+		% -------------------- %
+		% Classification Metrics %
+		% -------------------- %
 		\subsubsection{Classification Metrics}
+			\de{Die Wahl der richtigen Metrik ist bei der Bewertung von Modellen des maschinellen Lernens von entscheidender Bedeutung. Metriken werden zur Überwachung und Messung der Leistung eines Modells während des Trainings und des Tests verwendet. Im nachfolgenden werden einige wichtige Metriken erklärt.}
+			\en{Choosing the right metric is crucial in evaluating machine learning models. Metrics are used to monitor and measure the performance of a model during training and testing. Some important metrics are explained below.}
 
-			\noindent ...
-
-			\paragraph{Top-1 accuracy}
-				The \textbf{top-1 accuracy} is the most important accuracy, which means that the model response (the one with the highest probability) must be exactly the expected response.
-
-				\hl{...}
-
-			\paragraph{Top-5 accuracy}
-				\hl{...}
+			\paragraph{Accuracy}
+				\de{Die \textbf{Top-1-Genauigkeit} ist wahrscheinlich die wichtigste Genauigkeit. Sie sagt sagt aus, zu wieviel Prozent die jeweils beste Aussage des Modells auf die Daten des Validierungssets mit der erwarteten Klasse übereinstimmt.}
+				\en{\textbf{Top-1 accuracy} is probably the most important accuracy. It tells you the percentage of the model's best prediction of the data in the validation set that matches the expected class.}
+				
+				\begin{equation}
+					Acc_{top-1} = {{\#predictions_{correct}} \over {\#predictions_{all}}}
+				\end{equation}
+				
+				\begin{equation}
+					Acc_{top-5} = {{\#predictions_{correct\ within\ the\ best\ 5\ classes}} \over {\#predictions_{all}}}
+				\end{equation}
+				
+			 \paragraph{Confusion matrix}
+			 
+			 	\de{Die Confusion Matrix ist nicht wirklich eine Metrik, aber sie erlaubt es die nachfolgenden Metriken besser zu verstehen:}
+			 	\en{The Confusion Matrix is not really a metric, but it allows to better understand the following metrics:}
+			 
+				\[
+					confusion\ matrix = \begin{bmatrix}
+						\#_{class_{1}@real\ class_{1}} & \dots & \#_{class_{n}@real 	\ class_{1}} \\
+						\vdots & \ddots & \vdots \\
+						\#_{class_{n}@real\ class_{1}} & \dots & \#_{class_{n}@real\ class_{n}}
+					\end{bmatrix}
+				\]
+				
+				\de{}
+				\en{}
 	
 	
 		\subsection{Machine Learning}
@@ -306,14 +400,14 @@
 				\end{figure}
 	
 				With this linear function it is easy to classify the above problem. The function corresponds to a neural network without hidden layer and contains only one input and one output layer. The dimension that this function can separate is 2 and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. This function can separate exactly 2 classes. But what about nonlinear problems? In this case let's look at the following classification:
-	
+				
 				\begin{figure}[H]
-					\centering
-					\includegraphics[width=1.0\textwidth]{images/shattering2}
-					\caption[Linear vs. non-linear classificatioin]{Linear vs. non-linear classificatioin\footnotemark}
-					\label{fig:beispiel3}
+					\begin{center}
+						\scalebox{1.0}{\includetex{classification}}
+					\end{center}
+					\caption{Linear vs. nonlinear classification}
+					\label{fig:overview_linear_nonlinear_classification}
 				\end{figure}
-				\footnotetext{Source: \url{http://www.statistics4u.info/fundstat_germ/cc_linvsnonlin.html}}
 	
 				For the second problem we can still adjust the function. For the third nonlinear problem, the classification space is no longer sufficient and requires a different algorithm.
 	
@@ -345,9 +439,35 @@
 					\footnotetext{Source: \url{https://towardsdatascience.com/neural-network-architectures-156e5bad51ba}}
 		
 					\hl{...}
+					
+					
+					
+	% -------------------- %
+	% Insufficient amount of data %
+	% -------------------- %
+	\section{Insufficient amount of data}
+	\label{sec:section_insufficient_amount_of_data}
+		\de{Gibt man einem Menschen einen Donut und erkärt ihm, dass es ein Donut ist, so ist dieser nach einigem Wiederholen selbstständig in der Lage diesen Donut in der Zukunft zu klassifizieren. Bei Machine Learning ist diese Problematik etwas komplexer. Wie bei den meisten machinellen Lernverfahren benötigt man eine große Menge an Daten. Wieviel ist nicht richtig belegt. Gerade wenn man es mit vielen vorherzusagenden Klassen zu tun hat, erhöht sich die Datenmenge erfahrungsgemäß. Einige Meinungen in Foren und Blogartikeln besagen (Hypothese), dass es mindestens 1000 Bilder pro Klasse sein müssen.\footnote{``Deep Learning for Image Classification with Less Data'', https://towardsdatascience.com, February 2, 2020, \url{https://towardsdatascience.com/deep-learning-for-image-classification-with-less-data-90e5df0a7b8e}}\textsuperscript{,}\footnote{``How many images do you need to train a neural network?'', https://petewarden.com, February 2, 2020, \url{https://petewarden.com/2017/12/14/how-many-images-do-you-need-to-train-a-neural-network/}}\textsuperscript{,}\footnote{``What is the minimum sample size required to train a Deep Learning model - CNN?'', https://www.researchgate.net, February 2, 2020, \url{https://www.researchgate.net/post/What_is_the_minimum_sample_size_required_to_train_a_Deep_Learning_model-CNN}}\textsuperscript{,}\autocite{krizhevsky2012imagenet}.}
+		\en{If you give a person a donut and explain to him that it is a donut, then after some repetition he is able to classify this donut in the future. With Machine Learning this problem is a bit more complex. As with most machine learning methods, a large amount of data is required. How much is not properly documented. Especially when you are dealing with many classes to be predicted, experience shows that the amount of data increases. Some opinions in forums and blog articles say (hypothesis) that there must be at least 1000 pictures per class.\footnote{``Deep Learning for Image Classification with Less Data'', https://towardsdatascience.com, February 2, 2020, \url{https://towardsdatascience.com/deep-learning-for-image-classification-with-less-data-90e5df0a7b8e}}\textsuperscript{,}\footnote{``How many images do you need to train a neural network?'', https://petewarden.com, February 2, 2020, \url{https://petewarden.com/2017/12/14/how-many-images-do-you-need-to-train-a-neural-network/}}\textsuperscript{,}\footnote{``What is the minimum sample size required to train a Deep Learning model - CNN?'', https://www.researchgate.net, February 2, 2020, \url{https://www.researchgate.net/post/What_is_the_minimum_sample_size_required_to_train_a_Deep_Learning_model-CNN}}\textsuperscript{,}\autocite{krizhevsky2012imagenet}}
 
-		\subsection{Related work}
-			\en{This is an example citation \autocite{deng2010does}.}
+		\de{Je nach Anzahl von zu trainierenden Klassen gelangt man somit schnell zu einem benötigten Datenset, welches aus mehrere Gigabyte an Daten besteht. Mittels Transfer Learning ist es möglich diese Zahl nochmals etwas zu reduzieren, jedoch bleibt das Problem der vielen Daten bestehen. Ein Paper von Microsoft aus dem Jahre 2001 zeigte zur damaligen Zeit, dass einfache Algorithmen mit genügend Daten ähnliche Ergebnisse lieferten, wie komplexe Algorithmen auf Basis weniger Daten. Dabei bezogen sich die Forscher auf Daten, welche Sprachkonstrukte klassifizieren sollten:}
+		\en{Depending on the number of classes to be trained, you will quickly arrive at the required data set, which consists of several gigabytes of data. With Transfer Learning it is possible to reduce this number a little bit, but the problem of the large amount of data remains. A paper  from Microsoft in 2001 showed at that time that simple algorithms with enough data gave similar results as complex algorithms based on less data. The researchers referred to data which should classify language constructs:}
+		
+		\blockquote{\textit{We have shown that for a prototypical natural language classification task, the performance of learners can benefit significantly from much larger training sets.}}\autocite{banko2001scaling}
+		
+		\de{In einem anderen Artikel nur wenige Jahre später wird dieses Thema ebenfalls aufgegriffen. Dabei bezog man sich auf Daten, welche von Texten lernen und man meist nur kleine oder mittelgroße Datensätze zur Verfügung hat. Um die Effizienz auch in diesem Fall zu verbessern, ist es eine gute Idee die Algorithmen und Methoden zu verbessern: \hl{Beispiele!}}
+		\en{Another article only a few years later also addresses this issue. This referred to data that learn from texts and that usually only small or medium sized data sets are available. To improve the efficiency also in this case, it is a good idea to improve the algorithms and methods: \hl{Examples!}}
+
+		\blockquote{\textit{...\autocite{halevy2009unreasonable}.}}
+
+
+
+	% -------------------- %
+	% Validation process %
+	% -------------------- %
+	\section{Related work}
+		\hl{...}
+
 
 
 	% -------------------- %
