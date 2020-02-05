@@ -31,6 +31,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
 \usepackage[style=verbose-ibid,backend=bibtex]{biblatex}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{colortbl}\usepackage{float}
+
+\restylefloat{table}
 
 % italic blockquotes
 \renewcommand{\mkbegdispquote}[2]{\itshape}
@@ -338,37 +343,97 @@
 		% -------------------- %
 		% Classification Metrics %
 		% -------------------- %
-		\subsubsection{Classification Metrics}
+		\subsubsection{Classification Metrics and confusion matrix}
 			\de{Die Wahl der richtigen Metrik ist bei der Bewertung von Modellen des maschinellen Lernens von entscheidender Bedeutung. Metriken werden zur Überwachung und Messung der Leistung eines Modells während des Trainings und des Tests verwendet. Im nachfolgenden werden einige wichtige Metriken erklärt.}
 			\en{Choosing the right metric is crucial in evaluating machine learning models. Metrics are used to monitor and measure the performance of a model during training and testing. Some important metrics are explained below.}
 
+			% -------------------- %
+			% Confusion Matrix %
+			% -------------------- %
+			\paragraph{Confusion Matrix}
+			 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während jede Spalte die Anzahl oder eine Zahlenangaben in Prozent der vorhergesagten Klasse angibt (oder umgekehrt)\footnote{``Confusion matrix'', Wikipedia contributors, February 5, 2020, \url{https://en.wikipedia.org/wiki/Confusion_matrix}}:}
+			 	\en{The Confusion Matrix is a special quadratic matrix in the field of machine learning that allows the visualization of the performance of a predictive model. Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\footnote{``Confusion matrix'', Wikipedia contributors, February 5, 2020, \url{https://en.wikipedia.org/wiki/Confusion_matrix}}:}
+
+				\begin{table}[htb]
+					\centering
+					{\def\arraystretch{2}\tabcolsep=5pt
+						\begin{tabular}{cc|c|c|c|c|}
+							\cline{3-6}
+							& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
+							& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
+							\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP\)                  & \multicolumn{3}{c|}{\(FN\)} \\ \cline{2-6} 
+							\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN\)}} \\ \cline{2-2}
+							\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
+							\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
+						\end{tabular}
+					}
+					\captionof{table}{Confusion matrix}\label{tbl:table_confusion_matrix}
+				\end{table}
+
+			 	\de{Zum Schluß besitzt die Confusion Matrix folgenden Aufbau, wobei die Anzahl von Elementen in der Klasse \(C_{i,P}\) vorhergesagt wurde, obwohl (\(\boldsymbol{\cong}\)) es hätte Klasse \(C_{j,A}\) sein müssen:}
+				\en{Finally, the Confusion Matrix has the following structure, where the number of elements in the class \(C_{i,P}\) was predicted although (\(\boldsymbol{\cong}\)) it should have been class \(C_{j,A}\):}
+
+				\begin{equation}
+					\boldsymbol{M}_{confusion} = \begin{bmatrix}
+						\#C_{1,P}\boldsymbol{\cong} C_{1,A} & \dots & \#(C_{n,P}\boldsymbol{\cong} C_{1,A}) \\
+						\vdots & \ddots & \vdots \\
+						\#(C_{1,P}\boldsymbol{\cong} C_{n,A}) & \dots & \#(C_{n,P}\boldsymbol{\cong} C_{n,A})
+					\end{bmatrix} = (a_{nn})
+				\end{equation}
+
+			% -------------------- %
+			% Accuracy %
+			% -------------------- %
 			\paragraph{Accuracy}
 				\de{Die \textbf{Top-1-Genauigkeit} ist wahrscheinlich die wichtigste Genauigkeit. Sie sagt sagt aus, zu wieviel Prozent die jeweils beste Aussage des Modells auf die Daten des Validierungssets mit der erwarteten Klasse übereinstimmt.}
 				\en{\textbf{Top-1 accuracy} is probably the most important accuracy. It tells you the percentage of the model's best prediction of the data in the validation set that matches the expected class.}
-				
+
 				\begin{equation}
-					Acc_{top-1} = {{\#predictions_{correct}} \over {\#predictions_{all}}}
+					Acc_{top-1} = {{TP + TN} \over {TP + TN + FP + FN}} = {{\sum_{i,j=1}^{n} a_{ij}} \over {\sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}}} = {{\#predictions_{correct}} \over {\#predictions_{all}}}
 				\end{equation}
+
+				\de{Die \textbf{Top-5-Genauigkeit} ist eine weitere Genauigkeitsangabe. Jedoch wird hier nicht nur der beste Treffer einbezogen, sondern auch die nächsten weiteren vier. Sobald die richtige Klasse innerhalb der ersten fünf vorhergesagten Klassen gefunden werden kann, so ist auch diese Vorhersage wahr:}
+				\en{The \textbf{Top 5 Accuracy} is another accuracy specification. However, not only the best hit is included here, but also the next four. As soon as the correct class can be found within the first five predicted classes, this prediction is also true:}
 				
 				\begin{equation}
 					Acc_{top-5} = {{\#predictions_{correct\ within\ the\ best\ 5\ classes}} \over {\#predictions_{all}}}
 				\end{equation}
-				
-			 \paragraph{Confusion matrix}
-			 
-			 	\de{Die Confusion Matrix ist nicht wirklich eine Metrik, aber sie erlaubt es die nachfolgenden Metriken besser zu verstehen:}
-			 	\en{The Confusion Matrix is not really a metric, but it allows to better understand the following metrics:}
-			 
-				\[
-					confusion\ matrix = \begin{bmatrix}
-						\#_{class_{1}@real\ class_{1}} & \dots & \#_{class_{n}@real 	\ class_{1}} \\
-						\vdots & \ddots & \vdots \\
-						\#_{class_{n}@real\ class_{1}} & \dots & \#_{class_{n}@real\ class_{n}}
-					\end{bmatrix}
-				\]
-				
-				\de{}
-				\en{}
+
+			% -------------------- %
+			% Precision %
+			% -------------------- %
+			\paragraph{Precision}
+				\de{Precision sagt aus, wie zuverlässig die Aussage einer Vorhersage einer Klasse ist:}
+				\en{Precision expresses how reliable the statement of a prediction of a class is:}
+
+				\begin{equation}
+					Precision = {{Correct} \over {Actual}} = {{TP} \over {TP + FP}}
+				\end{equation}
+
+				\de{Oder genauer für die Klasse c:}
+				\en{Or more precisely for class c:}
+
+				\begin{equation}
+					Precision_{@c} = {{a_{cc}} \over {\sum_{i=1}^{n} a_{ic}}}
+				\end{equation}
+
+			% -------------------- %
+			% Precision %
+			% -------------------- %
+			\paragraph{Recall}
+				\de{Recall ist die Genauigkeit einer Klasse. Das bedeutet wie gut konnte die Klasse vorhergesehen werden:}
+				\en{Recall is the accuracy of a class. This means how well the class could be predicted:}
+
+				\begin{equation}
+					Recall = {{Correct} \over {CorrectPossible}} = {{TP} \over {TP + FN}}
+				\end{equation}
+
+				\de{Oder genauer für die Klasse c:}
+				\en{Or more precisely for class c:}
+
+				\begin{equation}
+					Recall_{@c} = {{a_{cc}} \over {\sum_{i=1}^{n} a_{ci}}}
+				\end{equation}
 	
 	
 		\subsection{Machine Learning}
@@ -729,6 +794,7 @@
 	\renewcommand{\listfigurename}{List of figures}
 	\addcontentsline{toc}{section}{List of figures}
 	\listoffigures
+	\listoftables
 	
 
 
