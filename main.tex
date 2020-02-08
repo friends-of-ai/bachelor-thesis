@@ -34,8 +34,19 @@
 \usepackage{multirow}
 \usepackage{caption}
 \usepackage{colortbl}\usepackage{float}
+\usepackage{placeins}
+\usepackage{dblfloatfix}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+   \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
 
 \restylefloat{table}
+
+% add more distance between footnotes and the main text
+\addtolength{\skip\footins}{2pc plus 5pt}
 
 % italic blockquotes
 \renewcommand{\mkbegdispquote}[2]{\itshape}
@@ -389,22 +400,52 @@
 				\en{\textbf{Top-1 accuracy} is probably the most important accuracy. It tells you the percentage of the model's best prediction of the data in the validation set that matches the expected class.}
 
 				\begin{equation}
-					Acc_{top-1} = {{TP + TN} \over {TP + TN + FP + FN}} = {{\sum_{i,j=1}^{n} a_{ij}} \over {\sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}}} = {{\#predictions_{correct}} \over {\#predictions_{all}}}
+					Accuracy = {{TP + TN} \over {TP + TN + FP + FN}} = {{\sum_{i,j=1}^{n} a_{ij}} \over {\sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}}} = {{Correct_{all}} \over {CorrectPossible_{all}}}
 				\end{equation}
 
 				\de{Die \textbf{Top-5-Genauigkeit} ist eine weitere Genauigkeitsangabe. Jedoch wird hier nicht nur der beste Treffer einbezogen, sondern auch die nächsten weiteren vier. Sobald die richtige Klasse innerhalb der ersten fünf vorhergesagten Klassen gefunden werden kann, so ist auch diese Vorhersage wahr:}
 				\en{The \textbf{Top 5 Accuracy} is another accuracy specification. However, not only the best hit is included here, but also the next four. As soon as the correct class can be found within the first five predicted classes, this prediction is also true:}
 				
 				\begin{equation}
-					Acc_{top-5} = {{\#predictions_{correct\ within\ the\ best\ 5\ classes}} \over {\#predictions_{all}}}
+					Accuracy_{top-5} = {{CorrectWithinTheBest5Classes_{all}} \over {CorrectPossible_{all}}}
 				\end{equation}
+
+				\de{Die Genauigkeit des gesamten Modells ist eine gute Aussagekraft über die Leistungsfähigkeit des Modells. Ein Problem tritt jedoch in Extremfällen auf, bei denen nicht mehr zuverlässig Annahmen gemacht werden können. Zum Beispiel wenn man es mit einem unbalancierten Datensatz zu tun hat\autocite{geron2017supervisedlearningConfusionMatrix}. Beispiel: Nehmen wir an, wir hätten ein Modell, dass immer die Klasse \(class_1\) vorhersagt. Die Klasse \(class_1\) besteht aus 9990 Elementen und von den anderen Klassen \(class_2\) bis \(class_n\) haben wir genau 10. Dann sieht die Confusion Matrix wie folgt aus:}
+				\en{The accuracy of the entire model is a good indication of the performance of the model. However, a problem occurs in extreme cases where assumptions can no longer be made reliably. For example, if you are working with an unbalanced dataset\autocite{geron2017supervisedlearningConfusionMatrix}. Example: Suppose we have a model that always predicts the class \(class_1\). The class \(class_1\) consists of 9990 elements and of the other classes \(class_2\) to \(class_n\) we have exactly 10. Then the Confusion Matrix looks like this:}
+
+				%\clearpage
+				\begin{table}[htb]
+					\centering
+					{\def\arraystretch{2}\tabcolsep=5pt
+						\begin{tabular}{cc|c|c|c|c|}
+							\cline{3-6}
+							& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
+							& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
+							\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP = 9990\)                  & \multicolumn{3}{c|}{\(FN = 0\)} \\ \cline{2-6} 
+							\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP = 10\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN = 0\)}} \\ \cline{2-2}
+							\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
+							\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
+						\end{tabular}
+					}
+					\captionof{table}{Confusion matrix}\label{tbl:table_confusion_matrix}
+				\end{table}
+
+				\de{Die Modell-Genauigkeit ist ein ist in diesem Fall 99,9\%, obwohl es ein schlechtes Modell ist:}
+				\en{The model accuracy in this case is 99.9\%, although it is a bad model:}
+
+				\begin{equation}
+					Accuracy = 99,9\%
+				\end{equation}
+
+				\de{Deswegen gibt es weitere Performance Metriken wie Precision, Recall und F-Measure.}
+				\en{Therefore there are additional performance metrics like Precision, Recall and F-Measure.}
 
 			% -------------------- %
 			% Precision %
 			% -------------------- %
 			\paragraph{Precision}
-				\de{Precision sagt aus, wie zuverlässig die Aussage einer Vorhersage einer Klasse ist:}
-				\en{Precision expresses how reliable the statement of a prediction of a class is:}
+				\de{Precision\footnote{``Precision and recall'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/Precision_and_recall}} sagt aus, wie zuverlässig die Aussage einer Vorhersage einer Klasse ist:}
+				\en{Precision\footnote{``Precision and recall'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/Precision_and_recall}} expresses how reliable the statement of a prediction of a class is:}
 
 				\begin{equation}
 					Precision = {{Correct} \over {Actual}} = {{TP} \over {TP + FP}}
@@ -418,11 +459,11 @@
 				\end{equation}
 
 			% -------------------- %
-			% Precision %
+			% Recall %
 			% -------------------- %
 			\paragraph{Recall}
-				\de{Recall ist die Genauigkeit einer Klasse. Das bedeutet wie gut konnte die Klasse vorhergesehen werden:}
-				\en{Recall is the accuracy of a class. This means how well the class could be predicted:}
+				\de{Recall\footnote{``Precision and recall'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/Precision_and_recall}} ist die Genauigkeit einer Klasse. Das bedeutet wie gut konnte die Klasse vorhergesehen werden:}
+				\en{Recall\footnote{``Precision and recall'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/Precision_and_recall}} is the accuracy of a class. This means how well the class could be predicted:}
 
 				\begin{equation}
 					Recall = {{Correct} \over {CorrectPossible}} = {{TP} \over {TP + FN}}
@@ -436,22 +477,210 @@
 				\end{equation}
 
 			% -------------------- %
+			% F-Measure %
+			% -------------------- %
+			\paragraph{F-Measure}
+				\de{F-Measure\footnote{``F1 score'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/F1_score}} kombiniert Präzision und Rückruf, wobei der Parameter \(\beta\) die Gewichtung darstellt:}
+				\en{F-Measure\footnote{``F1 score'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/F1_score}} combines precision and recall, with the parameter \(\beta\) representing the weighting:}
+				\begin{equation}
+					F_\beta =
+					(1 + \beta^2) \cdot {{Precision\cdot Recall}\over{\beta^2 \cdot Precision + Recall}} = 
+					{{(1 + \beta^2) \cdot TP}\over{(1 + \beta^2) \cdot TP + \beta^2 \cdot FN + FP}}
+				\end{equation}
+
+				\de{Je höher der \(\beta\), desto mehr Wert wird auf Precision statt auf Recall gelegt. Das ist wichtig, wenn man mehr Wert auf die Qualität der Verhersage legt, als auf die Erkennungsgenauigkeit. Z.B. bei einer Vorhersage von Krankheiten: Zuordnung von Klasse Krank bei gesunde Menschen ist hier genauso fatal wie auch die Zuordnung von Klasse Gesund bei kranken Menschen (Obwohl Fall zwei fataler wäre als Fall eins). Mit einem Wert von \(\beta = 0,5\) erhalten wir eine Gleichverteilung beider Werte und wird F1 score genannt:}
+				\en{The higher \(\beta\) the more importance is placed on precision instead of recall. This is important if you put more importance on the quality of the prediction than on the accuracy of prediction. For example, when predicting diseases: assigning class ``ill'' to healthy people is just as fatal as assigning class ``healthy'' to sick people (although case two would be even more fatal than case one). With a beta value of \(\beta = 0,5\) we get an equal distribution of both values and is called F1 score:}
+
+				\begin{equation}
+					F_1 =
+					{{2 \cdot Precision \cdot Recall}\over{Precision + Recall}} = 
+					{{2 \cdot TP}\over{2 \cdot TP + FN + FP}}
+				\end{equation}
+
+			% -------------------- %
 			% loss function %
 			% -------------------- %
 			\paragraph{Loss function}
-				\hl{...}
+				\de{Da es sich hierbei um ein Klassifzierungsproblem und nicht um ein Regressionsproblem handelt, greift man bei der Vorhersage auf die Softmax-Regression zurück. Dabei wird nach jeder Vorhersage ein Vektor \(\lambda\) der Größe \(n\) zurückgegeben, wobei \(n\) der Anzahl der zu unterscheidenden Klassen entspricht\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(\hat{p}\) Wert entspricht dabei der Wahrscheinlichkeit, dass es die Klasse \(class_n\) ist:}
+				\en{Since this is a classification problem and not a regression problem, the prediction is based on softmax regression. After each prediction, a vector \(\lambda\) of the size \(n\) is returned, where \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual \(\hat{p}\) value corresponds to the probability that it is class \(class_n\):}
 
-	
-	
+				\begin{equation}
+					\lambda = 
+					\left(
+						\begin{array}{c}
+						\hat{p}_{1}\\
+						\hat{p}_{2}\\
+						\vdots\\
+						\hat{p}_{n}\\
+						\end{array}
+					\right)
+					\quad\Biggl\lvert \quad \sum_{i=1}^n \hat{p_i} = 1
+				\end{equation}
+
+				\de{Der erwartete Wert der Parameterfunktion und somit der aktuellen Klasse wird als One Hot Vektor zurückgegeben. Der Wert 1 entspricht der erwarteten Klasse. Alle anderen Klassen geben 0 zurück. Dies nennt man auch One Hot Encoding:}
+				\en{The expected value of the parameter function and thus of the current class is returned as a one hot vector. The value 1 corresponds to the expected class. All other classes return 0. This is also called one hot encoding:}
+
+				\begin{equation}
+					g(\vartheta_2) = 
+					\left(
+						\begin{array}{c}
+						0\\
+						1\\
+						\vdots\\
+						0\\
+						\end{array}
+					\right)
+				\end{equation}
+
+				\de{Die Verlustfunktion\footnote{``Verlustfunktion (Statistik)'', Wikipedia contributors, February 7, 2020, \url{https://de.wikipedia.org/wiki/Verlustfunktion_(Statistik)}} ordnet jeder Vorhersage einen Schaden zu, der durch den Vergleich mit dem wahren Wert bzw. Parameter entsteht. Dazu wird der Abstand der vorhergesagten Klasse zur wahren Klasse berechnet (sind sie gleich ist der Abstand 0). Bessert sich mit Anpassung des Modells (Lernvorgang) die Vorhersage aller vorhergesagten Klassen zu ihren wahren Klassen, so verkleinert sich auch der Wert der Verlustfunktion. Eine typische Verlustfunktion ist z.B. für einen r-dimensionalen Raum:}
+				\en{The loss function\footnote{``Verlustfunktion (Statistik)'', Wikipedia contributors, February 7, 2020, \url{https://de.wikipedia.org/wiki/Verlustfunktion_(Statistik)}} assigns a loss to each prediction, which results from the comparison with the true value or parameter. For this purpose, the distance between the predicted class and the true class is calculated (if they are equal, the distance is 0).  If the adaptation of the model (learning process) improves the prediction of all predicted classes to their true classes, the value of the loss function is also reduced.  A typical loss function is e.g. for an r-dimensional space:}
+
+				\begin{equation}
+					L_r(\vartheta, \lambda) := \lVert \lambda - g(\vartheta) \rVert^r
+				\end{equation}
+
+				\de{\(\lambda\) stellt hierbei den geschätzte Wert und \(g(\vartheta)\) die Parameterfunktion dar, welche den realen Wert für \(\vartheta\) zurückliefert. Der mittlere Verlust auf den gesamten Datensatz mit \(n\) Elementen beträgt somit:}
+				\en{\(\lambda\) represents the estimated value and \(g(\vartheta)\) the parameter function which returns the actual value for \(\vartheta\). The average loss on the entire data set with \(n\) elements is thus:}
+
+				\begin{equation}
+					\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \lambda_i)
+				\end{equation}
+
 		\subsection{Machine Learning}
 		\label{sec:section_machine_learning}
 			\de{Maschinelles Lernen ist ein Oberbegriff für die künstliche Generierung von Wissen aus Erfahrung. Es verfolgt den Ansatz des induktiven Lernens (siehe auch Kapitel ``induktiver Ansatz''\hyperref[sec:section_inductive_approach]).}
 			\en{Machine learning is a generic term for the artificial generation of knowledge from experience. It follows the approach of inductive learning (see also chapter ``inductive approach''\hyperref[sec:section_inductive_approach]).}
 
-		
-			\subsubsection{Neuronal Network}
+			\subsubsection{Artificial neural network}
 
-				\noindent Explain the development of a neuronal network here...
+				\de{Künstliche neuronale Netzwerke stellen Funktionen bereit, welche in der Lage sind hochkomplexe Daten im mehrdimensionalem Raum zu trennen. Bei großen und hochgradig komplexen Aufgaben, wie beispielsweise der Klassifizierung von Milliarden von Bildern, Sprach- und Texterkennungen, schneiden neuronale Netze meist besser ab, als andere Machine Learning Verfahren. Der erhebliche Zuwachs an Rechenkapizität seit den 1990ern ermöglicht das Trainieren großer neuronaler Netzwerke innerhalb eines sinnvollen Zeitraumes. Künstliche neuronale Netzwerke sind die Kernkomponente des Deep Learnings.}
+				\en{Artificial neural networks provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other machine learning methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning.}
+
+				\de{Neuronale Netzwerke verarbeiten einen Eingabevektor und wandeln ihn in einen neuen Ausgabevektor um. Sie sind Netze aus vielen hintereinander und parallel geschalteten künstlichen Neuronen. Ein künstliches Neuron wiederrum wandelt einen Vektor in ein Skalar um, indem es die Eingänge \(\bar{x}\) mit den veränderlichen Parametern \(\bar{\omega}\) skaliert, aufsummiert und mit einem Bias \(b\) korrigiert (der Bias ist ebenso eine veränderliche Variable). Die Aktivierungsfunktion stellt sicher, dass aus dem Polynom ersten Grades (lineares Regressionsmodell) eine nichtlineare Funktion wird\footnote{``Aktivierungsfunktionen, ihre Arten und Verwendungsmöglichkeiten'', https://www.ai-united.de/, February 8, 2020, \url{https://www.ai-united.de/aktivierungsfunktionen-ihre-arten-und-verwendungsmoeglichkeiten/}}:}
+				\en{Neural networks process an input vector \(\bar{x}\) and convert it into a new output vector \(\hat{\bar{x}}\). They are networks of many artificial neurons connected in series and parallel. An artificial neuron in turn converts a vector into a scalar by scaling and summing the inputs \(\bar{x}\) with the changeable parameters \(\bar{\omega}\) and correcting them with a bias \(b\) (the bias is also a changeable variable). The activation function ensures that the first degree polynomial (linear regression model) becomes a nonlinear function\footnote{``Activation functions, their types and uses'', https://www.ai-united.de/, February 8, 2020, \url{https://www.ai-united.de/aktivierungsfunktionen-ihre-arten-und-verwendungsmoeglichkeiten/}}:}
+
+				\begin{figure}[H]
+					\[
+						\begin{array}{c}
+							x_1\\
+							x_2\\
+							\color{white}\vdots\\
+							x_n\\
+							1\\
+						\end{array}
+						\begin{array}{c}
+							\rightarrow\\
+							\rightarrow\\
+							\vdots\\
+							\rightarrow\\
+							\rightarrow\\
+						\end{array}
+						\begin{array}{c}
+							\omega_1\\
+							\omega_2\\
+							\color{white}\vdots\\
+							\omega_n\\
+							b\\
+						\end{array}
+						\begin{array}{c}
+							\diagdown\\
+							\\
+							\\
+							\\
+							\diagup\\
+						\end{array}
+						\circled{${\sum\atop\ }\over{\ \atop step(z)}$}
+						\longrightarrow h
+						\quad\Biggl\lvert \quad h = step(z) = step(\bar{\omega}^\intercal \cdot \bar{x} + b)
+					\]
+					\caption{The construction of an artificial neuron.}
+				\end{figure}
+
+				\de{Das künstliche neuronale Netz baut sich aus vielen hintereinandergeschalteten Layern zusammen, welche wiederrum parallel geschaltete Neuronen enthalten:}
+				\en{The artificial neural network is composed of many layers connected in series, which again contain neurons connected in parallel:}
+
+				\begin{figure}[H]
+					\centering
+
+					\tikzset{%
+						every neuron/.style={
+							circle,
+							draw
+					  	},
+					  	every inputneuron/.style={
+					  		circle,
+					  		draw,
+					  		minimum size=0.25cm
+					  	},
+					  	neuron 1/.style={
+							circle,
+							draw,
+							minimum size=0.75cm,
+							execute at begin node=\color{black}${\sum\atop\ }\over{\ \atop step(z)}$
+					  	},
+					  	neuron 2/.style={
+							circle,
+							draw,
+							minimum size=0.75cm,
+							execute at begin node=\color{black}${\sum\atop\ }\over{\ \atop step(z)}$
+					  	},
+					  	neuron missing/.style={
+					  		draw=none,
+					  		scale=2,
+					  		text height=0.333cm,
+					  		execute at begin node=\color{black}$\vdots$
+					  	},
+					  	inputneuron missing/.style={
+					  		draw=none, 
+					  		scale=2,
+					  		text height=0.333cm,
+					  		execute at begin node=\color{black}$\vdots$
+						},
+					}
+					
+					\begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth]
+						% print input neurons
+						\foreach \m/\l [count=\y] in {1,2,3,missing,4}
+							\node [every inputneuron/.try, inputneuron \m/.try] (input-\m) at (0,2.5-\y) {};
+						
+						% print hidden neurons
+						\foreach \m [count=\y] in {1,missing,2}
+							\node [every neuron/.try, neuron \m/.try ] (hidden-\m) at (2,2-\y*1.25) {};
+						
+						% print output neurons
+						\foreach \m [count=\y] in {1,missing,2}
+							\node [every neuron/.try, neuron \m/.try ] (output-\m) at (4,1.5-\y) {};
+						
+						% x_n
+						\foreach \l [count=\i] in {1,2,3,n}
+							\draw [<-] (input-\i) -- ++(-1,0)
+								node [above, midway] {$x_\l$};
+						
+						% h_n
+						\foreach \l [count=\i] in {1,n}
+							\node [above] at (hidden-\i.north) {$h_\l$};
+						
+						% ^x_n
+						\foreach \l [count=\i] in {1,n}
+						  \draw [->] (output-\i) -- ++(1,0)
+						    node [above, midway] {$\hat{x}_\l$};
+						
+						% lines between input and hidden layer
+						\foreach \i in {1,...,4}
+						  \foreach \j in {1,...,2}
+						    \draw [->] (input-\i) -- (hidden-\j);
+						
+						% lines between hidden and output layer
+						\foreach \i in {1,...,2}
+						  \foreach \j in {1,...,2}
+						    \draw [->] (hidden-\i) -- (output-\j);
+						
+						% print labels
+						\foreach \l [count=\x from 0] in {Input, Hidden, Ouput}
+						  \node [align=center, above] at (\x*2,2) {\l \\ layer};
+					\end{tikzpicture}
+					\caption{The construction of a simple neural network.}
+				\end{figure}
 
 				In künstlichen neuronalen Netzen bezeichnet die Topologie die Struktur des Netzes. Damit ist im Allgemeinen gemeint, wie viele künstliche Neuronen sich auf wie vielen Schichten befinden, und wie diese miteinander verbunden sind. Künstliche Neuronen können auf vielfältige Weise zu einem künstlichen neuronalen Netz verbunden werden. Dabei werden Neuronen bei vielen Modellen in hintereinander liegenden Schichten (englisch layers) angeordnet; bei einem Netz mit nur einer trainierbaren Neuronenschicht spricht man von einem einschichtigen Netz.
 
