@@ -37,9 +37,12 @@
 \usepackage{placeins}
 \usepackage{dblfloatfix}
 \usepackage{tikz}
-\usetikzlibrary{positioning}
+\usepackage{environ}
 
-\usetikzlibrary{math} %needed tikz library
+% tikzpiture libraries
+\usetikzlibrary{positioning}
+\usetikzlibrary{math}
+\usetikzlibrary{backgrounds}
 
 % circled command
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
@@ -56,6 +59,7 @@
 \renewcommand{\mkenddispquote}[2]{\closeautoquote#1#2}
 
 % fullref command
+%\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \nameref*{#1}}}
 \newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \nameref*{#1}}}
 
 % literature reference
@@ -432,7 +436,7 @@
 							\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
 						\end{tabular}
 					}
-					\captionof{table}{Confusion matrix}\label{tbl:table_confusion_matrix}
+					\captionof{table}{Confusion matrix example}\label{tbl:table_confusion_matrix}
 				\end{table}
 
 				\de{Die Modell-Genauigkeit ist ein ist in diesem Fall 99,9\%, obwohl es ein schlechtes Modell ist:}
@@ -753,7 +757,7 @@
 							\layerFourWidth = 0.36;
 						}
 
-						\node[anchor=south west,inner sep=0] (burger) at (0,0)
+						\node[anchor=south west,inner sep=0,framed] (burger) at (0,0)
 							{\includegraphics[width=6.5ex]{images/data/burger/burger28-quad.png}};
 
 						% input image
@@ -834,8 +838,8 @@
 				\de{Convolutional neuronal networks sind großartig und haben einen entscheidenden Beitrag zur Klassifizierung von Bilder beigetragen. Mit der Gründung der Forschungsdatenbank ImageNet im Jahre 2006 werden jährliche Wettbewerbe veranstaltet, um entwickelte Neuronale Netzwerke miteinander zu vergleichen. ImageNet ist eine Bilderdatenbank mit mehr als 14 Millionen Bildern. Ein CNN namens AlexNet im Jahr 2012 einen Top-5 Fehler von 15,3\% und erhöht sich aktuell stetig jedes Jahr. Aber die Architektur von einem CNN hat ein Problem. Alle Convolutional Layer sind vom Beginn an zufällig initialisiert und enthalten noch keine Muster. Damit sie zuverlässig funktioniert, muss sie mit vielen Bildern trainiert werden. Würde man vom Scratch an ein CNN selbst entwickeln und verwenden, so müssen alle Convolutional Layer auch vorab trainiert werden.}
 				\en{Convolutional neural networks are great and have made a significant contribution to the classification of images. With the foundation of the research database ImageNet in 2006, annual competitions are organized to compare developed neural networks. ImageNet is an image database with more than 14 million images. A CNN called AlexNet in 2012 got a top-5 error of 15.3\% and is currently increasing steadily every year. But the architecture of a CNN has a problem. All convolutional layers are randomly initialized from the beginning and do not yet contain any patterns. For it to work reliably, it needs to be trained with many images. If one would develop and use a CNN from scratch, all convolutional layers have to be trained in advance.}
 
-				\de{Die Convolutional Layer extrahieren Features wie Kanten, Quadrate, Kreise, etc. Diese sind so gut wie in jedem Bild vorhanden und es stellt sich die Frage, ob man diese nicht wiederverwenden kann, um den Trainingsaufwand zu verringern. Die Idee beim Transfer Learning ist es ein schon vortrainiertes CNN zu verwenden und lediglich das neuronale Netzwerk am Ende des Convolutional neuronal networks an die eigene Problemstellung anzupassen.}
-				\en{The convolutional layers extract features such as edges, squares, circles, etc. These are present in almost every image and the question arises whether you can reuse them to reduce the training effort. The idea of Transfer Learning is to use an already pre-trained CNN and just adapt the neural network at the end of the Convolutional neural network to the own problem.}
+				\de{Die Convolutional Layer extrahieren Features wie Kanten, Quadrate, Kreise, etc. Diese sind so gut wie in jedem Bild vorhanden und es stellt sich die Frage, ob man diese nicht wiederverwenden kann, um den Trainingsaufwand zu verringern. Die Idee beim Transfer Learning ist es ein schon vortrainiertes CNN zu verwenden und lediglich das neuronale Netzwerk am Ende des Convolutional neuronal networks an die eigene Problemstellung anzupassen:}
+				\en{The convolutional layers extract features such as edges, squares, circles, etc. These are present in almost every image and the question arises whether you can reuse them to reduce the training effort. The idea of Transfer Learning is to use an already pre-trained CNN and just adapt the neural network at the end of the Convolutional neural network to the own problem:}
 
 				\begin{figure}[H]
 					\centering
@@ -858,13 +862,20 @@
 
 						% placeholder
 						\draw[fill=white, opacity=0, draw=white]
-							(0 * \inputImageWidth, 0 * \inputImageWidth + 1.5) --
-							(1 * \inputImageWidth, 0 * \inputImageWidth + 1.5) --
-							(1 * \inputImageWidth, 1 * \inputImageWidth + 1.5) --
-							(0 * \inputImageWidth, 1 * \inputImageWidth + 1.5) --
-							(0 * \inputImageWidth, 0 * \inputImageWidth + 1.5);
+							(0 * \inputImageWidth, 0 * \inputImageWidth + .5) --
+							(1 * \inputImageWidth, 0 * \inputImageWidth + .5) --
+							(1 * \inputImageWidth, 1 * \inputImageWidth + .5) --
+							(0 * \inputImageWidth, 1 * \inputImageWidth + .5) --
+							(0 * \inputImageWidth, 0 * \inputImageWidth + .5);
+						\draw[fill=white, opacity=0, draw=white]
+							(0 * \inputImageWidth, 0 * \inputImageWidth - .5) --
+							(1 * \inputImageWidth, 0 * \inputImageWidth - .5) --
+							(1 * \inputImageWidth, 1 * \inputImageWidth - .5) --
+							(0 * \inputImageWidth, 1 * \inputImageWidth - .5) --
+							(0 * \inputImageWidth, 0 * \inputImageWidth - .5);
 
 						%draw image
+						%\node at (0.5,-1){\begin{tabular}{c}input image\end{tabular}};
 						\node[anchor=south west,inner sep=0] (burger) at (0,0)
 							{\includegraphics[width=6.5ex]{images/data/burger/burger28-quad.png}};
 
@@ -999,7 +1010,11 @@
 	% Validation process %
 	% -------------------- %
 	\section{Related work}
-		\hl{...}
+		\de{Es existieren eine Reihe von Untersuchungen zur Bildklassifikation auf sehr großen Datensätzen.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Meist ist diese riese Anzahl von Klassifikationsklassen und Datenmengen gar nicht erwünscht. Weiterhin gibt es viele Untersuchungen auf kleinen Datensätzen. Was ihnen jedoch fehlt ist die Tatsache die gängisten Abstimmungsparameter in einer Übersicht zu finden. Daten sind teuer in der Beschaffung und meist nicht einfach zu bekommen (\fullref{sec:section_balanced_training_data_set}). Und im Gegensatz dazu, treten Bildklassifikationen in immer mehr Bereichen unseres Lebens auf und finden auch in immer mehr in Unternehmen eine direkte Verwendung, welche bisher keinen Gebrauch davon gemacht haben und sich nun überlegen eigene Implemantionen einzuführen. Da sind z.B. Unternehmen, welche versuchen aufgrund verschiedener Daten Produkte zu klassifizieren. Ist es unter dem Kostenpunkte betrachtet eine gute Idee oder bleibt einem der Schritt zu den Softwaretools von Unternehmensriesen wie Microsoft, Google und Co. nicht verwehrt? Ein Mensch sieht einen Artikel und ordnet ihn ein: Anhand des Textes, der Beschreibungung oder eines Bildes. Manchmal bleibt nur noch ein Bild, weil z.B. Texte nicht richtig gepflegt wurden oder nur kryptische Werte zurückliefern. Auch diese Klassifizierung ist für den Menschen oftmals keine Herausforderung. Er erkennt auch in diesem Fall das Produkt \(X\) aufgrund des noch vorhandenen Bildes.}
+		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets. What they are missing is the fact that the most common tuning parameters can be found in one overview. Data is expensive to obtain and usually not easy to get (\fullref{sec:section_balanced_training_data_set}). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees an article and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. Even this classification is often not a challenge for humans. In this case he also recognizes the product \(X\) on the basis of the still existing image.}
+
+		\de{Diese Arbeit beschäftigt sich mit dem Bildklassifizierungsteil. Da es sich hierbei um Unternehmen mit begrenzten Ressourcen handelt, steht nun die Frage im Raum: Mit welchen Mitteln, Techniken und Kniffen ist es möglich dennoch eine erfolgreiche Bildklassifizierung durchzuführen. Müssen die in \fullref{sec:section_insufficient_amount_of_data} erwähnten Bedingungen erfüllt werden oder sind erfolgreiche Klassifizierungen auch schon mit weniger möglich? Kann man durch Anpassung bestimmter Abstimmungsparameter das Optimum aus der Erstellung von Modellen herausholen? Ist z.B. eine Clusteranalyse und die damit verbundene kategorische Untergliederung der Klassifizierung ein erfolgreicher Ansatz? Diese und andere Fragen sollen mit dieser Arbeit geklärt werden. Und ich wage an dieser Stelle zu behaupten, dass es möglich ist auch mit weniger Anforderungen zu einem guten Ziel zu kommen.}
+		\en{This thesis deals with the image classification part. Since these are companies with limited resources, the question is: With which means, techniques and tricks is it possible to carry out a successful image classification. Do the conditions mentioned in \fullref{sec:section_insufficient_amount_of_data} have to be fulfilled or are successful classifications already possible with less? Is it possible to get the most out of model creation by adjusting certain tuning parameters? For example, is a cluster analysis and the associated categorical breakdown of the classification a successful approach? These and other questions are to be clarified with this thesis. And I dare to say at this point that it is possible to reach a good goal even with fewer requirements.}
 
 
 
