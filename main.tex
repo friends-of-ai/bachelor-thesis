@@ -41,7 +41,7 @@
 
 \usetikzlibrary{math} %needed tikz library
 
-
+% circled command
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
    \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
 
@@ -54,6 +54,9 @@
 \renewcommand{\mkbegdispquote}[2]{\itshape}
 \renewcommand{\mkbegdispquote}[2]{\openautoquote}
 \renewcommand{\mkenddispquote}[2]{\closeautoquote#1#2}
+
+% fullref command
+\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \nameref*{#1}}}
 
 % literature reference
 \bibliography{references}
@@ -752,7 +755,7 @@
 
 						% input image
 						\node at (0.5,-1){\begin{tabular}{c}input image\end{tabular}};
-						\draw
+						\draw[fill=white, opacity=1, draw=black]
 							(0 * \inputImageWidth, 0 * \inputImageWidth) --
 							(1 * \inputImageWidth, 0 * \inputImageWidth) --
 							(1 * \inputImageWidth, 1 * \inputImageWidth) --
@@ -761,8 +764,8 @@
 						
 						% layer 1
 						\node at (3.0, 3.0){\begin{tabular}{c}convolutional layer\\layer $l = 1$\end{tabular}};
-						\foreach \i in {0,...,5}
-							\draw[fill=black, opacity=0.2, draw=black]
+						\foreach \i in {5,...,0}
+							\draw[fill=gray, opacity=0.8, draw=black]
 								(\layerOnePosition + 0 * \layerOneWidth + \layerOneDistance*\i, 0 * \layerOneWidth + \layerOneDistance*\i) --
 								(\layerOnePosition + 1 * \layerOneWidth + \layerOneDistance*\i, 0 * \layerOneWidth + \layerOneDistance*\i) --
 								(\layerOnePosition + 1 * \layerOneWidth + \layerOneDistance*\i, 1 * \layerOneWidth + \layerOneDistance*\i) --
@@ -771,8 +774,8 @@
 
 						% layer 2
 						\node at (5.0,-1){\begin{tabular}{c}pooling layer\\layer $l = 2$\end{tabular}};
-						\foreach \i in {0,...,5}
-							\draw[fill=black, opacity=0.2, draw=black]
+						\foreach \i in {5,...,0}
+							\draw[fill=gray, opacity=0.8, draw=black]
 								(\layerTwoPosition + 0 * \layerTwoWidth + \layerTwoDistance*\i, 0 * \layerTwoWidth + \layerTwoDistance*\i) --
 								(\layerTwoPosition + 1 * \layerTwoWidth + \layerTwoDistance*\i, 0 * \layerTwoWidth + \layerTwoDistance*\i) --
 								(\layerTwoPosition + 1 * \layerTwoWidth + \layerTwoDistance*\i, 1 * \layerTwoWidth + \layerTwoDistance*\i) --
@@ -781,8 +784,8 @@
 						
 						%layer 3
 						\node at (7.5,3.0){\begin{tabular}{c}convolutional layer\\layer $l = 3$\end{tabular}};
-						\foreach \i in {0,...,11}
-							\draw[fill=black, opacity=0.2, draw=black]
+						\foreach \i in {11,...,0}
+							\draw[fill=gray, opacity=0.8, draw=black]
 								(\layerThreePosition + 0 * \layerThreeWidth + \layerThreeDistance*\i, 0 * \layerThreeWidth + \layerThreeDistance*\i) --
 								(\layerThreePosition + 1 * \layerThreeWidth + \layerThreeDistance*\i, 0 * \layerThreeWidth + \layerThreeDistance*\i) --
 								(\layerThreePosition + 1 * \layerThreeWidth + \layerThreeDistance*\i, 1 * \layerThreeWidth + \layerThreeDistance*\i) --
@@ -791,8 +794,8 @@
 						
 						% layer 4
 						\node at (9.0,-1){\begin{tabular}{c}pooling layer\\layer $l = 4$\end{tabular}};
-						\foreach \i in {0,...,11}
-							\draw[fill=black, opacity=0.2, draw=black]
+						\foreach \i in {11,...,0}
+							\draw[fill=gray, opacity=0.8, draw=black]
 								(\layerFourPosition + 0 * \layerFourWidth + \layerFourDistance*\i, 0 * \layerFourWidth + \layerFourDistance*\i) --
 								(\layerFourPosition + 1 * \layerFourWidth + \layerFourDistance*\i, 0 * \layerFourWidth + \layerFourDistance*\i) --
 								(\layerFourPosition + 1 * \layerFourWidth + \layerFourDistance*\i, 1 * \layerFourWidth + \layerFourDistance*\i) --
@@ -801,7 +804,7 @@
 						
 						% layer 5
 						\node at (12,3.0){\begin{tabular}{c}fully connected layer\\layer $l = 5$\end{tabular}};
-						\draw[fill=black,draw=black,opacity=0.5]
+						\draw[fill=teal,draw=black,opacity=0.8]
 							(10.5,0) --
 							(11,0) --
 							(12.75,1.75) --
@@ -810,7 +813,7 @@
 						
 						% layer 6
 						\node at (13,-1){\begin{tabular}{c}fully connected layer\\output layer $l = 6$\end{tabular}};
-						\draw[fill=black,draw=black,opacity=0.5]
+						\draw[fill=teal,draw=black,opacity=0.8]
 							(12.5,0.5) --
 							(13,0.5) --
 							(13.65,1.15) --
@@ -831,7 +834,96 @@
 				\de{Die Convolutional Layer extrahieren Features wie Kanten, Quadrate, Kreise, etc. Diese sind so gut wie in jedem Bild vorhanden und es stellt sich die Frage, ob man diese nicht wiederverwenden kann, um den Trainingsaufwand zu verringern. Die Idee beim Transfer Learning ist es ein schon vortrainiertes CNN zu verwenden und lediglich das neuronale Netzwerk am Ende des Convolutional neuronal networks an die eigene Problemstellung anzupassen.}
 				\en{The convolutional layers extract features such as edges, squares, circles, etc. These are present in almost every image and the question arises whether you can reuse them to reduce the training effort. The idea of Transfer Learning is to use an already pre-trained CNN and just adapt the neural network at the end of the Convolutional neural network to the own problem.}
 
-				\hl{Put a picture in here.}
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}
+						\tikzmath{
+							\inputImageWidth = 1.0;
+							\layerOneDistance = 0.22;
+							\layerOnePosition = 1.95;
+							\layerOneWidth = 1.0;
+							\layerTwoDistance = 0.12;
+							\layerTwoPosition = 4.40;
+							\layerTwoWidth = 0.6;
+							\layerThreeDistance = 0.12;
+							\layerThreePosition = 6.50;
+							\layerThreeWidth = 0.6;
+							\layerFourDistance = 0.052;
+							\layerFourPosition = 8.5;
+							\layerFourWidth = 0.36;
+						}
+
+						% input image
+						\draw[fill=white, opacity=0, draw=white]
+							(0 * \inputImageWidth, 0 * \inputImageWidth + 1.5) --
+							(1 * \inputImageWidth, 0 * \inputImageWidth + 1.5) --
+							(1 * \inputImageWidth, 1 * \inputImageWidth + 1.5) --
+							(0 * \inputImageWidth, 1 * \inputImageWidth + 1.5) --
+							(0 * \inputImageWidth, 0 * \inputImageWidth + 1.5);
+
+						% input image
+						\draw[fill=white, opacity=1, draw=black]
+							(0 * \inputImageWidth, 0 * \inputImageWidth) --
+							(1 * \inputImageWidth, 0 * \inputImageWidth) --
+							(1 * \inputImageWidth, 1 * \inputImageWidth) --
+							(0 * \inputImageWidth, 1 * \inputImageWidth) --
+							(0 * \inputImageWidth, 0 * \inputImageWidth);
+						
+						% layer 1
+						\foreach \i in {5,...,0}
+							\draw[fill=gray, opacity=0.8, draw=black]
+								(\layerOnePosition + 0 * \layerOneWidth + \layerOneDistance*\i, 0 * \layerOneWidth + \layerOneDistance*\i) --
+								(\layerOnePosition + 1 * \layerOneWidth + \layerOneDistance*\i, 0 * \layerOneWidth + \layerOneDistance*\i) --
+								(\layerOnePosition + 1 * \layerOneWidth + \layerOneDistance*\i, 1 * \layerOneWidth + \layerOneDistance*\i) --
+								(\layerOnePosition + 0 * \layerOneWidth + \layerOneDistance*\i, 1 * \layerOneWidth + \layerOneDistance*\i) --
+								(\layerOnePosition + 0 * \layerOneWidth + \layerOneDistance*\i, 0 * \layerOneWidth + \layerOneDistance*\i);
+
+						% layer 2
+						\foreach \i in {5,...,0}
+							\draw[fill=gray, opacity=0.8, draw=black]
+								(\layerTwoPosition + 0 * \layerTwoWidth + \layerTwoDistance*\i, 0 * \layerTwoWidth + \layerTwoDistance*\i) --
+								(\layerTwoPosition + 1 * \layerTwoWidth + \layerTwoDistance*\i, 0 * \layerTwoWidth + \layerTwoDistance*\i) --
+								(\layerTwoPosition + 1 * \layerTwoWidth + \layerTwoDistance*\i, 1 * \layerTwoWidth + \layerTwoDistance*\i) --
+								(\layerTwoPosition + 0 * \layerTwoWidth + \layerTwoDistance*\i, 1 * \layerTwoWidth + \layerTwoDistance*\i) --
+								(\layerTwoPosition + 0 * \layerTwoWidth + \layerTwoDistance*\i, 0 * \layerTwoWidth + \layerTwoDistance*\i);
+						
+						%layer 3
+						\foreach \i in {11,...,0}
+							\draw[fill=gray, opacity=0.8, draw=black]
+								(\layerThreePosition + 0 * \layerThreeWidth + \layerThreeDistance*\i, 0 * \layerThreeWidth + \layerThreeDistance*\i) --
+								(\layerThreePosition + 1 * \layerThreeWidth + \layerThreeDistance*\i, 0 * \layerThreeWidth + \layerThreeDistance*\i) --
+								(\layerThreePosition + 1 * \layerThreeWidth + \layerThreeDistance*\i, 1 * \layerThreeWidth + \layerThreeDistance*\i) --
+								(\layerThreePosition + 0 * \layerThreeWidth + \layerThreeDistance*\i, 1 * \layerThreeWidth + \layerThreeDistance*\i) --
+								(\layerThreePosition + 0 * \layerThreeWidth + \layerThreeDistance*\i, 0 * \layerThreeWidth + \layerThreeDistance*\i);
+						
+						% layer 4
+						\foreach \i in {11,...,0}
+							\draw[fill=gray, opacity=0.8, draw=black]
+								(\layerFourPosition + 0 * \layerFourWidth + \layerFourDistance*\i, 0 * \layerFourWidth + \layerFourDistance*\i) --
+								(\layerFourPosition + 1 * \layerFourWidth + \layerFourDistance*\i, 0 * \layerFourWidth + \layerFourDistance*\i) --
+								(\layerFourPosition + 1 * \layerFourWidth + \layerFourDistance*\i, 1 * \layerFourWidth + \layerFourDistance*\i) --
+								(\layerFourPosition + 0 * \layerFourWidth + \layerFourDistance*\i, 1 * \layerFourWidth + \layerFourDistance*\i) --
+								(\layerFourPosition + 0 * \layerFourWidth + \layerFourDistance*\i, 0 * \layerFourWidth + \layerFourDistance*\i);
+						
+						% layer 5
+						\draw[fill=red,draw=black,opacity=0.8]
+							(10.5,0) --
+							(11,0) --
+							(12.75,1.75) --
+							(12.25,1.75) --
+							(10.5,0);
+						
+						% layer 6
+						\draw[fill=red,draw=black,opacity=0.8]
+							(12.5,0.5) --
+							(13,0.5) --
+							(13.65,1.15) --
+							(13.15,1.15) --
+							(12.5,0.5);
+					\end{tikzpicture}
+					\caption[The green area (the neural network) was replaced by a network (red) adapted to the new problem.]{The green area (the neural network) was replaced by a network (red) adapted to the new problem (see \fullref{fig:traditional-convolutional-network}).}
+					\label{fig:transfer-learning-example}
+				\end{figure}
 
 				\de{Welchen Vorteil ein vortrainiertes Netzwerk hat, kann man in dieser Arbeit im Kapitel ``\nameref{sec:section_use_of_the_transfer_learning_approach}" einsehen.}
 				\en{The advantage of a pre-trained network can be seen in the chapter ``\nameref{sec:section_use_of_the_transfer_learning_approach}" of this thesis.}
@@ -866,8 +958,9 @@
 				\en{The learning rate is a tuning parameter in an optimization algorithm. It tells us how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
 			\subsubsection{Batch Size}
 			\label{sec:section_batch_size}
-				\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht.}
-				\en{The Batch Size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. The advantage is that only the data necessary for the current batch needs to be kept in memory. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images.}
+				\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
+				\en{The Batch Size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. The advantage is that only the data necessary for the current batch needs to be kept in memory. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
+
 			\subsubsection{Data Augmentation}
 			\label{sec:section_data_augmentation}
 				\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Dies wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern.}
