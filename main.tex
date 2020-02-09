@@ -825,22 +825,34 @@
 				\en{A big advantage of convolutional neural networks should not remain unmentioned: They require relatively little preprocessing compared to other image classification algorithms. This means that the network independently learns the filters that are normally developed by hand in conventional algorithms, if trained with adequate training. This property of these networks is a great advantage because they can be automated and change independently when the input data changes and do not require human intervention.}
 	
 			\subsubsection{Transfer Learning}
-	
-				\noindent Explain here the technique of Convolutional Neuronal Networks.
+				\de{Convolutional neuronal networks sind großartig und haben einen entscheidenden Beitrag zur Klassifizierung von Bilder beigetragen. Mit der Gründung der Forschungsdatenbank ImageNet im Jahre 2006 werden jährliche Wettbewerbe veranstaltet, um entwickelte Neuronale Netzwerke miteinander zu vergleichen. ImageNet ist eine Bilderdatenbank mit mehr als 14 Millionen Bildern. Ein CNN namens AlexNet im Jahr 2012 einen Top-5 Fehler von 15,3\% und erhöht sich aktuell stetig jedes Jahr. Aber die Architektur von einem CNN hat ein Problem. Alle Convolutional Layer sind vom Beginn an zufällig initialisiert und enthalten noch keine Muster. Damit sie zuverlässig funktioniert, muss sie mit vielen Bildern trainiert werden. Würde man vom Scratch an ein CNN selbst entwickeln und verwenden, so müssen alle Convolutional Layer auch vorab trainiert werden.}
+				\en{Convolutional neural networks are great and have made a significant contribution to the classification of images. With the foundation of the research database ImageNet in 2006, annual competitions are organized to compare developed neural networks. ImageNet is an image database with more than 14 million images. A CNN called AlexNet in 2012 got a top-5 error of 15.3\% and is currently increasing steadily every year. But the architecture of a CNN has a problem. All convolutional layers are randomly initialized from the beginning and do not yet contain any patterns. For it to work reliably, it needs to be trained with many images. If one would develop and use a CNN from scratch, all convolutional layers have to be trained in advance.}
+
+				\de{Die Convolutional Layer extrahieren Features wie Kanten, Quadrate, Kreise, etc. Diese sind so gut wie in jedem Bild vorhanden und es stellt sich die Frage, ob man diese nicht wiederverwenden kann, um den Trainingsaufwand zu verringern. Die Idee beim Transfer Learning ist es ein schon vortrainiertes CNN zu verwenden und lediglich das neuronale Netzwerk am Ende des Convolutional neuronal networks an die eigene Problemstellung anzupassen.}
+				\en{The convolutional layers extract features such as edges, squares, circles, etc. These are present in almost every image and the question arises whether you can reuse them to reduce the training effort. The idea of Transfer Learning is to use an already pre-trained CNN and just adapt the neural network at the end of the Convolutional neural network to the own problem.}
+
+				\hl{Put a picture in here.}
+
+				\de{Welchen Vorteil ein vortrainiertes Netzwerk hat, kann man in dieser Arbeit im Kapitel ``\nameref{sec:section_use_of_the_transfer_learning_approach}" einsehen.}
+				\en{The advantage of a pre-trained network can be seen in the chapter ``\nameref{sec:section_use_of_the_transfer_learning_approach}" of this thesis.}
 			
-				\paragraph{Transfer Learning Models}
+			\subsubsection{Overview of current and known convolutional neural networks}
+				\de{Zu guter Letzt folgen hier noch ein paar aktuelle und bekannte Convolutional Neuronal networks. Sie unterscheiden sich hauptsächlich in folgenden Metriken, wobei in Kombination jedes Netzwerk seine Vor- und Nachteile besitzt:}
+				\en{Last but not least, here are a few current and well-known convolutional neural networks. They differ mainly in the following metrics, whereby in combination each network has its advantages and disadvantages:}
+
+				\begin{itemize}
+					\item the top-1 accuracy (based on the ImageNet image dataset)
+					\item the computing operations which are required for a single forward pass (G-Ops)
+					\item the model size (for comparison: the model size of InceptionV3 is about 180 MB)
+				\end{itemize}
 		
-					\hl{...}
-			
-					\begin{figure}[H]
-						\centering
-						\includegraphics[width=1.0\textwidth]{images/tl_models}
-						\caption[Overview of known transfer learning models.]{Overview of known transfer learning models.\footnotemark}
-						\label{fig:beispiel5}
-					\end{figure}
-					\footnotetext{Source: \url{https://towardsdatascience.com/neural-network-architectures-156e5bad51ba}}
-		
-					\hl{...}
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=1.0\textwidth]{images/tl_models}
+					\caption[Overview of current and known convolutional neural networks.]{Overview of current and known convolutional neural networks.\footnotemark}
+					\label{fig:beispiel5}
+				\end{figure}
+				\footnotetext{Source: \url{https://towardsdatascience.com/neural-network-architectures-156e5bad51ba}}
 					
 					
 					
@@ -987,6 +999,7 @@
 				\noindent ...
 		
 			\subsubsection{Use of the transfer learning approach}
+			\label{sec:section_use_of_the_transfer_learning_approach}
 	
 				\noindent ...
 
