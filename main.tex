@@ -853,6 +853,25 @@
 					\label{fig:beispiel5}
 				\end{figure}
 				\footnotetext{Source: \url{https://towardsdatascience.com/neural-network-architectures-156e5bad51ba}}
+
+		\subsection{Further definitions}
+		\label{sec:section_further_definitions}
+			\subsubsection{Learning epoch}
+			\label{sec:section_learning_epoch}
+				\de{Unter einer Lernepoche versteht man den einmaligen Trainingsdurchlauf mit allen Trainingsdatensätzen. Meist reicht ein Trainingsdurchlauf nicht aus, weshalb weitere Lernepochen im Anschluß erfolgen. Sobald mit weiteren Lernepochen die Leistungsfähigkeit des Netzwerkes nicht weiter steigt, beendet man das Training.}
+				\en{A learning epoch is understood to be the one time training run with all training data sets. Usually one training run is not sufficient, which is why further learning epochs follow. As soon as the performance of the network does not increase anymore with further epochs, the training is terminated.}
+			\subsubsection{Learning rate}
+			\label{sec:section_learning_rate}
+				\de{Die Lernrate ist ein Abstimmungsparameter in einem Optimierungsalgorithmus. Dieser sagt aus, wie groß die Schrittweite bei jeder Iteration ist, mit der sich die Parameter auf das Minimum einer Verlustfunktion zubewegen. Sie sollte nicht zu hoch (Minimum wird nicht gefunden) und nicht zu klein sein (sehr langsames Lernen). Die Lernrate wird oft mit dem Zeichen \(\eta\) oder \(\alpha\) bezeichnet.}
+				\en{The learning rate is a tuning parameter in an optimization algorithm. It tells us how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
+			\subsubsection{Batch Size}
+			\label{sec:section_batch_size}
+				\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht.}
+				\en{The Batch Size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. The advantage is that only the data necessary for the current batch needs to be kept in memory. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images.}
+			\subsubsection{Data Augmentation}
+			\label{sec:section_data_augmentation}
+				\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Dies wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern.}
+				\en{Data Augmentation is the artificial augmentation of a data set. This is primarily used when only little data is available. Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training. \hl{Is there an example that proves this quickly?}}
 					
 					
 					
