@@ -39,6 +39,8 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 
+\usetikzlibrary{math} %needed tikz library
+
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
    \node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
@@ -681,18 +683,16 @@
 					\end{tikzpicture}
 					\caption{The construction of a simple neural network.}
 				\end{figure}
-
-				In künstlichen neuronalen Netzen bezeichnet die Topologie die Struktur des Netzes. Damit ist im Allgemeinen gemeint, wie viele künstliche Neuronen sich auf wie vielen Schichten befinden, und wie diese miteinander verbunden sind. Künstliche Neuronen können auf vielfältige Weise zu einem künstlichen neuronalen Netz verbunden werden. Dabei werden Neuronen bei vielen Modellen in hintereinander liegenden Schichten (englisch layers) angeordnet; bei einem Netz mit nur einer trainierbaren Neuronenschicht spricht man von einem einschichtigen Netz.
-
-				Unter Verwendung eines Graphen können die Neuronen als Knoten und ihre Verbindungen als Kanten dargestellt werden. Die Eingaben werden gelegentlich auch als Knoten dargestellt.
-
-				Die hinterste Schicht des Netzes, deren Neuronenausgaben meist als einzige außerhalb des Netzes sichtbar sind, wird Ausgabeschicht (englisch output layer) genannt. Davorliegende Schichten werden entsprechend als verdeckte Schicht (englisch hidden layer) bezeichnet.
 	
-				Let us imagine a simple classification function, where \(\bar{x}\) represents the coordinates of the individual class points and \(\bar{w}\) and \(b\) are learnable parameters:
+				\de{Ein neuronales Netzwerk ist in der Lage komplexe Eingaben zu klassifizieren. Doch wie genau kann man sich das vorstellen? Betrachten wir eine einfache Klassifikationsfunktion, wobei \(\bar{x}\) die Koordinaten der einzelnen Klassenpunkte darstellen und \(\bar{w}\) und \(b\) lernbare Parameter sind:}
+				\en{A neural network is able to classify complex inputs. But how exactly can this be imagined? Let us consider a simple classification function, where \(\bar{x}\) represent the coordinates of the individual class points and \(\bar{w}\) and \(b\) are learnable parameters:}
 	
 				\begin{equation}
 					f(\bar{x}, \bar{\omega}, b) = sgn(\bar{\omega}^\intercal \cdot \bar{x} + b)
 				\end{equation}
+
+				\de{Mit dieser linearen Funktion lässt sich das nachfolgende Problem leicht klassifizieren:}
+				\en{With this linear function the following problem can be easily classified:}
 
 				\begin{figure}[H]
 					\begin{center}
@@ -702,7 +702,8 @@
 					\label{fig:evaluation_simple_class_shattering}
 				\end{figure}
 	
-				With this linear function it is easy to classify the above problem. The function corresponds to a neural network without hidden layer and contains only one input and one output layer. The dimension that this function can separate is 2 and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. This function can separate exactly 2 classes. But what about nonlinear problems? In this case let's look at the following classification:
+				\de{Die Funktion entspricht einem neuronalen Netz ohne verdeckte Schicht und enthält nur eine Eingangs- und eine Ausgangsschicht mit einem künstlichem Neuron ohne Aktivierungsfunktion. Die Dimension, die diese Funktion trennen kann, ist 2 und wird als VC-Dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. Diese Funktion kann genau 2 Klassen trennen. Aber was ist mit nichtlinearen Problemen? In diesem Fall schauen wir uns die folgenden Klassifikationen an:}
+				\en{The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is 2 and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. This function can separate exactly 2 classes. But what about nonlinear problems? In this case let's look at the following classifications:}
 				
 				\begin{figure}[H]
 					\begin{center}
@@ -712,8 +713,9 @@
 					\label{fig:overview_linear_nonlinear_classification}
 				\end{figure}
 	
-				For the second problem we can still adjust the function. For the third nonlinear problem, the classification space is no longer sufficient and requires a different algorithm.
-	
+				\de{Für das zweite Problem können wir die Funktion noch anpassen. Für das dritte nichtlineare Problem ist der Klassifikationsraum nicht mehr ausreichend und erfordert einen anderen Algorithmus. Und hier kommen die neuronalen Netze ins Spiel. Ein Tool, um das Trennen von Daten zu visualisieren und die Funktionsweise der einzelnen Layer zu testen ist \url{https://playground.tensorflow.org}\footnote{Neural Network Right Here in Your Browser: \url{https://playground.tensorflow.org}}. Ein nichtlineares Problem kann im einfachsten Fall schon mit einer hinzugefügten versteckten Schicht mit drei weiteren Neuronen gelöst werden:}
+				\en{For the second problem we can still adjust the function. For the third nonlinear problem the classification space is no longer sufficient and requires a different algorithm. And this is where the neural networks come into play. A tool to visualize the separation of data and to test the functionality of the individual layers is \url{https://playground.tensorflow.org}\footnote{Neural Network Right Here in Your Browser: \url{https://playground.tensorflow.org}}. In the simplest case, a nonlinear problem can be solved by adding a hidden layer with three additional neurons:}
+
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=1.0\textwidth]{images/simple_neuronal_network}
@@ -723,7 +725,104 @@
 				\footnotetext{Source: \url{http://playground.tensorflow.org/}}
 		
 			\subsubsection{Convolutional Neuronal Network}
-				\noindent A neural network processes a vector. A convolutional neural network, on the other hand, can process a matrix. Describe more here. 
+				\de{Ein neuronales Netzwerk verarbeitet einen Vektor und gibt einen neuen Vektor zurück. Das Problem bei Eingabedaten wie Bildern ist, dass sie auf den ersten Blick nicht erfolgreich als Vektor beschrieben werden können, um mit einem normalem neuronalem Netzwerk trainiert werden zu können. Man braucht einen Algorithmus, welcher auch matrizenähnliche Eingaben verarbeiten kann und in der Lage ist Muster zu erkennen. Dabei wurde in der Vergangenheit das Prinzip der Convolutional Layer entwickelt. Ein Convolutional Layer nimmt ein Matrix Eingang entgegen, transformiert diese und gibt wie auch bei den künstlichen Neuronen einen Ausgangswert zurück (in diesem Fall eine weitere Matrix). Dieser Ausgangswert wird danach an die nächste Schicht weitergegeben. Dabei beinhaltet ein Convolutional Layer eine Menge \(n\) an quadratischen Matrizen (meist 3x3 oder 5x5 Matrizen). Diese Matrizen werden Filter genannt. Jeder Filter\footnote{Filter, welche z.B. Kanten, Ecken, Quadrate, etc. erkennen können und in tieferen Layern Dinge wie Augen, Ohren, Haare, etc.} wird nun jeweils von links oben bis rechts unten über die Pixel des Bildes mittels Skalarprodukt miteinander verrechnet, wobei ein neues Bild entsteht. Die soganannte Feature Map. Bei einer Anzahl von \(n\) Filtern entstehen am Ende \(n\) Feature Maps und heben die in den Filtern definierten Merkmale jeweils im neu errechneten Bild hervor. Dieser Vorgang wird auch Faltung genannt\autocite{deeplizard2017CNNExplained}.}
+				\en{A neural network processes a vector and returns a new vector. The problem with input data such as images is that at first view they cannot be successfully described as vectors to be trained with a normal neural network. You need an algorithm that can handle matrix-like inputs and that is able to recognize patterns. In the past the principle of the convolutional layer was developed. A convolutional layer receives a matrix input, transforms it and returns an output value (in this case another matrix). This output value is then passed on to the next layer. A convolutional layer contains a set \(n\) of square matrices (usually 3x3 or 5x5 matrices). These matrices are called filters. Each filter\footnote{Filters, which can recognize edges, corners, squares, etc. and in deeper layers things like eyes, ears, hair, etc.} is now calculated from top left to bottom right over the pixels of the image using a scalar product, which creates a new image. The so-called Feature Map. With a number of \(n\) filters, \(n\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
+
+				\de{Neuronale Netze, welche Gebrauch von Convolutional Layern machen, werden Convolutional Neuronal Networks genannt (kurz CNN) und haben einen entscheidenden Beitrag zum Fortschritt der Bildklassifizierung und auch in anderen Bereichen wie Spracherkennung geleistet. Neben den Convolutional Layern existieren in einem Convolutional Neuronal Network weitere spezielle Layer, welche sich von normalen Neuronalen Netzen unterscheiden: Z.B. die Pooling Layer. In einem Pooling Layer werden überflüssige Informationen verworfen und die Featuremaps verkleinert. Dieser Vorgang verringert den Speicherbedarf und erhöht Berechnungsgeschwindigkeit. Die Convolutional Layer und die Pooling Layer wechseln sich in aller Regel jeweils ab, bis am Ende statt einer \(n x n\) Matrix des Eingangsbildes ein großer Vektor entsteht, welcher von einem normalen neuronalem Netzwerk weiterverarbeitet werden kann und schlußendlich in dem schon beschriebenen One Hot Vektor endet.}
+				\en{Neural networks that make use of convolutional layers are called convolutional neural networks (in short CNN) and have made a decisive contribution to the progress of image classification and also in other areas like speech recognition. In addition to the Convolutional Layers, a Convolutional Neural Network has other special layers that differ from normal neural networks: For example the Pooling Layer. In a pooling layer, unnecessary information is discarded and feature maps are reduced in size. This process reduces memory requirements and increases calculation speed. The convolutional layer and the pooling layer usually alternate until a large vector is created at the end instead of a \(n x n\) matrix of the input image, which can be further processed by a normal neural network and finally ends in the already described one hot vector.}
+
+				\begin{figure}[H]
+					\centering
+					\begin{tikzpicture}
+						\tikzmath{
+							\inputImageWidth = 1.0;
+							\layerOneDistance = 0.22;
+							\layerOnePosition = 1.95;
+							\layerOneWidth = 1.0;
+							\layerTwoDistance = 0.12;
+							\layerTwoPosition = 4.40;
+							\layerTwoWidth = 0.6;
+							\layerThreeDistance = 0.12;
+							\layerThreePosition = 6.50;
+							\layerThreeWidth = 0.6;
+							\layerFourDistance = 0.052;
+							\layerFourPosition = 8.5;
+							\layerFourWidth = 0.36;
+						}
+
+						% input image
+						\node at (0.5,-1){\begin{tabular}{c}input image\end{tabular}};
+						\draw
+							(0 * \inputImageWidth, 0 * \inputImageWidth) --
+							(1 * \inputImageWidth, 0 * \inputImageWidth) --
+							(1 * \inputImageWidth, 1 * \inputImageWidth) --
+							(0 * \inputImageWidth, 1 * \inputImageWidth) --
+							(0 * \inputImageWidth, 0 * \inputImageWidth);
+						
+						% layer 1
+						\node at (3.0, 3.0){\begin{tabular}{c}convolutional layer\\layer $l = 1$\end{tabular}};
+						\foreach \i in {0,...,5}
+							\draw[fill=black, opacity=0.2, draw=black]
+								(\layerOnePosition + 0 * \layerOneWidth + \layerOneDistance*\i, 0 * \layerOneWidth + \layerOneDistance*\i) --
+								(\layerOnePosition + 1 * \layerOneWidth + \layerOneDistance*\i, 0 * \layerOneWidth + \layerOneDistance*\i) --
+								(\layerOnePosition + 1 * \layerOneWidth + \layerOneDistance*\i, 1 * \layerOneWidth + \layerOneDistance*\i) --
+								(\layerOnePosition + 0 * \layerOneWidth + \layerOneDistance*\i, 1 * \layerOneWidth + \layerOneDistance*\i) --
+								(\layerOnePosition + 0 * \layerOneWidth + \layerOneDistance*\i, 0 * \layerOneWidth + \layerOneDistance*\i);
+
+						% layer 2
+						\node at (5.0,-1){\begin{tabular}{c}pooling layer\\layer $l = 2$\end{tabular}};
+						\foreach \i in {0,...,5}
+							\draw[fill=black, opacity=0.2, draw=black]
+								(\layerTwoPosition + 0 * \layerTwoWidth + \layerTwoDistance*\i, 0 * \layerTwoWidth + \layerTwoDistance*\i) --
+								(\layerTwoPosition + 1 * \layerTwoWidth + \layerTwoDistance*\i, 0 * \layerTwoWidth + \layerTwoDistance*\i) --
+								(\layerTwoPosition + 1 * \layerTwoWidth + \layerTwoDistance*\i, 1 * \layerTwoWidth + \layerTwoDistance*\i) --
+								(\layerTwoPosition + 0 * \layerTwoWidth + \layerTwoDistance*\i, 1 * \layerTwoWidth + \layerTwoDistance*\i) --
+								(\layerTwoPosition + 0 * \layerTwoWidth + \layerTwoDistance*\i, 0 * \layerTwoWidth + \layerTwoDistance*\i);
+						
+						%layer 3
+						\node at (7.5,3.0){\begin{tabular}{c}convolutional layer\\layer $l = 3$\end{tabular}};
+						\foreach \i in {0,...,11}
+							\draw[fill=black, opacity=0.2, draw=black]
+								(\layerThreePosition + 0 * \layerThreeWidth + \layerThreeDistance*\i, 0 * \layerThreeWidth + \layerThreeDistance*\i) --
+								(\layerThreePosition + 1 * \layerThreeWidth + \layerThreeDistance*\i, 0 * \layerThreeWidth + \layerThreeDistance*\i) --
+								(\layerThreePosition + 1 * \layerThreeWidth + \layerThreeDistance*\i, 1 * \layerThreeWidth + \layerThreeDistance*\i) --
+								(\layerThreePosition + 0 * \layerThreeWidth + \layerThreeDistance*\i, 1 * \layerThreeWidth + \layerThreeDistance*\i) --
+								(\layerThreePosition + 0 * \layerThreeWidth + \layerThreeDistance*\i, 0 * \layerThreeWidth + \layerThreeDistance*\i);
+						
+						% layer 4
+						\node at (9.0,-1){\begin{tabular}{c}pooling layer\\layer $l = 4$\end{tabular}};
+						\foreach \i in {0,...,11}
+							\draw[fill=black, opacity=0.2, draw=black]
+								(\layerFourPosition + 0 * \layerFourWidth + \layerFourDistance*\i, 0 * \layerFourWidth + \layerFourDistance*\i) --
+								(\layerFourPosition + 1 * \layerFourWidth + \layerFourDistance*\i, 0 * \layerFourWidth + \layerFourDistance*\i) --
+								(\layerFourPosition + 1 * \layerFourWidth + \layerFourDistance*\i, 1 * \layerFourWidth + \layerFourDistance*\i) --
+								(\layerFourPosition + 0 * \layerFourWidth + \layerFourDistance*\i, 1 * \layerFourWidth + \layerFourDistance*\i) --
+								(\layerFourPosition + 0 * \layerFourWidth + \layerFourDistance*\i, 0 * \layerFourWidth + \layerFourDistance*\i);
+						
+						% layer 5
+						\node at (12,3.0){\begin{tabular}{c}fully connected layer\\layer $l = 5$\end{tabular}};
+						\draw[fill=black,draw=black,opacity=0.5]
+							(10.5,0) --
+							(11,0) --
+							(12.75,1.75) --
+							(12.25,1.75) --
+							(10.5,0);
+						
+						% layer 6
+						\node at (13,-1){\begin{tabular}{c}fully connected layer\\output layer $l = 6$\end{tabular}};
+						\draw[fill=black,draw=black,opacity=0.5]
+							(12.5,0.5) --
+							(13,0.5) --
+							(13.65,1.15) --
+							(13.15,1.15) --
+							(12.5,0.5);
+					\end{tikzpicture}
+					\caption[Architecture of a traditional convolutional neural network.]{Architecture of a traditional convolutional neural network.}
+					\label{fig:traditional-convolutional-network}
+				\end{figure}
+
+				\de{Ein großer Vorteil von Convolutional neuronal networks soll nicht unerwähnt bleiben: Sie benötigen relativ wenig Vorverarbeitung im Vergleich zu anderen Bildklassifikationsalgorithmen. Dies bedeutet, dass das Netzwerk eigenständig die Filter lernt, die in herkömmlichen Algorithmen normalerweise von Hand entwickelt werden, wenn es mit ausreichender Schulung trainiert wird. Diese Eigenschaft dieser Netzwerke ist von großem Vorteil, da sie automatisiert durchgeführt werden können und sich bei Änderungen der Eingabedaten selbstständig ändern und keinem menschlichem Eingriff bedarf.}
+				\en{A big advantage of convolutional neural networks should not remain unmentioned: They require relatively little preprocessing compared to other image classification algorithms. This means that the network independently learns the filters that are normally developed by hand in conventional algorithms, if trained with adequate training. This property of these networks is a great advantage because they can be automated and change independently when the input data changes and do not require human intervention.}
 	
 			\subsubsection{Transfer Learning}
 	
