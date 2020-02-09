@@ -753,14 +753,17 @@
 							\layerFourWidth = 0.36;
 						}
 
+						\node[anchor=south west,inner sep=0] (burger) at (0,0)
+							{\includegraphics[width=6.5ex]{images/data/burger/burger28-quad.png}};
+
 						% input image
 						\node at (0.5,-1){\begin{tabular}{c}input image\end{tabular}};
-						\draw[fill=white, opacity=1, draw=black]
-							(0 * \inputImageWidth, 0 * \inputImageWidth) --
-							(1 * \inputImageWidth, 0 * \inputImageWidth) --
-							(1 * \inputImageWidth, 1 * \inputImageWidth) --
-							(0 * \inputImageWidth, 1 * \inputImageWidth) --
-							(0 * \inputImageWidth, 0 * \inputImageWidth);
+						%\draw[opacity=1, draw=black]
+						%	(0 * \inputImageWidth, 0 * \inputImageWidth) --
+						%	(1 * \inputImageWidth, 0 * \inputImageWidth) --
+						%	(1 * \inputImageWidth, 1 * \inputImageWidth) --
+						%	(0 * \inputImageWidth, 1 * \inputImageWidth) --
+						%	(0 * \inputImageWidth, 0 * \inputImageWidth);
 						
 						% layer 1
 						\node at (3.0, 3.0){\begin{tabular}{c}convolutional layer\\layer $l = 1$\end{tabular}};
@@ -853,7 +856,7 @@
 							\layerFourWidth = 0.36;
 						}
 
-						% input image
+						% placeholder
 						\draw[fill=white, opacity=0, draw=white]
 							(0 * \inputImageWidth, 0 * \inputImageWidth + 1.5) --
 							(1 * \inputImageWidth, 0 * \inputImageWidth + 1.5) --
@@ -861,13 +864,17 @@
 							(0 * \inputImageWidth, 1 * \inputImageWidth + 1.5) --
 							(0 * \inputImageWidth, 0 * \inputImageWidth + 1.5);
 
+						%draw image
+						\node[anchor=south west,inner sep=0] (burger) at (0,0)
+							{\includegraphics[width=6.5ex]{images/data/burger/burger28-quad.png}};
+
 						% input image
-						\draw[fill=white, opacity=1, draw=black]
-							(0 * \inputImageWidth, 0 * \inputImageWidth) --
-							(1 * \inputImageWidth, 0 * \inputImageWidth) --
-							(1 * \inputImageWidth, 1 * \inputImageWidth) --
-							(0 * \inputImageWidth, 1 * \inputImageWidth) --
-							(0 * \inputImageWidth, 0 * \inputImageWidth);
+						%\draw[fill=white, opacity=1, draw=black]
+						%	(0 * \inputImageWidth, 0 * \inputImageWidth) --
+						%	(1 * \inputImageWidth, 0 * \inputImageWidth) --
+						%	(1 * \inputImageWidth, 1 * \inputImageWidth) --
+						%	(0 * \inputImageWidth, 1 * \inputImageWidth) --
+						%	(0 * \inputImageWidth, 0 * \inputImageWidth);
 						
 						% layer 1
 						\foreach \i in {5,...,0}
