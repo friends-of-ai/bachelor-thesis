@@ -38,11 +38,14 @@
 \usepackage{dblfloatfix}
 \usepackage{tikz}
 \usepackage{environ}
+\usepackage{rotating}
+\usepackage{booktabs}
 
 % tikzpiture libraries
 \usetikzlibrary{positioning}
 \usetikzlibrary{math}
 \usetikzlibrary{backgrounds}
+\usetikzlibrary{calc}
 
 % circled command
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
@@ -61,6 +64,15 @@
 % fullref command
 %\newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \nameref*{#1}}}
 \newcommand*{\fullref}[1]{\hyperref[{#1}]{\autoref*{#1}: \nameref*{#1}}}
+
+% table border commands
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\newcommand{\DrawBox}[3][]{%
+    \tikz[overlay,remember picture]{
+    \draw[black,#1]
+      ($(#2) + (-0.85em,  2.40ex)$) rectangle
+      ($(#3) + ( 0.85em, -1.30ex)$);}
+}
 
 % literature reference
 \bibliography{references}
@@ -561,7 +573,6 @@
 			\en{Machine learning is a generic term for the artificial generation of knowledge from experience. It follows the approach of inductive learning (see also chapter ``inductive approach''\hyperref[sec:section_inductive_approach]).}
 
 			\subsubsection{Artificial neural network}
-
 				\de{Künstliche neuronale Netzwerke stellen Funktionen bereit, welche in der Lage sind hochkomplexe Daten im mehrdimensionalem Raum zu trennen. Bei großen und hochgradig komplexen Aufgaben, wie beispielsweise der Klassifizierung von Milliarden von Bildern, Sprach- und Texterkennungen, schneiden neuronale Netze meist besser ab, als andere Machine Learning Verfahren. Der erhebliche Zuwachs an Rechenkapizität seit den 1990ern ermöglicht das Trainieren großer neuronaler Netzwerke innerhalb eines sinnvollen Zeitraumes. Künstliche neuronale Netzwerke sind die Kernkomponente des Deep Learnings.}
 				\en{Artificial neural networks provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other machine learning methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning.}
 
@@ -593,9 +604,9 @@
 						\end{array}
 						\begin{array}{c}
 							\diagdown\\
+							\diagdown\\
 							\\
-							\\
-							\\
+							\diagup\\
 							\diagup\\
 						\end{array}
 						\circled{${\sum\atop\ }\over{\ \atop step(z)}$}
@@ -732,11 +743,14 @@
 				\footnotetext{Source: \url{http://playground.tensorflow.org/}}
 		
 			\subsubsection{Convolutional Neuronal Network}
+
 				\de{Ein neuronales Netzwerk verarbeitet einen Vektor und gibt einen neuen Vektor zurück. Das Problem bei Eingabedaten wie Bildern ist, dass sie auf den ersten Blick nicht erfolgreich als Vektor beschrieben werden können, um mit einem normalem neuronalem Netzwerk trainiert werden zu können. Man braucht einen Algorithmus, welcher auch matrizenähnliche Eingaben verarbeiten kann und in der Lage ist Muster zu erkennen. Dabei wurde in der Vergangenheit das Prinzip der Convolutional Layer entwickelt. Ein Convolutional Layer nimmt ein Matrix Eingang entgegen, transformiert diese und gibt wie auch bei den künstlichen Neuronen einen Ausgangswert zurück (in diesem Fall eine weitere Matrix). Dieser Ausgangswert wird danach an die nächste Schicht weitergegeben. Dabei beinhaltet ein Convolutional Layer eine Menge \(n\) an quadratischen Matrizen (meist 3x3 oder 5x5 Matrizen). Diese Matrizen werden Filter genannt. Jeder Filter\footnote{Filter, welche z.B. Kanten, Ecken, Quadrate, etc. erkennen können und in tieferen Layern Dinge wie Augen, Ohren, Haare, etc.} wird nun jeweils von links oben bis rechts unten über die Pixel des Bildes mittels Skalarprodukt miteinander verrechnet, wobei ein neues Bild entsteht. Die soganannte Feature Map. Bei einer Anzahl von \(n\) Filtern entstehen am Ende \(n\) Feature Maps und heben die in den Filtern definierten Merkmale jeweils im neu errechneten Bild hervor. Dieser Vorgang wird auch Faltung genannt\autocite{deeplizard2017CNNExplained}.}
 				\en{A neural network processes a vector and returns a new vector. The problem with input data such as images is that at first view they cannot be successfully described as vectors to be trained with a normal neural network. You need an algorithm that can handle matrix-like inputs and that is able to recognize patterns. In the past the principle of the convolutional layer was developed. A convolutional layer receives a matrix input, transforms it and returns an output value (in this case another matrix). This output value is then passed on to the next layer. A convolutional layer contains a set \(n\) of square matrices (usually 3x3 or 5x5 matrices). These matrices are called filters. Each filter\footnote{Filters, which can recognize edges, corners, squares, etc. and in deeper layers things like eyes, ears, hair, etc.} is now calculated from top left to bottom right over the pixels of the image using a scalar product, which creates a new image. The so-called Feature Map. With a number of \(n\) filters, \(n\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
 
 				\de{Neuronale Netze, welche Gebrauch von Convolutional Layern machen, werden Convolutional Neuronal Networks genannt (kurz CNN) und haben einen entscheidenden Beitrag zum Fortschritt der Bildklassifizierung und auch in anderen Bereichen wie Spracherkennung geleistet. Neben den Convolutional Layern existieren in einem Convolutional Neuronal Network weitere spezielle Layer, welche sich von normalen Neuronalen Netzen unterscheiden: Z.B. die Pooling Layer. In einem Pooling Layer werden überflüssige Informationen verworfen und die Featuremaps verkleinert. Dieser Vorgang verringert den Speicherbedarf und erhöht Berechnungsgeschwindigkeit. Die Convolutional Layer und die Pooling Layer wechseln sich in aller Regel jeweils ab, bis am Ende statt einer \(n x n\) Matrix des Eingangsbildes ein großer Vektor entsteht, welcher von einem normalen neuronalem Netzwerk weiterverarbeitet werden kann und schlußendlich in dem schon beschriebenen One Hot Vektor endet.}
 				\en{Neural networks that make use of convolutional layers are called convolutional neural networks (in short CNN) and have made a decisive contribution to the progress of image classification and also in other areas like speech recognition. In addition to the Convolutional Layers, a Convolutional Neural Network has other special layers that differ from normal neural networks: For example the Pooling Layer. In a pooling layer, unnecessary information is discarded and feature maps are reduced in size. This process reduces memory requirements and increases calculation speed. The convolutional layer and the pooling layer usually alternate until a large vector is created at the end instead of a \(n x n\) matrix of the input image, which can be further processed by a normal neural network and finally ends in the already described one hot vector.}
+
+				\hl{Idea?} \url{https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53}
 
 				\begin{figure}[H]
 					\centering
@@ -833,6 +847,57 @@
 
 				\de{Ein großer Vorteil von Convolutional neuronal networks soll nicht unerwähnt bleiben: Sie benötigen relativ wenig Vorverarbeitung im Vergleich zu anderen Bildklassifikationsalgorithmen. Dies bedeutet, dass das Netzwerk eigenständig die Filter lernt, die in herkömmlichen Algorithmen normalerweise von Hand entwickelt werden, wenn es mit ausreichender Schulung trainiert wird. Diese Eigenschaft dieser Netzwerke ist von großem Vorteil, da sie automatisiert durchgeführt werden können und sich bei Änderungen der Eingabedaten selbstständig ändern und keinem menschlichem Eingriff bedarf.}
 				\en{A big advantage of convolutional neural networks should not remain unmentioned: They require relatively little preprocessing compared to other image classification algorithms. This means that the network independently learns the filters that are normally developed by hand in conventional algorithms, if trained with adequate training. This property of these networks is a great advantage because they can be automated and change independently when the input data changes and do not require human intervention.}
+
+				\begin{figure}[H]
+					\centering
+					\begin{tabular}{ ccccc }
+						image matrix & & filter matrix & & output matrix \\
+
+						\begin{tabular}{|c|c|c|c|c|c|}
+							\hline
+							\tikzmark{tl11}0 & 1 & 1 & 0 & 1 & 1\\
+							\hline
+							1 & 0 & 1 & 0 & 1 & 0\\
+							\hline
+							0 & 1 & \tikzmark{tl21}0\tikzmark{br11} & 1 & 0 & 1\\
+							\hline
+							0 & 0 & 1 & 0 & 0 & 0\\
+							\hline
+							0 & 0 & 0 & 0 & 0\tikzmark{br21} & 1\\
+							\hline
+							0 & 0 & 1 & 0 & 0 & 0\\
+							\hline
+						\end{tabular} & \LARGE{$\cdot$} &
+	
+						\begin{tabular}{|c|c|c|}
+							\hline
+							1 & 0 & 1\\
+							\hline
+							0 & 1 & 0\\
+							\hline
+							0 & 0 & 1\\
+							\hline
+						\end{tabular} & \LARGE{$\Rightarrow$} &
+
+						\begin{tabular}{|c|c|c|c|}
+							\hline
+							\tikzmark{tl12}1\tikzmark{br12} & 0 & 1 & 1\\
+							\hline
+							0 & 1 & 0 & 1\\
+							\hline
+							0 & 0 & \tikzmark{tl22}1\tikzmark{br22} & 1\\
+							\hline
+							0 & 0 & 1 & 1\\
+							\hline
+						\end{tabular}\\
+					\end{tabular}
+
+					\DrawBox[thick, red]{tl11}{br11}
+					\DrawBox[thick, red]{tl12}{br12}
+					\DrawBox[thick, blue]{tl21}{br21}
+					\DrawBox[thick, blue]{tl22}{br22}
+					\caption[Simple convolution.]{Simple convolution}
+				\end{figure}
 	
 			\subsubsection{Transfer Learning}
 				\de{Convolutional neuronal networks sind großartig und haben einen entscheidenden Beitrag zur Klassifizierung von Bilder beigetragen. Mit der Gründung der Forschungsdatenbank ImageNet im Jahre 2006 werden jährliche Wettbewerbe veranstaltet, um entwickelte Neuronale Netzwerke miteinander zu vergleichen. ImageNet ist eine Bilderdatenbank mit mehr als 14 Millionen Bildern. Ein CNN namens AlexNet im Jahr 2012 einen Top-5 Fehler von 15,3\% und erhöht sich aktuell stetig jedes Jahr. Aber die Architektur von einem CNN hat ein Problem. Alle Convolutional Layer sind vom Beginn an zufällig initialisiert und enthalten noch keine Muster. Damit sie zuverlässig funktioniert, muss sie mit vielen Bildern trainiert werden. Würde man vom Scratch an ein CNN selbst entwickeln und verwenden, so müssen alle Convolutional Layer auch vorab trainiert werden.}
