@@ -389,16 +389,18 @@
 
 				\begin{table}[htb]
 					\centering
-					{\def\arraystretch{2}\tabcolsep=5pt
-						\begin{tabular}{cc|c|c|c|c|}
-							\cline{3-6}
-							& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
-							& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
-							\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP\)                  & \multicolumn{3}{c|}{\(FN\)} \\ \cline{2-6} 
-							\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN\)}} \\ \cline{2-2}
-							\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
-							\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
-						\end{tabular}
+					\scalebox{0.75}{
+						{\def\arraystretch{2}\tabcolsep=5pt
+							\begin{tabular}{cc|c|c|c|c|}
+								\cline{3-6}
+								& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
+								& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
+								\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP\)                  & \multicolumn{3}{c|}{\(FN\)} \\ \cline{2-6} 
+								\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN\)}} \\ \cline{2-2}
+								\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
+								\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
+							\end{tabular}
+						}
 					}
 					\captionof{table}{Confusion matrix}\label{tbl:table_confusion_matrix}
 				\end{table}
@@ -438,16 +440,18 @@
 				%\clearpage
 				\begin{table}[htb]
 					\centering
-					{\def\arraystretch{2}\tabcolsep=5pt
-						\begin{tabular}{cc|c|c|c|c|}
-							\cline{3-6}
-							& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
-							& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
-							\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP = 9990\)                  & \multicolumn{3}{c|}{\(FN = 0\)} \\ \cline{2-6} 
-							\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP = 10\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN = 0\)}} \\ \cline{2-2}
-							\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
-							\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
-						\end{tabular}
+					\scalebox{0.75}{
+						{\def\arraystretch{2}\tabcolsep=5pt
+							\begin{tabular}{cc|c|c|c|c|}
+								\cline{3-6}
+								& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
+								& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
+								\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP = 9990\)                  & \multicolumn{3}{c|}{\(FN = 0\)} \\ \cline{2-6} 
+								\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP = 10\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN = 0\)}} \\ \cline{2-2}
+								\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
+								\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
+							\end{tabular}
+						}
 					}
 					\captionof{table}{Confusion matrix example}\label{tbl:table_confusion_matrix}
 				\end{table}
@@ -1042,7 +1046,7 @@
 					\centering
 					\includegraphics[width=1.0\textwidth]{images/tl_models}
 					\caption[Overview of current and known convolutional neural networks.]{Overview of current and known convolutional neural networks.\footnotemark}
-					\label{fig:beispiel5}
+					\label{fig:comparison_cnn}
 				\end{figure}
 				\footnotetext{Source: \url{https://towardsdatascience.com/neural-network-architectures-156e5bad51ba}}
 
@@ -1110,8 +1114,8 @@
 	
 		\subsection{Preamble}
 		\label{sec:section_validation_process_preamble}
-			\de{Bevor man den Validierungsprozess beginnen kann, muss der verwendete Datensatz entsprechend vorbereitet werden. Bei diesem in dieser Arbeit verwendetem Datensatz handelt es sich um einen Essensdatensatz mit insgesamt 50 Klassen: \texttt{food-50}. Dieser Datensatz enthält 50 Ordner mit den jeweiligen vorhandenen vorklassifizierten Bildern. Die Ordner müssen in einen Validierungs- und einen Trainingsdatensatz aufgeteilt werden. Als Verhältnis wurden 20\% Validierungs- und 80\% Trainingsdaten gewählt:}
-			\en{Before the validation process can be started, the data set used must be prepared properly. The data set used in this thesis is a meal data set with a number of 50 classes: \texttt{food-50}. This data set contains 50 folders with the respective existing pre-classified images. The folders must be divided into a validation record and a training record. The ratio is 20\% validation and 80\% training data:}
+			\de{Bevor man den Validierungsprozess beginnen kann, muss der verwendete Datensatz entsprechend vorbereitet werden. Bei diesem in dieser Arbeit verwendetem Datensatz handelt es sich um einen Essensdatensatz mit insgesamt 50 Klassen: \texttt{food-50}. Dieser Datensatz enthält 50 Ordner mit den jeweiligen vorhandenen vorklassifizierten Bildern bei einer Größe von 765 MB. Die Ordner müssen in einen Validierungs- und einen Trainingsdatensatz aufgeteilt werden. Als Verhältnis wurden 20\% Validierungs- und 80\% Trainingsdaten gewählt:}
+			\en{Before the validation process can be started, the data set used must be prepared properly. The data set used in this thesis is a meal data set with a number of 50 classes: \texttt{food-50}. This data set contains 50 folders with the respective existing pre-classified images with a size of 765 MB. The folders must be divided into a validation record and a training record. The ratio is 20\% validation and 80\% training data:}
 			
 			\subsubsection*{Training data}
 				\begin{itemize}
@@ -1140,7 +1144,7 @@
 					\item \textbf{image size:} 299x299 pixels
 					\item \textbf{drop out:} 0,5
 					\item \textbf{cnn weights:} imagenet
-					\item \textbf{activation function:} tanh
+					\item \textbf{activation function:} relu
 					\item \textbf{optimizer:} sgd with nesterov
 					\item \textbf{momentum:} 0.9 (with decay 0.0)
 					\item the entire training and validation set (14866 images - unless otherwise specified)
@@ -1210,12 +1214,16 @@
 					\label{fig:evaluation_number_train_files}
 				\end{figure}
 
-				\noindent ...
-		
+				\de{Wie erwartet hat die Anzahl der zu trainierenden Bilder einen entscheidenden Einfluß auf die Modellgenauigkeit. Während mit 500 Bildern eine Genauigkeit von 45,76\% erreicht werden kann, sind es mit fast 12000 Bildern schon 83,59\% nach 21 Epochen. Mit jeder Erhöhung der Bildanzahl kann man eine Verbesserung der Genauigkeit feststellen. Der Anstieg der Genauigkeit erfolgt nicht linear mit Zunahme der Trainingsdatensätze. Obwohl die Genauigkeit im oberen Bereich (>8000 Bilder) immer noch zu steigen scheint, so sind die Sprünge nicht mehr sehr groß und bewegen sich offenbar an eine Grenze. Für weitere Nachforschungen wäre es eine gute Idee, ab welcher Anzahl von Trainingsdatensätzen keine weiteren signifikanten Steigerungen in der Genauigkeiten mehr möglich sind. Da in diesem Datenset keine weiteren Daten mehr zur Verfügung standen, wird dieses Vorhaben hier nicht weiter verfolgt.}
+				\en{As expected, the number of images to be trained has a significant influence on the model accuracy. While with 500 images an accuracy of 45.76\% can be achieved, with almost 12000 images it is already 83.59\% after 21 epochs. With every increase in the number of images, an improvement in accuracy can be observed. The improvement in accuracy is not linear with an increase in training data sets. Although the accuracy in the upper range (>8000 images) still seems to increase, the jumps are not very big anymore and seem to be moving to a limit. For further research, it would be a good idea to find out from which number of training data sets no further significant increases in accuracy are possible. Since no further data was available in this data set, this project will not be pursued further here.}
+				
+				\de{Ein weiterer interessanter Punkt ist die Tatsache, dass mit der Erhöhung der Trainingsdaten theoretisch bis zu einem gewissen Punkt Rechenzeit eingespart werden kann. Sind die Datensätze nämlich deutlich zu klein, so erreicht man während des Trainings niemals eine Genaugkeit, welche Modelle mit wesentlich mehr Daten schon mit der ersten Epoche erreichen und übersteigen. Deutlich zu sehen: Bei 1000 Bildern (orangene Linie) kommt man maximal auf eine Genauigkeit von 61,42\% nach 18 Epochen und ungefähr 20 Minuten Rechenzeit. Verwendet man die 10-fache Menge an Bildern (10000 Bilder - braune Linie), so erreicht man schon in der ersten Epoche nach sechseinhalb Minuten eine Genauigkeit von 68,1\%.}
+				\en{Another interesting point is the fact that increasing the training data theoretically saves computing time up to a certain point. If the data sets are significantly too small, one will never reach an accuracy during training, which models with much more data reach and exceed already with the first epoch. Clearly to see: With 1000 images (orange trace) you get a maximum accuracy of 61.42\% after 18 epochs and about 20 minutes of computing time. If one uses 10 times the amount of images (10000 images - brown trace), one reaches an accuracy of 68.1\% already in the first epoch after six and a half minutes.}
+
 			\subsubsection{Comparison of different CNN models}
 			\label{sec:section_validation_comparison_cnn_models}
-
-				\noindent ...
+				\de{Derzeit gibt es viele CNN Modelle und jedes Jahr mit dem alljährlichem ImageNet-Wettbewerb kommen neue Modelle mit besseren Genauigkeiten heraus. Diese Modelle werden trainiert mit dem ImageNet Dataset und die Ergebnisse anhand dieser Datenbasis verglichen. Wie sieht das Ergebnis mit kleineren Datensets aus? Das Trainingsergebnis nach dem Standard-Setup und mit jeweils unterschiedlichem CNN Modell von acht Modellen sieht wie folgt aus:}
+				\en{There are currently many CNN models and each year with the annual ImageNet competition new models with better accuracy are released. These models are trained with the ImageNet dataset and the results are compared using this set of data. What is the result with smaller sets of data? The training result according to the standard setup and with different CNN models of eight models is as follows:}
 
 				\begin{figure}[H]
 					\begin{center}
@@ -1227,7 +1235,9 @@
 					\label{fig:evaluation_different_models}
 				\end{figure}
 
-				\noindent ...
+				\de{Alle Modelle mit Ausnahme von DenseNet201 und NASNetLarge wurden mit einer Batch Size von 16 trainiert. Aufgrund des begrenzten Speichers von 6GB der Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}} wurden DenseNet201 mit einer Batch Size von 8 und NASNetLarge mit einer Batch Size von 4 trainiert. Ein wirklicher Vergleich dieser beiden Ausnahmen ist somit nicht wirklich möglich, soll jedoch an dieser Stelle auch nicht weggelassen werden. Ein größerer Batch-Wert geht mit erhöhter Rechenzeit und langsameren Ansteigen von der Genauigkeit einher (siehe Kapitel ``\hyperref[sec:section_validation_comparison_different_bs]{Different batch sizes}''). Ein Vergleich mit Darstellung \fullref{fig:comparison_cnn} zeigt ähnliche Genauigkeiten und benötigte Rechenzeiten: Das beste Modell wurde mit DenseNet201 mit einer Genauigkeit von 88,58\% erreicht. Das Modell mit der geringsten Genauigkeit ist das schon etwas ältere VGG19 Modell mit 77,29\%. Stellt man Rechenzeit und zu erreichende Genauigkeiten gegenüber, so fällt einem das InceptionV3 Modell auf (rote Kurve). Es ist das zweitbeste Modell und erreicht das Ergebnis in einem mittlerem Bereich von ca. zweieinhalb Stunden. Das beste Modell DenseNet201 benötigt für sein Ergebniss mehr als doppelt soviel Zeit. Die Wahl für alle weiteren Experimente viel aus diesem Grund auf das CNN Modell InceptionV3, da es ein gutes Ergebniss innerhalb einer vergleichsweisen geringen Zeitspanne erreicht.}
+				\en{All models except DenseNet201 and NASNetLarge were trained with a batch size of 16. Due to the limited 6GB memory of the Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}}, DenseNet201 was trained with a batch size of 8 and NASNetLarge with a batch size of 4. A real comparison of these two exceptions isn't really possible, but shouldn't be omitted at this point. A larger batch value is associated with increased computing time and slower increase in accuracy (see chapter ``\hyperref[sec:section_validation_comparison_different_bs]{Different batch sizes}''). A comparison with \fullref{fig:comparison_cnn} shows similar accuracies and required computing time: The best model was achieved with DenseNet201 with an accuracy of 88.58\%. The model with the lowest accuracy is the somewhat older VGG19 model with 77.29\%. If one compares the computing time and the accuracies to be achieved, one notices the InceptionV3 model (red trace). It is the second best model and reaches the result in a medium range of about two and a half hours. The best model DenseNet201 needs more than twice as much time for its result. The choice for all further experiments is therefore the CNN model InceptionV3, because it achieves a good result within a comparatively short period of time.}
+		
 		
 			\subsubsection{Use of the transfer learning approach}
 			\label{sec:section_use_of_the_transfer_learning_approach}
@@ -1313,6 +1323,7 @@
 				\noindent ...
 		
 			\subsubsection{Different batch sizes}
+			\label{sec:section_validation_comparison_different_bs}
 	
 				\noindent ...
 		
