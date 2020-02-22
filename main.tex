@@ -1168,8 +1168,8 @@
 			\de{Wenn man beabsichtigt ein Deep Neuronal Networks (DNN) zu implementieren und zu optimieren, müssen die Berechnungen auf der GPU erfolgen. Es ist auch möglich, Berechnungen auf der CPU durchzuführen. Auch die Installation von Keras für CPU-gesteuerte Berechnungen ist viel einfacher, da die Installation der GPU-Treiber nicht notwendig ist. Dies hat jedoch den Nachteil, dass das Training größerer Modelle wesentlich länger dauert. Gute Modelle für die Klassifizierung von z.B. Bildern werden erst nach mehreren Trainingseinheiten erreicht. Trainingseinheiten erfordern viel Rechenleistung in Form von vielen Matrixoperationen. Eine GPU ist prädestiniert für Matrixoperationen\autocite{fatahalian2004understanding}.}
 			\en{If you intend to implement and optimize Deep Neuronal Networks (DNN), the calculations must take place on the GPU. It is also possible to run calculations on the CPU. Also the installation of Keras for CPU driven computations is much easier, because the installation of the GPU drivers is not necessary. The disadvantage of this, however, is that it takes much longer to train larger models. Good models for the classification of e.g. pictures are only achieved after several training units. Training units require a lot of computing power in the form of many matrix operations. A GPU is predestined for matrix operations\autocite{fatahalian2004understanding}.}
 			
-			\de{Nachfolgend folgt ein tabellarischer Leistungsvergleich auf der Grundlage des Kaggle-Blumendatensatzes Training\footnote{Flowers Recognition, Kaggle, Febrary 21, 2020, \url{https://www.kaggle.com/alxmamaev/flowers-recognition}}. Dieser Bildersatz besteht aus 5 Klassen mit etwa 4242 Trainingsbildern:}
-			\en{The following is a tabular comparison of performance based on the Kaggle Flower Data Set Training\footnote{Flowers Recognition, Kaggle, Febrary 21, 2020, \url{https://www.kaggle.com/alxmamaev/flowers-recognition}}. This image set consists of 5 classes with about 4242 training images:}
+			\de{Nachfolgend folgt ein tabellarischer Leistungsvergleich auf der Grundlage des Kaggle-Blumendatensatzes Training\footnote{Flowers Recognition, Kaggle, Febrary 21, 2020, \url{https://www.kaggle.com/alxmamaev/flowers-recognition}}. Dieser Bildersatz besteht aus 5 Klassen mit etwa 4242 Trainingsbildern (10 epochs, InceptionV3)\footnote{GPU vs CPU, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/hardware/gpu-vs-cpu.md}}:}
+			\en{The following is a tabular comparison of performance based on the Kaggle Flower Data Set Training\footnote{Flowers Recognition, Kaggle, Febrary 21, 2020, \url{https://www.kaggle.com/alxmamaev/flowers-recognition}}. This image set consists of 5 classes with about 4242 training images (10 epochs, InceptionV3)\footnote{GPU vs CPU, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/hardware/gpu-vs-cpu.md}}:}
 			
 			%\clearpage
 			\renewcommand\theadfont{\bfseries}
@@ -1192,20 +1192,19 @@
 			
 			\de{Während die Art des Rechengerätes (CPU or GPU) keinen Unterschied ausmacht was die Vor- und Nachbereitung betrifft, so macht es aber einen entscheidenden Unterschied bei der Trainingszeit. Die langsamste CPU benötigt mehr als 80 mal soviel Zeit, wie die schnellste Grafikkarteneinheit. Die Wahl des Rechengerätes für alle weiteren Tests fällt eindeutig auf die GPU.}
 			\en{While the type of computing device (CPU or GPU) makes no difference in terms of preparation and postprocessing, it does make a significant difference in training time. The slowest CPU takes more than 80 times as many time as the fastest graphics card unit. The choice of the computing device for all further tests clearly falls on the GPU.}
-		
-		\pagebreak
 	
 		\subsection{Accuracy and evaluations}
 
-			\noindent ...
-
 			\subsubsection{Influence of number of trained images on accuracy}
 	
-				\noindent ...
-
+				\de{Die erste Frage die sich stellt: Welchen Einfluß hat die Anzahl der zu trainierenden Daten auf die Genauigkeit des Modells? Hierzu wird das Standard-Setup aus dem Kapitel ``\nameref{sec:section_validation_process_preamble}'' verwendet und das Modell mit einer verschiedenen Anzahl von Trainingsdaten trainiert. Während das Validierungsdatenset immer gleich bleibt, wird die Gesamtanzahl der zu trainierenden Daten von 500 stückweise auf die Gesamtanzahl von 11913 erhöht. Da es sich um einen unausgeglichenen Datensatz handelt, bleibt prozentuall gesehen die Anzahl in den jeweiligen Klassen gleich. Lediglich die Gesamtanzahl wird auf die entsprechenden Werte verändert (500, 1000, 2000, ...):}
+				\en{The first question that comes up: What influence does the amount of data to be trained have on the accuracy of the model? For this purpose, the standard setup from the chapter ``\nameref{sec:section_validation_process_preamble}'' is used and the model is trained with a different number of training data. While the validation data set always stays the same, the total number of data to be trained is increased from 500 data sets to the total number of 11913. Since this is an unbalanced data set, the number remains the same in each class in percentage terms. Only the total number is changed to the corresponding values (500, 1000, 2000, ...):}
+				
 				\begin{figure}[H]
 					\begin{center}
-						\input{images/evaluation/number_train_files.pgf}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{number_train_files.pgf}
+						}
 					\end{center}
 					\caption{Overview of influence of number of trained images on accuracy}
 					\label{fig:evaluation_number_train_files}
@@ -1220,9 +1219,11 @@
 
 				\begin{figure}[H]
 					\begin{center}
-						\input{images/evaluation/different_models.pgf}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{different_models.pgf}
+						}
 					\end{center}
-					\caption{Overview of known transfer learning models}
+					\caption{Overview of known cnn models}
 					\label{fig:evaluation_different_models}
 				\end{figure}
 
@@ -1232,10 +1233,12 @@
 			\label{sec:section_use_of_the_transfer_learning_approach}
 	
 				\noindent ...
-
+				
 				\begin{figure}[H]
 					\begin{center}
-						\input{images/evaluation/transfer_learning.pgf}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{transfer_learning.pgf}
+						}
 					\end{center}
 					\caption{Overview of use of the transfer learning approach}
 					\label{fig:evaluation_transfer_learning}
@@ -1251,7 +1254,9 @@
 
 				\begin{figure}[H]
 					\begin{center}
-						\input{images/evaluation/best_optimizer.pgf}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{best_optimizer.pgf}
+						}
 					\end{center}
 					\caption{Overview of best optimizer}
 					\label{fig:evaluation_momentum}
@@ -1265,7 +1270,9 @@
 
 				\begin{figure}[H]
 					\begin{center}
-						\inputpgf{images/evaluation}{momentum.pgf}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{momentum.pgf}
+						}
 					\end{center}
 					\caption{Overview momentum vs nesterov momentum}
 					\label{fig:evaluation_momentum}
@@ -1279,7 +1286,9 @@
 
 				\begin{figure}[H]
 					\begin{center}
-						\inputpgf{images/evaluation}{number_trainable_layers.pgf}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{number_trainable_layers.pgf}
+						}
 					\end{center}
 					\caption{Overview of influence of the number of trained layers}
 					\label{fig:evaluation_number_trainable_layers}
@@ -1293,7 +1302,9 @@
 
 				\begin{figure}[H]
 					\begin{center}
-						\inputpgf{images/evaluation}{scheduling_learning_rate.pgf}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{scheduling_learning_rate.pgf}
+						}
 					\end{center}
 					\caption{Overview of a dynamic learning rate on accuracy}
 					\label{fig:evaluation_scheduling_learning_rate}
@@ -1305,7 +1316,7 @@
 	
 				\noindent ...
 		
-			\subsubsection{Different image sizes}
+			\subsubsection{Different activation functions}
 	
 				\noindent ...
 		
@@ -1336,7 +1347,9 @@
 			
 			\begin{figure}[H]
 				\begin{center}
-					\inputpgf{images/evaluation}{data_augmentation.pgf}
+					\scalebox{0.75}{
+						\inputpgf{images/evaluation}{data_augmentation.pgf}
+					}
 				\end{center}
 				\caption{Comparison of data augmentation}
 				\label{fig:evaluation_data_augmentation}
