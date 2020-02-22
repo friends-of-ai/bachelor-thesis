@@ -173,8 +173,8 @@
 	% Introduction %
 	% -------------------- %
 	\section{Introduction}
-		\de{In dieser Arbeit werden verschiedene Techniken der Bildklassifizierung verglichen. Variable Parameter beim Training werden einen entscheidenden Einfluss auf die Genauigkeit des Modells haben und werden hier im Detail verglichen. Nicht immer ist nur die Genauigkeit ein ausschlaggebender Faktor. Auch die benötigte Rechenzeit, welche notwendig ist das Modell zu bestimmen, soll nicht außer Acht gelassen werden und mit in die Auswertung einbezogen werden. Ich gehe davon aus, dass eine kleine Lernrate verbunden mit vielen Lern-Epochen und entsprechend mehr benötigter Rechenzeit bessere Ergebnisse erzielen werden, als wenige Lernepochen verbunden mit einer hohe Lernrate (langsame Anpassung vs. schnelle Anpassung). Auch gehe ich davon aus, dass eine hohe Qualität und eine größere Menge an Daten das Ergebnis entschieden positiv beeinflussen werden. Neue und komplexere Convolutional Neuronale Netzwerke stufe ich erfolgreicher in der Modellgenauigkeit ein als schön etwas ältere und kleinere Modelle.}
-		\en{In this thesis different techniques of image classification are compared. Variable parameters during training will have a decisive influence on the accuracy of the model and are compared here in detail. Not always only the accuracy is a decisive factor. Also the required computing time, which is necessary to determine the model, should not be disregarded and should be included in the evaluation. I assume that a small learning rate combined with many learning epochs and correspondingly more computing time required will achieve better results than a few learning epochs combined with a high learning rate (slow adaptation vs. fast adaptation). I also assume that a high quality and a larger amount of data will have a decidedly positive influence on the result. New and more complex convolutional neural networks are more successful in model accuracy than older and smaller models.}
+		\de{In dieser Arbeit wird auf der Erstellung von Modellen zur Bildklassifikation mittels maschinellem Lernen eingegangen. Viele variable Parameter (Hyperparameter) werden beim Erstellen der Modelle einen entscheidenden Einfluss auf die Genauigkeit des Modells haben und werden hier im Detail verglichen. Nicht immer ist nur die Genauigkeit ein ausschlaggebender Faktor. Auch die benötigte Rechenzeit, welche notwendig ist das Modell zu bestimmen, soll nicht außer Acht gelassen werden und mit in die Auswertung einbezogen werden. Ich gehe davon aus, dass eine kleine Lernrate verbunden mit vielen Lern-Epochen und entsprechend mehr benötigter Rechenzeit bessere Ergebnisse erzielen werden, als wenige Lernepochen verbunden mit einer hohe Lernrate (langsame Anpassung vs. schnelle Anpassung). Auch gehe ich davon aus, dass eine hohe Qualität und eine größere Menge an Daten das Ergebnis entschieden positiv beeinflussen werden. Neue und komplexere Convolutional Neuronale Netzwerke stufe ich erfolgreicher in der Modellgenauigkeit ein als schön etwas ältere und kleinere Modelle.}
+		\en{This thesis deals with the creation of models for image classification using machine learning. Many variable parameters (hyperparameters) will have a decisive influence on the accuracy of the model when creating the models and are compared here in detail. Not always only the accuracy is a decisive factor. Also the required computing time, which is necessary to determine the model, should not be disregarded and should be included in the evaluation. I assume that a small learning rate combined with many learning epochs and correspondingly more computing time required will achieve better results than a few learning epochs combined with a high learning rate (slow adaptation vs. fast adaptation). I also assume that a high quality and a larger amount of data will have a decidedly positive influence on the result. New and more complex convolutional neural networks are more successful in model accuracy than older and smaller models.}
 
 
 	% -------------------- %
@@ -185,7 +185,7 @@
 		% -------------------- %
 		% Image Classification %
 		% -------------------- %
-		\subsection{Image Classification}
+		\subsection{Image classification}
 			\de{Klassifizierungen sind ein Prozess der Identifizierung, zu welcher Klasse ein unbeobachtetes Objekt gehört. Hierbei können eine Reihe von vordefinierten Klassen vorgegeben und anhand deren Eigenschaften versucht werden unbekannte und bisher unbeobachtete Objekt einzuordnen. Bei der Bildklassifizierung wird analog vorgegangen. Bei den zuvor genannten Objekten handelt es sich nun schlichtweg um Bilder.}
 			\en{Classifications are a process of identifying to which class an unobserved object belongs. A number of predefined classes can be specified and, based on their properties, an attempt can be made to classify unknown and previously unobserved objects. The procedure for image classification is similar. The previously mentioned objects are now simply images.}
 
@@ -325,8 +325,8 @@
 			% -------------------- %
 			\paragraph{Supervised learning}
 			\label{sec:section_supervised_learning}
-				\de{Das überwachte Lernen bezieht sich auf ein maschinelles Lernen mit bekannten Trainingsdatensätzen (siehe auch Kapitel ``induktiver Ansatz''\hyperref[sec:section_inductive_approach]). Der Lernprozess wiederrum bezieht sich auf die Fähigkeit einer künstlichen Intelligenz, Regelmäßigkeiten und Muster zu reproduzieren. Die Ergebnisse sind durch Naturgesetze oder Expertenwissen bekannt und werden für die Lehre des Systems verwendet, in dem ein Trainingsset erstellt wird, welcher die gewünschten Lösungen enthält. Man nennt dies auch gelabelte Daten. Der Lernalgorithmus versucht nun epochenweise eine Hypothese zu finden, die eine möglichst genaue Vorhersagen auf unbekannten Daten ermöglicht. Eine Hypothese ist in diesem Fall ein Bild, das jedem Eingabewert (das Bild selbst) den angenommenen Ausgabewert (die vorhergesagte Klasse) zuordnet. Diese Arbeit macht ausgiebigen Gebrauch von überwachtem Lernen.}
-				\en{Supervised learning refers to machine learning with known training data sets (see also chapter ``inductive approach''\hyperref[sec:section_inductive_approach]). The learning process in turn refers to the ability of an artificial intelligence to reproduce regularities and patterns. The results are known by laws of nature or expert knowledge and are used to teach the system by creating a training set containing the desired solutions. This is also called labelled data. The learning algorithm now tries to find a hypothesis epoch by epoch, which allows the most accurate predictions on unknown data. A hypothesis in this case is an image that assigns the assumed output value (the predicted class) to each input value (the image itself). This work makes extensive use of supervised learning.}
+				\de{Das überwachte Lernen bezieht sich auf ein maschinelles Lernen mit bekannten Trainingsdatensätzen (siehe auch Kapitel \hyperref[sec:section_inductive_approach]{``induktiver Ansatz''}). Der Lernprozess wiederrum bezieht sich auf die Fähigkeit einer künstlichen Intelligenz, Regelmäßigkeiten und Muster zu reproduzieren. Die Ergebnisse sind durch Naturgesetze oder Expertenwissen bekannt und werden für die Lehre des Systems verwendet, in dem ein Trainingsset erstellt wird, welcher die gewünschten Lösungen enthält. Man nennt dies auch gelabelte Daten. Der Lernalgorithmus versucht nun epochenweise eine Hypothese zu finden, die eine möglichst genaue Vorhersagen auf unbekannten Daten ermöglicht. Eine Hypothese ist in diesem Fall ein Bild, das jedem Eingabewert (das Bild selbst) den angenommenen Ausgabewert (die vorhergesagte Klasse) zuordnet. Diese Arbeit macht ausgiebigen Gebrauch von überwachtem Lernen.}
+				\en{Supervised learning refers to machine learning with known training data sets (see also chapter \hyperref[sec:section_inductive_approach]{``inductive approach''}). The learning process in turn refers to the ability of an artificial intelligence to reproduce regularities and patterns. The results are known by laws of nature or expert knowledge and are used to teach the system by creating a training set containing the desired solutions. This is also called labelled data. The learning algorithm now tries to find a hypothesis epoch by epoch, which allows the most accurate predictions on unknown data. A hypothesis in this case is an image that assigns the assumed output value (the predicted class) to each input value (the image itself). This work makes extensive use of supervised learning.}
 	
 				\de{Beim Überwachten Lernen wird einer Klassifizierungsfunktion (meist ein künstliches neuronales Netz) ein Eingangsvektor zugeführt. Der Eingangsvektor erzeugt mit Hilfe der Klassifizierungsfunktion einen Ausgabevektor, die dieses neuronale Netz in seinem aktuellen Zustand produziert\footnote{Das neuronale Netzwerk besteht aus vielen (meist Millionen) Parametern, welche während des Lernprozesses angepasst werden können, um den Fehler zu minimieren.}. Dieser Wert wird mit dem Wert verglichen, den es eigentlich ausgeben soll. Der Vergleich des Soll- und Istzustandes gibt Auskunft wie und in welcher Form Änderungen am Netzwerk vorgenommen werden müssen, um dem Istzustand weiter anzugleichen und den Fehler zu minimieren. Für künstliche neuronale Netzwerke ohne versteckter Schicht (einlagiges Perzeptron\footnote{``Perceptron'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Perceptron}}) kann die Delta-Regel\footnote{``Least mean squares'' filter also known as ``delta rule'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Least_mean_squares_filter}} für die Korrektur vorgenommen werden. Bei Netzwerken mit einer oder mehreren versteckten Schichten verwendet man Backpropagation\footnote{``Backpropagation'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Backpropagation}} um den Fehler zu minimieren. Backpropagation ist eine Verallgemeinerung der Delta-Regel.}
 				\en{In supervised learning, an input vector is fed to a classification function (usually an artificial neural network). The input vector generates an output vector using the classification function, which produces this neural network in its current state\footnote{The neural network consists of many (usually millions) parameters, which can be adjusted during the learning process to minimize the error.}. This value is compared with the value that it should actually output. The comparison of the nominal and actual state provides information on how and in what form changes must be made to the network in order to further approximate the actual state and minimize the error. For artificial neural networks without a hidden layer (single-layer perceptron\footnote{``Perceptron'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Perceptron}}), the delta rule\footnote{``Least mean squares'' filter also known as ``delta rule'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Least_mean_squares_filter}} for correction can be applied. For networks with one or more hidden layers backpropagation\footnote{``Backpropagation'', Wikipedia contributors, February 2, 2020, \url{https://en.wikipedia.org/wiki/Backpropagation}} is used to minimize the error. Backpropagation is a generalization of the delta rule.}
@@ -348,8 +348,8 @@
 			% -------------------- %
 			\paragraph{Unsupervised learning}
 			\label{sec:section_unsupervised_learning}
-				\de{Beim unüberwachtem Lernen versucht man auch ohne gelabelte Daten an eine Kenntnis von Mustern zu erlangen. Angenommen man hätte mehrere Bilder von Burgern, Pizza und Donuts, welche sich unsortiert in einem Datenset befinden. Das unüberwachte Lernen versucht nun Ähnlichkeiten zu finden, um diese Bilder zu gruppieren. Im besten Fall erhält man am Ende drei unbenannte Gruppen \(A\), \(B\) und \(C\). Analysten werden sich diese Gruppen im Nachgang genauer anschauen und ein Fazit daraus ziehen, sofern dies möglich ist: Gruppe \(A\) sind Burger, Gruppe \(B\) sind Pizzen, etc.}
-				\en{In unsupervised learning, one tries to gain knowledge of patterns even without labelled data. Suppose you have several pictures of burgers, pizza and donuts, which are unsorted in a data set. Unsupervised learning now tries to find similarities in order to cluster these images. In the best case you get three unnamed groups \(A\), \(B\) and \(C\) at the end. Analysts will take a closer look at these groups afterwards and draw a conclusion if possible: Group \(A\) is burgers, group \(B\) is pizzas, etc. }
+				\de{Beim unüberwachtem Lernen versucht man auch ohne gelabelte Daten an eine Kenntnis von Mustern zu erlangen. Angenommen man hätte mehrere Bilder von Burgern, Pizza und Donuts, welche sich unsortiert in einem Datenset befinden. Das unüberwachte Lernen versucht nun Ähnlichkeiten zu finden, um diese Bilder zu gruppieren. Im besten Fall erhält man am Ende drei unbenannte Gruppen \(A\), \(B\) und \(C\). Analysten werden sich diese Gruppen im Nachgang genauer anschauen und ein Fazit daraus ziehen, sofern dies möglich ist: Gruppe \(A\) trägt dann den Namen Burger, Gruppe \(B\) Pizzen, etc.}
+				\en{In unsupervised learning, one tries to gain knowledge of patterns even without labelled data. Suppose you have several pictures of burgers, pizza and donuts, which are unsorted in a data set. Unsupervised learning now tries to find similarities in order to cluster these images. In the best case you get three unnamed groups \(A\), \(B\) and \(C\) at the end. Analysts will take a closer look at these groups afterwards and draw a conclusion if possible:  Group \(A\) is then called Burger, Group \(B\) Pizzas, etc.}
 				
 				\de{\noindent Folgende unüberwachte Lernalgorithmen können zur Gruppierung verwendet werden:}
 				\en{\noindent The following unsupervised learning algorithms can be used for clustering:}
@@ -361,9 +361,10 @@
 					\item etc.
 				\end{itemize}
 			
-				\de{Eine Technik, die hierarchische Clusteranalyse, wird später verwendet um die Einführung von Hierarchien zu erleichtern. Für die allgemeine Analyse, den Finden von optimalen Parametern für das Lernen von Modellen, wird diese Art des Lernens in dieser Arbeit nicht verwendet.}
-				\en{One technique, hierarchical clustering, is used later to facilitate the introduction of hierarchies. For the general analysis, the finding of optimal parameters for learning models, this kind of learning is not used in this thesis.}
+				\de{Eine Technik, die hierarchische Clusteranalyse (siehe Kapitel \hyperref[sec:section_validation_hierarchical classification]{``Hierarchical classification''}), wird später verwendet um die Einführung von Hierarchien zu erleichtern. Für die allgemeine Analyse, den Finden von optimalen Parametern für das Lernen von Modellen, wird diese Art des Lernens in dieser Arbeit nicht verwendet.}
+				\en{One technique, hierarchical clustering (see chapter \hyperref[sec:section_validation_hierarchical classification]{``Hierarchical classification''}), is used later to facilitate the introduction of hierarchies. For the general analysis, the finding of optimal parameters for learning models, this kind of learning is not used in this thesis.}
 
+		\label{}
 			% -------------------- %
 			% Reinforcement learning %
 			% -------------------- %
@@ -377,14 +378,14 @@
 		% -------------------- %
 		% Classification Metrics %
 		% -------------------- %
-		\subsubsection{Classification Metrics and confusion matrix}
+		\subsubsection{Classification metrics and confusion matrix}
 			\de{Die Wahl der richtigen Metrik ist bei der Bewertung von Modellen des maschinellen Lernens von entscheidender Bedeutung. Metriken werden zur Überwachung und Messung der Leistung eines Modells während des Trainings und des Tests verwendet. Im nachfolgenden werden einige wichtige Metriken erklärt.}
 			\en{Choosing the right metric is crucial in evaluating machine learning models. Metrics are used to monitor and measure the performance of a model during training and testing. Some important metrics are explained below.}
 
 			% -------------------- %
 			% Confusion Matrix %
 			% -------------------- %
-			\paragraph{Confusion Matrix}
+			\paragraph{Confusion matrix}
 			 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während jede Spalte die Anzahl oder eine Zahlenangaben in Prozent der vorhergesagten Klasse angibt (oder umgekehrt)\footnote{``Confusion matrix'', Wikipedia contributors, February 5, 2020, \url{https://en.wikipedia.org/wiki/Confusion_matrix}}:}
 			 	\en{The Confusion Matrix is a special quadratic matrix in the field of machine learning that allows the visualization of the performance of a predictive model. Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\footnote{``Confusion matrix'', Wikipedia contributors, February 5, 2020, \url{https://en.wikipedia.org/wiki/Confusion_matrix}}:}
 
@@ -574,7 +575,7 @@
 					\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \lambda_i)
 				\end{equation}
 
-		\subsection{Machine Learning}
+		\subsection{Machine learning}
 		\label{sec:section_machine_learning}
 			\de{Maschinelles Lernen ist ein Oberbegriff für die künstliche Generierung von Wissen aus Erfahrung. Es verfolgt den Ansatz des induktiven Lernens (siehe auch Kapitel \hyperref[sec:section_inductive_approach]{``induktiver Ansatz''}).}
 			\en{Machine learning is a generic term for the artificial generation of knowledge from experience. It follows the approach of inductive learning (see also chapter \hyperref[sec:section_inductive_approach]{``inductive approach''}).}
@@ -628,84 +629,85 @@
 
 				\begin{figure}[H]
 					\centering
-
-					\tikzset{%
-						every neuron/.style={
-							circle,
-							draw
-					  	},
-					  	every inputneuron/.style={
-					  		circle,
-					  		draw,
-					  		minimum size=0.25cm
-					  	},
-					  	neuron 1/.style={
-							circle,
-							draw,
-							minimum size=0.75cm,
-							execute at begin node=\color{black}${\sum\atop\ }\over{\ \atop step(z)}$
-					  	},
-					  	neuron 2/.style={
-							circle,
-							draw,
-							minimum size=0.75cm,
-							execute at begin node=\color{black}${\sum\atop\ }\over{\ \atop step(z)}$
-					  	},
-					  	neuron missing/.style={
-					  		draw=none,
-					  		scale=2,
-					  		text height=0.333cm,
-					  		execute at begin node=\color{black}$\vdots$
-					  	},
-					  	inputneuron missing/.style={
-					  		draw=none, 
-					  		scale=2,
-					  		text height=0.333cm,
-					  		execute at begin node=\color{black}$\vdots$
-						},
+					\scalebox{0.75}{
+						\tikzset{%
+							every neuron/.style={
+								circle,
+								draw
+						  	},
+						  	every inputneuron/.style={
+						  		circle,
+						  		draw,
+						  		minimum size=0.25cm
+						  	},
+						  	neuron 1/.style={
+								circle,
+								draw,
+								minimum size=0.75cm,
+								execute at begin node=\color{black}${\sum\atop\ }\over{\ \atop step(z)}$
+						  	},
+						  	neuron 2/.style={
+								circle,
+								draw,
+								minimum size=0.75cm,
+								execute at begin node=\color{black}${\sum\atop\ }\over{\ \atop step(z)}$
+						  	},
+						  	neuron missing/.style={
+						  		draw=none,
+						  		scale=2,
+						  		text height=0.333cm,
+						  		execute at begin node=\color{black}$\vdots$
+						  	},
+						  	inputneuron missing/.style={
+						  		draw=none, 
+						  		scale=2,
+						  		text height=0.333cm,
+						  		execute at begin node=\color{black}$\vdots$
+							},
+						}
+						
+						\begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth]
+							% print input neurons
+							\foreach \m/\l [count=\y] in {1,2,3,missing,4}
+								\node [every inputneuron/.try, inputneuron \m/.try] (input-\m) at (0,2.5-\y) {};
+							
+							% print hidden neurons
+							\foreach \m [count=\y] in {1,missing,2}
+								\node [every neuron/.try, neuron \m/.try ] (hidden-\m) at (2,2-\y*1.25) {};
+							
+							% print output neurons
+							\foreach \m [count=\y] in {1,missing,2}
+								\node [every neuron/.try, neuron \m/.try ] (output-\m) at (4,1.5-\y) {};
+							
+							% x_n
+							\foreach \l [count=\i] in {1,2,3,n}
+								\draw [<-] (input-\i) -- ++(-1,0)
+									node [above, midway] {$x_\l$};
+							
+							% h_n
+							\foreach \l [count=\i] in {1,n}
+								\node [above] at (hidden-\i.north) {$h_\l$};
+							
+							% ^x_n
+							\foreach \l [count=\i] in {1,n}
+							  \draw [->] (output-\i) -- ++(1,0)
+							    node [above, midway] {$\hat{x}_\l$};
+							
+							% lines between input and hidden layer
+							\foreach \i in {1,...,4}
+							  \foreach \j in {1,...,2}
+							    \draw [->] (input-\i) -- (hidden-\j);
+							
+							% lines between hidden and output layer
+							\foreach \i in {1,...,2}
+							  \foreach \j in {1,...,2}
+							    \draw [->] (hidden-\i) -- (output-\j);
+							
+							% print labels
+							\foreach \l [count=\x from 0] in {Input, Hidden, Ouput}
+							  \node [align=center, above] at (\x*2,2) {\l \\ layer};
+						\end{tikzpicture}
 					}
-					
-					\begin{tikzpicture}[x=1.5cm, y=1.5cm, >=stealth]
-						% print input neurons
-						\foreach \m/\l [count=\y] in {1,2,3,missing,4}
-							\node [every inputneuron/.try, inputneuron \m/.try] (input-\m) at (0,2.5-\y) {};
-						
-						% print hidden neurons
-						\foreach \m [count=\y] in {1,missing,2}
-							\node [every neuron/.try, neuron \m/.try ] (hidden-\m) at (2,2-\y*1.25) {};
-						
-						% print output neurons
-						\foreach \m [count=\y] in {1,missing,2}
-							\node [every neuron/.try, neuron \m/.try ] (output-\m) at (4,1.5-\y) {};
-						
-						% x_n
-						\foreach \l [count=\i] in {1,2,3,n}
-							\draw [<-] (input-\i) -- ++(-1,0)
-								node [above, midway] {$x_\l$};
-						
-						% h_n
-						\foreach \l [count=\i] in {1,n}
-							\node [above] at (hidden-\i.north) {$h_\l$};
-						
-						% ^x_n
-						\foreach \l [count=\i] in {1,n}
-						  \draw [->] (output-\i) -- ++(1,0)
-						    node [above, midway] {$\hat{x}_\l$};
-						
-						% lines between input and hidden layer
-						\foreach \i in {1,...,4}
-						  \foreach \j in {1,...,2}
-						    \draw [->] (input-\i) -- (hidden-\j);
-						
-						% lines between hidden and output layer
-						\foreach \i in {1,...,2}
-						  \foreach \j in {1,...,2}
-						    \draw [->] (hidden-\i) -- (output-\j);
-						
-						% print labels
-						\foreach \l [count=\x from 0] in {Input, Hidden, Ouput}
-						  \node [align=center, above] at (\x*2,2) {\l \\ layer};
-					\end{tikzpicture}
 					\caption{The construction of a simple neural network.}
 				\end{figure}
 	
@@ -749,7 +751,7 @@
 				\end{figure}
 				\footnotetext{Source: \url{http://playground.tensorflow.org/}}
 		
-			\subsubsection{Convolutional Neuronal Network}
+			\subsubsection{Convolutional neuronal network}
 			\label{sec:section_convolutional_neuronal_network}
 				\de{Ein neuronales Netzwerk verarbeitet einen Vektor und gibt einen neuen Vektor zurück. Das Problem bei Eingabedaten wie Bildern ist, dass sie auf den ersten Blick nicht erfolgreich als Vektor beschrieben werden können, um mit einem normalem neuronalem Netzwerk trainiert werden zu können. Man braucht einen Algorithmus, welcher auch matrizenähnliche Eingaben verarbeiten kann und in der Lage ist Muster zu erkennen. Dabei wurde in der Vergangenheit das Prinzip der Convolutional Layer entwickelt. Ein Convolutional Layer nimmt ein Matrix Eingang entgegen, transformiert diese und gibt wie auch bei den künstlichen Neuronen einen Ausgangswert zurück (in diesem Fall eine weitere Matrix). Dieser Ausgangswert wird danach an die nächste Schicht weitergegeben. Dabei beinhaltet ein Convolutional Layer eine Menge \(n\) an quadratischen Matrizen (meist 3x3 oder 5x5 Matrizen). Diese Matrizen werden Filter genannt. Jeder Filter\footnote{Filter, welche z.B. Kanten, Ecken, Quadrate, etc. erkennen können und in tieferen Layern Dinge wie Augen, Ohren, Haare, etc.} wird nun jeweils von links oben bis rechts unten über die Pixel des Bildes mittels Skalarprodukt miteinander verrechnet, wobei ein neues Bild entsteht. Die soganannte Feature Map. Bei einer Anzahl von \(n\) Filtern entstehen am Ende \(n\) Feature Maps und heben die in den Filtern definierten Merkmale jeweils im neu errechneten Bild hervor. Dieser Vorgang wird auch Faltung genannt\autocite{deeplizard2017CNNExplained}.}
 				\en{A neural network processes a vector and returns a new vector. The problem with input data such as images is that at first view they cannot be successfully described as vectors to be trained with a normal neural network. You need an algorithm that can handle matrix-like inputs and that is able to recognize patterns. In the past the principle of the convolutional layer was developed. A convolutional layer receives a matrix input, transforms it and returns an output value (in this case another matrix). This output value is then passed on to the next layer. A convolutional layer contains a set \(n\) of square matrices (usually 3x3 or 5x5 matrices). These matrices are called filters. Each filter\footnote{Filters, which can recognize edges, corners, squares, etc. and in deeper layers things like eyes, ears, hair, etc.} is now calculated from top left to bottom right over the pixels of the image using a scalar product, which creates a new image. The so-called Feature Map. With a number of \(n\) filters, \(n\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
@@ -922,7 +924,7 @@
 					\caption[Simple convolution and pooling.]{Simple convolution and pooling}
 				\end{figure}
 	
-			\subsubsection{Transfer Learning}
+			\subsubsection{Transfer learning}
 			\label{sec:section_transfer_learning}
 				\de{Convolutional neuronal networks sind großartig und haben einen entscheidenden Beitrag zur Klassifizierung von Bilder beigetragen. Mit der Gründung der Forschungsdatenbank ImageNet im Jahre 2006 werden jährliche Wettbewerbe veranstaltet, um entwickelte Neuronale Netzwerke miteinander zu vergleichen. ImageNet ist eine Bilderdatenbank mit mehr als 14 Millionen Bildern. Ein CNN namens AlexNet im Jahr 2012 einen Top-5 Fehler von 15,3\% und erhöht sich aktuell stetig jedes Jahr. Aber die Architektur von einem CNN hat ein Problem. Alle Convolutional Layer sind vom Beginn an zufällig initialisiert und enthalten noch keine Muster. Damit sie zuverlässig funktioniert, muss sie mit vielen Bildern trainiert werden. Würde man vom Scratch an ein CNN selbst entwickeln und verwenden, so müssen alle Convolutional Layer auch vorab trainiert werden.}
 				\en{Convolutional neural networks are great and have made a significant contribution to the classification of images. With the foundation of the research database ImageNet in 2006, annual competitions are organized to compare developed neural networks. ImageNet is an image database with more than 14 million images. A CNN called AlexNet in 2012 got a top-5 error of 15.3\% and is currently increasing steadily every year. But the architecture of a CNN has a problem. All convolutional layers are randomly initialized from the beginning and do not yet contain any patterns. For it to work reliably, it needs to be trained with many images. If one would develop and use a CNN from scratch, all convolutional layers have to be trained in advance.}
@@ -1063,12 +1065,12 @@
 			\label{sec:section_learning_rate}
 				\de{Die Lernrate ist ein Abstimmungsparameter in einem Optimierungsalgorithmus. Dieser sagt aus, wie groß die Schrittweite bei jeder Iteration ist, mit der sich die Parameter auf das Minimum einer Verlustfunktion zubewegen. Sie sollte nicht zu hoch (Minimum wird nicht gefunden) und nicht zu klein sein (sehr langsames Lernen). Die Lernrate wird oft mit dem Zeichen \(\eta\) oder \(\alpha\) bezeichnet.}
 				\en{The learning rate is a tuning parameter in an optimization algorithm. It tells us how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
-			\subsubsection{Batch Size}
+			\subsubsection{Batch size}
 			\label{sec:section_batch_size}
 				\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
 				\en{The batch size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. Normally it is intended to train all training data per epoch with one process. Especially in the area of image classification this is usually not possible due to the limited memory, so an epoch is divided into many small batches. The advantage is that only the data necessary for the current batch needs to be kept in memory. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
 
-			\subsubsection{Data Augmentation}
+			\subsubsection{Data augmentation}
 			\label{sec:section_data_augmentation}
 				\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Dies wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern.}
 				\en{Data Augmentation is the artificial augmentation of a data set. This is primarily used when only little data is available. Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training. \hl{Is there an example that proves this quickly?}}
@@ -1099,8 +1101,8 @@
 	% Related work %
 	% -------------------- %
 	\section{Related work}
-		\de{Es existieren eine Reihe von Untersuchungen zur Bildklassifikation auf sehr großen Datensätzen.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Meist ist diese riese Anzahl von Klassifikationsklassen und Datenmengen gar nicht erwünscht. Weiterhin gibt es viele Untersuchungen auf kleinen Datensätzen. Was ihnen jedoch fehlt ist die Tatsache die gängisten Abstimmungsparameter in einer Übersicht zu finden. Daten sind teuer in der Beschaffung und meist nicht einfach zu bekommen (siehe Kapitel \hyperref[sec:section_balanced_training_data_set]{``Balanced training data set''}). Und im Gegensatz dazu, treten Bildklassifikationen in immer mehr Bereichen unseres Lebens auf und finden auch in immer mehr in Unternehmen eine direkte Verwendung, welche bisher keinen Gebrauch davon gemacht haben und sich nun überlegen eigene Implemantionen einzuführen. Da sind z.B. Unternehmen, welche versuchen aufgrund verschiedener Daten Produkte zu klassifizieren. Ist es unter dem Kostenpunkte betrachtet eine gute Idee oder bleibt einem der Schritt zu den Softwaretools von Unternehmensriesen wie Microsoft, Google und Co. nicht verwehrt? Ein Mensch sieht einen Artikel und ordnet ihn ein: Anhand des Textes, der Beschreibungung oder eines Bildes. Manchmal bleibt nur noch ein Bild, weil z.B. Texte nicht richtig gepflegt wurden oder nur kryptische Werte zurückliefern. Auch diese Klassifizierung ist für den Menschen oftmals keine Herausforderung. Er erkennt auch in diesem Fall das Produkt \(X\) aufgrund des noch vorhandenen Bildes.}
-		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets. What they are missing is the fact that the most common tuning parameters can be found in one overview. Data is expensive to obtain and usually not easy to get (see chapter \hyperref[sec:section_balanced_training_data_set]{``Balanced training data set''}). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees an article and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. Even this classification is often not a challenge for humans. In this case he also recognizes the product \(X\) on the basis of the still existing image.}
+		\de{Es existieren eine Reihe von Untersuchungen zur Bildklassifikation auf sehr großen Datensätzen.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Meist ist diese riese Anzahl von Klassifikationsklassen und Datenmengen gar nicht erwünscht. Weiterhin gibt es viele Untersuchungen auf kleinen Datensätzen. Was ihnen jedoch fehlt ist die Tatsache die gängisten Abstimmungsparameter in einer Übersicht zu finden. Daten sind teuer in der Beschaffung und meist nicht einfach zu bekommen (siehe Kapitel ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). Und im Gegensatz dazu, treten Bildklassifikationen in immer mehr Bereichen unseres Lebens auf und finden auch in immer mehr in Unternehmen eine direkte Verwendung, welche bisher keinen Gebrauch davon gemacht haben und sich nun überlegen eigene Implemantionen einzuführen. Da sind z.B. Unternehmen, welche versuchen aufgrund verschiedener Daten Produkte zu klassifizieren. Ist es unter dem Kostenpunkte betrachtet eine gute Idee oder bleibt einem der Schritt zu den Softwaretools von Unternehmensriesen wie Microsoft, Google und Co. nicht verwehrt? Ein Mensch sieht einen Artikel und ordnet ihn ein: Anhand des Textes, der Beschreibungung oder eines Bildes. Manchmal bleibt nur noch ein Bild, weil z.B. Texte nicht richtig gepflegt wurden oder nur kryptische Werte zurückliefern. Auch diese Klassifizierung ist für den Menschen oftmals keine Herausforderung. Er erkennt auch in diesem Fall das Produkt \(X\) aufgrund des noch vorhandenen Bildes.}
+		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets. What they are missing is the fact that the most common tuning parameters can be found in one overview. Data is expensive to obtain and usually not easy to get (see chapter ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees an article and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. Even this classification is often not a challenge for humans. In this case he also recognizes the product \(X\) on the basis of the still existing image.}
 
 		\de{Diese Arbeit beschäftigt sich mit dem Bildklassifizierungsteil. Da es sich hierbei um Unternehmen mit begrenzten Ressourcen handelt, steht nun die Frage im Raum: Mit welchen Mitteln, Techniken und Kniffen ist es möglich dennoch eine erfolgreiche Bildklassifizierung durchzuführen. Müssen die in \fullref{sec:section_insufficient_amount_of_data} erwähnten Bedingungen erfüllt werden oder sind erfolgreiche Klassifizierungen auch schon mit weniger möglich? Kann man durch Anpassung bestimmter Abstimmungsparameter das Optimum aus der Erstellung von Modellen herausholen? Ist z.B. eine Clusteranalyse und die damit verbundene kategorische Untergliederung der Klassifizierung ein erfolgreicher Ansatz? Diese und andere Fragen sollen mit dieser Arbeit geklärt werden. Und ich wage an dieser Stelle zu behaupten, dass es möglich ist auch mit weniger Anforderungen zu einem guten Ziel zu kommen.}
 		\en{This thesis deals with the image classification part. Since these are companies with limited resources, the question is: With which tools, techniques and tricks is it possible to carry out a successful image classification. Do the conditions mentioned in \fullref{sec:section_insufficient_amount_of_data} have to be fulfilled or are successful classifications already possible with less? Is it possible to get the most out of model creation by adjusting certain tuning parameters? For example, is a cluster analysis and the associated categorical breakdown of the classification a successful approach? These and other questions are to be clarified with this thesis. And I dare to say at this point that it is possible to reach a good goal even with fewer requirements.}
@@ -1245,8 +1247,8 @@
 			\subsubsection{Use of the transfer learning approach}
 			\label{sec:section_use_of_the_transfer_learning_approach}
 	
-				\de{Welchen Einfluss auf die Genauigkeit hat das Verwenden von Transfer Learning? Wie im Kapitel ``\hyperref[sec:section_transfer_learning]{Transfer Learning}'' beschrieben, verbessert der Transfer Learning Ansatz sofort die Genauigkeit, da das Modell schon Erkennungsmerkmale besitzt, welche ein ungelerntes Netzwerk erst noch lernen muss. Das Ergebnis sieht wie folgt auf den Datensatz \texttt{food-50} aus:}
-				\en{What influence does the use of transfer learning have on accuracy? As described in the chapter ``\hyperref[sec:section_transfer_learning]{Transfer Learning}'', the transfer learning approach immediately improves accuracy because the model already has recognition features that an unlearned network has yet to learn. The result looks like this on the data set \texttt{food-50}:}
+				\de{Welchen Einfluss auf die Genauigkeit hat das Verwenden von Transfer Learning? Wie im Kapitel ``\hyperref[sec:section_transfer_learning]{Transfer learning}'' beschrieben, verbessert der Transfer Learning Ansatz sofort die Genauigkeit, da das Modell schon Erkennungsmerkmale besitzt, welche ein ungelerntes Netzwerk erst noch lernen muss. Das Ergebnis sieht wie folgt auf den Datensatz \texttt{food-50} aus:}
+				\en{What influence does the use of transfer learning have on accuracy? As described in the chapter ``\hyperref[sec:section_transfer_learning]{Transfer learning}'', the transfer learning approach immediately improves accuracy because the model already has recognition features that an unlearned network has yet to learn. The result looks like this on the data set \texttt{food-50}:}
 				
 				\begin{figure}[H]
 					\begin{center}
@@ -1289,7 +1291,7 @@
 				\de{\noindent Dieser Bereich beschäftigt sich mit dem Thema Optimierer und seinen Parametern (besonders der Lernrate \(\eta\)) und welchen entscheidenden Einfluss diese auf die Modellgenauigkeit haben.}
 				\en{\noindent This area deals with the topic of optimizers and their parameters (especially the learning rate \(\eta\)) and what decisive influence they have on the accuracy of the model.}
 
-				\paragraph{Comparison Optimizer}
+				\paragraph{Comparison optimizer}
 				\label{sec:section_validation_comparison_optimizer}
 					\de{Neben dem Gradientenabstiegsverfahren gibt es eine Menge weiterer Verfahren, welche den Abstieg zum Optimum verbessern sollen. Dabei werden zum Beispiel Techniken verwendet, die zusammen mit der Lernrate das Springen zwischen dem Optimum verhindern oder einschränken und somit das Konvergieren optimieren\footnote{A Look at Gradient Descent and RMSprop Optimizers, https://towardsdatascience.com, February 22, 2020, \url{https://towardsdatascience.com/a-look-at-gradient-descent-and-rmsprop-optimizers-f77d483ef08b}}. Nachfolgend der Vergleich aktueller Optimierungsverfahren:}
 					\en{In addition to the gradient descent algorithm, there are a lot of other methods which are intended to improve the descent to the optimum. For example, techniques are used which, together with the learning rate, prevent or limit jumping between the optimum and thus optimize convergence\footnote{A Look at Gradient Descent and RMSprop Optimizers, https://towardsdatascience.com, February 22, 2020, \url{https://towardsdatascience.com/a-look-at-gradient-descent-and-rmsprop-optimizers-f77d483ef08b}}. Below is a comparison of current optimization methods:}
@@ -1307,9 +1309,9 @@
 					\de{Wie man sehen kann, fällt das Erbebnis sehr unterschiedlich aus. Während das Gradientenabstiegsverfahren mit und ohne Nesterov und das Adagrad Verfahren gute Werte liefern (82,0\% bis 83,6\% Genauigkeit) sehen die anderen Verfahren auf den ersten Blick nicht sehr brauchbar aus. Sie konvergieren sehr langsam: Adadelta, Adam und RMSprop. Alle Verfahren wurden entsprechend der Keras Dokumentation mit den empfohlenen Einstellungen durchgeführt\footnote{Usage of optimizers, https://keras.io, February 22, 2020, \url{https://keras.io/optimizers/}}. Bei allen Verfahren wurde eine Lernrate von \(\eta = 0.001\) gewählt.}
 					\en{As you can see, the results are very different. While the gradient descent method with and without Nesterov and the Adagrad method provide good values (82.0\% to 83.6\% accuracy), the other methods do not look very useful at first sight. They converge very slowly: Adadelta, Adam and RMSprop. All procedures were performed with the recommended settings according to the Keras documentation\footnote{Usage of optimizers, https://keras.io, February 22, 2020, \url{https://keras.io/optimizers/}}. A learning rate of \(\eta = 0.001\) was chosen for all procedures.}
 
-				\paragraph{Influence of the momentum and the Nesterov momentum}
-					\de{Die beiden besten Verfahren aus dem vorhergehendem Kapitel ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison Optimizer}'' SGD mit Nesterov und SGD ohne Nesterov sollen hier genauer untersucht werden. Der Lernparameter \(\eta\) spielt dabei eine entscheidende Rolle. Dieser wird von 0,5 bis in den kritischen Bereich von 0,98 variiert. Die Lernrate verringert sich nach jeweils 7 Epochen um 50\%. Das Ergebnis soll daraufhin verglichen und diskutiert werden.}
-					\en{The two best methods from the previous chapter ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison Optimizer}'' SGD with Nesterov and SGD without Nesterov will be examined here in more detail. The learning parameter \(\eta\) plays a decisive role. It is varied from 0.5 to the critical range of 0.98. The learning rate decreases by 50\% after every 7 epochs. The results will then be compared and discussed:}
+				\paragraph{Influence of the momentum and the nesterov momentum}
+					\de{Die beiden besten Verfahren aus dem vorhergehendem Kapitel ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison optimizer}'' SGD mit Nesterov und SGD ohne Nesterov sollen hier genauer untersucht werden. Der Lernparameter \(\eta\) spielt dabei eine entscheidende Rolle. Dieser wird von 0,5 bis in den kritischen Bereich von 0,98 variiert. Die Lernrate verringert sich nach jeweils 7 Epochen um 50\%. Das Ergebnis soll daraufhin verglichen und diskutiert werden.}
+					\en{The two best methods from the previous chapter ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison optimizer}'' SGD with Nesterov and SGD without Nesterov will be examined here in more detail. The learning parameter \(\eta\) plays a decisive role. It is varied from 0.5 to the critical range of 0.98. The learning rate decreases by 50\% after every 7 epochs. The results will then be compared and discussed:}
 	
 					\begin{figure}[H]
 						\begin{center}
@@ -1400,6 +1402,7 @@
 			\noindent ...
 		
 		\subsection{Hierarchical classification}
+		\label{sec:section_validation_hierarchical classification}
 			\de{Durch die Verwendung eines einzigen Modelles für alle Klassen, sind die bisherigen Klassifikatoren darauf trainiert, den Verlust am Klassenausgabevektor zu minimieren. Jede bisher verwendete Klasse hat den gleichen Rang sowohl beim Training, als auch bei der Klassifizierung. Die Vorhersage von "Pizza" kostet genauso viel wie die Vorhersage von "Martini".}
 			\en{By using a single model for all classes, previous classifiers have been trained to minimize the loss of the class output vector. Each class used so far has the same rank in both training and classification. The prediction of "Pizza" costs the same as the prediction of "Martini".}
 
@@ -1485,7 +1488,7 @@
 						\captionof{table}{Grouped classes with k-means.}\label{tbl:table_grouped_classes}
 					\end{table}
 				
-				\subsubsection{Agglomerative Hierarchical Clustering}
+				\subsubsection{Agglomerative hierarchical clustering}
 				
 					\begin{figure}[H]
 						\begin{center}
