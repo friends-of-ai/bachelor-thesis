@@ -1239,9 +1239,24 @@
 					\label{fig:evaluation_different_models}
 				\end{figure}
 
-				\de{Alle Modelle mit Ausnahme von DenseNet201 und NASNetLarge wurden mit einer Batch Size von 16 trainiert. Aufgrund des begrenzten Speichers von 6GB der Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}} wurden DenseNet201 mit einer Batch Size von 8 und NASNetLarge mit einer Batch Size von 4 trainiert. Ein wirklicher Vergleich dieser beiden Ausnahmen ist somit nicht wirklich möglich, soll jedoch an dieser Stelle auch nicht weggelassen werden. Ein größerer Batch-Wert geht mit erhöhter Rechenzeit und langsameren Ansteigen von der Genauigkeit einher (siehe Kapitel ``\hyperref[sec:section_validation_comparison_different_bs]{Different batch sizes}''). Ein Vergleich mit Darstellung \fullref{fig:comparison_cnn} zeigt ähnliche Genauigkeiten und benötigte Rechenzeiten: Das beste Modell wurde mit DenseNet201 mit einer Genauigkeit von 88,58\% erreicht. Das Modell mit der geringsten Genauigkeit ist das schon etwas ältere VGG19 Modell mit 77,29\%. Stellt man Rechenzeit und zu erreichende Genauigkeiten gegenüber, so fällt einem das InceptionV3 Modell auf (rote Kurve). Es ist das zweitbeste Modell und erreicht das Ergebnis in einem mittlerem Bereich von ca. zweieinhalb Stunden. Das beste Modell DenseNet201 benötigt für sein Ergebnis mehr als doppelt soviel Zeit. Die Wahl für alle weiteren Experimente viel aus diesem Grund auf das CNN Modell InceptionV3, da es ein gutes Ergebnis innerhalb einer vergleichsweisen geringen Zeitspanne erreicht.}
-				\en{All models except DenseNet201 and NASNetLarge were trained with a batch size of 16. Due to the limited 6GB memory of the Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}}, DenseNet201 was trained with a batch size of 8 and NASNetLarge with a batch size of 4. A real comparison of these two exceptions isn't really possible, but shouldn't be omitted at this point. A larger batch value is associated with increased computing time and slower increase in accuracy (see chapter ``\hyperref[sec:section_validation_comparison_different_bs]{Different batch sizes}''). A comparison with \fullref{fig:comparison_cnn} shows similar accuracies and required computing time: The best model was achieved with DenseNet201 with an accuracy of 88.58\%. The model with the lowest accuracy is the somewhat older VGG19 model with 77.29\%. If one compares the computing time and the accuracies to be achieved, one notices the InceptionV3 model (red trace). It is the second best model and reaches the result in a medium range of about two and a half hours. The best model DenseNet201 needs more than twice as much time for its result. The choice for all further experiments is therefore the CNN model InceptionV3, because it achieves a good result within a comparatively short period of time.}
-		
+				\de{Alle Modelle mit Ausnahme von DenseNet201 und NASNetLarge wurden mit einer Batch Size von 16 trainiert (\(bs=16\)). Aufgrund des begrenzten Speichers von 6GB der Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}} wurden DenseNet201 mit einer Batch Size von 8 und NASNetLarge mit einer Batch Size von 4 trainiert. Ein wirklicher Vergleich dieser beiden Ausnahmen ist somit nicht wirklich möglich, soll jedoch an dieser Stelle auch nicht weggelassen werden. Ein größerer Batch-Wert geht mit erhöhter Rechenzeit und langsameren Ansteigen von der Genauigkeit einher (siehe Kapitel ``\hyperref[sec:section_validation_comparison_different_bs]{Different batch sizes}''). Ein Vergleich mit Darstellung \fullref{fig:comparison_cnn} zeigt ähnliche Genauigkeiten und benötigte Rechenzeiten: Das beste Modell wurde mit DenseNet201 mit einer Genauigkeit von 88,58\% erreicht. Das Modell mit der geringsten Genauigkeit ist das schon etwas ältere VGG19 Modell mit 77,29\%. Stellt man Rechenzeit und zu erreichende Genauigkeiten gegenüber, so fällt einem das InceptionV3 Modell auf (rote Kurve). Es ist das zweitbeste Modell und erreicht das Ergebnis in einem mittlerem Bereich von ca. zweieinhalb Stunden. Das beste Modell DenseNet201 benötigt für sein Ergebnis mehr als doppelt soviel Zeit. Die Wahl für alle weiteren Experimente viel aus diesem Grund auf das CNN Modell InceptionV3, da es ein gutes Ergebnis innerhalb einer vergleichsweisen geringen Zeitspanne erreicht.}
+				\en{All models except DenseNet201 and NASNetLarge were trained with a batch size of 16 (\(bs=16\)). Due to the limited 6GB memory of the Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}}, DenseNet201 was trained with a batch size of 8 and NASNetLarge with a batch size of 4. A real comparison of these two exceptions isn't really possible, but shouldn't be omitted at this point. A larger batch value is associated with increased computing time and slower increase in accuracy (see chapter ``\hyperref[sec:section_validation_comparison_different_bs]{Different batch sizes}''). A comparison with \fullref{fig:comparison_cnn} shows similar accuracies and required computing time: The best model was achieved with DenseNet201 with an accuracy of 88.58\%. The model with the lowest accuracy is the somewhat older VGG19 model with 77.29\%. If one compares the computing time and the accuracies to be achieved, one notices the InceptionV3 model (red trace). It is the second best model and reaches the result in a medium range of about two and a half hours. The best model DenseNet201 needs more than twice as much time for its result. The choice for all further experiments is therefore the CNN model InceptionV3, because it achieves a good result within a comparatively short period of time.}
+				
+			\subsubsection{Influence of the number of trained layers on the accuracy}
+	
+				\noindent ...
+
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{number_trainable_layers.pgf}
+						}
+					\end{center}
+					\caption{Overview of influence of the number of trained layers}
+					\label{fig:evaluation_number_trainable_layers}
+				\end{figure}
+
+				\noindent ...
 		
 			\subsubsection{Use of the transfer learning approach}
 			\label{sec:section_use_of_the_transfer_learning_approach}
@@ -1265,6 +1280,7 @@
 			\subsubsection{Influence of different error optimizers}
 
 				\paragraph{Comparison Optimizer}
+				\label{sec:section_validation_comparison_optimizer}
 
 				\de{Der Optimierer im Trainingsprozess dient dazu den Wert der Verlustfunktion zu verringern, um den Wert der Vorhersagen so korrekt wie möglich wiederzugeben. Der Wert der Verlustfunktion ergibt sich aus der Differenz des erwarteten Wertes und des geschätzten Wertes der Funktion. Optimierer bestimmen den Wert und begleichen den Fehler um die Verlustfunktion zu minimieren. Der einfachste Ansatz ist das Gradientenabstiegsverfahren\footnote{Gradient descent, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/Gradient_descent}}, welches im Laufe der Zeit immer mehr verbessert wurde und weitere Optimierungsverfahren entstanden, welche entsprechend ihrer Aufgaben und Ziele mal besser und mal nicht so gut funktionieren. Die Lernrate \(\eta\) bestimmt den Wert der Gewichtung, mit dem der Fehler korrigiert wird (siehe auch Kapitel ``\hyperref[sec:section_loss_function]{Loss function}''):}
 				\en{The optimiser in the training process is used to reduce the value of the loss function to reflect the value of the predictions as correctly as possible. The value of the loss function is the difference between the expected value and the estimated value of the function. Optimizers determine the value and adjust the error to minimize the loss function. The simplest approach is the gradient descent algorithm\footnote{Gradient descent, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/Gradient_descent}}, which has been improved over time and further optimization algorithms have been developed, which sometimes work better and sometimes not so well according to their tasks and goals. The learning rate \(\eta\) determines the value of the weighting with which the error is corrected (see also chapter ``\hyperref[sec:section_loss_function]{Loss function}''):}
@@ -1291,7 +1307,8 @@
 
 				\paragraph{Influence of the momentum and the Nesterov momentum}
 
-				\noindent ...
+				\de{Die beiden besten Verfahren aus dem vorhergehendem Kapitel ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison Optimizer}'' SGD mit Nesterov und SGD ohne Nesterov sollen hier genauer untersucht werden. Der Lernparameter \(\eta\) spielt dabei eine entscheidende Rolle. Dieser wird von 0,5 bis in den kritischen Bereich von 0,98 variiert. Die Lernrate verringert sich nach jeweils 7 Epochen um 50\%. Das Ergebnis soll daraufhin verglichen und diskutiert werden.}
+				\en{The two best methods from the previous chapter ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison Optimizer}'' SGD with Nesterov and SGD without Nesterov will be examined here in more detail. The learning parameter \(\eta\) plays a decisive role. It is varied from 0.5 to the critical range of 0.98. The learning rate decreases by 50\% after every 7 epochs. The results will then be compared and discussed:}
 
 				\begin{figure}[H]
 					\begin{center}
@@ -1303,39 +1320,24 @@
 					\label{fig:evaluation_momentum}
 				\end{figure}
 
-				\noindent ...
+				\de{Die Genauigkeit steigen bei beiden Modellen mit (w/ nest.) und ohne Nesterov (w/o nest.) stetig mit steigender Lernrate \(\eta\) an, bis sie mit \(\eta=0,9\) (w/o nest.) bzw. \(\eta=0,95\) (w/ nest.) ihren Zenit bei 83,35\% bzw. 84,37\% erreichen. Dabei fällt auf, das je kleiner die Lernrate \(\eta\) ist, die Genauigkeit vorhersehbarer gleichmäßiger steigt, das ``Maximum'' bei 21 Epochen jedoch nicht erreicht wird. Mit steigender Lernrate, z.B. beim Maximum von \(\eta=0,98\) beim Nesterov Modell (braune Linie), springen die Modellgenauigkeiten und können auch mal mit einer weiteren Epoche komplett in die negative Richtung laufen. Beim besten Modell (olive Linie, w/ nest.) passiert exakt das Gleiche, jedoch werden am Ende damit die besten Ergebnisse erzielt.}
+				\en{The accuracy of both models with (w/ nest.) and without Nesterov (w/o nest.) increases steadily with increasing learning rate \(\eta\) until they reach their zenith at 83.35\% and 84.37\% with \(\eta=0,9\) (w/o nest.) and \(\eta=0,95\) (w/ nest.) respectively. It is noticeable that the smaller the learning rate \(\eta\), the accuracy increases more evenly, but the ``maximum'' at 21 epochs is not reached. With increasing learning rate, e.g. at the maximum of \(\eta=0,98\) for the Nesterov model (brown trace), the model accuracies jump and can sometimes run completely in the negative direction with another epoch. With the best model (olive trace, w/ nest.) exactly the same happens, but in the end the best results are achieved.}
 		
-			\subsubsection{Influence of the number of trained layers on the accuracy}
+				\paragraph{Influence of a dynamic learning rate on accuracy (scheduling)}
 	
-				\noindent ...
-
-				\begin{figure}[H]
-					\begin{center}
-						\scalebox{0.75}{
-							\inputpgf{images/evaluation}{number_trainable_layers.pgf}
-						}
-					\end{center}
-					\caption{Overview of influence of the number of trained layers}
-					\label{fig:evaluation_number_trainable_layers}
-				\end{figure}
-
-				\noindent ...
-		
-			\subsubsection{Influence of a dynamic learning rate on accuracy (scheduling)}
-
-				\noindent ...
-
-				\begin{figure}[H]
-					\begin{center}
-						\scalebox{0.75}{
-							\inputpgf{images/evaluation}{scheduling_learning_rate.pgf}
-						}
-					\end{center}
-					\caption{Overview of a dynamic learning rate on accuracy}
-					\label{fig:evaluation_scheduling_learning_rate}
-				\end{figure}
-
-				\noindent ...
+					\noindent ...
+	
+					\begin{figure}[H]
+						\begin{center}
+							\scalebox{0.75}{
+								\inputpgf{images/evaluation}{scheduling_learning_rate.pgf}
+							}
+						\end{center}
+						\caption{Overview of a dynamic learning rate on accuracy}
+						\label{fig:evaluation_scheduling_learning_rate}
+					\end{figure}
+	
+					\noindent ...
 		
 			\subsubsection{Different batch sizes}
 			\label{sec:section_validation_comparison_different_bs}
