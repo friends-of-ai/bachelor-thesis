@@ -1241,22 +1241,6 @@
 
 				\de{Alle Modelle mit Ausnahme von DenseNet201 und NASNetLarge wurden mit einer Batch Size von 16 trainiert (\(bs=16\)). Aufgrund des begrenzten Speichers von 6GB der Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}} wurden DenseNet201 mit einer Batch Size von 8 und NASNetLarge mit einer Batch Size von 4 trainiert. Ein wirklicher Vergleich dieser beiden Ausnahmen ist somit nicht wirklich möglich, soll jedoch an dieser Stelle auch nicht weggelassen werden. Ein größerer Batch-Wert geht mit erhöhter Rechenzeit und langsameren Ansteigen von der Genauigkeit einher (siehe Kapitel ``\hyperref[sec:section_validation_comparison_different_bs]{Different batch sizes}''). Ein Vergleich mit Darstellung \fullref{fig:comparison_cnn} zeigt ähnliche Genauigkeiten und benötigte Rechenzeiten: Das beste Modell wurde mit DenseNet201 mit einer Genauigkeit von 88,58\% erreicht. Das Modell mit der geringsten Genauigkeit ist das schon etwas ältere VGG19 Modell mit 77,29\%. Stellt man Rechenzeit und zu erreichende Genauigkeiten gegenüber, so fällt einem das InceptionV3 Modell auf (rote Kurve). Es ist das zweitbeste Modell und erreicht das Ergebnis in einem mittlerem Bereich von ca. zweieinhalb Stunden. Das beste Modell DenseNet201 benötigt für sein Ergebnis mehr als doppelt soviel Zeit. Die Wahl für alle weiteren Experimente viel aus diesem Grund auf das CNN Modell InceptionV3, da es ein gutes Ergebnis innerhalb einer vergleichsweisen geringen Zeitspanne erreicht.}
 				\en{All models except DenseNet201 and NASNetLarge were trained with a batch size of 16 (\(bs=16\)). Due to the limited 6GB memory of the Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}}, DenseNet201 was trained with a batch size of 8 and NASNetLarge with a batch size of 4. A real comparison of these two exceptions isn't really possible, but shouldn't be omitted at this point. A larger batch value is associated with increased computing time and slower increase in accuracy (see chapter ``\hyperref[sec:section_validation_comparison_different_bs]{Different batch sizes}''). A comparison with \fullref{fig:comparison_cnn} shows similar accuracies and required computing time: The best model was achieved with DenseNet201 with an accuracy of 88.58\%. The model with the lowest accuracy is the somewhat older VGG19 model with 77.29\%. If one compares the computing time and the accuracies to be achieved, one notices the InceptionV3 model (red trace). It is the second best model and reaches the result in a medium range of about two and a half hours. The best model DenseNet201 needs more than twice as much time for its result. The choice for all further experiments is therefore the CNN model InceptionV3, because it achieves a good result within a comparatively short period of time.}
-				
-			\subsubsection{Influence of the number of trained layers on the accuracy}
-	
-				\noindent ...
-
-				\begin{figure}[H]
-					\begin{center}
-						\scalebox{0.75}{
-							\inputpgf{images/evaluation}{number_trainable_layers.pgf}
-						}
-					\end{center}
-					\caption{Overview of influence of the number of trained layers}
-					\label{fig:evaluation_number_trainable_layers}
-				\end{figure}
-
-				\noindent ...
 		
 			\subsubsection{Use of the transfer learning approach}
 			\label{sec:section_use_of_the_transfer_learning_approach}
@@ -1276,6 +1260,23 @@
 
 				\de{Wie erwartet erziehlt das Modell mit Transfer Learning ein besseres Ergebnis bei gleicher Rechenzeit. In der ersten Epoche erreicht das Modell ohne Transfer Learning Ansatz einen Genauigkeitswert von 8,5\% und steigert sich in den 21 Lernepochen auf 58,8\%. Beginnt man mit einem trainierten Netzwerk, so erreicht man schon mit der ersten Epoche einen besseren Wert von 68,9\% und kann diesen weiter steigern bis 83,6\% in der 21. Epoche. Als Fazit sei zu erwähnen, dass es sicher möglich ist auch das untrainierte Netzwerk auf diesen Wert zu bekommen, jedoch benötigt man deutlich mehr Trainingsepochen. Transfer Learning zu verwenden ist in diesem Fall eine gute Idee.}
 				\en{As expected, the transfer learning model achieves a better result with the same computing time. In the first epoch the model without transfer learning approach reaches an accuracy value of 8.5\% and increases to 58.8\% in the 21 learning epochs. If one starts with a trained network, one achieves a better value of 68.9\% already in the first epoch and can further increase this value to 83.6\% in the 21st epoch. As a conclusion it should be mentioned that it is certainly possible to get the untrained network to this value, but you need much more training epochs. Using transfer learning is a good idea in this case.}
+				
+			\subsubsection{Influence of the number of trained layers on the accuracy}
+				\de{Ein vortrainiertes Netzwerk hat einen entscheidenden Einfluss auf die zu erreichende Genauigkeit, die man in einer gewissen Rechenzeit erreichen kann. Mit fortschreitender Tiefe der Ebenen eines CNN Modells, haben die dazugehörigen Filter mehr und mehr komplexere Erkennungsmerkmale gelernt\footnote{Advanced Topics in Deep Convolutional Neural Networks, https://towardsdatascience.com, February 22, 2020, \url{https://towardsdatascience.com/advanced-topics-in-deep-convolutional-neural-networks-71ef1190522d}}: In den ersten Ebenen lernen die Filter grundlegende Formen zur Erkennung von Merkmalen wie Kanten und Ecken. Die mittleren Ebenen lernen Teile von Objekten zu erkennen. Die letzten Ebenen lernen vollständige Objekte in verschiedenen Formen und Positionen. Die Frage welche sich unmittelbar stellt: Ist es notwendig die unteren Schichten neu zu erlernen oder ist es möglich diese auszulassen, um Rechenzeit einzusparen? Dies soll im folgenden Experiment überprüft werden:}
+				\en{A pre-trained network has a decisive influence on the accuracy that can be achieved in a certain computing time. With increasing depth of the layers of a CNN model, the associated filters have learned more and more complex recognition features\footnote{Advanced Topics in Deep Convolutional Neural Networks, https://towardsdatascience.com, February 22, 2020, \url{https://towardsdatascience.com/advanced-topics-in-deep-convolutional-neural-networks-71ef1190522d}}: In the first layers, the filters learn basic shapes to recognize features such as edges and corners. The middle layers learn to recognize parts of objects. The last layers learn complete objects in different shapes and positions. The question that immediately comes up: Is it necessary to relearn the lower layers or is it possible to omit them to save computing time? This will be tested in the following experiment:}
+
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{number_trainable_layers.pgf}
+						}
+					\end{center}
+					\caption{Overview of influence of the number of trained layers}
+					\label{fig:evaluation_number_trainable_layers}
+				\end{figure}
+
+				\de{Die Idee auf das Training der untersten Ebenen zu verzichten ist leider keine gute Idee. Zwar spart man enorm Rechenzeit, wenn man nur die letzten 36 Ebenen trainiert (ungefähr eine Stunde Rechenzeit gegenüber zweieinhalb Stunden, wenn man alle Ebenen trainiert), jedoch steigt auch die Modellgenauigkeit mit dem Training von weiteren zusätzlichen Ebenen stetig. Die Modellgenauigkeit konnte beim Training von allen Ebenen von 64,8\% auf 83,6\% verbessert werden. Es ist eine gute Idee in Rechenzeit zu investieren, um gute Modelle zu erhalten.}
+				\en{The idea of not training the lowest layers is unfortunately not a good idea. You can save a lot of computing time if you only train the last 36 levels (about one hour of computing time compared to two and a half hours if you train all levels), but the accuracy of the model increases steadily with the training of additional layers. The model accuracy could be improved from 64.8\% to 83.6\% when training all levels. It is a good idea to invest in computing time to get good models.}
 
 			\subsubsection{Influence of different error optimizers}
 
@@ -1571,6 +1572,9 @@
 			\item Stop Feeding Garbage To Your Model! — The 6 biggest mistakes with datasets and how to avoid them.
 			\begin{itemize}
 				\item \url{https://hackernoon.com/stop-feeding-garbage-to-your-model-the-6-biggest-mistakes-with-datasets-and-how-to-avoid-them-3cb7532ad3b7}
+			\end{itemize}
+			\begin{itemize}
+				\item \url{https://towardsdatascience.com/advanced-topics-in-deep-convolutional-neural-networks-71ef1190522d}
 			\end{itemize}
 		\end{itemize}
 	
