@@ -41,6 +41,7 @@
 \usepackage{rotating}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{mathtools}
 
 % tikzpiture libraries
 \usetikzlibrary{positioning}
@@ -527,6 +528,7 @@
 			% loss function %
 			% -------------------- %
 			\paragraph{Loss function}
+			\label{sec:section_loss_function}
 				\de{Da es sich hierbei um ein Klassifzierungsproblem und nicht um ein Regressionsproblem handelt, greift man bei der Vorhersage auf die Softmax-Regression zurück. Dabei wird nach jeder Vorhersage ein Vektor \(\lambda\) der Größe \(n\) zurückgegeben, wobei \(n\) der Anzahl der zu unterscheidenden Klassen entspricht\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(\hat{p}\) Wert entspricht dabei der Wahrscheinlichkeit, dass es die Klasse \(class_n\) ist:}
 				\en{Since this is a classification problem and not a regression problem, the prediction is based on softmax regression. After each prediction, a vector \(\lambda\) of the size \(n\) is returned, where \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual \(\hat{p}\) value corresponds to the probability that it is class \(class_n\):}
 
@@ -1179,6 +1181,7 @@
 			%\clearpage
 			\renewcommand\theadfont{\bfseries}
 			\begin{table}[htb]
+				\small
 				\centering
 				{\def\arraystretch{2}\tabcolsep=5pt
 					\begin{tabularx}{\linewidth}{ X | l | p{2cm} | l | l }
@@ -1263,8 +1266,16 @@
 
 				\paragraph{Comparison Optimizer}
 
-				\noindent ...
+				\de{Der Optimierer im Trainingsprozess dient dazu den Wert der Verlustfunktion zu verringern, um den Wert der Vorhersagen so korrekt wie möglich wiederzugeben. Der Wert der Verlustfunktion ergibt sich aus der Differenz des erwarteten Wertes und des geschätzten Wertes der Funktion. Optimierer bestimmen den Wert und begleichen den Fehler um die Verlustfunktion zu minimieren. Der einfachste Ansatz ist das Gradientenabstiegsverfahren\footnote{Gradient descent, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/Gradient_descent}}, welches im Laufe der Zeit immer mehr verbessert wurde und weitere Optimierungsverfahren entstanden, welche entsprechend ihrer Aufgaben und Ziele mal besser und mal nicht so gut funktionieren. Die Lernrate \(\eta\) bestimmt den Wert der Gewichtung, mit dem der Fehler korrigiert wird (siehe auch Kapitel ``\hyperref[sec:section_loss_function]{Loss function}''):}
+				\en{The optimiser in the training process is used to reduce the value of the loss function to reflect the value of the predictions as correctly as possible. The value of the loss function is the difference between the expected value and the estimated value of the function. Optimizers determine the value and adjust the error to minimize the loss function. The simplest approach is the gradient descent algorithm\footnote{Gradient descent, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/Gradient_descent}}, which has been improved over time and further optimization algorithms have been developed, which sometimes work better and sometimes not so well according to their tasks and goals. The learning rate \(\eta\) determines the value of the weighting with which the error is corrected (see also chapter ``\hyperref[sec:section_loss_function]{Loss function}''):}
 
+				\begin{equation}
+					x_{n+1} = x_{n} - \eta \cdot \nabla F(x_{n}) = x_{n} - \eta \cdot L_r(\vartheta, \lambda), \ n \geq 0
+				\end{equation}
+				
+				\de{Neben dem Gradientenabstiegsverfahren gibt es eine Menge weiterer Verfahren, welche den Abstieg zum Optimum verbessern sollen. Dabei werden zum Beispiel Techniken verwendet, die zusammen mit der Lernrate das Springen zwischen dem Optimum verhindern oder einschränken und somit das Konvergieren optimieren\footnote{A Look at Gradient Descent and RMSprop Optimizers, https://towardsdatascience.com, February 22, 2020, \url{https://towardsdatascience.com/a-look-at-gradient-descent-and-rmsprop-optimizers-f77d483ef08b}}. Nachfolgend der Vergleich aktueller Optimierungsverfahren:}
+				\en{In addition to the gradient descent algorithm, there are a lot of other methods which are intended to improve the descent to the optimum. For example, techniques are used which, together with the learning rate, prevent or limit jumping between the optimum and thus optimize convergence\footnote{A Look at Gradient Descent and RMSprop Optimizers, https://towardsdatascience.com, February 22, 2020, \url{https://towardsdatascience.com/a-look-at-gradient-descent-and-rmsprop-optimizers-f77d483ef08b}}. Below is a comparison of current optimization methods:}
+				
 				\begin{figure}[H]
 					\begin{center}
 						\scalebox{0.75}{
@@ -1275,7 +1286,8 @@
 					\label{fig:evaluation_momentum}
 				\end{figure}
 
-				\noindent ...
+				\de{Wie man sehen kann, fällt das Erbebnis sehr unterschiedlich aus. Während das Gradientenabstiegsverfahren mit und ohne Nesterov und das Adagrad Verfahren gute Werte liefern (82,0\% bis 83,6\% Genauigkeit) sehen die anderen Verfahren auf den ersten Blick nicht sehr brauchbar aus. Sie konvergieren sehr langsam: Adadelta, Adam und RMSprop. Alle Verfahren wurden entsprechend der Keras Dokumentation mit den empfohlenen Einstellungen durchgeführt\footnote{Usage of optimizers, https://keras.io, February 22, 2020, \url{https://keras.io/optimizers/}}. Bei allen Verfahren wurde eine Lernrate von \(\eta = 0.001\) gewählt.}
+				\en{As you can see, the results are very different. While the gradient descent method with and without Nesterov and the Adagrad method provide good values (82.0\% to 83.6\% accuracy), the other methods do not look very useful at first sight. They converge very slowly: Adadelta, Adam and RMSprop. All procedures were performed with the recommended settings according to the Keras documentation\footnote{Usage of optimizers, https://keras.io, February 22, 2020, \url{https://keras.io/optimizers/}}. A learning rate of \(\eta = 0.001\) was chosen for all procedures.}
 
 				\paragraph{Influence of the momentum and the Nesterov momentum}
 
@@ -1438,9 +1450,10 @@
 						\label{fig:analysis_grouped_classes_with_k_means}
 					\end{figure}
 					
-					\clearpage
+					%\clearpage
 					\renewcommand\theadfont{\bfseries}
 					\begin{table}[htb]
+						\small
 						\centering
 						{\def\arraystretch{2}\tabcolsep=5pt
 							\begin{tabularx}{\linewidth}{ l | X }
@@ -1472,9 +1485,10 @@
 						\label{fig:analysis_grouped_classes_with_ahc}
 					\end{figure}
 					
-					\clearpage
+					%\clearpage
 					\renewcommand\theadfont{\bfseries}
 					\begin{table}[htb]
+						\small
 						\centering
 						{\def\arraystretch{2}\tabcolsep=5pt
 							\begin{tabularx}{\linewidth}{ l | X }
