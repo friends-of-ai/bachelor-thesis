@@ -1393,8 +1393,8 @@
 			\en{As in Chapter ``\hyperref[sec:section_validation_process_preamble]{Preamble}'' for Model Validation, the same settings are used as the default setup, unless otherwise specified. InceptionV3 is used as CNN. The data set and also the division into training and validation data set corresponds to the procedure of the previous chapters.}
 
 		\subsection{Data augmentation}
-			\de{Wie in Kapitel ``\hyperref[sec:section_data_augmentation]{Data augmentation}'' beschrieben, ist die Hauptaufgabe von Data augmentation neue neue Trainingsdaten aus den bestehenden zu generieren. Der Trainingsdatensatz wird somit künstlich vergrößert. Diese Technik gehört mit zu den Regularisierungstechniken, da sie Overfitting entgegenwirken kann. Nachfolgend ein Beispieldatenset, bei dem das erste originale Bild gedreht, gespiegelt, verzerrt wird und der Datensatz von einem Bild auf insgesamt 12 Bilder vergrößert wird:}
-			\en{As described in Chapter ``\hyperref[sec:section_data_augmentation]{Data augmentation}'' the main task of data augmentation is to generate new training data from the existing data. The training data set is artificially augmented in this way. This technique is one of the regularization techniques, as it can counteract overfitting. Below is an example data set in which the first original image is rotated, mirrored, distorted, and the data set is enlarged from one image to a total number of 12 images:}
+			\de{Wie in Kapitel ``\hyperref[sec:section_data_augmentation]{Data augmentation}'' beschrieben, ist die Hauptaufgabe von Data augmentation neue neue Trainingsdaten aus den bestehenden zu generieren. Der Trainingsdatensatz wird somit künstlich vergrößert. Diese Technik gehört mit zu den Regularisierungstechniken, da sie Overfitting entgegenwirken kann\autocite{geron2017supervisedlearningDataAugmentation}. Nachfolgend ein Beispieldatenset, bei dem das erste originale Bild gedreht, gespiegelt, verzerrt wird und der Datensatz von einem Bild auf insgesamt 12 Bilder vergrößert wird:}
+			\en{As described in Chapter ``\hyperref[sec:section_data_augmentation]{Data augmentation}'' the main task of data augmentation is to generate new training data from the existing data. The training data set is artificially augmented in this way. This technique is one of the regularization techniques, as it can counteract overfitting\autocite{geron2017supervisedlearningDataAugmentation}. Below is an example data set in which the first original image is rotated, mirrored, distorted and the data set is enlarged from one image to a total number of 12 images:}
 
 			\begin{figure}[H]
 				\begin{center}
@@ -1403,6 +1403,9 @@
 				\caption{Data Augmentation (The first image is the original image.)}
 				\label{fig:data_augmentation}
 			\end{figure}
+			
+			\de{Mit dieser Technik wird nun der bestehende \texttt{food-50} Datensatz angepasst, bis jede Klasse insgesamt 1000 Bilder enthält und der Datensatz insgesamt ausbalanciert ist. Klassen mit wenigen Daten erhalten entsprechend mehr künstlich angepasste Daten, Klassen mit vielen Daten entsprechend weniger. Das Ergebnis ist, dass aus den ursprünglich 11913 Bildern nun insgesamt 50000 Bilder wurden und der Datensatz von insgesamt 765 MB auf 1,78 GB angewachsen ist. Der Validierungsdatensatz bleibt unverändert, um das Testergebnis nicht zu verfälschen. Nachfolgend das Auswertungsdiagramm:}
+			\en{Using this technique, the existing \texttt{food-50} dataset is now adjusted until each class contains a total number of 1000 images and the dataset is balanced overall. Classes with few data will receive more artificially adjusted data, classes with many data will receive less. The result is that the original 11913 images have now become a total number of 50000 images and the data set has grown from 765 MB to 1.78 GB. The validation data set remains unchanged in order not to falsify the test result. The evaluation diagram is shown below:}
 			
 			\begin{figure}[H]
 				\begin{center}
@@ -1413,6 +1416,9 @@
 				\caption{Comparison of data augmentation}
 				\label{fig:evaluation_data_augmentation}
 			\end{figure}
+			
+			\de{Die Modellgenauigkeit erhöht sich von 83,6\% auf 85,6\%. Eine Steigerung von insgesamt 2\%. Wohlgemerkt: Der Validierungsdatensatz ist immer noch derselbe! Allerdings bedeutet das auch ein Anstieg der benötigten Rechenzeit. Während die Berechnung des Datensatzes ohne Data Augmentation nur zweieinhalb Stunden braucht, benötigt man für den neuen Datensatz die vierfache Zeit. Fazit: Data Augmentation geth mit einer verbesserten Genauigkeit einher, benötigt aber auch im gleichem Atemzug mehr Rechenzeit. Wenn Rechenzeit keine Rolle spielt, so ist dies eine Möglichkeit die Genauigkeit etwas zu verbessern.}
+			\en{The model accuracy increases from 83.6\% to 85.6\%. An overall increase of 2\%. Note: The validation data set is still the same! However, this also means an increase in the required computing time. While the calculation of the data set without data augmentation takes only two and a half hours, the new data set takes four times as long. Conclusion: Data Augmentation is associated with improved accuracy, but also requires more computing time in the same breath. If computing time is not important, this is one way to improve the accuracy a little.}
 
 		\subsection{Enrichment of the data set from other data sources}
 			\noindent ...
