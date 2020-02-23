@@ -42,6 +42,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{mathtools}
+\usepackage{verbdef}
 
 % tikzpiture libraries
 \usetikzlibrary{positioning}
@@ -1110,12 +1111,12 @@
 
 
 	% -------------------- %
-	% Validation process %
+	% model validation %
 	% -------------------- %
-	\section{Validation process}
+	\section{Model validation}
 	\label{sec:section_validation_process}
-		\de{In diesem Teil der Arbeit werden die Untersuchungen vorgestellt und die entsprechenden Auswertungen dazu. Dabei werden Modelle erstellt mit welcher man in der Lage ist Bildklassifikationen durchzuführen. Das Modell muss trainiert werden, wobei eine Entscheidung auf viele variable Parameter wie die Lernrate \(\eta\), die Optimierer, aber auch Dinge wie das CNN Modell gefällt werden muss. Als Basis dient ein Standardsetup, welches im nachfolgendem Kapitel ``\nameref{sec:section_validation_process_preamble}'' erklärt wird. Von diesem Standard-Setup ausgehend werden die variablen Parameter in den entsprechenden Kapiteln jeweils verändert und diskutiert. Das Ziel soll sein die Parameter zu finden, mit welchem die Erkennungsgenauigkeiten der Modelle besonders hoch ausfallen: hohe Genauigkeiten und kleiner Verlust (loss function).}
-		\en{In this part of the thesis the investigations and the corresponding evaluations will be presented. Thereby models are created with which one is able to perform image classifications. The model has to be trained, whereby a decision has to be made on many variable parameters like the learning rate \(\eta\), the optimizers, but also things such as the CNN model. The basis is a standard setup, which is explained in the following chapter ``\nameref{sec:section_validation_process_preamble}''. Starting from this standard setup, the variable parameters are changed and discussed in the corresponding chapters. The goal is to find the parameters with which the recognition accuracy of the models is particularly high: high accuracy and small loss function.}
+		\de{In diesem Teil der Arbeit werden die Untersuchungen vorgestellt und die entsprechenden Auswertungen dazu. Dabei wurden in den jeweiligen Kapiteln Modelle mit den angegebenen Parametern und Techniken erstellt mit welcher man in der Lage ist Bildklassifikationen durchzuführen. Das Modell muss trainiert werden, wobei eine Entscheidung auf viele variable Parameter wie die Lernrate \(\eta\), die Optimierer, aber auch Dinge wie das CNN Modell gefällt werden muss. Als Basis dient ein Standardsetup, welches im nachfolgendem Kapitel ``\nameref{sec:section_validation_process_preamble}'' erklärt wird. Von diesem Standard-Setup ausgehend werden die variablen Parameter in den entsprechenden Kapiteln jeweils verändert und diskutiert. Das Ziel soll sein die Parameter zu finden, mit welchem die Erkennungsgenauigkeiten der Modelle besonders hoch ausfallen: hohe Genauigkeiten und kleiner Verlust (loss function).}
+		\en{In this part of the thesis the investigations and the corresponding evaluations will be presented. For each chapter models with the given parameters and techniques have been created with which image classifications can be performed. The model has to be trained, whereby a decision has to be made on many variable parameters like the learning rate \(\eta\), the optimizers, but also things such as the CNN model. The basis is a standard setup, which is explained in the following chapter ``\nameref{sec:section_validation_process_preamble}''. Starting from this standard setup, the variable parameters are changed and discussed in the corresponding chapters. The goal is to find the parameters with which the recognition accuracy of the models is particularly high: high accuracy and small loss function.}
 	
 		\subsection{Preamble}
 		\label{sec:section_validation_process_preamble}
@@ -1142,12 +1143,12 @@
 			(whereby one value of the parameters varied depending on the chapter):}
 		
 				\begin{itemize}
-					\item \textbf{model:} resnet18
+					\item \textbf{model:} InceptionV3
 					\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
-					\item \textbf{batch size:} 16
 					\item \textbf{epochs:} 21 (learning rate from epoch 15 to 21: 0,00025)
 					\item \textbf{image size:} 299x299 pixels
-					\item \textbf{drop out:} 0,5
+					\item \textbf{batch size:} 16
+					\item \textbf{drop out:} 50\%
 					\item \textbf{cnn weights:} imagenet
 					\item \textbf{activation function:} relu
 					\item \textbf{optimizer:} sgd with nesterov
@@ -1169,9 +1170,19 @@
 				\item Xception
 			\end{itemize}
 			
-		\subsection{Working environment}
+		\subsection{Working environment and model creation}
 			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind im nachfolgend genanntem Github-Repository öffentlich einsehbar: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. Dieses Framework wurde in Python geschrieben, das es aus meiner Sicht die beste Programmiersprache für Maschinelles Lernen ist und schon viele vorgefertigte und hilfreiche Funktionen und Basis-Frameworks beinhaltet. Auch die Community mit ihren vielen Foren und Blogartikeln sind sehr breit aufgestellt. Als Python Maschine Learning Framework wurde Keras verwendet, da Keras als viele einheitliche Schnittstellen zu Backends wie TensorFlow enthält und das produzierte Modell auch in anderen Programmiersprachen wie Java weiterverwendet werden kann\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
 			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in the following Github repository: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. This framework was written in Python, which in my opinion is the best programming language for machine learning and already contains many ready-made and helpful functions and basic frameworks. Also the community with its many forums and blog articles is very broad. As Python Machine Learning Framework Keras was used, because Keras contains as many uniform interfaces to backends like TensorFlow and the produced model can also be reused in other programming languages like Java\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
+			
+			\de{Alle Modelle in den nachfolgenden Kapiteln wurden mit dem selbst geschriebenen Framework erstellt, welches erlaubt neben der Angabe des Trainingsdatenpfades auch alle hier genannten Parameter einzustellen: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. Ein Kommandozeilenaufruf könnte nach erfolgreicher Installation mit den Standard-Werten z.B. wie folgt aussehen:}
+			\en{All models in the following chapters were created with the self-written framework, which allows to set all parameters mentioned here in addition to the training data path: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. A command line call with the default values could look like the following after successful installation:}
+
+			\begin{verbatim}
+					user$ ml train \
+					  --use-train-val \
+					  --data-path=./data/raw/food-50 \
+					  --model-file=./data/processed/experiment1/type-of-experiment/model.h5
+			\end{verbatim}
 	
 		\subsection{Performance}
 			\de{Wenn man beabsichtigt ein Deep Neuronal Networks (DNN) zu implementieren und zu optimieren, müssen die Berechnungen auf der GPU erfolgen. Es ist auch möglich, Berechnungen auf der CPU durchzuführen. Auch die Installation von Keras für CPU-gesteuerte Berechnungen ist viel einfacher, da die Installation der GPU-Treiber nicht notwendig ist. Dies hat jedoch den Nachteil, dass das Training größerer Modelle wesentlich länger dauert. Gute Modelle für die Klassifizierung von z.B. Bildern werden erst nach mehreren Trainingseinheiten erreicht. Trainingseinheiten erfordern viel Rechenleistung in Form von vielen Matrixoperationen. Eine GPU ist prädestiniert für Matrixoperationen\autocite{fatahalian2004understanding}.}
@@ -1206,6 +1217,7 @@
 		\subsection{Accuracy and evaluations}
 
 			\subsubsection{Influence of number of trained images on accuracy}
+			\label{sec:section_validation_number_of_train_files}
 	
 				\de{Die erste Frage die sich stellt: Welchen Einfluß hat die Anzahl der zu trainierenden Daten auf die Genauigkeit des Modells? Hierzu wird das Standard-Setup aus dem Kapitel ``\nameref{sec:section_validation_process_preamble}'' verwendet und das Modell mit einer verschiedenen Anzahl von Trainingsdaten trainiert. Während das Validierungsdatenset immer gleich bleibt, wird die Gesamtanzahl der zu trainierenden Daten von 500 stückweise auf die Gesamtanzahl von 11913 erhöht. Da es sich um einen unausgeglichenen Datensatz handelt, bleibt prozentuall gesehen die Anzahl in den jeweiligen Klassen gleich. Lediglich die Gesamtanzahl wird auf die entsprechenden Werte verändert (500, 1000, 2000, ...):}
 				\en{The first question that comes up: What influence does the amount of data to be trained have on the accuracy of the model? For this purpose, the standard setup from the chapter ``\nameref{sec:section_validation_process_preamble}'' is used and the model is trained with a different number of training data. While the validation data set always stays the same, the total number of data to be trained is increased from 500 data sets to the total number of 11913. Since this is an unbalanced data set, the number remains the same in each class in percentage terms. Only the total number is changed to the corresponding values (500, 1000, 2000, ...):}
@@ -1370,10 +1382,12 @@
 	% Optimization process %
 	% -------------------- %
 	\section{Optimization process}
-		This chapter contains ideas, approaches and evaluations of more complex ideas, which do not fit into the range of simple parameter changes.
+		\de{Neben den Hyperparametern (oder auch Tuning-Parametern) gibt es noch eine Reihe anderer Möglichkeiten, welche Einfluss auf die Modellgenauigkeit haben. Zu erwähnen sei z.B. das Problem in Kapitel ``\hyperref[sec:section_validation_number_of_train_files]{Influence of the number of trained layers on the accuracy}'', bei der aufgrund fehlender Daten die Modellgenauigkeit mit mehr als den vorhandenen 12000 Bildern nicht weiter untersucht werden konnte, obwohl die Genauigkeit noch weiter anzusteigen schien. Oder das Problem mit dem unbalanciertem Datenset. Wäre es nicht eine Idee in allen Klassen gleich viel Daten zu haben, ohne Daten zu verwerfen oder zusätzlich besorgen zu müssen? Was ist mit anderen Klassifizierungsideen? Momentan wird ein Modell für alle Klassen verwendet. Machen Hierarchien Sinn? All diese Dinge sollen in den nachfolgenden Kapiteln genauer untersucht werden.}
+		\en{In addition to hyperparameters (or tuning parameters), there are a number of other options that influence model accuracy. It should be mentioned, for example, the problem in chapter ``\hyperref[sec:section_validation_number_of_train_files]{Influence of the number of trained layers on the accuracy}'', where the model accuracy could not be further investigated with more than the existing 12000 images due to missing data, although the accuracy seemed to increase even more. Or the problem with the unbalanced data set. Wouldn't it be an idea to have the same amount of data in all classes without having to discard data or get additional data?  What about other classification ideas? Currently, one model is used for all classes. Do hierarchies make sense? All these things will be examined in the following chapters.}
 	
 		\subsection{Preamble}
-			\noindent ...
+			\de{Wie auch in Kapitel ``\hyperref[sec:section_validation_process_preamble]{Preamble}'' bei der Modellvalidierung verwenden wir auch hier als Standard-Setup die gleichen Einstellungen, sofern nicht anders angegeben. Als CNN kommt InceptionV3 zum Einsatz. Das Datenset und auch die Aufteilung in Trainings- und Validierungsdatenset entspricht der Vorgehensweise vom genannten Vorkapitel.}
+			\en{As in Chapter ``\hyperref[sec:section_validation_process_preamble]{Preamble}'' for model validation, we use the same settings as the default setup, unless otherwise specified. As CNN we use InceptionV3. The data set and also the division into training and validation data set corresponds to the procedure of the previous chapter.}
 
 		\subsection{Data augmentation}
 
