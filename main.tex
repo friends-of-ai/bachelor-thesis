@@ -1,8 +1,5 @@
 \documentclass[10pt]{article}
 
-% nesterov -> Nesterov
-% donut -> doughnuts
-
 % add links to document
 \PassOptionsToPackage{hyphens}{url}\usepackage[hidelinks]{hyperref}
 
@@ -160,30 +157,80 @@
 	% Abstract %
 	% -------------------- %
 	\section*{Abstract}
-		\de{Neuronale Netze sind außerordentlich gut darin Muster in Daten zu finden. Hierzu müssen diese Netze (Modelle) vorher mit bekannten Datensätzen trainiert und entsprechend angepasst werden. Datensätze sind meist sehr teuer in der Beschaffung und sollten deshalb mit Bedacht und guter Qualität eingesetzt werden. Das Training der Modelle findet unter dem Einfluss vieler Hyperparametern statt, welche es vorher zu bestimmen gilt. Dabei ist darauf zu achten das bestmögliche Modell mit seinen bestmöglichen Parametern zu verwenden. In dieser Arbeit wird auf das Erstellen von Modellen für die Bildklassifikation mittels maschinellem Lernen eingegangen und es werden die Modellgenauigkeiten miteinander verglichen. Das Hauptziel der Arbeit ist es, optimale Parameter und Techniken für die Klassifikation zu finden, die es auch ermöglichen, mit wenig Trainingsdaten ein optimales Modell zu erstellen.}
 		\en{Neural networks are extraordinarily good at finding patterns in data. Therefore these networks (models) have to be trained with known data sets and adapted accordingly. Data sets are usually very expensive to obtain and should therefore be used with care and good quality. The training of the models takes place under the influence of many hyperparameters, which have to be determined beforehand. It is important to use the best possible model with its best possible parameters. In this thesis the creation of models for image classification by machine learning is discussed and the model accuracies are compared. The main goal of the thesis is to find optimal parameters and techniques for classification, which also allows to create an optimal model with little training data.}
+		
+		\subsection*{Keywords}
+			\en{Image Classification, Small Data Set, Hyperparameter, Data Augmentation, Convolutional Neural Network (CNN), Machine Learning, Deep Learning}
+			
 	\pagebreak
+	\section*{Kurzfassung}
+		\en{Neuronale Netze sind außerordentlich gut darin Muster in Daten zu finden. Hierzu müssen diese Netze (Modelle) vorher mit bekannten Datensätzen trainiert und entsprechend angepasst werden. Datensätze sind meist sehr teuer in der Beschaffung und sollten deshalb mit Bedacht und guter Qualität eingesetzt werden. Das Training der Modelle findet unter dem Einfluss vieler Hyperparameter statt, welche es vorher zu bestimmen gilt. Dabei ist darauf zu achten das bestmögliche Modell mit seinen bestmöglichen Parametern zu verwenden. In dieser Arbeit wird auf das Erstellen von Modellen für die Bildklassifikation mittels maschinellem Lernen eingegangen und es werden die Modellgenauigkeiten miteinander verglichen. Das Hauptziel der Arbeit ist es, optimale Parameter und Techniken für die Klassifikation zu finden, die es auch ermöglichen, mit wenig Trainingsdaten ein optimales Modell zu erstellen.}
+		
+		\subsection*{Schlüsselwörter}
+			\en{Bildklassifizierung, Kleiner Datensatz, Hyperparameter, Data Augmentation, Convolutional Neural Network (CNN), Machine Learning, Deep Learning}
 
 
 
 	% -------------------- %
 	% Table of contents %
 	% -------------------- %
-	\tableofcontents
 	\pagebreak
+	\tableofcontents
+	
+	
+	
+	% -------------------- %
+	% List of figures %
+	% -------------------- %
+	\pagebreak
+	\renewcommand{\listfigurename}{List of figures}
+	%\addcontentsline{toc}{section}{List of figures}
+	\listoffigures
+	
+	
+	
+	% -------------------- %
+	% List of figures %
+	% -------------------- %
+	\pagebreak
+	\renewcommand{\listtablename}{List of tables}
+	\listoftables
+
 
 
 	% -------------------- %
 	% Introduction %
 	% -------------------- %
+	\pagebreak
 	\section{Introduction}
 		\de{In dieser Arbeit wird auf der Erstellung von Modellen zur Bildklassifikation mittels maschinellem Lernen eingegangen. Viele variable Parameter (Hyperparameter) werden beim Erstellen der Modelle einen entscheidenden Einfluss auf die Genauigkeit des Modells haben und werden hier im Detail verglichen. Nicht immer ist nur die Genauigkeit ein ausschlaggebender Faktor. Auch die benötigte Rechenzeit, welche notwendig ist das Modell zu bestimmen, soll nicht außer Acht gelassen werden und mit in die Auswertung einbezogen werden. Ich gehe davon aus, dass eine kleine Lernrate verbunden mit vielen Lern-Epochen und entsprechend mehr benötigter Rechenzeit bessere Ergebnisse erzielen werden, als wenige Lernepochen verbunden mit einer hohe Lernrate (langsame Anpassung vs. schnelle Anpassung). Auch gehe ich davon aus, dass eine hohe Qualität und eine größere Menge an Daten das Ergebnis entschieden positiv beeinflussen werden. Neue und komplexere Convolutional Neuronale Netzwerke stufe ich erfolgreicher in der Modellgenauigkeit ein als schön etwas ältere und kleinere Modelle.}
 		\en{This thesis deals with the creation of models for image classification using machine learning. Many variable parameters (hyperparameters) will have a decisive influence on the accuracy of the model when creating the models and are compared here in detail. Not always only the accuracy is a decisive factor. Also, the required computing time, which is necessary to determine the model, should not be disregarded and should be included in the evaluation. I assume that a small learning rate combined with many learning epochs and correspondingly more computing time required will achieve better results than a few learning epochs combined with a high learning rate (slow adaptation vs. fast adaptation). I also assume that a high quality and a larger amount of data will have a decidedly positive influence on the result. New and more complex convolutional neural networks are more successful in model accuracy than older and smaller models.}
+	
+	
+
+		% -------------------- %
+		% Insufficient amount of data %
+		% -------------------- %
+		\subsection{Insufficient amount of data}
+		\label{sec:section_insufficient_amount_of_data}
+			\de{Gibt man einem Menschen einen Donut und erkärt ihm, dass es ein Donut ist, so ist dieser nach einigem Wiederholen selbstständig in der Lage diesen Donut in der Zukunft zu klassifizieren. Bei Machine Learning ist diese Problematik etwas komplexer. Wie bei den meisten machinellen Lernverfahren benötigt man eine große Menge an Daten. Wieviel ist nicht richtig belegt. Gerade wenn man es mit vielen vorherzusagenden Klassen zu tun hat, erhöht sich die Datenmenge erfahrungsgemäß. Einige Meinungen in Foren und Blogartikeln besagen (Hypothese), dass es mindestens 1000 Bilder pro Klasse sein müssen.\footnote{``Deep Learning for Image Classification with Less Data'', https://towardsdatascience.com, February 2, 2020, \url{https://towardsdatascience.com/deep-learning-for-image-classification-with-less-data-90e5df0a7b8e}}\textsuperscript{,}\footnote{``How many images do you need to train a neural network?'', https://petewarden.com, February 2, 2020, \url{https://petewarden.com/2017/12/14/how-many-images-do-you-need-to-train-a-neural-network/}}\textsuperscript{,}\footnote{``What is the minimum sample size required to train a Deep Learning model - CNN?'', https://www.researchgate.net, February 2, 2020, \url{https://www.researchgate.net/post/What_is_the_minimum_sample_size_required_to_train_a_Deep_Learning_model-CNN}}\textsuperscript{,}\autocite{krizhevsky2012imagenet}.}
+			\en{If one gives a person a doughnut and explain to him that it is a doughnut, then after some repetition he is able to classify this doughnut in the future. With Machine Learning this problem is a bit more complex. As with most machine learning methods, a large amount of data is required. How much is not properly documented. Especially when one is dealing with many classes to be predicted, experience shows that the amount of data increases. Some opinions in forums and blog articles say (hypothesis) that there must be at least 1000 pictures per class.\footnote{``Deep Learning for Image Classification with Less Data'', https://towardsdatascience.com, February 2, 2020, \url{https://towardsdatascience.com/deep-learning-for-image-classification-with-less-data-90e5df0a7b8e}}\textsuperscript{,}\footnote{``How many images do you need to train a neural network?'', https://petewarden.com, February 2, 2020, \url{https://petewarden.com/2017/12/14/how-many-images-do-you-need-to-train-a-neural-network/}}\textsuperscript{,}\footnote{``What is the minimum sample size required to train a Deep Learning model - CNN?'', https://www.researchgate.net, February 2, 2020, \url{https://www.researchgate.net/post/What_is_the_minimum_sample_size_required_to_train_a_Deep_Learning_model-CNN}}\textsuperscript{,}\autocite{krizhevsky2012imagenet}}
+	
+			\de{Je nach Anzahl von zu trainierenden Klassen gelangt man somit schnell zu einem benötigten Datenset, welches aus mehrere Gigabyte an Daten besteht. Mittels Transfer Learning ist es möglich diese Zahl nochmals etwas zu reduzieren, jedoch bleibt das Problem der vielen Daten bestehen. Ein Paper von Microsoft aus dem Jahre 2001 zeigte zur damaligen Zeit, dass einfache Algorithmen mit genügend Daten ähnliche Ergebnisse lieferten, wie komplexe Algorithmen auf Basis weniger Daten. Dabei bezogen sich die Forscher auf Daten, welche Sprachkonstrukte klassifizieren sollten:}
+			\en{Depending on the number of classes to be trained, one will quickly arrive at the required data set, which consists of several gigabytes of data. With Transfer Learning it is possible to reduce this number a little bit, but the problem of the large amount of data remains. A paper  from Microsoft in 2001 showed at that time that simple algorithms with enough data gave similar results as complex algorithms based on less data. The researchers referred to data which should classify language constructs:}
+			
+			\blockquote{\textit{We have shown that for a prototypical natural language classification task, the performance of learners can benefit significantly from much larger training sets.}}\autocite{banko2001scaling}
+			
+			\de{In einem anderen Artikel nur wenige Jahre später wird dieses Thema ebenfalls aufgegriffen. Dabei bezog man sich auf Daten, welche von Texten lernen und man meist nur kleine oder mittelgroße Datensätze zur Verfügung hat. Um die Effizienz auch in diesem Fall zu verbessern, ist es eine gute Idee die Algorithmen und Methoden zu verbessern: \hl{Beispiele!}}
+			\en{Another article only a few years later also addresses this issue. This referred to data that learn from texts and that usually only small or medium sized data sets are available. To improve the efficiency also in this case, it is a good idea to improve the algorithms and methods: \hl{Examples!}}
+	
+			\blockquote{\textit{...\autocite{halevy2009unreasonable}.}}
 
 
 	% -------------------- %
 	% Background %
 	% -------------------- %
+	\pagebreak
 	\section{Background}
 
 		% -------------------- %
@@ -196,7 +243,7 @@
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.4\textwidth]{images/cat_dog}
-				\caption[Is it a dog or a cat?]{Is it a dog or a cat?\footnotemark}
+				\caption[Cat and dog comparison]{Is it a dog or a cat?\footnotemark}
 				\label{fig:cat_or_dog}
 			\end{figure}
 			\footnotetext{Source: \url{https://towardsdatascience.com/image-classifier-cats-vs-dogs-with-convolutional-neural-networks-cnns-and-google-colabs-4e9af21ae7a8}}
@@ -585,8 +632,8 @@
 			\en{Machine learning is a generic term for the artificial generation of knowledge from experience. It follows the approach of inductive learning (see also chapter \hyperref[sec:section_inductive_approach]{``inductive approach''}).}
 
 			\subsubsection{Artificial neural network}
-				\de{Künstliche neuronale Netzwerke stellen Funktionen bereit, welche in der Lage sind hochkomplexe Daten im mehrdimensionalem Raum zu trennen. Bei großen und hochgradig komplexen Aufgaben, wie beispielsweise der Klassifizierung von Milliarden von Bildern, Sprach- und Texterkennungen, schneiden neuronale Netze meist besser ab, als andere Machine Learning Verfahren. Der erhebliche Zuwachs an Rechenkapizität seit den 1990ern ermöglicht das Trainieren großer neuronaler Netzwerke innerhalb eines sinnvollen Zeitraumes. Künstliche neuronale Netzwerke sind die Kernkomponente des Deep Learnings.}
-				\en{Artificial neural networks provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other machine learning methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning.}
+				\de{Künstliche neuronale Netzwerke stellen Funktionen bereit, welche in der Lage sind hochkomplexe Daten im mehrdimensionalem Raum zu trennen. Bei großen und hochgradig komplexen Aufgaben, wie beispielsweise der Klassifizierung von Milliarden von Bildern, Sprach- und Texterkennungen, schneiden neuronale Netze meist besser ab, als andere Machine Learning Verfahren. Der erhebliche Zuwachs an Rechenkapizität seit den 1990ern ermöglicht das Trainieren großer neuronaler Netzwerke innerhalb eines sinnvollen Zeitraumes. Künstliche neuronale Netzwerke sind die Kernkomponente des Deep Learnings, welche eine Methode des machinellen Lernens bezeichnet.}
+				\en{Artificial neural networks provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other machine learning methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning, which denotes a method of machine learning.}
 
 				\de{Neuronale Netzwerke verarbeiten einen Eingabevektor und wandeln ihn in einen neuen Ausgabevektor um. Sie sind Netze aus vielen hintereinander und parallel geschalteten künstlichen Neuronen. Ein künstliches Neuron wiederrum wandelt einen Vektor in ein Skalar um, indem es die Eingänge \(\bar{x}\) mit den veränderlichen Parametern \(\bar{\omega}\) skaliert, aufsummiert und mit einem Bias \(b\) korrigiert (der Bias ist ebenso eine veränderliche Variable). Die Aktivierungsfunktion stellt sicher, dass aus dem Polynom ersten Grades (lineares Regressionsmodell) eine nichtlineare Funktion wird\footnote{``Aktivierungsfunktionen, ihre Arten und Verwendungsmöglichkeiten'', https://www.ai-united.de/, February 8, 2020, \url{https://www.ai-united.de/aktivierungsfunktionen-ihre-arten-und-verwendungsmoeglichkeiten/}}:}
 				\en{Neural networks process an input vector \(\bar{x}\) and convert it into a new output vector \(\hat{\bar{x}}\). They are networks of many artificial neurons connected in series and parallel. An artificial neuron in turn converts a vector into a scalar by scaling and summing the inputs \(\bar{x}\) with the changeable parameters \(\bar{\omega}\) and correcting them with a bias \(b\) (the bias is also a changeable variable). The activation function ensures that the first degree polynomial (linear regression model) becomes a nonlinear function\footnote{``Activation functions, their types and uses'', https://www.ai-united.de/, February 8, 2020, \url{https://www.ai-united.de/aktivierungsfunktionen-ihre-arten-und-verwendungsmoeglichkeiten/}}:}
@@ -625,7 +672,7 @@
 						\longrightarrow h
 						\quad\Biggl\lvert \quad h = step(z) = step(\bar{\omega}^\intercal \cdot \bar{x} + b)
 					\]
-					\caption{The construction of an artificial neuron.}
+					\caption{The construction of an artificial neuron}
 				\end{figure}
 
 				\de{Das künstliche neuronale Netz baut sich aus vielen hintereinandergeschalteten Layern zusammen, welche wiederrum parallel geschaltete Neuronen enthalten:}
@@ -712,18 +759,18 @@
 							  \node [align=center, above] at (\x*2,2) {\l \\ layer};
 						\end{tikzpicture}
 					}
-					\caption{The construction of a simple neural network.}
+					\caption{The construction of a simple neural network}
 				\end{figure}
 	
-				\de{Ein neuronales Netzwerk ist in der Lage komplexe Eingaben zu klassifizieren. Doch wie genau kann man sich das vorstellen? Betrachten wir eine einfache Klassifikationsfunktion, wobei \(\bar{x}\) die Koordinaten der einzelnen Klassenpunkte darstellen und \(\bar{w}\) und \(b\) lernbare Parameter sind:}
-				\en{A neural network is able to classify complex inputs. But how exactly can this be imagined? Let us consider a simple classification function, where \(\bar{x}\) represent the coordinates of the individual class points and \(\bar{w}\) and \(b\) are learnable parameters:}
+				\de{Ein neuronales Netzwerk ist in der Lage komplexe Eingaben zu klassifizieren. Doch wie genau funktioniert das? Die nachfolgende Klassifikationsfunktion ist in der Lage einfache Klassenprobleme zu trennen, wobei \(\bar{x}\) die Koordinaten der einzelnen Klassenpunkte darstellen und \(\bar{w}\) und \(b\) lernbare Parameter sind:}
+				\en{A neural network is able to classify complex inputs. But how exactly does that work? The following classification function is able to separate simple class problems, where \(\bar{x}\) represent the coordinates of the corresponding class points and \(\bar{w}\) and \(b\) are learnable parameters:}
 	
 				\begin{equation}
 					f(\bar{x}, \bar{\omega}, b) = sgn(\bar{\omega}^\intercal \cdot \bar{x} + b)
 				\end{equation}
 
-				\de{Mit dieser linearen Funktion lässt sich das nachfolgende Problem leicht klassifizieren:}
-				\en{With this linear function the following problem can be easily classified:}
+				\de{\noindent Mit dieser linearen Funktion lässt sich das nachfolgende Problem leicht klassifizieren:}
+				\en{\noindent With this linear function the following problem can be easily classified:}
 
 				\begin{figure}[H]
 					\begin{center}
@@ -733,8 +780,8 @@
 					\label{fig:evaluation_simple_class_shattering}
 				\end{figure}
 	
-				\de{Die Funktion entspricht einem neuronalen Netz ohne verdeckte Schicht und enthält nur eine Eingangs- und eine Ausgangsschicht mit einem künstlichem Neuron ohne Aktivierungsfunktion. Die Dimension, die diese Funktion trennen kann, ist 2 und wird als VC-Dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. Diese Funktion kann genau 2 Klassen trennen. Aber was ist mit nichtlinearen Problemen? In diesem Fall schauen wir uns die folgenden Klassifikationen an:}
-				\en{The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is 2 and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. This function can separate exactly 2 classes. But what about nonlinear problems? In this case let's look at the following classifications:}
+				\de{Die Funktion entspricht einem neuronalen Netz ohne verdeckte Schicht und enthält nur eine Eingangs- und eine Ausgangsschicht mit einem künstlichem Neuron ohne Aktivierungsfunktion. Die Dimension, die diese Funktion trennen kann, ist zwei und wird als VC-Dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. Anders ausgedrückt kann diese Funktion kann genau zwei Klassen linear trennen. Aber was ist mit nichtlinearen Problemen?:}
+				\en{The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is two and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. In other words, this function can separate exactly two classes linearly. But what about nonlinear problems?:}
 				
 				\begin{figure}[H]
 					\begin{center}
@@ -854,7 +901,7 @@
 							(13.15,1.15) --
 							(12.5,0.5);
 					\end{tikzpicture}
-					\caption[Architecture of a traditional convolutional neural network.]{Architecture of a traditional convolutional neural network.}
+					\caption[Architecture of a traditional convolutional neural network]{Architecture of a traditional convolutional neural network}
 					\label{fig:traditional-convolutional-network}
 				\end{figure}
 
@@ -925,7 +972,7 @@
 					\DrawBox[thick, black!30!green, densely dotted, fill=green!50!white, fill opacity=0.2]{tl31}{br31}
 					\DrawBox[thick, black!30!green, densely dotted, fill=green!50!white, fill opacity=0.2]{tl32}{br32}
 					
-					\caption[Simple convolution and pooling.]{Simple convolution and pooling}
+					\caption[Simple convolution and pooling]{Simple convolution and pooling}
 				\end{figure}
 	
 			\subsubsection{Transfer learning}
@@ -1034,7 +1081,7 @@
 							(13.15,1.15) --
 							(12.5,0.5);
 					\end{tikzpicture}
-					\caption[The green area (the neural network) was replaced by a network (red) adapted to the new problem.]{The green area (the neural network) was replaced by a network (red) adapted to the new problem (see \fullref{fig:traditional-convolutional-network}).}
+					\caption[Architecture of a traditional convolutional neural network with transfer learning]{The green area (the neural network) was replaced by a network (red) adapted to the new problem (see \fullref{fig:traditional-convolutional-network}).}
 					\label{fig:transfer-learning-example}
 				\end{figure}
 
@@ -1054,7 +1101,7 @@
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=1.0\textwidth]{images/tl_models}
-					\caption[Overview of current and known convolutional neural networks.]{Overview of current and known convolutional neural networks.\footnotemark}
+					\caption[Overview of current and known convolutional neural networks]{Overview of current and known convolutional neural networks\footnotemark}
 					\label{fig:comparison_cnn}
 				\end{figure}
 				\footnotetext{Source: \url{https://towardsdatascience.com/neural-network-architectures-156e5bad51ba}}
@@ -1068,7 +1115,7 @@
 			\subsubsection{Learning rate}
 			\label{sec:section_learning_rate}
 				\de{Die Lernrate ist ein Abstimmungsparameter in einem Optimierungsalgorithmus. Dieser sagt aus, wie groß die Schrittweite bei jeder Iteration ist, mit der sich die Parameter auf das Minimum einer Verlustfunktion zubewegen. Sie sollte nicht zu hoch (Minimum wird nicht gefunden) und nicht zu klein sein (sehr langsames Lernen). Die Lernrate wird oft mit dem Zeichen \(\eta\) oder \(\alpha\) bezeichnet.}
-				\en{The learning rate is a tuning parameter in an optimization algorithm. It tells us how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
+				\en{The learning rate is a tuning parameter in an optimization algorithm. It expresses how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
 			\subsubsection{Batch size}
 			\label{sec:section_batch_size}
 				\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
@@ -1078,32 +1125,13 @@
 			\label{sec:section_data_augmentation}
 				\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Dies wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern.}
 				\en{Data augmentation is the artificial augmentation of a data set. This is primarily used when only little data is available. Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training. \hl{Is there an example that proves this quickly?}}
-					
-					
-					
-	% -------------------- %
-	% Insufficient amount of data %
-	% -------------------- %
-	\section{Insufficient amount of data}
-	\label{sec:section_insufficient_amount_of_data}
-		\de{Gibt man einem Menschen einen Donut und erkärt ihm, dass es ein Donut ist, so ist dieser nach einigem Wiederholen selbstständig in der Lage diesen Donut in der Zukunft zu klassifizieren. Bei Machine Learning ist diese Problematik etwas komplexer. Wie bei den meisten machinellen Lernverfahren benötigt man eine große Menge an Daten. Wieviel ist nicht richtig belegt. Gerade wenn man es mit vielen vorherzusagenden Klassen zu tun hat, erhöht sich die Datenmenge erfahrungsgemäß. Einige Meinungen in Foren und Blogartikeln besagen (Hypothese), dass es mindestens 1000 Bilder pro Klasse sein müssen.\footnote{``Deep Learning for Image Classification with Less Data'', https://towardsdatascience.com, February 2, 2020, \url{https://towardsdatascience.com/deep-learning-for-image-classification-with-less-data-90e5df0a7b8e}}\textsuperscript{,}\footnote{``How many images do you need to train a neural network?'', https://petewarden.com, February 2, 2020, \url{https://petewarden.com/2017/12/14/how-many-images-do-you-need-to-train-a-neural-network/}}\textsuperscript{,}\footnote{``What is the minimum sample size required to train a Deep Learning model - CNN?'', https://www.researchgate.net, February 2, 2020, \url{https://www.researchgate.net/post/What_is_the_minimum_sample_size_required_to_train_a_Deep_Learning_model-CNN}}\textsuperscript{,}\autocite{krizhevsky2012imagenet}.}
-		\en{If one gives a person a doughnut and explain to him that it is a doughnut, then after some repetition he is able to classify this doughnut in the future. With Machine Learning this problem is a bit more complex. As with most machine learning methods, a large amount of data is required. How much is not properly documented. Especially when one is dealing with many classes to be predicted, experience shows that the amount of data increases. Some opinions in forums and blog articles say (hypothesis) that there must be at least 1000 pictures per class.\footnote{``Deep Learning for Image Classification with Less Data'', https://towardsdatascience.com, February 2, 2020, \url{https://towardsdatascience.com/deep-learning-for-image-classification-with-less-data-90e5df0a7b8e}}\textsuperscript{,}\footnote{``How many images do you need to train a neural network?'', https://petewarden.com, February 2, 2020, \url{https://petewarden.com/2017/12/14/how-many-images-do-you-need-to-train-a-neural-network/}}\textsuperscript{,}\footnote{``What is the minimum sample size required to train a Deep Learning model - CNN?'', https://www.researchgate.net, February 2, 2020, \url{https://www.researchgate.net/post/What_is_the_minimum_sample_size_required_to_train_a_Deep_Learning_model-CNN}}\textsuperscript{,}\autocite{krizhevsky2012imagenet}}
-
-		\de{Je nach Anzahl von zu trainierenden Klassen gelangt man somit schnell zu einem benötigten Datenset, welches aus mehrere Gigabyte an Daten besteht. Mittels Transfer Learning ist es möglich diese Zahl nochmals etwas zu reduzieren, jedoch bleibt das Problem der vielen Daten bestehen. Ein Paper von Microsoft aus dem Jahre 2001 zeigte zur damaligen Zeit, dass einfache Algorithmen mit genügend Daten ähnliche Ergebnisse lieferten, wie komplexe Algorithmen auf Basis weniger Daten. Dabei bezogen sich die Forscher auf Daten, welche Sprachkonstrukte klassifizieren sollten:}
-		\en{Depending on the number of classes to be trained, one will quickly arrive at the required data set, which consists of several gigabytes of data. With Transfer Learning it is possible to reduce this number a little bit, but the problem of the large amount of data remains. A paper  from Microsoft in 2001 showed at that time that simple algorithms with enough data gave similar results as complex algorithms based on less data. The researchers referred to data which should classify language constructs:}
-		
-		\blockquote{\textit{We have shown that for a prototypical natural language classification task, the performance of learners can benefit significantly from much larger training sets.}}\autocite{banko2001scaling}
-		
-		\de{In einem anderen Artikel nur wenige Jahre später wird dieses Thema ebenfalls aufgegriffen. Dabei bezog man sich auf Daten, welche von Texten lernen und man meist nur kleine oder mittelgroße Datensätze zur Verfügung hat. Um die Effizienz auch in diesem Fall zu verbessern, ist es eine gute Idee die Algorithmen und Methoden zu verbessern: \hl{Beispiele!}}
-		\en{Another article only a few years later also addresses this issue. This referred to data that learn from texts and that usually only small or medium sized data sets are available. To improve the efficiency also in this case, it is a good idea to improve the algorithms and methods: \hl{Examples!}}
-
-		\blockquote{\textit{...\autocite{halevy2009unreasonable}.}}
 
 
 
 	% -------------------- %
 	% Related work %
 	% -------------------- %
+	\pagebreak
 	\section{Related work}
 		\de{Es existieren eine Reihe von Untersuchungen zur Bildklassifikation auf sehr großen Datensätzen.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Meist ist diese riese Anzahl von Klassifikationsklassen und Datenmengen gar nicht erwünscht. Weiterhin gibt es viele Untersuchungen auf kleinen Datensätzen. Was ihnen jedoch fehlt ist die Tatsache die gängisten Abstimmungsparameter in einer Übersicht zu finden. Daten sind teuer in der Beschaffung und meist nicht einfach zu bekommen (siehe Kapitel ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). Und im Gegensatz dazu, treten Bildklassifikationen in immer mehr Bereichen unseres Lebens auf und finden auch in immer mehr in Unternehmen eine direkte Verwendung, welche bisher keinen Gebrauch davon gemacht haben und sich nun überlegen eigene Implemantionen einzuführen. Da sind z.B. Unternehmen, welche versuchen aufgrund verschiedener Daten Produkte zu klassifizieren. Ist es unter dem Kostenpunkte betrachtet eine gute Idee oder bleibt einem der Schritt zu den Softwaretools von Unternehmensriesen wie Microsoft, Google und Co. nicht verwehrt? Ein Mensch sieht einen Artikel und ordnet ihn ein: Anhand des Textes, der Beschreibungung oder eines Bildes. Manchmal bleibt nur noch ein Bild, weil z.B. Texte nicht richtig gepflegt wurden oder nur kryptische Werte zurückliefern. Auch diese Klassifizierung ist für den Menschen oftmals keine Herausforderung. Er erkennt auch in diesem Fall das Produkt \(X\) aufgrund des noch vorhandenen Bildes.}
 		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets. What they are missing is the fact that the most common tuning parameters can be found in one overview. Data is expensive to obtain and usually not easy to get (see chapter ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees an article and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. Even this classification is often not a challenge for humans. In this case he also recognizes the product \(X\) on the basis of the still existing image.}
@@ -1116,62 +1144,11 @@
 	% -------------------- %
 	% model validation %
 	% -------------------- %
-	\section{Model validation}
+	\pagebreak
+	\section{Results}
 	\label{sec:section_validation_process}
 		\de{In diesem Teil der Arbeit werden die Untersuchungen vorgestellt und die entsprechenden Auswertungen dazu. Dabei wurden in den jeweiligen Kapiteln Modelle mit den angegebenen Parametern und Techniken erstellt mit welcher man in der Lage ist Bildklassifikationen durchzuführen. Das Modell muss trainiert werden, wobei eine Entscheidung auf viele variable Parameter wie die Lernrate \(\eta\), die Optimierer, aber auch Dinge wie das CNN Modell gefällt werden muss. Als Basis dient ein Standardsetup, welches im nachfolgendem Kapitel ``\nameref{sec:section_validation_process_preamble}'' erklärt wird. Von diesem Standard-Setup ausgehend werden die variablen Parameter in den entsprechenden Kapiteln jeweils verändert und diskutiert. Das Ziel soll sein die Parameter zu finden, mit welchem die Erkennungsgenauigkeiten der Modelle besonders hoch ausfallen: hohe Genauigkeiten und kleiner Verlust (loss function).}
 		\en{In this part of the thesis the investigations and the corresponding evaluations will be presented. For each chapter models with the given parameters and techniques have been created with which image classifications can be performed. The model has to be trained, whereby a decision has to be made on many variable parameters like the learning rate \(\eta\), the optimizers, but also things such as the CNN model. The basis is a standard setup, which is explained in the following chapter ``\nameref{sec:section_validation_process_preamble}''. Starting from this standard setup, the variable parameters are changed and discussed in the corresponding chapters. The goal is to find the parameters with which the recognition accuracy of the models is particularly high: high accuracy and small loss function.}
-	
-		\subsection{Preamble}
-		\label{sec:section_validation_process_preamble}
-			\de{Bevor man den Validierungsprozess beginnen kann, muss der verwendete Datensatz entsprechend vorbereitet werden. Bei diesem in dieser Arbeit verwendetem Datensatz handelt es sich um einen Essensdatensatz mit insgesamt 50 Klassen: \texttt{food-50}. Dieser Datensatz enthält 50 Ordner mit den jeweiligen vorhandenen vorklassifizierten Bildern bei einer Größe von 765 MB. Die Ordner müssen in einen Validierungs- und einen Trainingsdatensatz aufgeteilt werden. Als Verhältnis wurden 20\% Validierungs- und 80\% Trainingsdaten gewählt:}
-			\en{Before the validation process can be started, the data set used must be prepared properly. The data set used in this thesis is a meal data set with a number of 50 classes: \texttt{food-50}. This data set contains 50 folders with the respective existing pre-classified images with a size of 765 MB. The folders must be divided into a validation record and a training record. The ratio is 20\% validation and 80\% training data:}
-			
-			\subsubsection*{Training data}
-				\begin{itemize}
-					\item 11913 images
-					\item classified within 50 classes
-					\item different number of images per class (unbalanced)
-				\end{itemize}
-			
-			\subsubsection*{Validation data}
-				\begin{itemize}
-					\item 2953 images
-					\item classified within 50 classes
-					\item different number of images per class (unbalanced)
-				\end{itemize}
-				
-			\subsubsection*{Default setup}
-				\de{Mit Ausnahme der CNN-Modellversuche basierten alle Tests auf den folgenden Parametern (wobei ein Wert der Parameter je nach Kapitel variierte):}
-				\en{With the exception of the cnn model tests, all tests were based on the following parameters
-			(whereby one value of the parameters varied depending on the chapter):}
-		
-				\begin{itemize}
-					\item \textbf{model:} InceptionV3
-					\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
-					\item \textbf{epochs:} 21 (learning rate from epoch 15 to 21: 0,00025)
-					\item \textbf{image size:} 299x299 pixels
-					\item \textbf{batch size:} 16
-					\item \textbf{drop out:} 50\%
-					\item \textbf{cnn weights:} imagenet
-					\item \textbf{activation function:} relu
-					\item \textbf{optimizer:} sgd with Nesterov
-					\item \textbf{momentum:} 0.9 (with decay 0.0)
-					\item the entire training and validation set (14866 images - unless otherwise specified)
-				\end{itemize}
-				
-			\de{\noindent Verschiedene Modelle wurden im Kapitel ``\nameref{sec:section_validation_compare_cnn_models}'' mit den gleichen Parametern wie oben ausprobiert:}
-			\en{\noindent Different models were tried out in chapter ``\nameref{sec:section_validation_comparison_cnn_models}'' with the same parameters as above:}
-		
-			\begin{itemize}
-				\item DenseNet121
-				\item DenseNet201
-				\item InceptionResNetV2
-				\item InceptionV3
-				\item NASNetLarge
-				\item ResNet50
-				\item VGG19
-				\item Xception
-			\end{itemize}
 			
 		\subsection{Working environment and model creation}
 			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind im nachfolgend genanntem Github-Repository öffentlich einsehbar: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. Dieses Framework wurde in Python geschrieben, das es aus meiner Sicht die beste Programmiersprache für Maschinelles Lernen ist und schon viele vorgefertigte und hilfreiche Funktionen und Basis-Frameworks beinhaltet. Auch die Community mit ihren vielen Foren und Blogartikeln sind sehr breit aufgestellt. Als Python Maschine Learning Framework wurde Keras verwendet, da Keras als viele einheitliche Schnittstellen zu Backends wie TensorFlow enthält und das produzierte Modell auch in anderen Programmiersprachen wie Java weiterverwendet werden kann\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
@@ -1211,13 +1188,65 @@
 						Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz (Single Core) - Windows & 16.3s & 25183.4s\newline 06:59:43.4 & 82.97x & 28.3s
 					\end{tabularx}
 				}
-				\captionof{table}{Performance comparison.}\label{tbl:table_performance_comparison}
+				\captionof{table}{Performance comparison}\label{tbl:table_performance_comparison}
 			\end{table}
 			
 			\de{Während die Art des Rechengerätes (CPU or GPU) keinen Unterschied ausmacht was die Vor- und Nachbereitung betrifft, so macht es aber einen entscheidenden Unterschied bei der Trainingszeit. Die langsamste CPU benötigt mehr als 80 mal soviel Zeit, wie die schnellste Grafikkarteneinheit. Die Wahl des Rechengerätes für alle weiteren Tests fällt eindeutig auf die GPU.}
 			\en{While the type of computing device (CPU or GPU) makes no difference in terms of preparation and postprocessing, it does make a significant difference in training time. The slowest CPU takes more than 80 times as many time as the fastest graphics card unit. The choice of the computing device for all further tests clearly falls on the GPU.}
 	
-		\subsection{Accuracy and evaluations}
+		\subsection{Model validation}
+
+			\subsubsection{Preamble}
+			\label{sec:section_validation_process_preamble}
+				\de{Bevor man den Validierungsprozess beginnen kann, muss der verwendete Datensatz entsprechend vorbereitet werden. Bei diesem in dieser Arbeit verwendetem Datensatz handelt es sich um einen Essensdatensatz mit insgesamt 50 Klassen: \texttt{food-50}. Dieser Datensatz enthält 50 Ordner mit den jeweiligen vorhandenen vorklassifizierten Bildern bei einer Größe von 765 MB. Die Ordner müssen in einen Validierungs- und einen Trainingsdatensatz aufgeteilt werden. Als Verhältnis wurden 20\% Validierungs- und 80\% Trainingsdaten gewählt:}
+				\en{Before the validation process can be started, the data set used must be prepared properly. The data set used in this thesis is a meal data set with a number of 50 classes: \texttt{food-50}. This data set contains 50 folders with the respective existing pre-classified images with a size of 765 MB. The folders must be divided into a validation record and a training record. The ratio is 20\% validation and 80\% training data:}
+				
+				\paragraph*{Training data}
+					\begin{itemize}
+						\item 11913 images
+						\item classified within 50 classes
+						\item different number of images per class (unbalanced)
+					\end{itemize}
+				
+				\paragraph*{Validation data}
+					\begin{itemize}
+						\item 2953 images
+						\item classified within 50 classes
+						\item different number of images per class (unbalanced)
+					\end{itemize}
+					
+				\paragraph*{Default setup}
+					\de{Mit Ausnahme der CNN-Modellversuche basierten alle Tests auf den folgenden Parametern (wobei ein Wert der Parameter je nach Kapitel variierte):}
+					\en{With the exception of the cnn model tests, all tests were based on the following parameters
+				(whereby one value of the parameters varied depending on the chapter):}
+			
+					\begin{itemize}
+						\item \textbf{model:} InceptionV3
+						\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
+						\item \textbf{epochs:} 21 (learning rate from epoch 15 to 21: 0,00025)
+						\item \textbf{image size:} 299x299 pixels
+						\item \textbf{batch size:} 16
+						\item \textbf{drop out:} 50\%
+						\item \textbf{cnn weights:} imagenet
+						\item \textbf{activation function:} relu
+						\item \textbf{optimizer:} sgd with Nesterov
+						\item \textbf{momentum:} 0.9 (with decay 0.0)
+						\item the entire training and validation set (14866 images - unless otherwise specified)
+					\end{itemize}
+					
+				\de{\noindent Verschiedene Modelle wurden im Kapitel ``\nameref{sec:section_validation_compare_cnn_models}'' mit den gleichen Parametern wie oben ausprobiert:}
+				\en{\noindent Different models were tried out in chapter ``\nameref{sec:section_validation_comparison_cnn_models}'' with the same parameters as above:}
+			
+				\begin{itemize}
+					\item DenseNet121
+					\item DenseNet201
+					\item InceptionResNetV2
+					\item InceptionV3
+					\item NASNetLarge
+					\item ResNet50
+					\item VGG19
+					\item Xception
+				\end{itemize}
 
 			\subsubsection{Influence of number of trained images on accuracy}
 			\label{sec:section_validation_number_of_train_files}
@@ -1365,7 +1394,15 @@
 			\subsubsection{Different batch sizes}
 			\label{sec:section_validation_comparison_different_bs}
 	
-				\noindent ...
+					\begin{figure}[H]
+						\begin{center}
+							\scalebox{0.75}{
+								\inputpgf{images/evaluation}{batch_size.pgf}
+							}
+						\end{center}
+						\caption{Overview of the influence of a different batch size}
+						\label{fig:evaluation_overview_influence_batch_size}
+					\end{figure}
 		
 			\subsubsection{Different activation functions}
 	
@@ -1373,7 +1410,15 @@
 		
 			\subsubsection{Different number of learned epochs}
 	
-				\noindent ...
+					\begin{figure}[H]
+						\begin{center}
+							\scalebox{0.75}{
+								\inputpgf{images/evaluation}{epochs.pgf}
+							}
+						\end{center}
+						\caption{Overview of the influence of a longer training period with more epochs}
+						\label{fig:evaluation_overview_influence_more_epochs}
+					\end{figure}
 		
 			\subsubsection{Influence of dropout}
 	
@@ -1381,185 +1426,175 @@
 
 
 	
-	% -------------------- %
-	% Optimization process %
-	% -------------------- %
-	\section{Optimization process}
-		\de{Neben den Hyperparametern (oder auch Tuning-Parametern) gibt es noch eine Reihe anderer Möglichkeiten, welche Einfluss auf die Modellgenauigkeit haben. Zu erwähnen sei z.B. das Problem in Kapitel ``\hyperref[sec:section_validation_number_of_train_files]{Influence of the number of trained layers on the accuracy}'', bei der aufgrund fehlender Daten die Modellgenauigkeit mit mehr als den vorhandenen 12000 Bildern nicht weiter untersucht werden konnte, obwohl die Genauigkeit noch weiter anzusteigen schien. Oder das Problem mit dem unbalanciertem Datenset. Wäre es nicht eine Idee in allen Klassen gleich viel Daten zu haben, ohne Daten zu verwerfen oder zusätzlich besorgen zu müssen? Was ist mit anderen Klassifizierungsideen? Momentan wird ein Modell für alle Klassen verwendet. Machen Hierarchien Sinn? All diese Dinge sollen in den nachfolgenden Kapiteln genauer untersucht werden.}
-		\en{In addition to hyperparameters (or tuning parameters), there are a number of other options that influence model accuracy. It should be mentioned, for example, the problem in chapter ``\hyperref[sec:section_validation_number_of_train_files]{Influence of the number of trained layers on the accuracy}'', where the model accuracy could not be further investigated with more than the existing 12000 images due to missing data, although the accuracy seemed to increase even more. Or the problem with the unbalanced data set. Wouldn't it be an idea to have the same amount of data in all classes without having to discard data or get additional data?  What about other classification ideas? Currently, one model is used for all classes. Do hierarchies make sense? All these things will be examined in the following chapters.}
+		% -------------------- %
+		% Optimization process %
+		% -------------------- %
+		\subsection{Optimization process}
+			\de{Neben den Hyperparametern (oder auch Tuning-Parametern) gibt es noch eine Reihe anderer Möglichkeiten, welche Einfluss auf die Modellgenauigkeit haben. Zu erwähnen sei z.B. das Problem in Kapitel ``\hyperref[sec:section_validation_number_of_train_files]{Influence of the number of trained layers on the accuracy}'', bei der aufgrund fehlender Daten die Modellgenauigkeit mit mehr als den vorhandenen 12000 Bildern nicht weiter untersucht werden konnte, obwohl die Genauigkeit noch weiter anzusteigen schien. Oder das Problem mit dem unbalanciertem Datenset. Wäre es nicht eine Idee in allen Klassen gleich viel Daten zu haben, ohne Daten zu verwerfen oder zusätzlich besorgen zu müssen? Was ist mit anderen Klassifizierungsideen? Momentan wird ein Modell für alle Klassen verwendet. Machen Hierarchien Sinn? All diese Dinge sollen in den nachfolgenden Kapiteln genauer untersucht werden.}
+			\en{In addition to hyperparameters (or tuning parameters), there are a number of other options that influence model accuracy. It should be mentioned, for example, the problem in chapter ``\hyperref[sec:section_validation_number_of_train_files]{Influence of the number of trained layers on the accuracy}'', where the model accuracy could not be further investigated with more than the existing 12000 images due to missing data, although the accuracy seemed to increase even more. Or the problem with the unbalanced data set. Wouldn't it be an idea to have the same amount of data in all classes without having to discard data or get additional data?  What about other classification ideas? Currently, one model is used for all classes. Do hierarchies make sense? All these things will be examined in the following chapters.}
+		
+			\subsubsection{Preamble}
+				\de{Wie auch in Kapitel ``\hyperref[sec:section_validation_process_preamble]{Preamble}'' bei der Modellvalidierung werden auch hier die gleichen Einstellungen als Standard-Setup verwendet, sofern nicht anders angegeben. Als CNN kommt InceptionV3 zum Einsatz. Das Datenset und auch die Aufteilung in Trainings- und Validierungsdatenset entspricht der Vorgehensweise von den genannten Vorkapiteln.}
+				\en{As in chapter ``\hyperref[sec:section_validation_process_preamble]{Preamble}'' for Model Validation, the same settings are used as the default setup, unless otherwise specified. InceptionV3 is used as CNN. The data set and also the division into training and validation data set corresponds to the procedure of the previous chapters.}
 	
-		\subsection{Preamble}
-			\de{Wie auch in Kapitel ``\hyperref[sec:section_validation_process_preamble]{Preamble}'' bei der Modellvalidierung werden auch hier die gleichen Einstellungen als Standard-Setup verwendet, sofern nicht anders angegeben. Als CNN kommt InceptionV3 zum Einsatz. Das Datenset und auch die Aufteilung in Trainings- und Validierungsdatenset entspricht der Vorgehensweise von den genannten Vorkapiteln.}
-			\en{As in chapter ``\hyperref[sec:section_validation_process_preamble]{Preamble}'' for Model Validation, the same settings are used as the default setup, unless otherwise specified. InceptionV3 is used as CNN. The data set and also the division into training and validation data set corresponds to the procedure of the previous chapters.}
-
-		\subsection{Data augmentation}
-			\de{Wie in Kapitel ``\hyperref[sec:section_data_augmentation]{Data augmentation}'' beschrieben, ist die Hauptaufgabe von Data augmentation neue neue Trainingsdaten aus den bestehenden zu generieren. Der Trainingsdatensatz wird somit künstlich vergrößert. Diese Technik gehört mit zu den Regularisierungstechniken, da sie Overfitting entgegenwirken kann\autocite{geron2017supervisedlearningDataAugmentation}. Nachfolgend ein Beispieldatenset, bei dem das erste originale Bild gedreht, gespiegelt, verzerrt wird und der Datensatz von einem Bild auf insgesamt 12 Bilder vergrößert wird:}
-			\en{As described in chapter ``\hyperref[sec:section_data_augmentation]{Data augmentation}'' the main task of data augmentation is to generate new training data from the existing data. The training data set is artificially augmented in this way. This technique is one of the regularization techniques, as it can counteract overfitting\autocite{geron2017supervisedlearningDataAugmentation}. Below is an example data set in which the first original image is rotated, mirrored, distorted and the data set is enlarged from one image to a total number of 12 images:}
-
-			\begin{figure}[H]
-				\begin{center}
-					\inputpgf{images/pgf}{augment.pgf}
-				\end{center}
-				\caption{Data Augmentation (The first image is the original image.)}
-				\label{fig:data_augmentation}
-			\end{figure}
-			
-			\de{Mit dieser Technik wird nun der bestehende \texttt{food-50} Datensatz angepasst, bis jede Klasse insgesamt 1000 Bilder enthält und der Datensatz insgesamt ausbalanciert ist. Klassen mit wenigen Daten erhalten entsprechend mehr künstlich angepasste Daten, Klassen mit vielen Daten entsprechend weniger. Das Ergebnis ist, dass aus den ursprünglich 11913 Bildern nun insgesamt 50000 Bilder wurden und der Datensatz von insgesamt 765 MB auf 1,78 GB angewachsen ist. Der Validierungsdatensatz bleibt unverändert, um das Testergebnis nicht zu verfälschen. Nachfolgend das Auswertungsdiagramm:}
-			\en{Using this technique, the existing \texttt{food-50} dataset is now adjusted until each class contains a total number of 1000 images and the dataset is balanced overall. Classes with few data will receive more artificially adjusted data, classes with many data will receive less. The result is that the original 11913 images have now become a total number of 50000 images and the data set has grown from 765 MB to 1.78 GB. The validation data set remains unchanged in order not to falsify the test result. The evaluation diagram is shown below:}
-			
-			\begin{figure}[H]
-				\begin{center}
-					\scalebox{0.75}{
-						\inputpgf{images/evaluation}{data_augmentation.pgf}
-					}
-				\end{center}
-				\caption{Comparison of data augmentation}
-				\label{fig:evaluation_data_augmentation}
-			\end{figure}
-			
-			\de{Die Modellgenauigkeit erhöht sich von 83,6\% auf 85,6\%. Eine Steigerung von insgesamt 2\%. Wohlgemerkt: Der Validierungsdatensatz ist immer noch derselbe! Allerdings bedeutet das auch ein Anstieg der benötigten Rechenzeit. Während die Berechnung des Datensatzes ohne Data Augmentation nur zweieinhalb Stunden braucht, benötigt man für den neuen Datensatz die vierfache Zeit. Fazit: Data Augmentation geth mit einer verbesserten Genauigkeit einher, benötigt aber auch im gleichem Atemzug mehr Rechenzeit. Wenn Rechenzeit keine Rolle spielt, so ist dies eine Möglichkeit die Genauigkeit etwas zu verbessern.}
-			\en{The model accuracy increases from 83.6\% to 85.6\%. An overall increase of 2\%. Note: The validation data set is still the same! However, this also means an increase in the required computing time. While the calculation of the data set without data augmentation takes only two and a half hours, the new data set takes four times as long. Conclusion: Data Augmentation is associated with improved accuracy, but also requires more computing time in the same breath. If computing time is not important, this is one way to improve the accuracy a little.}
-
-		\subsection{Enrichment of the data set from other data sources}
-			\noindent ...
-		
-		\subsection{Analyses with multidimensional scaling}
-			\noindent ...
-		
-		\subsection{Hierarchical classification}
-		\label{sec:section_validation_hierarchical classification}
-			\de{Durch die Verwendung eines einzigen Modelles für alle Klassen, sind die bisherigen Klassifikatoren darauf trainiert, den Verlust am Klassenausgabevektor zu minimieren. Jede bisher verwendete Klasse hat den gleichen Rang sowohl beim Training, als auch bei der Klassifizierung. Die Vorhersage von "Pizza" kostet genauso viel wie die Vorhersage von "Martini".}
-			\en{By using a single model for all classes, previous classifiers have been trained to minimize the loss of the class output vector. Each class used so far has the same rank in both training and classification. The prediction of "Pizza" costs the same as the prediction of "Martini".}
-
-			\de{Die menschliche Fähigkeit Objekte einordnen zu können, funktioniert nicht nur auf einer Ebene. Kategorien werden sich natürlich überlappen und eine hierarchische Struktur aufweisen. So wird ein Mensch ein Bild beispielsweise unter "Pizza", "Thunfischpizza" oder sogar "Fastfood" einordnen, was so gesehen korrekt ist. Je nach Einordnung findet hier lediglich ein "Informationsverlust" statt. Jedoch wird der Mensch eine "Pizza" meist nicht fälschlicherweise als "Martini" verwechseln, welcher eher der Kategorie "Getränk" oder "Cocktail" einzuordnen ist\autocite{rosch2004basic}.}
-			\en{The human ability to classify objects does not only work on one level. Categories will naturally overlap and have a hierarchical structure. For example, a human will classify a picture under "pizza", "tuna pizza" or even "fast food", which is correct from this point of view. Depending on the classification, there will only be a "loss of information". However, a person will not mistake a "pizza" as a "Martini", which is more likely to be classified as a "drink" or "cocktail"\autocite{rosch2004basic}.}
-			
-			\de{Um herauszufinden, ob eine Vorklassifizierung das Ergebnis verbessert, werden die Klassen in Gruppen aufgeteilt. Die Idee dabei ist, dass nicht mehr ein Modell alle Klassen vorhersagt, sondern die Bilder erstmal in eine Klasse vorsortiert werden. Die entsprechende Gruppe nimmt dann die eigentliche Klassifizierung vor. Dazu wird vorbereitend eine Principal component analysis vorgenommen, um die Ähnlichkeit der Klassen aus dem \texttt{food-50} Trainingsdatensatz zu analysieren. Mit dem Ergebnis werden dann Gruppen erstellt. Vorbereitend wird erneut ein Modell für alle Klassen trainiert: InceptionV3, 21 Epochen, Batch Size 16, Lernrate \(\eta = 0.001\) absteigend um Faktor 0.5 alle 7 Epochen. Mittels diesem Modell wird von allen Trainings- und Validierungsdaten eine Vorhersage durchgeführt und der Wahrscheinlichkeitsvektor bestimmt (One Hot Encoding):}
-			\en{In order to find out whether a pre-classification improves the result, the classes are divided into groups. The idea is that no longer one model predicts all classes, but rather the images are pre-sorted into a group. The corresponding group then carries out the actual classification. For this purpose, a principal component analysis is performed to analyze the similarity of the classes from the \texttt{food-50} training data set. The result will then be used to create groups. In preparation, a model will again be trained for all classes: InceptionV3, 21 epochs, batch size 16, learning rate \(\eta = 0.001\) decreasing by factor 0.5 every 7 epochs. Using this model, a prediction is made of all training and validation data and the probability vector is determined (One Hot Encoding):}
-			
-				\begin{equation}
-					\boldsymbol\lambda_{class_{m}} = 
-					\left(
-						\begin{array}{c}
-						\hat{p}_{1}\\
-						\hat{p}_{2}\\
-						\vdots\\
-						\hat{p}_{50}\\
-						\end{array}
-					\right)
-					\quad\Biggl\lvert \quad \sum_{i=1}^{50} \hat{p_i} = 1
-				\end{equation}
-				
-				\de{Von diesen Wahrscheinlichkeitsvektoren wird nun jeweils für jede Klasse ein Durchschnittsvektor aller \(n\) Elemente bestimmt, welche zur entsprechenden Klasse wirklich gehören. Man erhält also für dieses 50 Klassenmodell entsprechend 50 Klassenvektoren mit der Dimension 50:}
-				\en{From these probability vectors, an average vector of all \(n\) elements is determined for each class, which really belong to the respective class. Thus, for this 50 class model, one obtains 50 class vectors with the dimension 50:}
-				
-				\begin{equation}
-					\forall\ 50\ classes:
-					\overline{\boldsymbol\lambda}_{class_{m}} =
-					\frac{
-						\sum_{i=1}^{n}
-						\boldsymbol\lambda_{class_{m}}
-					}{n}
-				\end{equation}
-				
-				\de{Mittels Principal component analysis werden diese mehrdimensionalen Vektoren in einem zweidimensionalen Raum transformiert, um diese grafisch darstellen zu können:}
-				\en{Principal component analysis is used to transform these multidimensional vectors into a two-dimensional space in order to display them visually:}
-			
+			\subsubsection{Data augmentation}
+				\de{Wie in Kapitel ``\hyperref[sec:section_data_augmentation]{Data augmentation}'' beschrieben, ist die Hauptaufgabe von Data augmentation neue neue Trainingsdaten aus den bestehenden zu generieren. Der Trainingsdatensatz wird somit künstlich vergrößert. Diese Technik gehört mit zu den Regularisierungstechniken, da sie Overfitting entgegenwirken kann\autocite{geron2017supervisedlearningDataAugmentation}. Nachfolgend ein Beispieldatenset, bei dem das erste originale Bild gedreht, gespiegelt, verzerrt wird und der Datensatz von einem Bild auf insgesamt 12 Bilder vergrößert wird:}
+				\en{As described in chapter ``\hyperref[sec:section_data_augmentation]{Data augmentation}'' the main task of data augmentation is to generate new training data from the existing data. The training data set is artificially augmented in this way. This technique is one of the regularization techniques, as it can counteract overfitting\autocite{geron2017supervisedlearningDataAugmentation}. Below is an example data set in which the first original image is rotated, mirrored, distorted and the data set is enlarged from one image to a total number of 12 images:}
+	
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.5}{
-							\inputpgf{images/pgf}{pca.pgf}
-						}
+						\inputpgf{images/pgf}{augment.pgf}
 					\end{center}
-					\caption{Principal component analysis of the \texttt{food-50} model. The x and y axis have no significance. They only stand for the room and the similarity between the classes.}
-					\label{fig:analysis_pca_food_50}
+					\caption[Example of data augmentation]{Example of data augmentation (The first image is the original image)}
+					\label{fig:data_augmentation}
 				\end{figure}
 				
-				\de{Wie erwartet kann man nun sofort ähnliche Klassen erkennen: Getränke (orange), Kuchen (blau) und Salate (grün).}
-				\en{As expected, one can now immediately recognize similar classes: drinks (orange), cakes (blue) and salads (green).}
+				\de{Mit dieser Technik wird nun der bestehende \texttt{food-50} Datensatz angepasst, bis jede Klasse insgesamt 1000 Bilder enthält und der Datensatz insgesamt ausbalanciert ist. Klassen mit wenigen Daten erhalten entsprechend mehr künstlich angepasste Daten, Klassen mit vielen Daten entsprechend weniger. Das Ergebnis ist, dass aus den ursprünglich 11913 Bildern nun insgesamt 50000 Bilder wurden und der Datensatz von insgesamt 765 MB auf 1,78 GB angewachsen ist. Der Validierungsdatensatz bleibt unverändert, um das Testergebnis nicht zu verfälschen. Nachfolgend das Auswertungsdiagramm:}
+				\en{Using this technique, the existing \texttt{food-50} dataset is now adjusted until each class contains a total number of 1000 images and the dataset is balanced overall. Classes with few data will receive more artificially adjusted data, classes with many data will receive less. The result is that the original 11913 images have now become a total number of 50000 images and the data set has grown from 765 MB to 1.78 GB. The validation data set remains unchanged in order not to falsify the test result. The evaluation diagram is shown below:}
 				
-				\subsubsection{\(k\)-means clustering}
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{data_augmentation.pgf}
+						}
+					\end{center}
+					\caption{Comparison of data augmentation}
+					\label{fig:evaluation_data_augmentation}
+				\end{figure}
+				
+				\de{Die Modellgenauigkeit erhöht sich von 83,6\% auf 85,6\%. Eine Steigerung von insgesamt 2\%. Wohlgemerkt: Der Validierungsdatensatz ist immer noch derselbe! Allerdings bedeutet das auch ein Anstieg der benötigten Rechenzeit. Während die Berechnung des Datensatzes ohne Data Augmentation nur zweieinhalb Stunden braucht, benötigt man für den neuen Datensatz die vierfache Zeit. Fazit: Data Augmentation geth mit einer verbesserten Genauigkeit einher, benötigt aber auch im gleichem Atemzug mehr Rechenzeit. Wenn Rechenzeit keine Rolle spielt, so ist dies eine Möglichkeit die Genauigkeit etwas zu verbessern.}
+				\en{The model accuracy increases from 83.6\% to 85.6\%. An overall increase of 2\%. Note: The validation data set is still the same! However, this also means an increase in the required computing time. While the calculation of the data set without data augmentation takes only two and a half hours, the new data set takes four times as long. Conclusion: Data Augmentation is associated with improved accuracy, but also requires more computing time in the same breath. If computing time is not important, this is one way to improve the accuracy a little.}
+	
+			\subsubsection{Enrichment of the data set from other data sources}
+				\noindent ...
 			
+			\subsubsection{Hierarchical classification}
+			\label{sec:section_validation_hierarchical classification}
+				\de{Durch die Verwendung eines einzigen Modelles für alle Klassen, sind die bisherigen Klassifikatoren darauf trainiert, den Verlust am Klassenausgabevektor zu minimieren. Jede bisher verwendete Klasse hat den gleichen Rang sowohl beim Training, als auch bei der Klassifizierung. Die Vorhersage von "Pizza" kostet genauso viel wie die Vorhersage von "Martini".}
+				\en{By using a single model for all classes, previous classifiers have been trained to minimize the loss of the class output vector. Each class used so far has the same rank in both training and classification. The prediction of "Pizza" costs the same as the prediction of "Martini".}
+	
+				\de{Die menschliche Fähigkeit Objekte einordnen zu können, funktioniert nicht nur auf einer Ebene. Kategorien werden sich natürlich überlappen und eine hierarchische Struktur aufweisen. So wird ein Mensch ein Bild beispielsweise unter "Pizza", "Thunfischpizza" oder sogar "Fastfood" einordnen, was so gesehen korrekt ist. Je nach Einordnung findet hier lediglich ein "Informationsverlust" statt. Jedoch wird der Mensch eine "Pizza" meist nicht fälschlicherweise als "Martini" verwechseln, welcher eher der Kategorie "Getränk" oder "Cocktail" einzuordnen ist\autocite{rosch2004basic}.}
+				\en{The human ability to classify objects does not only work on one level. Categories will naturally overlap and have a hierarchical structure. For example, a human will classify a picture under "pizza", "tuna pizza" or even "fast food", which is correct from this point of view. Depending on the classification, there will only be a "loss of information". However, a person will not mistake a "pizza" as a "Martini", which is more likely to be classified as a "drink" or "cocktail"\autocite{rosch2004basic}.}
+				
+				\de{Um herauszufinden, ob eine Vorklassifizierung das Ergebnis verbessert, werden die Klassen in Gruppen aufgeteilt. Die Idee dabei ist, dass nicht mehr ein Modell alle Klassen vorhersagt, sondern die Bilder erstmal in eine Klasse vorsortiert werden. Die entsprechende Gruppe nimmt dann die eigentliche Klassifizierung vor. Dazu wird vorbereitend eine Principal component analysis vorgenommen, um die Ähnlichkeit der Klassen aus dem \texttt{food-50} Trainingsdatensatz zu analysieren. Mit dem Ergebnis werden dann Gruppen erstellt. Vorbereitend wird erneut ein Modell für alle Klassen trainiert: InceptionV3, 21 Epochen, Batch Size 16, Lernrate \(\eta = 0.001\) absteigend um Faktor 0.5 alle 7 Epochen. Mittels diesem Modell wird von allen Trainings- und Validierungsdaten eine Vorhersage durchgeführt und der Wahrscheinlichkeitsvektor bestimmt (One Hot Encoding):}
+				\en{In order to find out whether a pre-classification improves the result, the classes are divided into groups. The idea is that no longer one model predicts all classes, but rather the images are pre-sorted into a group. The corresponding group then carries out the actual classification. For this purpose, a principal component analysis is performed to analyze the similarity of the classes from the \texttt{food-50} training data set. The result will then be used to create groups. In preparation, a model will again be trained for all classes: InceptionV3, 21 epochs, batch size 16, learning rate \(\eta = 0.001\) decreasing by factor 0.5 every 7 epochs. Using this model, a prediction is made of all training and validation data and the probability vector is determined (One Hot Encoding):}
+				
+					\begin{equation}
+						\boldsymbol\lambda_{class_{m}} = 
+						\left(
+							\begin{array}{c}
+							\hat{p}_{1}\\
+							\hat{p}_{2}\\
+							\vdots\\
+							\hat{p}_{50}\\
+							\end{array}
+						\right)
+						\quad\Biggl\lvert \quad \sum_{i=1}^{50} \hat{p_i} = 1
+					\end{equation}
+					
+					\de{Von diesen Wahrscheinlichkeitsvektoren wird nun jeweils für jede Klasse ein Durchschnittsvektor aller \(n\) Elemente bestimmt, welche zur entsprechenden Klasse wirklich gehören. Man erhält also für dieses 50 Klassenmodell entsprechend 50 Klassenvektoren mit der Dimension 50:}
+					\en{From these probability vectors, an average vector of all \(n\) elements is determined for each class, which really belong to the respective class. Thus, for this 50 class model, one obtains 50 class vectors with the dimension 50:}
+					
+					\begin{equation}
+						\forall\ 50\ classes:
+						\overline{\boldsymbol\lambda}_{class_{m}} =
+						\frac{
+							\sum_{i=1}^{n}
+							\boldsymbol\lambda_{class_{m}}
+						}{n}
+					\end{equation}
+					
+					\de{Mittels Principal component analysis werden diese mehrdimensionalen Vektoren in einem zweidimensionalen Raum transformiert, um diese grafisch darstellen zu können:}
+					\en{Principal component analysis is used to transform these multidimensional vectors into a two-dimensional space in order to display them visually:}
+				
 					\begin{figure}[H]
 						\begin{center}
 							\scalebox{0.5}{
-								\inputpgf{images/pgf}{pca-grouped.pgf}
+								\inputpgf{images/pgf}{pca.pgf}
 							}
 						\end{center}
-						\caption{Grouped classes with k-means.}
-						\label{fig:analysis_grouped_classes_with_k_means}
+						\caption[Principal component analysis of the \texttt{food-50} model]{Principal component analysis of the \texttt{food-50} model. The x and y axis have no significance. They only stand for the room and the similarity between the classes.}
+						\label{fig:analysis_pca_food_50}
 					\end{figure}
 					
-					%\clearpage
-					\renewcommand\theadfont{\bfseries}
-					\begin{table}[htb]
-						\small
-						\centering
-						{\def\arraystretch{2}\tabcolsep=5pt
-							\begin{tabularx}{\linewidth}{ l | X }
-								\hline
-								\thead[l]{Group} & \thead[l]{Classes} \\
-								\hline
-								Group 0 & baked\_salmon, calzone, chicken\_piccata, corn\_dog, empanada, french\_fries, frittata, grilled\_cheese\_sandwich, kebabs, lasagne, meatloaf, omelet, pancakes, pizza, popcorn, stuffed\_pepper, waffles \\
-								Group 1 & margarita, smoothie \\
-								Group 2 & bundt\_cake, buttermilk\_biscuits, cheesecake, granola\_bar, muffin \\
-								Group 3 & brownies \\
-								Group 4 & martini \\
-								Group 5 & cinnamon\_roll, donut, ice\_cream, key\_lime\_pie \\
-								Group 6 & baked\_beans, beef\_stew, beef\_stroganoff, caesar\_salad, cobb\_salad, coleslaw, creamed\_spinach, guacamole, macaroni\_and\_cheese, mashed\_potatoes, nachos, salad, soup \\
-								Group 7 & burger, burrito, chicken\_wings, meatballs, quesadilla, sloppy\_joe, spaghetti
-							\end{tabularx}
-						}
-						\captionof{table}{Grouped classes with k-means.}\label{tbl:table_grouped_classes}
-					\end{table}
+					\de{Wie erwartet kann man nun sofort ähnliche Klassen erkennen: Getränke (orange), Kuchen (blau) und Salate (grün).}
+					\en{As expected, one can now immediately recognize similar classes: drinks (orange), cakes (blue) and salads (green).}
+					
+					\paragraph{\(k\)-means clustering}
 				
-				\subsubsection{Agglomerative hierarchical clustering}
-				
-					\begin{figure}[H]
-						\begin{center}
-							\scalebox{0.5}{
-								\inputpgf{images/pgf}{pca-grouped-ahc.pgf}
+						\begin{figure}[H]
+							\begin{center}
+								\scalebox{0.5}{
+									\inputpgf{images/pgf}{pca-grouped.pgf}
+								}
+							\end{center}
+							\caption{Grouped classes with k-means}
+							\label{fig:analysis_grouped_classes_with_k_means}
+						\end{figure}
+						
+						%\clearpage
+						\renewcommand\theadfont{\bfseries}
+						\begin{table}[htb]
+							\small
+							\centering
+							{\def\arraystretch{2}\tabcolsep=5pt
+								\begin{tabularx}{\linewidth}{ l | X }
+									\hline
+									\thead[l]{Group} & \thead[l]{Classes} \\
+									\hline
+									Group 0 & baked\_salmon, calzone, chicken\_piccata, corn\_dog, empanada, french\_fries, frittata, grilled\_cheese\_sandwich, kebabs, lasagne, meatloaf, omelet, pancakes, pizza, popcorn, stuffed\_pepper, waffles \\
+									Group 1 & margarita, smoothie \\
+									Group 2 & bundt\_cake, buttermilk\_biscuits, cheesecake, granola\_bar, muffin \\
+									Group 3 & brownies \\
+									Group 4 & martini \\
+									Group 5 & cinnamon\_roll, donut, ice\_cream, key\_lime\_pie \\
+									Group 6 & baked\_beans, beef\_stew, beef\_stroganoff, caesar\_salad, cobb\_salad, coleslaw, creamed\_spinach, guacamole, macaroni\_and\_cheese, mashed\_potatoes, nachos, salad, soup \\
+									Group 7 & burger, burrito, chicken\_wings, meatballs, quesadilla, sloppy\_joe, spaghetti
+								\end{tabularx}
 							}
-						\end{center}
-						\caption{Grouped classes with agglomerative hierarchical clustering.}
-						\label{fig:analysis_grouped_classes_with_ahc}
-					\end{figure}
+							\captionof{table}{Grouped classes with k-means}\label{tbl:table_grouped_classes}
+						\end{table}
 					
-					%\clearpage
-					\renewcommand\theadfont{\bfseries}
-					\begin{table}[htb]
-						\small
-						\centering
-						{\def\arraystretch{2}\tabcolsep=5pt
-							\begin{tabularx}{\linewidth}{ l | X }
-								\hline
-								\thead[l]{Group} & \thead[l]{Classes} \\
-								\hline
-								Group 0 & baked\_beans, beef\_stew, beef\_stroganoff, burger, burrito, caesar\_salad, chicken\_piccata, chicken\_wings, cobb\_salad, coleslaw, creamed\_spinach, french\_fries, frittata, kebabs, macaroni\_and\_cheese, meatballs, nachos, quesadilla, salad, sloppy\_joe, soup, spaghetti \\
-								Group 1 & bundt\_cake, buttermilk\_biscuits, cheesecake, granola\_bar, muffin \\
-								Group 2 & guacamole, ice\_cream, mashed\_potatoes, popcorn \\
-								Group 3 & martini \\
-								Group 4 & margarita, smoothie \\
-								Group 5 & baked\_salmon, calzone, corn\_dog, empanada, grilled\_cheese\_sandwich, lasagne, meatloaf, omelet, pancakes, pizza, stuffed\_pepper, waffles \\
-								Group 6 & cinnamon\_roll, donut, key\_lime\_pie \\
-								Group 7 & brownies
-							\end{tabularx}
-						}
-						\captionof{table}{Grouped classes with agglomerative hierarchical clustering.}\label{tbl:table_grouped_classes_ahc}
-					\end{table}
+					\paragraph{Agglomerative hierarchical clustering}
 					
-					\de{}
-					\en{}
-		
-		\subsection{Binary classifiers}
-			\noindent ...
-		
-		\subsection{Evaluation}
-			\noindent ...
-		
-		\subsection{Use of the model across programming languages}
-			\noindent ...
-
+						\begin{figure}[H]
+							\begin{center}
+								\scalebox{0.5}{
+									\inputpgf{images/pgf}{pca-grouped-ahc.pgf}
+								}
+							\end{center}
+							\caption{Grouped classes with agglomerative hierarchical clustering}
+							\label{fig:analysis_grouped_classes_with_ahc}
+						\end{figure}
+						
+						%\clearpage
+						\renewcommand\theadfont{\bfseries}
+						\begin{table}[htb]
+							\small
+							\centering
+							{\def\arraystretch{2}\tabcolsep=5pt
+								\begin{tabularx}{\linewidth}{ l | X }
+									\hline
+									\thead[l]{Group} & \thead[l]{Classes} \\
+									\hline
+									Group 0 & baked\_beans, beef\_stew, beef\_stroganoff, burger, burrito, caesar\_salad, chicken\_piccata, chicken\_wings, cobb\_salad, coleslaw, creamed\_spinach, french\_fries, frittata, kebabs, macaroni\_and\_cheese, meatballs, nachos, quesadilla, salad, sloppy\_joe, soup, spaghetti \\
+									Group 1 & bundt\_cake, buttermilk\_biscuits, cheesecake, granola\_bar, muffin \\
+									Group 2 & guacamole, ice\_cream, mashed\_potatoes, popcorn \\
+									Group 3 & martini \\
+									Group 4 & margarita, smoothie \\
+									Group 5 & baked\_salmon, calzone, corn\_dog, empanada, grilled\_cheese\_sandwich, lasagne, meatloaf, omelet, pancakes, pizza, stuffed\_pepper, waffles \\
+									Group 6 & cinnamon\_roll, donut, key\_lime\_pie \\
+									Group 7 & brownies
+								\end{tabularx}
+							}
+							\captionof{table}{Grouped classes with agglomerative hierarchical clustering}\label{tbl:table_grouped_classes_ahc}
+						\end{table}
+						
+						\de{}
+						\en{}
+			
+			\subsubsection{Binary classifiers}
+				\noindent ...
 
 
 	% -------------------- %
@@ -1568,19 +1603,19 @@
 	\pagebreak
 	\section{Summary and outlook}
 		\hl{What's the outcome? What else is possible? How can this work be continued? In here!}
-
-
-	% -------------------- %
-	% List of figures %
-	% -------------------- %
-	\pagebreak
-	\renewcommand{\listfigurename}{List of figures}
-	\addcontentsline{toc}{section}{List of figures}
-	\listoffigures
-	\listoftables
-	
-
-
+		
+		\begin{itemize}
+			\item What are the best parameters?
+			\item What is the best approach?
+			\item What else should be investigated?
+			\begin{itemize}
+				\item More precise analysis of incorrectly classified data: Is there any room for improvement here?
+			\end{itemize}
+			\item What else is missing in this thesis?
+		\end{itemize}
+		
+		
+		
 	% -------------------- %
 	% List of literature %
 	% -------------------- %
@@ -1592,7 +1627,7 @@
 
 
 	% -------------------- %
-	% List of literature %
+	% List of links %
 	% -------------------- %
 	\pagebreak	
 	\section*{List of links}
@@ -1614,6 +1649,19 @@
 				\item \url{https://towardsdatascience.com/advanced-topics-in-deep-convolutional-neural-networks-71ef1190522d}
 			\end{itemize}
 		\end{itemize}
+		
+		
+		
+		
+	% -------------------- %
+	% acknowledgement %
+	% -------------------- %
+	\pagebreak
+	\section*{Acknowledgement}
+		\thispagestyle{empty}
+		
+		\de{Der schwierigste Teil für mich ist diese Danksagung. Weil es für mich keinen Unterschied macht, wer an erster oder letzter Stelle steht. Jede Person hat ihren Teil beigetragen und ist für diese Arbeit und mich gleich wichtig. Dennoch versuche ich es: An dieser Stelle möchte ich mich bei allen Personen bedanken, die zum Gelingen dieser Arbeit beigetragen haben. An erster Stelle: Prof. Dr. Karl Heinz Hoffmann, welcher mich ermutigt hat nach meinem abgebrochenem Studium vor über 15 Jahren dieses wieder aufzunehmen und den Abschluß nachzuholen. An zweiter Stelle der Firma "ressourcenmangel dresden GmbH", welche mir die Freiheit gab überhaupt neben dem Job mein Studium nachzuholen. An dritter Stelle David Urbansky, ein großartiger Fachmann auf dem Gebiet der Sentimentanalyse und Klassifizierungen von Dingen aller Art. Er war es, der mich die ganze Zeit Haut an Haut begleitet hat und mir mit hilfreichen Tipps und Ideen zur Seite stand. An vierter Stelle Prof. Dr. Angela Thränhardt Professorin für "Theoretische Physik - Simulation neuer Materialien" an der Technischen Universität Chemnitz, welche es mir ermöglichte ein etwas themenfremdes Gebiet in dieser Arbeit angehen zu können. An fünfter Stelle meiner Familie, welche mir permanent zur Seite stand und mich bei diesem Thema unterstützt hat. Und zu guter Letzt: ...}
+		\en{The hardest part for me is this acknowledgment. Because it doesn't make any difference to me who comes first or last. Each person has done his or her part and is equally important for this thesis and me. Nevertheless I try: At this point I would like to thank all the people who have helped me to make this work a success. First and foremost: Prof. Dr. Karl Heinz Hoffmann, who encouraged me to resume my studies after I had broken off my studies more than 15 years ago and to catch up on my degree. In second place the company "ressourcenmangel dresden GmbH", which gave me the freedom to catch up my studies besides my job. In third place David Urbansky from the semknox company, a great expert in the field of sentiment analysis and classifications of all kinds of things. He was the one who accompanied me skin to skin the whole time and supported me with helpful tips and ideas. In fourth place Prof. Dr. Angela Thränhardt Professor for "Theoretical Physics - Simulation of New Materials" at the Chemnitz University of Technology, which enabled me to tackle a somewhat unrelated area in this work. In fifth place was my family, who was permanently at my side and supported me with this topic. And last but not least... \hl{TODO}}
 	
 
 
