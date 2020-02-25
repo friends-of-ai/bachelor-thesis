@@ -243,7 +243,7 @@
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.4\textwidth]{images/cat_dog}
-				\caption[Cat dog comparison]{Is it a dog or a cat?\footnotemark}
+				\caption[Cat and dog comparison]{Is it a dog or a cat?\footnotemark}
 				\label{fig:cat_or_dog}
 			\end{figure}
 			\footnotetext{Source: \url{https://towardsdatascience.com/image-classifier-cats-vs-dogs-with-convolutional-neural-networks-cnns-and-google-colabs-4e9af21ae7a8}}
@@ -769,8 +769,8 @@
 					f(\bar{x}, \bar{\omega}, b) = sgn(\bar{\omega}^\intercal \cdot \bar{x} + b)
 				\end{equation}
 
-				\de{Mit dieser linearen Funktion lässt sich das nachfolgende Problem leicht klassifizieren:}
-				\en{With this linear function the following problem can be easily classified:}
+				\de{\noindent Mit dieser linearen Funktion lässt sich das nachfolgende Problem leicht klassifizieren:}
+				\en{\noindent With this linear function the following problem can be easily classified:}
 
 				\begin{figure}[H]
 					\begin{center}
@@ -780,8 +780,8 @@
 					\label{fig:evaluation_simple_class_shattering}
 				\end{figure}
 	
-				\de{Die Funktion entspricht einem neuronalen Netz ohne verdeckte Schicht und enthält nur eine Eingangs- und eine Ausgangsschicht mit einem künstlichem Neuron ohne Aktivierungsfunktion. Die Dimension, die diese Funktion trennen kann, ist 2 und wird als VC-Dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. Diese Funktion kann genau 2 Klassen trennen. Aber was ist mit nichtlinearen Problemen? In diesem Fall schauen wir uns die folgenden Klassifikationen an:}
-				\en{The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is 2 and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. This function can separate exactly 2 classes. But what about nonlinear problems? In this case let's look at the following classifications:}
+				\de{Die Funktion entspricht einem neuronalen Netz ohne verdeckte Schicht und enthält nur eine Eingangs- und eine Ausgangsschicht mit einem künstlichem Neuron ohne Aktivierungsfunktion. Die Dimension, die diese Funktion trennen kann, ist zwei und wird als VC-Dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. Anders ausgedrückt kann diese Funktion kann genau zwei Klassen linear trennen. Aber was ist mit nichtlinearen Problemen?:}
+				\en{The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is two and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. In other words, this function can separate exactly two classes linearly. But what about nonlinear problems?:}
 				
 				\begin{figure}[H]
 					\begin{center}
@@ -1394,7 +1394,15 @@
 			\subsubsection{Different batch sizes}
 			\label{sec:section_validation_comparison_different_bs}
 	
-				\noindent ...
+					\begin{figure}[H]
+						\begin{center}
+							\scalebox{0.75}{
+								\inputpgf{images/evaluation}{batch_size.pgf}
+							}
+						\end{center}
+						\caption{Overview of the influence of a different batch size}
+						\label{fig:evaluation_overview_influence_batch_size}
+					\end{figure}
 		
 			\subsubsection{Different activation functions}
 	
@@ -1402,7 +1410,15 @@
 		
 			\subsubsection{Different number of learned epochs}
 	
-				\noindent ...
+					\begin{figure}[H]
+						\begin{center}
+							\scalebox{0.75}{
+								\inputpgf{images/evaluation}{epochs.pgf}
+							}
+						\end{center}
+						\caption{Overview of the influence of a longer training period with more epochs}
+						\label{fig:evaluation_overview_influence_more_epochs}
+					\end{figure}
 		
 			\subsubsection{Influence of dropout}
 	
