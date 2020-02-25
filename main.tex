@@ -43,6 +43,8 @@
 \usepackage{tabularx}
 \usepackage{mathtools}
 \usepackage{verbdef}
+\usepackage{listings}
+\usepackage{pxfonts}
 
 % tikzpiture libraries
 \usetikzlibrary{positioning}
@@ -79,6 +81,7 @@
 
 % literature reference
 \bibliography{references}
+\bibliography{references-online}
 
 % document settings
 \author{Björn Hempel <bjoern@hempel.li>}
@@ -105,6 +108,16 @@
 
 % allow some special characters
 \DeclareUnicodeCharacter{2212}{-}
+
+% more space between source codes
+\lstset{
+	aboveskip=20pt,
+	%belowskip=20pt,
+    basicstyle=\ttfamily,
+    keywordstyle=\bfseries,
+    showstringspaces=false,
+    morekeywords={include, printf}	
+}
 
 % pgf figures with images (add function \inputpgf)
 \newcommand\inputpgf[2]{{
@@ -1119,7 +1132,7 @@
 			\subsubsection{Batch size}
 			\label{sec:section_batch_size}
 				\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
-				\en{The batch size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. Normally it is intended to train all training data per epoch with one process. Especially in the area of image classification this is usually not possible due to the limited memory, so an epoch is divided into many small batches. The advantage is that only the data necessary for the current batch needs to be kept in memory. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
+				\en{The batch size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. Normally it is intended to train all training data per epoch with one process. Especially in the area of image classification this is usually not possible due to the limited memory, so an epoch is divided into many small batches. The advantage is that one only has to keep the data in memory that is necessary for the current batch. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
 
 			\subsubsection{Data augmentation}
 			\label{sec:section_data_augmentation}
@@ -1133,8 +1146,8 @@
 	% -------------------- %
 	\pagebreak
 	\section{Related work}
-		\de{Es existieren eine Reihe von Untersuchungen zur Bildklassifikation auf sehr großen Datensätzen.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Meist ist diese riese Anzahl von Klassifikationsklassen und Datenmengen gar nicht erwünscht. Weiterhin gibt es viele Untersuchungen auf kleinen Datensätzen. Was ihnen jedoch fehlt ist die Tatsache die gängisten Abstimmungsparameter in einer Übersicht zu finden. Daten sind teuer in der Beschaffung und meist nicht einfach zu bekommen (siehe Kapitel ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). Und im Gegensatz dazu, treten Bildklassifikationen in immer mehr Bereichen unseres Lebens auf und finden auch in immer mehr in Unternehmen eine direkte Verwendung, welche bisher keinen Gebrauch davon gemacht haben und sich nun überlegen eigene Implemantionen einzuführen. Da sind z.B. Unternehmen, welche versuchen aufgrund verschiedener Daten Produkte zu klassifizieren. Ist es unter dem Kostenpunkte betrachtet eine gute Idee oder bleibt einem der Schritt zu den Softwaretools von Unternehmensriesen wie Microsoft, Google und Co. nicht verwehrt? Ein Mensch sieht einen Artikel und ordnet ihn ein: Anhand des Textes, der Beschreibungung oder eines Bildes. Manchmal bleibt nur noch ein Bild, weil z.B. Texte nicht richtig gepflegt wurden oder nur kryptische Werte zurückliefern. Auch diese Klassifizierung ist für den Menschen oftmals keine Herausforderung. Er erkennt auch in diesem Fall das Produkt \(X\) aufgrund des noch vorhandenen Bildes.}
-		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets. What they are missing is the fact that the most common tuning parameters can be found in one overview. Data is expensive to obtain and usually not easy to get (see chapter ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees an article and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. Even this classification is often not a challenge for humans. In this case he also recognizes the product \(X\) on the basis of the still existing image.}
+		\de{Es existieren eine Reihe von Untersuchungen zur Bildklassifikation auf sehr großen Datensätzen.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Meist ist diese riese Anzahl von Klassifikationsklassen und Datenmengen gar nicht erwünscht. Weiterhin gibt es viele Untersuchungen auf kleinen Datensätzen.\autocite{chollet2016building} Was diesen Untersuchungen meist mangelt ist eine Übersicht und ein Vergleich der gängigen Hyperparameter in Bezug auf die Modellgenauigkeit in einer einzigen Arbeit. Diese Arbeit wird darauf eingehen. Daten sind teuer in der Beschaffung und meist nicht einfach zu bekommen (siehe Kapitel ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). Und im Gegensatz dazu, treten Bildklassifikationen in immer mehr Bereichen unseres Lebens auf und finden auch in immer mehr in Unternehmen eine direkte Verwendung, welche bisher keinen Gebrauch davon gemacht haben und sich nun überlegen eigene Implemantionen einzuführen. Da sind z.B. Unternehmen, welche versuchen aufgrund verschiedener Daten Produkte zu klassifizieren. Ist es unter dem Kostenpunkte betrachtet eine gute Idee oder bleibt einem der Schritt zu den Softwaretools von Unternehmensriesen wie Microsoft, Google und Co. nicht verwehrt? Ein Mensch sieht ein Produkt  \(X\) und ordnet es ein: Anhand des Textes, der Beschreibungung oder eines Bildes. Manchmal bleibt nur noch ein Bild, weil z.B. Texte nicht richtig gepflegt wurden oder nur kryptische Werte zurückliefern. Und auch dann ist diese Klassifizierung für den Menschen oftmals keine Herausforderung, denn er erkennt auch in diesem Fall das Produkt \(X\) aufgrund des noch vorhandenen Bildes.}
+		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets.\autocite{chollet2016building} What these investigations usually lack is an overview and comparison of the common hyper parameters with respect to model accuracy in a single thesis. This thesis will deal with this. Data is expensive to obtain and usually not easy to get (see chapter ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees a product  \(X\) and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. And even then, this classification is often not a challenge for humans: Because in this case, they recognize the product \(X\) based on the still existing image.}
 
 		\de{Diese Arbeit beschäftigt sich mit dem Bildklassifizierungsteil. Da es sich hierbei um Unternehmen mit begrenzten Ressourcen handelt, steht nun die Frage im Raum: Mit welchen Mitteln, Techniken und Kniffen ist es möglich dennoch eine erfolgreiche Bildklassifizierung durchzuführen. Müssen die in \fullref{sec:section_insufficient_amount_of_data} erwähnten Bedingungen erfüllt werden oder sind erfolgreiche Klassifizierungen auch schon mit weniger möglich? Kann man durch Anpassung bestimmter Abstimmungsparameter das Optimum aus der Erstellung von Modellen herausholen? Ist z.B. eine Clusteranalyse und die damit verbundene kategorische Untergliederung der Klassifizierung ein erfolgreicher Ansatz? Diese und andere Fragen sollen mit dieser Arbeit geklärt werden. Und ich wage an dieser Stelle zu behaupten, dass es möglich ist auch mit weniger Anforderungen zu einem guten Ziel zu kommen.}
 		\en{This thesis deals with the image classification part. Since these are companies with limited resources, the question is: With which tools, techniques and tricks is it possible to carry out a successful image classification. Do the conditions mentioned in \fullref{sec:section_insufficient_amount_of_data} have to be fulfilled or are successful classifications already possible with less? Is it possible to get the most out of model creation by adjusting certain tuning parameters? For example, is a cluster analysis and the associated categorical breakdown of the classification a successful approach? These and other questions are to be clarified with this thesis. And I dare to say at this point that it is possible to reach a good goal even with fewer requirements.}
@@ -1151,18 +1164,18 @@
 		\en{In this part of the thesis the investigations and the corresponding evaluations will be presented. For each chapter models with the given parameters and techniques have been created with which image classifications can be performed. The model has to be trained, whereby a decision has to be made on many variable parameters like the learning rate \(\eta\), the optimizers, but also things such as the CNN model. The basis is a standard setup, which is explained in the following chapter ``\nameref{sec:section_validation_process_preamble}''. Starting from this standard setup, the variable parameters are changed and discussed in the corresponding chapters. The goal is to find the parameters with which the recognition accuracy of the models is particularly high: high accuracy and small loss function.}
 			
 		\subsection{Working environment and model creation}
-			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind im nachfolgend genanntem Github-Repository öffentlich einsehbar: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. Dieses Framework wurde in Python geschrieben, das es aus meiner Sicht die beste Programmiersprache für Maschinelles Lernen ist und schon viele vorgefertigte und hilfreiche Funktionen und Basis-Frameworks beinhaltet. Auch die Community mit ihren vielen Foren und Blogartikeln sind sehr breit aufgestellt. Als Python Maschine Learning Framework wurde Keras verwendet, da Keras als viele einheitliche Schnittstellen zu Backends wie TensorFlow enthält und das produzierte Modell auch in anderen Programmiersprachen wie Java weiterverwendet werden kann\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
-			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in the following Github repository: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. This framework was written in Python, which in my opinion is the best programming language for machine learning and already contains many ready-made and helpful functions and basic frameworks. Also, the community with its many forums and blog articles is very broad. As Python Machine Learning Framework Keras was used, because Keras contains as many uniform interfaces to backends like TensorFlow and the produced model can also be reused in other programming languages like Java\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
+			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind im nachfolgend genanntem Github-Repository öffentlich einsehbar: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. Dieses Framework wurde in Python geschrieben. Python ist in den letzten Jahren zu den wichtigsten Programmiersprachen im Bereich des Machine Learnings und der Datenwissenschaften herangewachsen.\autocite{noauthor_most_2015} Die Bibliotheken dieser Programmiersprache enthalten schon von Beginn an viele vorgefertigte und hilfreiche Funktionen und Basis-Frameworks. Auch die Community mit ihren vielen Foren und Blogartikeln sind sehr breit aufgestellt. Als Python Maschine Learning Framework wurde Keras verwendet, da Keras als viele einheitliche Schnittstellen zu Backends wie TensorFlow enthält und das produzierte Modell auch in anderen Programmiersprachen wie Java weiterverwendet werden kann\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
+			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in the following Github repository: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. This framework was written in Python. Python has become one of the most important programming languages in the field of machine learning and data sciences in recent years.\autocite{noauthor_most_2015} The libraries of this programming language contain many ready-made and helpful functions and basic frameworks right from scratch. The community with its many forums and blog articles is also very broad. As Python Machine Learning Framework Keras was used, because Keras contains as many uniform interfaces to backends like TensorFlow and the produced model can also be reused in other programming languages like Java\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
 			
-			\de{Alle Modelle in den nachfolgenden Kapiteln wurden mit dem selbst geschriebenen Framework erstellt, welches erlaubt neben der Angabe des Trainingsdatenpfades auch alle hier genannten Parameter einzustellen: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. Ein Kommandozeilenaufruf könnte nach erfolgreicher Installation mit den Standard-Werten z.B. wie folgt aussehen:}
-			\en{All models in the following chapters were created with the self-written framework, which allows to set all parameters mentioned here in addition to the training data path: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. A command line call with the default values could look like the following after successful installation:}
+			\de{Alle Modelle in den nachfolgenden Kapiteln wurden mit dem oben genanntem Framework erstellt, welches es erlaubt alle hier in der Arbeit genannten Hyperparameter einzustellen: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. Ein Kommandozeilenaufruf könnte nach erfolgreicher Installation mit den Standard-Werten z.B. wie folgt aussehen:}
+			\en{All models in the following chapters were created with the above mentioned framework, which allows to set all hyperparameters mentioned in this thesis: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. A command line call with the default values could look like the following after successful installation:}
 
-			\begin{verbatim}
-					user$ ml train \
-					  --use-train-val \
-					  --data-path=./data/raw/food-50 \
-					  --model-file=./data/processed/experiment1/type-of-experiment/model.h5
-			\end{verbatim}
+			\begin{lstlisting}[frame=single,caption={Example command line call to train a specified data path},captionpos=b,basicstyle=\small]
+user$ ml train \
+      --use-train-val \
+      --data-path=./data/raw/food-50 \
+      --model-file=./data/processed/experiment1/type-of-experiment/model.h5
+			\end{lstlisting}
 	
 		\subsection{Performance}
 			\de{Wenn man beabsichtigt ein Deep Neuronal Networks (DNN) zu implementieren und zu optimieren, müssen die Berechnungen auf der GPU erfolgen. Es ist auch möglich, Berechnungen auf der CPU durchzuführen. Auch die Installation von Keras für CPU-gesteuerte Berechnungen ist viel einfacher, da die Installation der GPU-Treiber nicht notwendig ist. Dies hat jedoch den Nachteil, dass das Training größerer Modelle wesentlich länger dauert. Gute Modelle für die Klassifizierung von z.B. Bildern werden erst nach mehreren Trainingseinheiten erreicht. Trainingseinheiten erfordern viel Rechenleistung in Form von vielen Matrixoperationen. Eine GPU ist prädestiniert für Matrixoperationen\autocite{fatahalian2004understanding}.}
@@ -1394,31 +1407,39 @@
 			\subsubsection{Different batch sizes}
 			\label{sec:section_validation_comparison_different_bs}
 	
-					\begin{figure}[H]
-						\begin{center}
-							\scalebox{0.75}{
-								\inputpgf{images/evaluation}{batch_size.pgf}
-							}
-						\end{center}
-						\caption{Overview of the influence of a different batch size}
-						\label{fig:evaluation_overview_influence_batch_size}
-					\end{figure}
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{batch_size.pgf}
+						}
+					\end{center}
+					\caption{Overview of the influence of a different batch size}
+					\label{fig:evaluation_overview_influence_batch_size}
+				\end{figure}
 		
 			\subsubsection{Different activation functions}
 	
-				\noindent ...
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{activation_function.pgf}
+						}
+					\end{center}
+					\caption{Overview of the influence of difference activation functions}
+					\label{fig:evaluation_overview_influence_difference_activation_functions}
+				\end{figure}
 		
 			\subsubsection{Different number of learned epochs}
 	
-					\begin{figure}[H]
-						\begin{center}
-							\scalebox{0.75}{
-								\inputpgf{images/evaluation}{epochs.pgf}
-							}
-						\end{center}
-						\caption{Overview of the influence of a longer training period with more epochs}
-						\label{fig:evaluation_overview_influence_more_epochs}
-					\end{figure}
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{epochs.pgf}
+						}
+					\end{center}
+					\caption{Overview of the influence of a longer training period with more epochs}
+					\label{fig:evaluation_overview_influence_more_epochs}
+				\end{figure}
 		
 			\subsubsection{Influence of dropout}
 	
