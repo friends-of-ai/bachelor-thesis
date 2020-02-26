@@ -45,6 +45,7 @@
 \usepackage{verbdef}
 \usepackage{listings}
 \usepackage{pxfonts}
+\usepackage[footnote]{acronym}
 
 % tikzpiture libraries
 \usetikzlibrary{positioning}
@@ -217,7 +218,7 @@
 	\pagebreak
 	\section{Introduction}
 		\de{In dieser Arbeit wird auf der Erstellung von Modellen zur Bildklassifikation mittels maschinellem Lernen eingegangen. Viele variable Parameter (Hyperparameter) werden beim Erstellen der Modelle einen entscheidenden Einfluss auf die Genauigkeit des Modells haben und werden hier im Detail verglichen. Nicht immer ist nur die Genauigkeit ein ausschlaggebender Faktor. Auch die benötigte Rechenzeit, welche notwendig ist das Modell zu bestimmen, soll nicht außer Acht gelassen werden und mit in die Auswertung einbezogen werden. Ich gehe davon aus, dass eine kleine Lernrate verbunden mit vielen Lern-Epochen und entsprechend mehr benötigter Rechenzeit bessere Ergebnisse erzielen werden, als wenige Lernepochen verbunden mit einer hohe Lernrate (langsame Anpassung vs. schnelle Anpassung). Auch gehe ich davon aus, dass eine hohe Qualität und eine größere Menge an Daten das Ergebnis entschieden positiv beeinflussen werden. Neue und komplexere Convolutional Neuronale Netzwerke stufe ich erfolgreicher in der Modellgenauigkeit ein als schön etwas ältere und kleinere Modelle.}
-		\en{This thesis deals with the creation of models for image classification using machine learning. Many variable parameters (hyperparameters) will have a decisive influence on the accuracy of the model when creating the models and are compared here in detail. Not always only the accuracy is a decisive factor. Also, the required computing time, which is necessary to determine the model, should not be disregarded and should be included in the evaluation. I assume that a small learning rate combined with many learning epochs and correspondingly more computing time required will achieve better results than a few learning epochs combined with a high learning rate (slow adaptation vs. fast adaptation). I also assume that a high quality and a larger amount of data will have a decidedly positive influence on the result. New and more complex convolutional neural networks are more successful in model accuracy than older and smaller models.}
+		\en{This thesis deals with the creation of models for image classification using machine learning. Many variable parameters (hyperparameters) will have a decisive influence on the accuracy of the model when creating the models and are compared here in detail. Not always only the accuracy is a decisive factor. Also, the required computing time, which is necessary to determine the model, should not be disregarded and should be included in the evaluation. I assume that a small learning rate combined with many learning epochs and correspondingly more computing time required will achieve better results than a few learning epochs combined with a high learning rate (slow adaptation vs. fast adaptation). I also assume that a high quality and a larger amount of data will have a decidedly positive influence on the result. New and more complex \acsp{CNN} are more successful in model accuracy than older and smaller models.}
 	
 	
 
@@ -1147,7 +1148,7 @@
 	\pagebreak
 	\section{Related work}
 		\de{Es existieren eine Reihe von Untersuchungen zur Bildklassifikation auf sehr großen Datensätzen.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Meist ist diese riese Anzahl von Klassifikationsklassen und Datenmengen gar nicht erwünscht. Weiterhin gibt es viele Untersuchungen auf kleinen Datensätzen.\autocite{chollet2016building}\textsuperscript{,}\autocite{sagar_deep_2019} Was diesen Untersuchungen meist mangelt ist eine Übersicht und ein Vergleich der gängigen Hyperparameter in Bezug auf die Modellgenauigkeit in einer einzigen Arbeit. Diese Arbeit wird darauf eingehen. Daten sind teuer in der Beschaffung und meist nicht einfach zu bekommen (siehe Kapitel ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). Und im Gegensatz dazu, treten Bildklassifikationen in immer mehr Bereichen unseres Lebens auf und finden auch in immer mehr in Unternehmen eine direkte Verwendung, welche bisher keinen Gebrauch davon gemacht haben und sich nun überlegen eigene Implemantionen einzuführen. Da sind z.B. Unternehmen, welche versuchen aufgrund verschiedener Daten Produkte zu klassifizieren. Ist es unter dem Kostenpunkte betrachtet eine gute Idee oder bleibt einem der Schritt zu den Softwaretools von Unternehmensriesen wie Microsoft, Google und Co. nicht verwehrt? Ein Mensch sieht ein Produkt  \(X\) und ordnet es ein: Anhand des Textes, der Beschreibungung oder eines Bildes. Manchmal bleibt nur noch ein Bild, weil z.B. Texte nicht richtig gepflegt wurden oder nur kryptische Werte zurückliefern. Und auch dann ist diese Klassifizierung für den Menschen oftmals keine Herausforderung, denn er erkennt auch in diesem Fall das Produkt \(X\) aufgrund des noch vorhandenen Bildes.}
-		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets.\autocite{chollet2016building}\textsuperscript{,}\autocite{sagar_deep_2019} What these investigations usually lack is an overview and comparison of the common hyper parameters with respect to model accuracy in a single thesis. This thesis will deal with this. Data is expensive to obtain and usually not easy to get (see chapter ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees a product  \(X\) and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. And even then, this classification is often not a challenge for humans: Because in this case, they recognize the product \(X\) based on the still existing image.}
+		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets.\autocite{chollet2016building}\textsuperscript{,}\autocite{sagar_deep_2019} What these investigations usually lack is an overview and comparison of the common hyperparameters with respect to model accuracy in a single thesis. This thesis will deal with this. Data is expensive to obtain and usually not easy to get (see chapter ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees a product  \(X\) and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. And even then, this classification is often not a challenge for humans: Because in this case, they recognize the product \(X\) based on the still existing image.}
 
 		\de{Diese Arbeit beschäftigt sich mit dem Bildklassifizierungsteil. Da es sich hierbei um Unternehmen mit begrenzten Ressourcen handelt, steht nun die Frage im Raum: Mit welchen Mitteln, Techniken und Kniffen ist es möglich dennoch eine erfolgreiche Bildklassifizierung durchzuführen. Müssen die in \fullref{sec:section_insufficient_amount_of_data} erwähnten Bedingungen erfüllt werden oder sind erfolgreiche Klassifizierungen auch schon mit weniger möglich? Kann man durch Anpassung bestimmter Abstimmungsparameter das Optimum aus der Erstellung von Modellen herausholen? Ist z.B. eine Clusteranalyse und die damit verbundene kategorische Untergliederung der Klassifizierung ein erfolgreicher Ansatz? Diese und andere Fragen sollen mit dieser Arbeit geklärt werden. Und ich wage an dieser Stelle zu behaupten, dass es möglich ist auch mit weniger Anforderungen zu einem guten Ziel zu kommen.}
 		\en{This thesis deals with the image classification part. Since these are companies with limited resources, the question is: With which tools, techniques and tricks is it possible to carry out a successful image classification. Do the conditions mentioned in \fullref{sec:section_insufficient_amount_of_data} have to be fulfilled or are successful classifications already possible with less? Is it possible to get the most out of model creation by adjusting certain tuning parameters? For example, is a cluster analysis and the associated categorical breakdown of the classification a successful approach? These and other questions are to be clarified with this thesis. And I dare to say at this point that it is possible to reach a good goal even with fewer requirements.}
@@ -1440,10 +1441,22 @@ user$ ml train \
 					\caption{Overview of the influence of a longer training period with more epochs}
 					\label{fig:evaluation_overview_influence_more_epochs}
 				\end{figure}
+				
+				\hl{Here are a few words about overfitting.}
 		
 			\subsubsection{Influence of dropout}
 	
-				\noindent ...
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.75}{
+							\inputpgf{images/evaluation}{dropout.pgf}
+						}
+					\end{center}
+					\caption{Overview of the dropout parameter}
+					\label{fig:evaluation_overview_influence_dropout}
+				\end{figure}
+				
+				\hl{Here are a few words about overfitting.}
 
 
 	
@@ -1618,6 +1631,7 @@ user$ ml train \
 				\noindent ...
 
 
+
 	% -------------------- %
 	% Summary and outlook %
 	% -------------------- %
@@ -1633,7 +1647,22 @@ user$ ml train \
 				\item More precise analysis of incorrectly classified data: Is there any room for improvement here?
 			\end{itemize}
 			\item What else is missing in this thesis?
+			\item Questions asked in this thesis:
+			\begin{itemize}
+				\item Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable?
+			\end{itemize}
 		\end{itemize}
+		
+		
+		
+	% -------------------- %
+	% List of acronyms %
+	% -------------------- %
+	\pagebreak	
+	\section{List of acronyms}
+	\begin{acronym}[Bash]
+		\acro{CNN}{convolutional neural network}
+	\end{acronym}
 		
 		
 		
