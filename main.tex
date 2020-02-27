@@ -367,16 +367,16 @@
 			\de{Der Bildklassifizierungsalgorithmus nimmt ein Bild als Eingabe und klassifiziert es in eine der Ausgabekategorien. Deep Learning hat den Bereich der Bildklassifizierung revolutioniert und großartige Ergebnisse erzielt. Verschiedene Deep Learning Netzwerke, wie ResNet, DenseNet, Inception, etc. wurden als hochpräzise Netzwerke für die Bildklassifikation entwickelt. Gleichzeitig wurden Bilddatensätze angelegt, um getaggte Bilddaten zu erfassen. Diese werden jetzt vorrangig dazu verwendet um bestehende Netzwerke zu trainieren und alljährliche Challenges zu veranstalten, welche sich mit den bisher bekannten und schon entwickelten Modellgenauigkeiten messen. ImageNet ist ein solch großer Datensatz mit mehr als 11 Millionen Bildern und über 11.000 Kategorien. Wenn ein Netzwerk einmal mit ImageNet-Daten trainiert wurde, kann es durch einfache Neuanpassung oder Optimierung mit anderen Datensätzen verallgemeinert werden. Bei diesem Transfer-Lernansatz wird ein Netzwerk mit Gewichten initialisiert, welche aus einem zuvor trainierten Netzwerk stammen. Dieses zuvor initialisierte Netzwerk wird nun für eine neue Bildklassifikationsaufgabe lediglich entsprechend angepasst.}
 			\en{The image classification algorithm takes an image as input and classifies it into one of the output categories. Deep Learning has revolutionized the field of image classification and has achieved great results. Various Deep Learning networks, such as ResNet, DenseNet, Inception, etc. have been developed as high-precision networks for image classification. At the same time, image data sets were created to capture tagged image data. These are now primarily used to train existing networks and to organize annual challenges that compete with the model accuracies already known and developed. ImageNet is such a large data set with more than 11 million images and over 11,000 categories. Once a network has been trained with ImageNet data, it can be generalized with other data sets by simple re-compilation or optimization. In this transfer learning approach, a network is initialized with weights that come from a previously trained network. This previously initialized network is now simply adapted for a new image classification task.}
 
-			\de{Die hier zugrunde liegende Arbeit beschäftigt sich hauptsächlich mit überwachtem Lernen, bei dem ein mathematisches Modell aufgrund bestehender bekannter Datensätze trainiert wird. Das Ziel des trainierten Modells ist es dabei auch für unbekannte Bilder bestmögliche Vorhersagen zu treffen. Diese bekannten Datensätze werden meist händisch erstellt (Ontologe), automatisiert aufgrund bekannter Tatsachen bestimmt oder auch in einem halbautomatischen Prozess ermittelt.}
-			\en{The underlying work here is mainly concerned with supervised learning, in which a mathematical model is trained based on existing known data sets. The goal of the trained model is to make the best possible predictions even for unknown images. These known data sets are usually created manually (ontologist), automatically determined based on known facts or determined in a semi-automatic process.}
+			\de{Die hier zugrunde liegende Arbeit beschäftigt sich hauptsächlich mit überwachtem Lernen, bei dem ein mathematisches Modell aufgrund bestehender bekannter Datensätze trainiert wird. Das Ziel des trainierten Modells ist es dabei auch für unbekannte Bilder bestmögliche Vorhersagen zu treffen. Diese bekannten Datensätze werden meist händisch erstellt, automatisiert aufgrund bekannter Tatsachen bestimmt oder auch in einem halbautomatischen Prozess ermittelt.}
+			\en{The underlying work here is mainly concerned with supervised learning, in which a mathematical model is trained based on existing known data sets. The goal of the trained model is to make the best possible predictions even for unknown images. These known data sets are usually created manually, automatically determined based on known facts or determined in a semi-automatic process.}
 			
 		% -------------------- %
 		% Deductive approach %
 		% -------------------- %
 		\subsubsection{Deductive approach}
 		\label{sec:section_deductive_approach}
-			\de{Seit den späten 1960er Jahren hat man versucht, Bilder mit selbstgeschriebenen Algorithmen zu klassifizieren. Dieser Teil der Computer Vision beschäftigt sich mit Techniken wie Bildentstehung, Bildbearbeitung und Bildsegmentierung. Im Bereich der Bildverarbeitung reihen sich bekannte Verfahren wie Kantenerkennungen, Merkmalsdetektoren, Randverknüpfungen, Kontrastverbesserungen, etc.\autocite{szeliski_computer_nodate} Allen Techniken gemein ist die Verwendung des deduktiven Ansatzes. Beim deduktiven Ansatz erstellt man Regeln (Merkmalsdetektoren), welche das gewünschte Ergebnis vorhersagen sollen. Diese Regeln werden vorgegeben und beschrieben und erlauben damit später eine Klassifizierung von unbekannten Objekten. Da das Modell und sein Algorithmus hinreichend bekannt ist, wird dieses Verfahren White-Box-Verfahren genannt.}
-			\en{Since the late 1960s, attempts have been made to classify images with self-written algorithms. This part of computer vision deals with techniques such as image creation, image processing and image segmentation. In the field of image processing, well-known techniques such as edge detection, feature detectors, edge linking, contrast enhancement, etc. are used\autocite{szeliski_computer_nodate}. Common to all techniques is the use of the deductive approach. With the deductive approach, one creates rules (feature detectors) which are supposed to predict the desired result. These rules are given and described and thus allow later classification of unknown objects. Since the model and its algorithm are sufficiently well known, this procedure is called a white-box procedure.}
+			\de{Seit den späten 1960er Jahren hat man versucht, Bilder mit \textit{selbstgeschriebenen} Algorithmen zu klassifizieren. Dieser Teil der Computer Vision beschäftigt sich mit Techniken wie Bildentstehung, Bildbearbeitung und Bildsegmentierung. Im Bereich der Bildverarbeitung reihen sich bekannte Verfahren wie Kantenerkennungen, Merkmalsdetektoren, Randverknüpfungen, Kontrastverbesserungen, etc.\autocite{szeliski_computer_nodate} Allen Techniken gemein ist die Verwendung des deduktiven Ansatzes. Beim deduktiven Ansatz erstellt man Regeln (Merkmalsdetektoren), welche das gewünschte Ergebnis vorhersagen sollen. Diese Regeln werden vorgegeben und beschrieben und erlauben damit später eine Klassifizierung von unbekannten Objekten. Da das Modell und sein Algorithmus hinreichend bekannt ist, wird dieses Verfahren White-Box-Verfahren genannt.}
+			\en{Since the late 1960s, attempts have been made to classify images with \textit{self-written} algorithms. This part of computer vision deals with techniques such as image creation, image processing and image segmentation. In the field of image processing, well-known techniques such as edge detection, feature detectors, edge linking, contrast enhancement, etc. are used\autocite{szeliski_computer_nodate}. Common to all techniques is the use of the deductive approach. With the deductive approach, one creates rules (feature detectors) which are supposed to predict the desired result. These rules are given and described and thus allow later classification of unknown objects. Since the model and its algorithm are sufficiently well known, this procedure is called a white-box procedure.}
 
 			\begin{figure}[H]
 				\begin{center}
@@ -394,7 +394,7 @@
 		\subsubsection{Inductive approach}
 		\label{sec:section_inductive_approach}
 			\de{Der induktive Ansatz hingegen verfolgt einen anderen Ansatz Bilder zu klassifizieren. Das Ziel ist nicht die Vorgabe einer Regel, sondern das Vorgehen aus schon bekannten einzelnen Objekten eine Regel (Modell) automatisiert zu erlernen. Ein Modell meist eine komplexe Funktion und eine mathematische Abbildung eines Raumes (VC Dimension\autocite{noauthor_vapnikchervonenkis_2020}), in welcher einzelne Objekte mit ihren Eigenschaften abgebildet und getrennt werden können. Das Modell wird Stück für Stück den bekannten Objekten so angepasst, dass der Eingabewert dem Ausgabewert entspricht bzw. weitgehend entspricht (Backpropagation). Das Ziel ist es mit diesem Modell eine Funktion zu erstellen, welche in der Lage ist auch unbekannte Objekte bestmöglichst zu klassifizieren. Da der Raum dieses Modell meist fern der Vorstellungskraft und der Erklärungsmöglichkeit liegt, wird dieses Verfahren auch Black-Box-Verfahren genannt. Der hier beschriebene Vorgang wird meist bei jeder Art von \hyperref[sec:section_supervised_classification]{überwachtem Lernen} angewendet und ist ein Teil des \hyperref[sec:section_machine_learning]{maschinellem Lernens}.}
-			\en{The inductive approach, on the other hand, takes a different approach to classifying images. The goal is not to specify a rule, but to learn a rule (model) automatically from already known individual objects. A model is usually a complex function and a mathematical representation of a space (VC dimension\autocite{noauthor_vapnikchervonenkis_2020}), in which individual objects with their properties can be mapped and separated. The model is adapted piece by piece to the known objects in such a way that the input value corresponds to the output value or corresponds to a large extent (backpropagation). The goal is to create a function with this model, which can classify unknown objects in the best possible way. Because the space of this model is mostly far away from the imagination and the possibility of explanation, this procedure is also called a black-box procedure. The procedure described here is mostly used for any kind of \hyperref[sec:section_supervised_classification]{supervised learning} and is a part of \hyperref[sec:section_machine_learning]{machine learning}.}
+			\en{The inductive approach, on the other hand, takes a different approach to classifying images. The goal is not to specify a rule, but to learn a rule (model) automatically from already known individual objects. A model is usually a complex function and a mathematical representation of a space, in which individual objects with their properties can be mapped and separated. This measure of the capacity that can be learned by this complex function is called \ac{vcd}\autocite{noauthor_vapnikchervonenkis_2020}. The model is adapted piece by piece to the known objects in such a way that the input value corresponds to the output value or corresponds to a large extent (backpropagation). The goal is to create a function with this model, which can classify unknown objects in the best possible way. Because the space of this model is mostly far away from the imagination and the possibility of explanation, this procedure is also called a black-box procedure. The procedure described here is mostly used for any kind of \hyperref[sec:section_supervised_classification]{supervised learning} and is a part of \hyperref[sec:section_machine_learning]{machine learning}.}
 
 			\begin{figure}[H]
 				\begin{center}
@@ -409,8 +409,8 @@
 		% -------------------- %
 		\subsubsection{Balanced training data set}
 		\label{sec:section_balanced_training_data_set}
-			\de{Neuronale Netze haben in den letzten Jahren enorme Fortschritte im Bereich der Mustererkennung gemacht. Dabei ist ein entscheidender Faktor, dass die Daten zum Lernen eine hohe Qualität und eine einfache Verarbeitung für das Netzwerk aufweisen müssen. Falsch klassifizierte oder irrelevante Daten könnten dazu führen, dass das Netzwerk was Falsches lernt. Das gilt auch für eine nicht vorhandene bzw. nicht geeignete Vorverarbeitung.}
-			\en{Neural networks have made enormous progress in the field of pattern recognition in recent years. A decisive factor is that the data for learning must be of high quality and easy for the network to process. Wrongly classified or irrelevant data could cause the network to learn something wrong. This also applies to non-existent or unsuitable pre-processing\autocite{osinga2019data}.}
+			\de{Neuronale Netze haben in den letzten Jahren \textit{enorme} Fortschritte im Bereich der Mustererkennung gemacht. Dabei ist ein entscheidender Faktor, dass die Daten zum Lernen eine hohe Qualität und eine einfache Verarbeitung für das Netzwerk aufweisen müssen. Falsch klassifizierte oder irrelevante Daten könnten dazu führen, dass das Netzwerk was Falsches lernt. Das gilt auch für eine nicht vorhandene bzw. nicht geeignete Vorverarbeitung.}
+			\en{Neural networks have made \textit{enormous} progress in the field of pattern recognition in recent years. A decisive factor is that the data for learning must be of high quality and easy for the network to process. Wrongly classified or irrelevant data could cause the network to learn something wrong. This also applies to non-existent or unsuitable pre-processing\autocite{osinga2019data}.}
 
 			\de{Mit dem Beginn eines Klassifizierungsprojektes stellt sich die Frage was genau man klassifizieren möchte und wie umfangreich die Klassifzierung ausfallen soll. Angenommen man möchte verschiedene Klassen von Essen identifizieren, so könnten das Klassen wie Pizza, Burger, Donuts und Lasagne sein (etc.). Zu diesen Klassen benötigt man nun eine große Anzahl an Bildern. Diese Daten sollten im Idealfall die Realität möglichst gut widerspiegeln. Eine große Variation ist von Vorteil (ausbalancierter Datenset): verschiedene Blickwinkel, Größe, Position, Farbhelligkeiten, Variationen, Anzahl, etc. Bilder von z.B. nur einer Farbhelligkeit oder nur einem Blickwinkel sollten vermieden werden. Sind die Daten nicht ausbalanciert, so müssen diese entsprechend korrigiert werden: z.B. durch Hinzufügen weiterer Daten, Bildverarbeitung oder durch Entfernen von Daten, welche für eine Unausgewogenheit sorgen. Weiterhin sollten die ausgewählten Klassen untereinander klar optisch trennbar sein. Sind sich zwei Klassen optisch sehr ähnlich und selbst durch einen Menschen nicht wirklich unterscheidbar, sollte darüber nachgedacht werden diese zusammenzufassen (z.B. "burger" und "veggie burger"):}
 			\en{With the beginning of a classification project, the question arises what exactly one wants to classify and how extensive the classification should be. Assuming one wants to identify different classes of food, this could be classified as pizza, burgers, doughnuts and lasagna (etc.). For these classes, one now needs a large number of images. Ideally, this data should reflect reality as well as possible. A large variation is advantageous (balanced data set): different viewing angles, size, position, colour brightness, variations, number, etc. Images of e.g. only one colour brightness or only one viewing angle should be avoided. If the data are not balanced, they must be corrected accordingly: e.g. by adding further data, image processing or by removing data that causes an imbalance. Furthermore, the selected classes should be clearly optically separable from each other. If two classes are visually very similar and not really distinguishable even by a human, consideration should be given to combining them (e.g. "burger" and "veggie burger"):}
@@ -1280,8 +1280,8 @@ user$ ml train \
 			\end{lstlisting}
 	
 		\subsection{Performance}
-			\de{Wenn man beabsichtigt ein Deep Neuronal Networks (DNN) zu implementieren und zu optimieren, müssen die Berechnungen auf der GPU erfolgen. Es ist auch möglich, Berechnungen auf der CPU durchzuführen. Auch die Installation von Keras für CPU-gesteuerte Berechnungen ist viel einfacher, da die Installation der GPU-Treiber nicht notwendig ist. Dies hat jedoch den Nachteil, dass das Training größerer Modelle wesentlich länger dauert. Gute Modelle für die Klassifizierung von z.B. Bildern werden erst nach mehreren Trainingseinheiten erreicht. Trainingseinheiten erfordern viel Rechenleistung in Form von vielen Matrixoperationen. Eine GPU ist prädestiniert für Matrixoperationen\autocite{fatahalian2004understanding}.}
-			\en{If one intends to implement and optimize deep neuronal networks (DNN), the calculations must take place on the GPU. It is also possible to run calculations on the CPU. Also, the installation of Keras for CPU driven computations is much easier, because the installation of the GPU drivers is not necessary. The disadvantage of this, however, is that it takes much longer to train larger models. Good models for the classification of e.g. pictures are only achieved after several training units. Training units require a lot of computing power in the form of many matrix operations. A GPU is predestined for matrix operations\autocite{fatahalian2004understanding}.}
+			\de{Wenn man beabsichtigt ein Deep Neuronal Networks (DNN) zu implementieren und zu optimieren, müssen die Berechnungen auf der GPU erfolgen. Es ist auch möglich, Berechnungen auf der \ac{cpu} durchzuführen. Auch die Installation von Keras für CPU-gesteuerte Berechnungen ist viel einfacher, da die Installation der GPU-Treiber nicht notwendig ist. Dies hat jedoch den Nachteil, dass das Training größerer Modelle wesentlich länger dauert. Gute Modelle für die Klassifizierung von z.B. Bildern werden erst nach mehreren Trainingseinheiten erreicht. Trainingseinheiten erfordern viel Rechenleistung in Form von vielen Matrixoperationen. Eine GPU ist prädestiniert für Matrixoperationen\autocite{fatahalian2004understanding}.}
+			\en{If one intends to implement and optimize \acp{dnn}, the calculations must take place on the \ac{gpu}. It is also possible to run calculations on the \ac{cpu}. Also, the installation of Keras for \ac{cpu} driven computations is much easier, because the installation of the \ac{gpu} drivers is not necessary. The disadvantage of this, however, is that it takes much longer to train larger models. Good models for the classification of e.g. pictures are only achieved after several training units. Training units require a lot of computing power in the form of many matrix operations. A \ac{gpu} is predestined for matrix operations\autocite{fatahalian2004understanding}.}
 			
 			\de{Nachfolgend folgt ein tabellarischer Leistungsvergleich auf der Grundlage des Kaggle-Blumendatensatzes Training\footnote{Flowers Recognition, Kaggle, Febrary 21, 2020, \url{https://www.kaggle.com/alxmamaev/flowers-recognition}}. Dieser Bildersatz besteht aus 5 Klassen mit etwa 4242 Trainingsbildern (10 epochs, InceptionV3)\footnote{GPU vs CPU, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/hardware/gpu-vs-cpu.md}}:}
 			\en{The following is a tabular comparison of performance based on the Kaggle flower data set training\footnote{Flowers Recognition, Kaggle, Febrary 21, 2020, \url{https://www.kaggle.com/alxmamaev/flowers-recognition}}. This image set consists of 5 classes with about 4242 training images (10 epochs, InceptionV3)\footnote{GPU vs CPU, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/hardware/gpu-vs-cpu.md}}:}
@@ -1307,7 +1307,7 @@ user$ ml train \
 			\end{table}
 			
 			\de{Während die Art des Rechengerätes (CPU or GPU) keinen Unterschied ausmacht was die Vor- und Nachbereitung betrifft, so macht es aber einen entscheidenden Unterschied bei der Trainingszeit. Die langsamste CPU benötigt mehr als 80 mal soviel Zeit, wie die schnellste Grafikkarteneinheit. Die Wahl des Rechengerätes für alle weiteren Tests fällt eindeutig auf die GPU.}
-			\en{While the type of computing device (CPU or GPU) makes no difference in terms of preparation and postprocessing, it does make a significant difference in training time. The slowest CPU takes more than 80 times as many time as the fastest graphics card unit. The choice of the computing device for all further tests clearly falls on the GPU.}
+			\en{While the type of computing device (\ac{cpu} or \ac{gpu}) makes no difference in terms of preparation and postprocessing, it does make a significant difference in training time. The slowest \ac{cpu} takes more than 80 times as many time as the fastest graphics card unit. The choice of the computing device for all further tests clearly falls on the \ac{gpu}.}
 	
 		\subsection{Model validation}
 
@@ -1318,14 +1318,14 @@ user$ ml train \
 				
 				\paragraph*{Training data}
 					\begin{itemize}
-						\item 11913 images
+						\item 11,913 images
 						\item classified within 50 classes
 						\item different number of images per class (unbalanced)
 					\end{itemize}
 				
 				\paragraph*{Validation data}
 					\begin{itemize}
-						\item 2953 images
+						\item 2,953 images
 						\item classified within 50 classes
 						\item different number of images per class (unbalanced)
 					\end{itemize}
@@ -1518,6 +1518,8 @@ user$ ml train \
 					\caption{Overview of the influence of a different batch size}
 					\label{fig:evaluation_overview_influence_batch_size}
 				\end{figure}
+				
+				\hl{Interpretation!}
 		
 			\subsubsection{Different activation functions}
 	
@@ -1530,6 +1532,8 @@ user$ ml train \
 					\caption{Overview of the influence of difference activation functions}
 					\label{fig:evaluation_overview_influence_difference_activation_functions}
 				\end{figure}
+				
+				\hl{Interpretation!}
 		
 			\subsubsection{Different number of learned epochs}
 	
@@ -1769,6 +1773,7 @@ user$ ml train \
 			\acro{cpu}[CPU]{central processing unit}
 			\acro{da}[DA]{data augmentation}
 			\acro{dl}[DL]{deep learning}
+			\acro{dnn}[DNN]{deep neuronal network}
 			\acro{ds}[DS]{data set}
 			\acro{gpu}[GPU]{graphics processing unit}
 			\acro{hp}[HP]{hyperparameter}
@@ -1776,6 +1781,8 @@ user$ ml train \
 			\acro{nn}[NN]{neural network}
 			\acro{sgd}[SGD]{stochastic gradient descent}
 			\acro{td}[TD]{training data}
+			\acro{vc}[VC]{Vapnik–Chervonenkis}
+			\acro{vcd}[VCD]{Vapnik–Chervonenkis dimension}
 			\acro{vd}[VD]{validation data}
 		\end{acronym}
 		
