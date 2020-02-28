@@ -46,6 +46,7 @@
 \usepackage{listings}
 \usepackage{pxfonts}
 \usepackage{acronym}
+\usepackage{pbox}
 
 % tikzpiture libraries
 \usetikzlibrary{positioning}
@@ -132,6 +133,9 @@
     \def\svgwidth{\columnwidth}
     \import{images/other/}{#1.pdf_tex}
 }
+
+% some definitions
+\def\flushRight{\leftskip0pt plus 1fill\rightskip0pt}
 
 % Extend acronym package with first letter caps
 \makeatletter
@@ -538,8 +542,8 @@
 			% -------------------- %
 			\paragraph{Reinforcement learning}
 			\label{sec:section_reinforcement_learning}
-				\de{Reinforcement learning\footnote{``Reinforcement learning'', Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Reinforcement_learning}} ist eine Art des maschinellen Lernens, bei der ein Agent selbstständig die bestmögliche Strategie für die Erreichung eines Zieles erlernt. Für die Erreichung des Ziels sind Aktionen notwendig, welche zu bestimmten Zeitpunkten Belohnungen hervorbringen. Diese Belohnungen können auch negative sein (Bestrafung). Anhand dieser Belohnungen gilt es in Summe den bestmöglichen Belohnungswert zu erzielen. Bei der Klassifizierung von Bildern ist diese Art des Lernens nicht relevant, weshalb hier auch nicht weiter darauf eingegangen wird.}
-				\en{Reinforcement learning\footnote{``Reinforcement learning'', Wikipedia contributors, January 31, 2020, \url{https://en.wikipedia.org/wiki/Reinforcement_learning}} is a type of machine learning in which an agent independently learns the best possible strategy for achieving a goal. To achieve the goal, actions are necessary which produce rewards at certain points in time. These rewards can also be negative (punishment). Based on these rewards, the aim is to achieve the best possible reward value. This type of learning is not relevant for the classification of images, which is why it will not be discussed further here.}
+				\de{Reinforcement learning\autocite{noauthor_reinforcement_2020} ist eine Art des maschinellen Lernens, bei der ein Agent selbstständig die bestmögliche Strategie für die Erreichung eines Zieles erlernt. Für die Erreichung des Ziels sind Aktionen notwendig, welche zu bestimmten Zeitpunkten Belohnungen hervorbringen. Diese Belohnungen können auch negative sein (Bestrafung). Anhand dieser Belohnungen gilt es in Summe den bestmöglichen Belohnungswert zu erzielen. Bei der Klassifizierung von Bildern ist diese Art des Lernens nicht relevant, weshalb hier auch nicht weiter darauf eingegangen wird.}
+				\en{Reinforcement learning\autocite{noauthor_reinforcement_2020} is a type of machine learning in which an agent independently learns the best possible strategy for achieving a goal. To achieve the goal, actions are necessary which produce rewards at certain points in time. These rewards can also be negative (punishment). Based on these rewards, the aim is to achieve the best possible reward value. This type of learning is not relevant for the classification of images, which is why it will not be discussed further here.}
 
 
 
@@ -554,8 +558,8 @@
 			% Confusion Matrix %
 			% -------------------- %
 			\paragraph{Confusion matrix}
-			 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während jede Spalte die Anzahl oder eine Zahlenangaben in Prozent der vorhergesagten Klasse angibt (oder umgekehrt)\footnote{``Confusion matrix'', Wikipedia contributors, February 5, 2020, \url{https://en.wikipedia.org/wiki/Confusion_matrix}}:}
-			 	\en{The Confusion Matrix is a special quadratic matrix in the field of machine learning that allows the visualization of the performance of a predictive model. Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\footnote{``Confusion matrix'', Wikipedia contributors, February 5, 2020, \url{https://en.wikipedia.org/wiki/Confusion_matrix}}:}
+			 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während jede Spalte die Anzahl oder eine Zahlenangaben in Prozent der vorhergesagten Klasse angibt (oder umgekehrt)\autocite{noauthor_confusion_2020-1}:}
+			 	\en{The confusion matrix is a special quadratic matrix in the field of machine learning that allows the visualization of the performance of a predictive model. Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\autocite{noauthor_confusion_2020-1}:}
 
 				\begin{table}[htb]
 					\centering
@@ -640,8 +644,8 @@
 			% Precision %
 			% -------------------- %
 			\paragraph{Precision}
-				\de{Precision\footnote{``Precision and recall'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/Precision_and_recall}} sagt aus, wie zuverlässig die Aussage einer Vorhersage einer Klasse ist:}
-				\en{Precision\footnote{``Precision and recall'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/Precision_and_recall}} expresses how reliable the statement of a prediction of a class is:}
+				\de{Precision\autocite{noauthor_precision_2020} sagt aus, wie zuverlässig die Aussage einer Vorhersage einer Klasse ist:}
+				\en{Precision\autocite{noauthor_precision_2020} expresses how reliable the statement of a prediction of a class is:}
 
 				\begin{equation}
 					Precision = {{Correct} \over {Actual}} = {{TP} \over {TP + FP}}
@@ -658,8 +662,8 @@
 			% Recall %
 			% -------------------- %
 			\paragraph{Recall}
-				\de{Recall\footnote{``Precision and recall'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/Precision_and_recall}} ist die Genauigkeit einer Klasse. Das bedeutet wie gut konnte die Klasse vorhergesehen werden:}
-				\en{Recall\footnote{``Precision and recall'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/Precision_and_recall}} is the accuracy of a class. This means how well the class could be predicted:}
+				\de{Recall\autocite{noauthor_precision_2020} ist die Genauigkeit einer Klasse. Das bedeutet wie gut konnte die Klasse vorhergesehen werden:}
+				\en{Recall\autocite{noauthor_precision_2020} is the accuracy of a class. This means how well the class could be predicted:}
 
 				\begin{equation}
 					Recall = {{Correct} \over {CorrectPossible}} = {{TP} \over {TP + FN}}
@@ -676,16 +680,16 @@
 			% F-Measure %
 			% -------------------- %
 			\paragraph{F-Measure}
-				\de{F-Measure\footnote{``F1 score'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/F1_score}} kombiniert Präzision und Rückruf, wobei der Parameter \(\beta\) die Gewichtung darstellt:}
-				\en{F-Measure\footnote{``F1 score'', Wikipedia contributors, February 7, 2020, \url{https://en.wikipedia.org/wiki/F1_score}} combines precision and recall, with the parameter \(\beta\) representing the weighting:}
+				\de{F-Measure\autocite{noauthor_f1_2020} kombiniert Präzision und Rückruf, wobei der Parameter \(\beta\) die Gewichtung darstellt:}
+				\en{F-Measure\autocite{noauthor_f1_2020} combines precision and recall, with the parameter \(\beta\) representing the weighting:}
 				\begin{equation}
 					F_\beta =
 					(1 + \beta^2) \cdot {{Precision\cdot Recall}\over{\beta^2 \cdot Precision + Recall}} = 
 					{{(1 + \beta^2) \cdot TP}\over{(1 + \beta^2) \cdot TP + \beta^2 \cdot FN + FP}}
 				\end{equation}
 
-				\de{Je höher der \(\beta\), desto mehr Wert wird auf Precision statt auf Recall gelegt. Das ist wichtig, wenn man mehr Wert auf die Qualität der Verhersage legt, als auf die Erkennungsgenauigkeit. Z.B. bei einer Vorhersage von Krankheiten: Zuordnung von Klasse Krank bei gesunde Menschen ist hier genauso fatal wie auch die Zuordnung von Klasse Gesund bei kranken Menschen (Obwohl Fall zwei fataler wäre als Fall eins). Mit einem Wert von \(\beta = 0,5\) erhält man eine Gleichverteilung beider Werte und wird F1 score genannt:}
-				\en{The higher \(\beta\) the more importance is placed on precision instead of recall. This is important if one puts more importance on the quality of the prediction than on the accuracy of prediction. For example, when predicting diseases: assigning class ``ill'' to healthy people is just as fatal as assigning class ``healthy'' to sick people (although case two would be even more fatal than case one). A value of \(\beta = 0.5\) one gets an equal distribution of both values and is called F1 score:}
+				\de{Je höher der \(\beta\), desto mehr Wert wird auf Precision statt auf Recall gelegt. Das ist wichtig, wenn man mehr Wert auf die Qualität der Verhersage legt, als auf die Erkennungsgenauigkeit. Z.B. bei einer Vorhersage von Krankheiten: Zuordnung von Klasse Krank bei gesunden Menschen ist hier genauso fatal wie auch die Zuordnung von Klasse Gesund bei kranken Menschen. Mit einem Wert von \(\beta = 0,5\) erhält man eine Gleichverteilung beider Werte und wird F1 score genannt:}
+				\en{The higher \(\beta\) the more importance is placed on precision instead of recall. This is important if one puts more importance on the quality of the prediction than on the accuracy of prediction. For example, when predicting diseases: assigning class ``ill'' to healthy people is just as fatal as assigning class ``healthy'' to sick people. A value of \(\beta = 0.5\) one gets an equal distribution of both values and is called F1 score:}
 
 				\begin{equation}
 					F_1 =
@@ -754,8 +758,8 @@
 				\de{Künstliche neuronale Netzwerke stellen Funktionen bereit, welche in der Lage sind hochkomplexe Daten im mehrdimensionalem Raum zu trennen. Bei großen und hochgradig komplexen Aufgaben, wie beispielsweise der Klassifizierung von Milliarden von Bildern, Sprach- und Texterkennungen, schneiden neuronale Netze meist besser ab, als andere Machine Learning Verfahren. Der erhebliche Zuwachs an Rechenkapizität seit den 1990ern ermöglicht das Trainieren großer neuronaler Netzwerke innerhalb eines sinnvollen Zeitraumes. Künstliche neuronale Netzwerke sind die Kernkomponente des Deep Learnings, welche eine Methode des machinellen Lernens bezeichnet.}
 				\en{\Aclp{ann} provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other machine learning methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning, which denotes a method of machine learning.}
 
-				\de{Neuronale Netzwerke verarbeiten einen Eingabevektor und wandeln ihn in einen neuen Ausgabevektor um. Sie sind Netze aus vielen hintereinander und parallel geschalteten künstlichen Neuronen. Ein künstliches Neuron wiederrum wandelt einen Vektor in ein Skalar um, indem es die Eingänge \(\bar{x}\) mit den veränderlichen Parametern \(\bar{\omega}\) skaliert, aufsummiert und mit einem Bias \(b\) korrigiert (der Bias ist ebenso eine veränderliche Variable). Die Aktivierungsfunktion stellt sicher, dass aus dem Polynom ersten Grades (lineares Regressionsmodell) eine nichtlineare Funktion wird\footnote{``Aktivierungsfunktionen, ihre Arten und Verwendungsmöglichkeiten'', https://www.ai-united.de/, February 8, 2020, \url{https://www.ai-united.de/aktivierungsfunktionen-ihre-arten-und-verwendungsmoeglichkeiten/}}:}
-				\en{Neural networks process an input vector \(\bar{x}\) and convert it into a new output vector \(\hat{\bar{x}}\). They are networks of many artificial neurons connected in series and parallel. An artificial neuron in turn converts a vector into a scalar by scaling and summing the inputs \(\bar{x}\) with the changeable parameters \(\bar{\omega}\) and correcting them with a bias \(b\) (the bias is also a changeable variable). The activation function ensures that the first degree polynomial (linear regression model) becomes a nonlinear function\footnote{``Activation functions, their types and uses'', https://www.ai-united.de/, February 8, 2020, \url{https://www.ai-united.de/aktivierungsfunktionen-ihre-arten-und-verwendungsmoeglichkeiten/}}:}
+				\de{Neuronale Netzwerke verarbeiten einen Eingabevektor und wandeln ihn in einen neuen Ausgabevektor um. Sie sind Netze aus vielen hintereinander und parallel geschalteten künstlichen Neuronen. Ein künstliches Neuron wiederrum wandelt einen Vektor in ein Skalar um, indem es die Eingänge \(\bar{x}\) mit den veränderlichen Parametern \(\bar{\omega}\) skaliert, aufsummiert und mit einem Bias \(b\) korrigiert (der Bias ist ebenso eine veränderliche Variable). Die Aktivierungsfunktion stellt sicher, dass aus dem Polynom ersten Grades (lineares Regressionsmodell) eine nichtlineare Funktion wird\autocite{noauthor_aktivierungsfunktionen_2019}:}
+				\en{Neural networks process an input vector \(\bar{x}\) and convert it into a new output vector \(\hat{\bar{x}}\). They are networks of many artificial neurons connected in series and parallel. An artificial neuron in turn converts a vector into a scalar by scaling and summing the inputs \(\bar{x}\) with the changeable parameters \(\bar{\omega}\) and correcting them with a bias \(b\) (the bias is also a changeable variable). The activation function ensures that the first degree polynomial (linear regression model) becomes a nonlinear function\autocite{noauthor_aktivierungsfunktionen_2019}:}
 
 				\begin{figure}[H]
 					\[
@@ -1690,22 +1694,44 @@ user$ ml train \
 							\small
 							\centering
 							{\def\arraystretch{2}\tabcolsep=5pt
-								\begin{tabularx}{\linewidth}{ l | X }
+								\begin{tabularx}{\linewidth}{ l | r | r | r | r | r | X }
+									\Xhline{3\arrayrulewidth}
+									\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} & \thead[l]{Classes} \\
+									\Xhline{3\arrayrulewidth}
+									preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 90.02\% \\ {\scriptsize @ ep. 15}} & & {\scriptsize \texttt{group\textsubscript{0}}, \texttt{group\textsubscript{1}}, \texttt{group\textsubscript{2}}, \texttt{group\textsubscript{3}}, \texttt{group\textsubscript{4}}, \texttt{group\textsubscript{5}}, \texttt{group\textsubscript{6}}, \texttt{group\textsubscript{7}} } \\
+									
 									\hline
-									\thead[l]{Group} & \thead[l]{Classes} \\
-									\hline
-									Group 0 & baked\_salmon, calzone, chicken\_piccata, corn\_dog, empanada, french\_fries, frittata, grilled\_cheese\_sandwich, kebabs, lasagne, meatloaf, omelet, pancakes, pizza, popcorn, stuffed\_pepper, waffles \\
-									Group 1 & margarita, smoothie \\
-									Group 2 & bundt\_cake, buttermilk\_biscuits, cheesecake, granola\_bar, muffin \\
-									Group 3 & brownies \\
-									Group 4 & martini \\
-									Group 5 & cinnamon\_roll, donut, ice\_cream, key\_lime\_pie \\
-									Group 6 & baked\_beans, beef\_stew, beef\_stroganoff, caesar\_salad, cobb\_salad, coleslaw, creamed\_spinach, guacamole, macaroni\_and\_cheese, mashed\_potatoes, nachos, salad, soup \\
-									Group 7 & burger, burrito, chicken\_wings, meatballs, quesadilla, sloppy\_joe, spaghetti
+									\texttt{group\textsubscript{0}} & 18 & 919 & 31.1\% & \pbox[t]{20cm}{\flushRight 83.94\% \\ {\scriptsize @ ep. 11}} & 75.56\% & {\scriptsize \texttt{baked\_salmon}, \texttt{calzone}, \texttt{chicken\_piccata}, \texttt{corn\_dog}, \texttt{empanada}, \texttt{french\_fries}, \texttt{frittata}, \texttt{grilled\_cheese\_sandwich}, \texttt{kebabs}, \texttt{lasagne}, \texttt{meatloaf}, \texttt{omelet}, \texttt{pancakes}, \texttt{pizza}, \texttt{popcorn}, \texttt{stuffed\_pepper}, \texttt{waffles}} \\
+									
+									\texttt{group\textsubscript{1}} & 2 & 158 & 5.4\% & \pbox[t]{20cm}{\flushRight 99.30\% \\ {\scriptsize @ ep. 10 }} & 89.39\% & {\scriptsize \texttt{margarita}, \texttt{smoothie}} \\
+
+									\texttt{group\textsubscript{2}} & 5 & 296 & 10.0\% & \pbox[t]{20cm}{\flushRight 93.93\% \\ {\scriptsize @ ep. 16 }} & 84.56\% & {\scriptsize \texttt{bundt\_cake}, \texttt{buttermilk\_biscuits}, \texttt{cheesecake}, \texttt{granola\_bar}, \texttt{muffin}} \\
+
+									\texttt{group\textsubscript{3}} & 1 & 83 & 2,8\% & 100.0\% & 90.02\% & {\scriptsize \texttt{brownies}} \\
+
+									\texttt{group\textsubscript{4}} & 1 & 63 & 2,1\% & 100.0\% & 90.02\% & {\scriptsize \texttt{martini}} \\
+
+									\texttt{group\textsubscript{5}} & 4 & 221 & 7.5\% & \pbox[t]{20cm}{\flushRight 92.68\% \\ {\scriptsize @ ep. 17 }} & 83.43\% & {\scriptsize \texttt{cinnamon\_roll}, \texttt{donut}, \texttt{ice\_cream}, \texttt{key\_lime\_pie}} \\
+
+									\texttt{group\textsubscript{6}} & 12 & 723 & 24.5\% & \pbox[t]{20cm}{\flushRight 81.90\% \\ {\scriptsize @ ep. 10 }} & 73.73\% & {\scriptsize \texttt{baked\_beans}, \texttt{beef\_stew}, \texttt{beef\_stroganoff}, \texttt{caesar\_salad}, \texttt{cobb\_salad}, \texttt{coleslaw}, \texttt{creamed\_spinach}, \texttt{guacamole}, \texttt{macaroni\_and\_cheese}, \texttt{mashed\_potatoes}, \texttt{nachos}, \texttt{salad}, \texttt{soup}} \\
+									
+									\texttt{group\textsubscript{7}} & 7 & 490& 16.6\% & \pbox[t]{20cm}{\flushRight 91.77\% \\ {\scriptsize @ ep. 14 }} & 82.61\% & {\scriptsize \texttt{burger}, \texttt{burrito}, \texttt{chicken\_wings}, \texttt{meatballs}, \texttt{quesadilla}, \texttt{sloppy\_joe}, \texttt{spaghetti}} \\
+
+									\Xhline{3\arrayrulewidth}
+									Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{79.23}}\%}
+
 								\end{tabularx}
 							}
-							\captionof{table}{Grouped classes with k-means}\label{tbl:table_grouped_classes}
+							\captionof{table}[Grouped classes with k-means]{Grouped classes with k-means. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes}
 						\end{table}
+						
+						\begin{equation}
+							\widehat{acc}_{group} = acc_{preclassification} \cdot acc_{group}
+						\end{equation}
+						
+						\begin{equation}
+							acc_{top-1} = \sum_{group=0}^7 ratio_{files_{val}, group} \cdot \widehat{acc}_{group}
+						\end{equation}
 					
 					\paragraph{Agglomerative hierarchical clustering}
 					
@@ -1725,21 +1751,35 @@ user$ ml train \
 							\small
 							\centering
 							{\def\arraystretch{2}\tabcolsep=5pt
-								\begin{tabularx}{\linewidth}{ l | X }
+								\begin{tabularx}{\linewidth}{ l | r | r | r | r | r | X }
+									\Xhline{3\arrayrulewidth}
+									\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} & \thead[l]{Classes} \\
+									\Xhline{3\arrayrulewidth}
+									preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0}} & & {\scriptsize \texttt{group\textsubscript{0}}, \texttt{group\textsubscript{1}}, \texttt{group\textsubscript{2}}, \texttt{group\textsubscript{3}}, \texttt{group\textsubscript{4}}, \texttt{group\textsubscript{5}}, \texttt{group\textsubscript{6}}, \texttt{group\textsubscript{7}} } \\
+									
 									\hline
-									\thead[l]{Group} & \thead[l]{Classes} \\
-									\hline
-									Group 0 & baked\_beans, beef\_stew, beef\_stroganoff, burger, burrito, caesar\_salad, chicken\_piccata, chicken\_wings, cobb\_salad, coleslaw, creamed\_spinach, french\_fries, frittata, kebabs, macaroni\_and\_cheese, meatballs, nachos, quesadilla, salad, sloppy\_joe, soup, spaghetti \\
-									Group 1 & bundt\_cake, buttermilk\_biscuits, cheesecake, granola\_bar, muffin \\
-									Group 2 & guacamole, ice\_cream, mashed\_potatoes, popcorn \\
-									Group 3 & martini \\
-									Group 4 & margarita, smoothie \\
-									Group 5 & baked\_salmon, calzone, corn\_dog, empanada, grilled\_cheese\_sandwich, lasagne, meatloaf, omelet, pancakes, pizza, stuffed\_pepper, waffles \\
-									Group 6 & cinnamon\_roll, donut, key\_lime\_pie \\
-									Group 7 & brownies
+									\texttt{group\textsubscript{0}} & 22 & 1,267 & 42.91\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0}} & 0\% & {\scriptsize \texttt{baked\_beans}, \texttt{beef\_stew}, \texttt{beef\_stroganoff}, \texttt{burger}, \texttt{burrito}, \texttt{caesar\_salad}, \texttt{chicken\_piccata}, \texttt{chicken\_wings}, \texttt{cobb\_salad}, \texttt{coleslaw}, \texttt{creamed\_spinach}, \texttt{french\_fries}, \texttt{frittata}, \texttt{kebabs}, \texttt{macaroni\_and\_cheese}, \texttt{meatballs}, \texttt{nachos}, \texttt{quesadilla}, \texttt{salad}, \texttt{sloppy\_joe}, \texttt{soup}, \texttt{spaghetti} } \\
+
+									\texttt{group\textsubscript{1}} & 5 & 296 & 10.02\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{bundt\_cake}, \texttt{buttermilk\_biscuits}, \texttt{cheesecake}, \texttt{granola\_bar}, \texttt{muffin} } \\
+
+									\texttt{group\textsubscript{2}} & 4 & 249 & 8.43\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{guacamole}, \texttt{ice\_cream}, \texttt{mashed\_potatoes}, \texttt{popcorn} } \\
+
+									\texttt{group\textsubscript{3}} & 1 & 63 & 2.13\% & 100.0\% & 0\% & {\scriptsize \texttt{martini} } \\
+
+									\texttt{group\textsubscript{4}} & 2 & 158 & 5.35\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{margarita}, \texttt{smoothie} } \\
+
+									\texttt{group\textsubscript{5}} & 12 & 677 & 22.93\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{baked\_salmon}, \texttt{calzone}, \texttt{corn\_dog}, \texttt{empanada}, \texttt{grilled\_cheese\_sandwich}, \texttt{lasagne}, \texttt{meatloaf}, \texttt{omelet}, \texttt{pancakes}, \texttt{pizza}, \texttt{stuffed\_pepper}, \texttt{waffles} } \\
+
+									\texttt{group\textsubscript{6}} & 3 & 160 & 5.42\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{cinnamon\_roll}, \texttt{donut}, \texttt{key\_lime\_pie} } \\
+
+									\texttt{group\textsubscript{7}} & 1 & 83 & 2.81\% & 100.0\% & 0\% & {\scriptsize \texttt{brownies} } \\
+
+									\Xhline{3\arrayrulewidth}
+									Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{0.00}}\%}
+
 								\end{tabularx}
 							}
-							\captionof{table}{Grouped classes with agglomerative hierarchical clustering}\label{tbl:table_grouped_classes_ahc}
+							\captionof{table}[Grouped classes with agglomerative hierarchical clustering]{Grouped classes with agglomerative hierarchical clustering. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes_ahc}
 						\end{table}
 						
 						\de{}
@@ -1792,6 +1832,7 @@ user$ ml train \
 			\acro{hp}[HP]{hyperparameter}
 			\acro{ml}[ML]{machine learning}
 			\acro{nn}[NN]{neural network}
+			\acro{rl}[RL]{reinforcement learning}
 			\acro{sgd}[SGD]{stochastic gradient descent}
 			\acro{td}[TD]{training data}
 			\acro{vc}[VC]{Vapnik–Chervonenkis}
