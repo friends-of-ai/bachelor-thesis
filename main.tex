@@ -331,7 +331,7 @@
 		\subsection{Insufficient amount of data}
 		\label{sec:section_insufficient_amount_of_data}
 			\de{Gibt man einem Menschen einen Donut und erkärt ihm, dass es ein Donut ist, so ist dieser nach einigem Wiederholen selbstständig in der Lage diesen Donut in der Zukunft zu klassifizieren. Bei Machine Learning ist diese Problematik etwas komplexer. Wie bei den meisten machinellen Lernverfahren benötigt man eine große Menge an Daten. Wieviel ist nicht richtig belegt. Gerade wenn man es mit vielen vorherzusagenden Klassen zu tun hat, erhöht sich die Datenmenge erfahrungsgemäß. In einem Paper aus dem Jahre 2012 wurde eine Vorgehensweise beschrieben, mit welcher der erste Platz beim alljährlichen ImageNet Wettbewerb gewonnen wurde. Dabei wurden 1000 Bilder pro Klasse bei einer Klassenanzahl von 1000 verwendet und eine top-5 Fehlerrate von 15.3\% erreicht.\autocite{krizhevsky2012imagenet}. Andere Artikel, welche sich mit diesem Thema beschäftigen, bestetigen diese Anzahl an Bildern pro Klasse.\autocite{sagar_deep_2019}\textsuperscript{,}\autocite{warden_how_2017}}
-			\en{If one gives a person a doughnut and explain to him that it is a doughnut, then after some repetition he is able to classify this doughnut in the future. With Machine Learning this problem is a bit more complex. As with most machine learning methods, a large amount of data is required. How much is not properly documented. Especially when one is dealing with many classes to be predicted, experience shows that the amount of data increases. In a paper from 2012, a procedure was described for winning first place in the annual ImageNet competition. This was done using 1000 images per class with a class count of 1000 and a top-5 error rate of 15.3\%.\autocite{krizhevsky2012imagenet} Other articles dealing with this topic confirm this number of images per class.\autocite{sagar_deep_2019}\textsuperscript{,}\autocite{warden_how_2017}}
+			\en{If one gives a person a doughnut and explain to him that it is a doughnut, then after some repetition he is able to classify this doughnut in the future. With \ac{ml} this problem is a bit more complex. As with most \ac{ml} methods, a large amount of data is required. How much is not properly documented. Especially when one is dealing with many classes to be predicted, experience shows that the amount of data increases. In a paper from 2012, a procedure was described for winning first place in the annual ImageNet competition. This was done using 1000 images per class with a class count of 1000 and a top-5 error rate of 15.3\%.\autocite{krizhevsky2012imagenet} Other articles dealing with this topic confirm this number of images per class.\autocite{sagar_deep_2019}\textsuperscript{,}\autocite{warden_how_2017}}
 	
 			\de{Je nach Anzahl von zu trainierenden Klassen gelangt man somit schnell zu einem benötigten Datenset, welches aus mehrere Gigabyte an Daten besteht. Mittels Transfer Learning ist es möglich diese Zahl nochmals etwas zu reduzieren, jedoch bleibt das Problem der vielen Daten bestehen. Ein Paper von Microsoft aus dem Jahre 2001\autocite{banko2001scaling} zeigte zur damaligen Zeit, dass einfache Algorithmen mit genügend Daten ähnliche Ergebnisse lieferten, wie komplexe Algorithmen auf Basis weniger Daten. Dabei bezogen sich die Forscher auf Daten, welche Sprachkonstrukte klassifizieren sollten:}
 			\en{Depending on the number of classes to be trained, one will quickly arrive at the required data set, which consists of several gigabytes of data. With Transfer Learning it is possible to reduce this number a little bit, but the problem of the large amount of data remains. A paper  from Microsoft in 2001\autocite{banko2001scaling} showed at that time that simple algorithms with enough data gave similar results as complex algorithms based on less data. The researchers referred to data which should classify language constructs:}
@@ -366,7 +366,7 @@
 			\footnotetext{Source: \url{https://towardsdatascience.com/image-classifier-cats-vs-dogs-with-convolutional-neural-networks-cnns-and-google-colabs-4e9af21ae7a8}}
 
 			\de{Lange Zeit galt die automatische Erkennung von Objekten, Personen und Szenen in Bildern durch Computer als unmöglich. Die Komplexität schien zu groß, als dass man sie einem Algorithmus programmatisch beibringen könnte. Bis noch vor einigen Jahrzehnten hat man so versucht Bildklassifikation durch manuell entwickelte Algorithmen zu erreichen. Die automatisierte Klassifikation anhand von vorgegebenen und vorklassifizierten Daten und dem automatisierten Erstellen von Modellen war ein neuer Schritt in eine neue Vorgehensweise. Die dabei immer mehr zur Verfügung stehende Rechenzeit spielt dabei genauso eine entscheidende Rolle am Erfolg wie parallelen Berechnungen auf mehreren \acp{gpu}, die Entwicklung effizienterer Algorithmen und Methoden wie \acl{da} und der Aufbau von Online-Datenbanken mit großen Mengen an beschrifteten Daten (ImageNet)\autocite{seif_deep_2019}. Mittlerweile ist die Bilderkennung ein weit verbreitetes Anwendungsgebiet des maschinellen Lernens. Häufig werden für Bilder sogenannte "\acp{cnn}\autocite{noauthor_convolutional_2020}" oder auch "ConvNets" verwendet.}
-			\en{For a long time, the automatic recognition of objects, people and scenes in images by computers was considered impossible. The complexity seemed too great to be programmatically taught to an algorithm. Until a few decades ago, attempts were made to achieve image classification by manually developed algorithms. Automated classification based on given and pre-classified data sets and the automated creation of models was a new step into a new approach. The ever increasing amount of available computing time plays as much a decisive role in the success as parallel computations on several \acp{gpu}, the development of more efficient algorithms and methods such as \acl{da} and the establishment of online databases with large amounts of labeled data (ImageNet)\autocite{seif_deep_2019}. Meanwhile, image recognition has become a widespread application area of machine learning. So-called "\acp{cnn}"\autocite{noauthor_convolutional_2020} or "ConvNets" are often used for images.}
+			\en{For a long time, the automatic recognition of objects, people and scenes in images by computers was considered impossible. The complexity seemed too great to be programmatically taught to an algorithm. Until a few decades ago, attempts were made to achieve image classification by manually developed algorithms. Automated classification based on given and pre-classified data sets and the automated creation of models was a new step into a new approach. The ever increasing amount of available computing time plays as much a decisive role in the success as parallel computations on several \acp{gpu}, the development of more efficient algorithms and methods such as \acl{da} and the establishment of online databases with large amounts of labeled data (ImageNet)\autocite{seif_deep_2019}. Meanwhile, image recognition has become a widespread application area of \ac{ml}. So-called "\acp{cnn}"\autocite{noauthor_convolutional_2020} or "ConvNets" are often used for images.}
 
 			\de{Der Bildklassifizierungsalgorithmus nimmt ein Bild als Eingabe entgegen und klassifiziert es in eine der möglichen Ausgabekategorien. Der Ansatz Wissen aus bestehenden Daten zu lernen wird \acf{ml} genannt. In Verbindung mit \acfp{ann} nennt man es genauer \acf{dl}. Verschiedene \acfp{cnn}, wie ResNet, DenseNet, Inception, etc. wurden als hochpräzise Netzwerke für die Bildklassifikation entwickelt. Gleichzeitig wurden Bilddatensätze angelegt, um getaggte Bilddaten zu erfassen. Diese werden jetzt vorrangig dazu verwendet um bestehende Netzwerke zu trainieren und alljährliche Challenges zu veranstalten, welche sich mit den bisher bekannten und schon entwickelten Modellgenauigkeiten messen. ImageNet ist ein solch großer Datensatz mit mehr als 11 Millionen Bildern und über 11.000 Kategorien\autocite{noauthor_imagenet_2019}. Wenn ein Netzwerk einmal mit ImageNet-Daten trainiert wurde, kann es durch einfache Neuanpassung oder Optimierung mit anderen Datensätzen verallgemeinert werden. Bei diesem Transfer-Lernansatz wird ein Netzwerk mit Gewichten initialisiert, welche aus einem zuvor trainierten Netzwerk stammen. Dieses zuvor initialisierte Netzwerk wird nun für eine neue Bildklassifikationsaufgabe lediglich entsprechend angepasst.}
 			\en{The image classification algorithm accepts an image as input and classifies it into one of the possible output categories. The approach to learn knowledge from existing data is called \acf{ml}\autocite{noauthor_machine_2020}. In combination with \acfp{ann} it is more precisely called \acf{dl}\autocite{noauthor_deep_2020}. Various \acfp{cnn}, such as ResNet, DenseNet, Inception, etc. have been developed as high-precision networks for image classification. At the same time, image data sets were created to capture tagged image data. These are now primarily used to train existing networks and to organize annual challenges that compete with the model accuracies already known and developed. ImageNet is such a large data set with more than 11 million images and over 11,000 categories\autocite{noauthor_imagenet_2019}. Once a network has been trained with ImageNet data, it can be generalized with other data sets by simple re-compilation or optimization. In this transfer learning approach, a network is initialized with weights that come from a previously trained network. This previously initialized network is now simply adapted for a new image classification task.}
@@ -400,7 +400,7 @@
 		\subsubsection{Inductive approach}
 		\label{sec:section_inductive_approach}
 			\de{Der induktive Ansatz hingegen verfolgt einen anderen Ansatz Bilder zu klassifizieren. Das Ziel ist nicht die Vorgabe einer Regel, sondern das Vorgehen aus schon bekannten einzelnen Objekten eine Regel (Modell) automatisiert zu erlernen. Ein Modell meist eine komplexe Funktion und eine mathematische Abbildung eines Raumes (VC Dimension\autocite{noauthor_vapnikchervonenkis_2020}), in welcher einzelne Objekte mit ihren Eigenschaften abgebildet und getrennt werden können. Das Modell wird Stück für Stück den bekannten Objekten so angepasst, dass der Eingabewert dem Ausgabewert entspricht bzw. weitgehend entspricht (Backpropagation). Das Ziel ist es mit diesem Modell eine Funktion zu erstellen, welche in der Lage ist auch unbekannte Objekte bestmöglichst zu klassifizieren. Da der Raum dieses Modell meist fern der Vorstellungskraft und der Erklärungsmöglichkeit liegt, wird dieses Verfahren auch Black-Box-Verfahren genannt. Der hier beschriebene Vorgang wird meist bei jeder Art von \hyperref[sec:section_supervised_classification]{überwachtem Lernen} angewendet und ist ein Teil des \hyperref[sec:section_machine_learning]{maschinellem Lernens}.}
-			\en{The inductive approach, on the other hand, takes a different approach to classifying images. The goal is not to specify a rule, but to learn a rule (model) automatically from already known individual objects. A model is usually a complex function and a mathematical representation of a space, in which individual objects with their properties can be mapped and separated. This measure of the capacity that can be learned by this complex function is called \ac{vcd}\autocite{noauthor_vapnikchervonenkis_2020}. The model is adapted piece by piece to the known objects in such a way that the input value corresponds to the output value or corresponds to a large extent (backpropagation). The goal is to create a function with this model, which can classify unknown objects in the best possible way. Because the space of this model is mostly far away from the imagination and the possibility of explanation, this procedure is also called a black-box procedure. The procedure described here is mostly used for any kind of \hyperref[sec:section_supervised_classification]{supervised learning} and is a part of \hyperref[sec:section_machine_learning]{machine learning}.}
+			\en{The inductive approach, on the other hand, takes a different approach to classifying images. The goal is not to specify a rule, but to learn a rule (model) automatically from already known individual objects. A model is usually a complex function and a mathematical representation of a space, in which individual objects with their properties can be mapped and separated. This measure of the capacity that can be learned by this complex function is called \ac{vcd}\autocite{noauthor_vapnikchervonenkis_2020}. The model is adapted piece by piece to the known objects in such a way that the input value corresponds to the output value or corresponds to a large extent (backpropagation). The goal is to create a function with this model, which can classify unknown objects in the best possible way. Because the space of this model is mostly far away from the imagination and the possibility of explanation, this procedure is also called a black-box procedure. The procedure described here is mostly used for any kind of \hyperref[sec:section_supervised_classification]{supervised learning} and is a part of \hyperref[sec:section_machine_learning]{\acl{ml}}.}
 
 			\begin{figure}[H]
 				\begin{center}
@@ -476,287 +476,317 @@
 		\subsubsection{Training, test and evaluation data set}
 		\label{sec:section_training_test_and_evaluation}
 			\de{Vor dem Beginn mit dem Training von ausbalancierten Bildern müssen diese in einen Trainings-, einen Test- und eventuell in einen Validierungsdatensatz aufgeteilt werden. Dies ist notwendig, da neuronale Netze zu einem Teil nicht verallgemeinern, sondern auswendig lernen werden (overfitting\autocite{noauthor_overfitting_2020}). Die Idee ist es mit einem Trainingsdatensatz zu trainieren, während mit dem Validierungsdatensatz die Allgemeingültigkeit des Netzes und seiner Parameter überwacht wird. Anhand der Ergebnisse werden zur Laufzeit Anpassungen vorgenommen. Da die Anpassung der Parameter anhand der Testdaten vorgenommen wird, gibt es noch einen unabhängigen Testdatensatz, welcher eine erneute Überprüfung des Modells auf bisher unbeteiligte Daten vornimmt. Dieser stellt sicher, dass nicht versehentlich Hyperparameter nur speziell für den Validierungsdatensatz optimiert werden\autocite{osinga2019data}. Die Verwendung des Testdatensatz ist optional und simuliert das Modell unter realen Bedingungen. Ist die Anzahl der Daten begrenzt und kann dieser Datensatz z.B. auch dem Trainingsdatensatz hinzugefügt werden. In dieser Arbeit wird auf den Testdatensatz verzichtet und sämtliche Auswertungen beziehen sich auf den Validierungsdatensatz.}
-			\en{Before starting the training of balanced images, they must be divided into a training, a test and possibly a validation data set. This is necessary because neural networks will not generalize to some extent, but will learn by heart (overfitting\autocite{noauthor_overfitting_2020}). The idea is to train with a training data set, while the validation data set is used to monitor the general validity of the network and its parameters. Based on the results, adjustments are made at runtime. Since the adjustment of the parameters is carried out using the test data, there is also an independent test data set, which carries out a renewed check of the model for previously uninvolved data. This ensures that hyperparameters are not inadvertently optimized for the validation data set only\autocite{osinga2019data}. The use of the test data set is optional and simulates the model under real conditions. If the number of data is limited, this data record can also be added to the training data record, for example. In this thesis, the test data set is not used and all evaluations refer to the validation data set.}
+			\en{Before starting the training of balanced images, they must be divided into a training, a test and possibly a validation data set. This is necessary because \ac{nn} will not generalize to some extent, but will learn by heart (overfitting\autocite{noauthor_overfitting_2020}). The idea is to train with a training data set, while the validation data set is used to monitor the general validity of the network and its parameters. Based on the results, adjustments are made at runtime. Since the adjustment of the parameters is carried out using the test data, there is also an independent test data set, which carries out a renewed check of the model for previously uninvolved data. This ensures that hyperparameters are not inadvertently optimized for the validation data set only\autocite{osinga2019data}. The use of the test data set is optional and simulates the model under real conditions. If the number of data is limited, this data record can also be added to the training data record, for example. In this thesis, the test data set is not used and all evaluations refer to the validation data set.}
 
 			\de{Eine optimale Aufteilung des Trainings- und Validierungsdatensatzes ist abhängig von dem vorliegenden Klassifizierungsproblem und die Anzahl der Daten, welche zur Verfügung stehen. In dieser Arbeit wird ein Verhältnis aus 80 Prozent Trainingsdaten und 20 Prozent Validierungsdaten verwendet, sofern nicht anders angegeben.}
 			\en{An optimal division of the training and validation data set depends on the existing classification problem and the amount of data available. In this thesis a ratio of 80 percent training data and 20 percent validation data is used, unless otherwise stated.}
 
 			\de{\hl{Hier muss die Frage noch geklärt werden warum 80 Prozent Trainingsdaten und 20 Prozent Validierungsdaten verwendet werden. Gibt es ein Paper bzw. eine Studie dazu? Oder ist noch ein Test erforderlich?}}
-			\en{\hl{The question of why 80 percent training data and 20 percent validation data are used remains to be clarified. Is there a paper or a study on this? Or is another test required?}}			
+			\en{\hl{The question of why 80 percent training data and 20 percent validation data are used remains to be clarified. Is there a paper or a study on this? Or is another test required?}}
+
+
+
+	% -------------------- %
+	% Classification Metrics %
+	% -------------------- %
+	\subsection{Classification metrics and confusion matrix}
+		\de{Die Wahl der richtigen Metrik ist bei der Bewertung von Modellen des maschinellen Lernens von entscheidender Bedeutung. Metriken werden zur Überwachung und Messung der Leistung eines Modells während des Trainings und des Tests verwendet. Im nachfolgenden werden einige wichtige Metriken erklärt.}
+		\en{Choosing the right metric is crucial in evaluating \ac{ml} models. Metrics are used to monitor and measure the performance of a model during training and testing. Some important metrics are explained below.}
 
 		% -------------------- %
-		% Methods of machine learning %
+		% Confusion Matrix %
 		% -------------------- %
-		\subsubsection{Methods of machine learning}
-		\label{sec:section_methods_of_machine_learning}
-			\de{Je nach Art und Vorgehensweise der Überwachung des Trainings lassen sich verschiedene Machine-Learning-System einordnen. Dabei wird unterschieden, welche Art von Daten uns vorliegen oder diese selbst bestimmt werden müssen.}
-			\en{Different machine learning systems can be classified according to the type and procedure of monitoring the training. A distinction is made as to which type of data is available or has to be determined by the user.}
+		\subsubsection{Confusion matrix}
+		 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während jede Spalte die Anzahl oder eine Zahlenangaben in Prozent der vorhergesagten Klasse angibt (oder umgekehrt)\autocite{noauthor_confusion_2020-1}:}
+		 	\en{The confusion matrix is a special quadratic matrix in the field of \ac{ml} that allows the visualization of the performance of a predictive model. Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\autocite{noauthor_confusion_2020-1}:}
 
-			% -------------------- %
-			% Supervised learning %
-			% -------------------- %
-			\paragraph{Supervised learning}
-			\label{sec:section_supervised_learning}
-				\de{Das überwachte Lernen bezieht sich auf ein maschinelles Lernen mit bekannten Trainingsdatensätzen (siehe auch Kapitel \hyperref[sec:section_inductive_approach]{``induktiver Ansatz''}). Der Lernprozess wiederrum bezieht sich auf die Fähigkeit einer künstlichen Intelligenz, Regelmäßigkeiten und Muster zu reproduzieren. Die Ergebnisse sind durch Naturgesetze oder Expertenwissen bekannt und werden für die Lehre des Systems verwendet, in dem ein Trainingsset erstellt wird, welcher die gewünschten Lösungen enthält. Man nennt dies auch gelabelte Daten. Der Lernalgorithmus versucht nun epochenweise eine Hypothese zu finden, die eine möglichst genaue Vorhersagen auf unbekannten Daten ermöglicht. Eine Hypothese ist in diesem Fall ein Bild, das jedem Eingabewert (das Bild selbst) den angenommenen Ausgabewert (die vorhergesagte Klasse) zuordnet. Diese Arbeit macht ausgiebigen Gebrauch von überwachtem Lernen.}
-				\en{Supervised learning refers to machine learning with known training data sets (see also chapter \hyperref[sec:section_inductive_approach]{``inductive approach''}). The learning process in turn refers to the ability of an \ac{ai} to reproduce regularities and patterns. The results are known by laws of nature or expert knowledge and are used to teach the system by creating a training set containing the desired solutions. This is also called labelled data. The learning algorithm now tries to find a hypothesis epoch by epoch, which allows the most accurate predictions on unknown data. A hypothesis in this case is an image that assigns the assumed output value (the predicted class) to each input value (the image itself). This work makes extensive use of supervised learning.}
-	
-				\de{Beim Überwachten Lernen wird einer Klassifizierungsfunktion (meist ein künstliches neuronales Netz) ein Eingangsvektor zugeführt. Der Eingangsvektor erzeugt mit Hilfe der Klassifizierungsfunktion einen Ausgabevektor, die dieses neuronale Netz in seinem aktuellen Zustand produziert\footnote{Das neuronale Netzwerk besteht aus vielen (meist Millionen) Parametern, welche während des Lernprozesses angepasst werden können, um den Fehler zu minimieren.}. Dieser Wert wird mit dem Wert verglichen, den es eigentlich ausgeben soll. Der Vergleich des Soll- und Istzustandes gibt Auskunft wie und in welcher Form Änderungen am Netzwerk vorgenommen werden müssen, um dem Istzustand weiter anzugleichen und den Fehler zu minimieren. Für künstliche neuronale Netzwerke ohne versteckter Schicht (einlagiges Perzeptron\autocite{noauthor_perceptron_2020}) kann die Delta-Regel\autocite{noauthor_least_2020} für die Korrektur vorgenommen werden. Bei Netzwerken mit einer oder mehreren versteckten Schichten verwendet man Backpropagation\autocite{noauthor_backpropagation_2020} um den Fehler zu minimieren. Backpropagation ist eine Verallgemeinerung der Delta-Regel.}
-				\en{In supervised learning, an input vector is fed to a classification function (usually an \acl{ann}). The input vector generates an output vector using the classification function, which produces this neural network in its current state\footnote{The neural network consists of many (usually millions) parameters, which can be adjusted during the learning process to minimize the error.}. This value is compared with the value that it should actually output. The comparison of the nominal and actual state provides information on how and in what form changes must be made to the network in order to further approximate the actual state and minimize the error. For \ac{ann} without a hidden layer (single-layer perceptron\autocite{noauthor_perceptron_2020}), the delta rule\autocite{noauthor_least_2020} for correction can be applied. For networks with one or more hidden layers backpropagation\autocite{noauthor_backpropagation_2020} is used to minimize the error. Backpropagation is a generalization of the delta rule.}
+			\begin{table}[htb]
+				\centering
+				\scalebox{0.75}{
+					{\def\arraystretch{2}\tabcolsep=5pt
+						\begin{tabular}{cc|c|c|c|c|}
+							\cline{3-6}
+							& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
+							& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
+							\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP\)                  & \multicolumn{3}{c|}{\(FN\)} \\ \cline{2-6} 
+							\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN\)}} \\ \cline{2-2}
+							\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
+							\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
+						\end{tabular}
+					}
+				}
+				\captionof{table}{Confusion matrix}\label{tbl:table_confusion_matrix}
+			\end{table}
 
-				\de{Das neuronale Netzwerke ist nur ein Algorithmus aus der Kategorie der überwachten Lernalgorithmen. Weitere mögliche Algorithmen sind:}
-				\en{The neural network is only one algorithm from the category of supervised learning algorithms. Other possible algorithms are:}
-				
-				\begin{itemize}
-					\item k-nearest neighbors\autocite{noauthor_k-nearest_2020}
-					\item Linear regression\autocite{noauthor_linear_2020}
-					\item Logistic regression\autocite{noauthor_logistic_2020}
-					\item Support-vector machine\autocite{noauthor_support-vector_2020}
-					\item Random forest\autocite{noauthor_random_2020}
-					\item etc.
-				\end{itemize}
-		
-			% -------------------- %
-			% Unsupervised learning %
-			% -------------------- %
-			\paragraph{Unsupervised learning}
-			\label{sec:section_unsupervised_learning}
-				\de{Beim unüberwachtem Lernen versucht man auch ohne gelabelte Daten an eine Kenntnis von Mustern zu erlangen. Angenommen man hätte mehrere Bilder von Burgern, Pizza und Donuts, welche sich unsortiert in einem Datenset befinden. Das unüberwachte Lernen versucht nun Ähnlichkeiten zu finden, um diese Bilder zu gruppieren. Im besten Fall erhält man am Ende drei unbenannte Gruppen \(A\), \(B\) und \(C\). Analysten werden sich diese Gruppen im Nachgang genauer anschauen und ein Fazit daraus ziehen, sofern dies möglich ist: Gruppe \(A\) trägt dann den Namen Burger, Gruppe \(B\) Pizzen, etc.}
-				\en{In unsupervised learning, one tries to gain knowledge of patterns even without labelled data. Suppose one has several pictures of burgers, pizza and doughnuts, which are unsorted in a data set. Unsupervised learning now tries to find similarities in order to cluster these images. In the best case one gets three unnamed groups \(A\), \(B\) and \(C\) at the end. Analysts will take a closer look at these groups afterwards and draw a conclusion if possible:  Group \(A\) is then called Burger, Group \(B\) Pizzas, etc.}
-				
-				\de{\noindent Folgende unüberwachte Lernalgorithmen können zur Gruppierung verwendet werden:}
-				\en{\noindent The following unsupervised learning algorithms can be used for clustering:}
-				
-				\begin{itemize}
-					\item k-means\autocite{noauthor_k-means_2020}
-					\item Hierarchical clustering\autocite{noauthor_hierarchical_2020}
-					\item Expectation–maximization \autocite{noauthor_expectationmaximization_2020}
-					\item etc.
-				\end{itemize}
+		 	\de{Zum Schluß besitzt die Confusion Matrix folgenden Aufbau, wobei die Anzahl von Elementen in der Klasse \(C_{i,P}\) vorhergesagt wurde, obwohl (\(\boldsymbol{\cong}\)) es hätte Klasse \(C_{j,A}\) sein müssen:}
+			\en{Finally, the Confusion Matrix has the following structure, where the number of elements in the class \(C_{i,P}\) was predicted although (\(\boldsymbol{\cong}\)) it should have been class \(C_{j,A}\):}
+
+			\begin{equation}
+				\boldsymbol{M}_{confusion} = \begin{bmatrix}
+					\#C_{1,P}\boldsymbol{\cong} C_{1,A} & \dots & \#(C_{n,P}\boldsymbol{\cong} C_{1,A}) \\
+					\vdots & \ddots & \vdots \\
+					\#(C_{1,P}\boldsymbol{\cong} C_{n,A}) & \dots & \#(C_{n,P}\boldsymbol{\cong} C_{n,A})
+				\end{bmatrix} = (a_{nn})
+			\end{equation}
+
+		% -------------------- %
+		% Accuracy %
+		% -------------------- %
+		\subsubsection{Accuracy}
+			\de{Die \textbf{Top-1-Genauigkeit} ist wahrscheinlich die wichtigste Genauigkeit. Sie sagt sagt aus, zu wieviel Prozent die jeweils beste Aussage des Modells auf die Daten des Validierungssets mit der erwarteten Klasse übereinstimmt.}
+			\en{\textbf{Top-1 accuracy} is probably the most important accuracy. It tells one the percentage of the model's best prediction of the data in the validation set that matches the expected class.}
+
+			\begin{equation}
+				Accuracy = {{TP + TN} \over {TP + TN + FP + FN}} = {{\sum_{i,j=1}^{n} a_{ij}} \over {\sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}}} = {{Correct_{all}} \over {CorrectPossible_{all}}}
+			\end{equation}
+
+			\de{Die \textbf{Top-5-Genauigkeit} ist eine weitere Genauigkeitsangabe. Jedoch wird hier nicht nur der beste Treffer einbezogen, sondern auch die nächsten weiteren vier. Sobald die richtige Klasse innerhalb der ersten fünf vorhergesagten Klassen gefunden werden kann, so ist auch diese Vorhersage wahr:}
+			\en{The \textbf{Top 5 Accuracy} is another accuracy specification. However, not only the best hit is included here, but also the next four. As soon as the correct class can be found within the first five predicted classes, this prediction is also true:}
 			
-				\de{Eine Technik, die hierarchische Clusteranalyse (siehe Kapitel \hyperref[sec:section_validation_hierarchical classification]{``Hierarchical classification''}), wird später verwendet um die Einführung von Hierarchien zu erleichtern. Für die allgemeine Analyse, den Finden von optimalen Parametern für das Lernen von Modellen, wird diese Art des Lernens in dieser Arbeit nicht verwendet.}
-				\en{One technique, hierarchical clustering (see chapter \hyperref[sec:section_validation_hierarchical classification]{``Hierarchical classification''}), is used later to facilitate the introduction of hierarchies. For the general analysis, the finding of optimal parameters for learning models, this kind of learning is not used in this thesis.}
+			\begin{equation}
+				Accuracy_{top-5} = {{CorrectWithinTheBest5Classes_{all}} \over {CorrectPossible_{all}}}
+			\end{equation}
 
-		\label{}
-			% -------------------- %
-			% Reinforcement learning %
-			% -------------------- %
-			\paragraph{Reinforcement learning}
-			\label{sec:section_reinforcement_learning}
-				\de{Reinforcement learning\autocite{noauthor_reinforcement_2020} ist eine Art des maschinellen Lernens, bei der ein Agent selbstständig die bestmögliche Strategie für die Erreichung eines Zieles erlernt. Für die Erreichung des Ziels sind Aktionen notwendig, welche zu bestimmten Zeitpunkten Belohnungen hervorbringen. Diese Belohnungen können auch negative sein (Bestrafung). Anhand dieser Belohnungen gilt es in Summe den bestmöglichen Belohnungswert zu erzielen. Bei der Klassifizierung von Bildern ist diese Art des Lernens nicht relevant, weshalb hier auch nicht weiter darauf eingegangen wird.}
-				\en{Reinforcement learning\autocite{noauthor_reinforcement_2020} is a type of machine learning in which an agent independently learns the best possible strategy for achieving a goal. To achieve the goal, actions are necessary which produce rewards at certain points in time. These rewards can also be negative (punishment). Based on these rewards, the aim is to achieve the best possible reward value. This type of learning is not relevant for the classification of images, which is why it will not be discussed further here.}
+			\de{Die Genauigkeit des gesamten Modells ist eine gute Aussagekraft über die Leistungsfähigkeit des Modells. Ein Problem tritt jedoch in Extremfällen auf, bei denen nicht mehr zuverlässig Annahmen gemacht werden können. Zum Beispiel wenn man es mit einem unbalancierten Datensatz zu tun hat\autocite{geron2017supervisedlearningConfusionMatrix}. Beispiel: Angenommen man hätte ein Modell, dass immer die Klasse \(class_1\) vorhersagt. Die Klasse \(class_1\) besteht aus 9990 Elementen und von den anderen Klassen \(class_2\) bis \(class_n\) hat man genau 10. Dann sieht die Confusion Matrix wie folgt aus:}
+			\en{The accuracy of the entire model is a good indication of the performance of the model. However, a problem occurs in extreme cases where assumptions can no longer be made reliably. For example, if one is working with an unbalanced dataset\autocite{geron2017supervisedlearningConfusionMatrix}. Example: Suppose one has a model that always predicts the class \(class_1\). The class \(class_1\) consists of 9990 elements and from the other classes \(class_2\) to \(class_n\) one has exactly 10. Then the Confusion Matrix looks like this:}
 
+			%\clearpage
+			\begin{table}[htb]
+				\centering
+				\scalebox{0.75}{
+					{\def\arraystretch{2}\tabcolsep=5pt
+						\begin{tabular}{cc|c|c|c|c|}
+							\cline{3-6}
+							& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
+							& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
+							\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP = 9990\)                  & \multicolumn{3}{c|}{\(FN = 0\)} \\ \cline{2-6} 
+							\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP = 10\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN = 0\)}} \\ \cline{2-2}
+							\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
+							\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
+						\end{tabular}
+					}
+				}
+				\captionof{table}{Confusion matrix example}\label{tbl:table_confusion_matrix}
+			\end{table}
 
+			\de{Die Modell-Genauigkeit ist ein ist in diesem Fall 99,9\%, obwohl es ein schlechtes Modell ist:}
+			\en{The model accuracy in this case is 99.9\%, although it is a bad model:}
+
+			\begin{equation}
+				Accuracy = 99,9\%
+			\end{equation}
+
+			\de{Deswegen gibt es weitere Performance Metriken wie Precision, Recall und F-Measure.}
+			\en{Therefore there are additional performance metrics like Precision, Recall and F-Measure.}
 
 		% -------------------- %
-		% Classification Metrics %
+		% Precision %
 		% -------------------- %
-		\subsubsection{Classification metrics and confusion matrix}
-			\de{Die Wahl der richtigen Metrik ist bei der Bewertung von Modellen des maschinellen Lernens von entscheidender Bedeutung. Metriken werden zur Überwachung und Messung der Leistung eines Modells während des Trainings und des Tests verwendet. Im nachfolgenden werden einige wichtige Metriken erklärt.}
-			\en{Choosing the right metric is crucial in evaluating machine learning models. Metrics are used to monitor and measure the performance of a model during training and testing. Some important metrics are explained below.}
+		\subsubsection{Precision}
+			\de{Precision\autocite{noauthor_precision_2020} sagt aus, wie zuverlässig die Aussage einer Vorhersage einer Klasse ist:}
+			\en{Precision\autocite{noauthor_precision_2020} expresses how reliable the statement of a prediction of a class is:}
 
-			% -------------------- %
-			% Confusion Matrix %
-			% -------------------- %
-			\paragraph{Confusion matrix}
-			 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während jede Spalte die Anzahl oder eine Zahlenangaben in Prozent der vorhergesagten Klasse angibt (oder umgekehrt)\autocite{noauthor_confusion_2020-1}:}
-			 	\en{The confusion matrix is a special quadratic matrix in the field of machine learning that allows the visualization of the performance of a predictive model. Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\autocite{noauthor_confusion_2020-1}:}
+			\begin{equation}
+				Precision = {{Correct} \over {Actual}} = {{TP} \over {TP + FP}}
+			\end{equation}
 
-				\begin{table}[htb]
-					\centering
-					\scalebox{0.75}{
-						{\def\arraystretch{2}\tabcolsep=5pt
-							\begin{tabular}{cc|c|c|c|c|}
-								\cline{3-6}
-								& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
-								& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
-								\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP\)                  & \multicolumn{3}{c|}{\(FN\)} \\ \cline{2-6} 
-								\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN\)}} \\ \cline{2-2}
-								\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
-								\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
-							\end{tabular}
-						}
-					}
-					\captionof{table}{Confusion matrix}\label{tbl:table_confusion_matrix}
-				\end{table}
+			\de{Oder genauer für die Klasse c:}
+			\en{Or more precisely for class c:}
 
-			 	\de{Zum Schluß besitzt die Confusion Matrix folgenden Aufbau, wobei die Anzahl von Elementen in der Klasse \(C_{i,P}\) vorhergesagt wurde, obwohl (\(\boldsymbol{\cong}\)) es hätte Klasse \(C_{j,A}\) sein müssen:}
-				\en{Finally, the Confusion Matrix has the following structure, where the number of elements in the class \(C_{i,P}\) was predicted although (\(\boldsymbol{\cong}\)) it should have been class \(C_{j,A}\):}
+			\begin{equation}
+				Precision_{@c} = {{a_{cc}} \over {\sum_{i=1}^{n} a_{ic}}}
+			\end{equation}
 
-				\begin{equation}
-					\boldsymbol{M}_{confusion} = \begin{bmatrix}
-						\#C_{1,P}\boldsymbol{\cong} C_{1,A} & \dots & \#(C_{n,P}\boldsymbol{\cong} C_{1,A}) \\
-						\vdots & \ddots & \vdots \\
-						\#(C_{1,P}\boldsymbol{\cong} C_{n,A}) & \dots & \#(C_{n,P}\boldsymbol{\cong} C_{n,A})
-					\end{bmatrix} = (a_{nn})
-				\end{equation}
+		% -------------------- %
+		% Recall %
+		% -------------------- %
+		\subsubsection{Recall}
+			\de{Recall\autocite{noauthor_precision_2020} ist die Genauigkeit einer Klasse. Das bedeutet wie gut konnte die Klasse vorhergesehen werden:}
+			\en{Recall\autocite{noauthor_precision_2020} is the accuracy of a class. This means how well the class could be predicted:}
 
-			% -------------------- %
-			% Accuracy %
-			% -------------------- %
-			\paragraph{Accuracy}
-				\de{Die \textbf{Top-1-Genauigkeit} ist wahrscheinlich die wichtigste Genauigkeit. Sie sagt sagt aus, zu wieviel Prozent die jeweils beste Aussage des Modells auf die Daten des Validierungssets mit der erwarteten Klasse übereinstimmt.}
-				\en{\textbf{Top-1 accuracy} is probably the most important accuracy. It tells one the percentage of the model's best prediction of the data in the validation set that matches the expected class.}
+			\begin{equation}
+				Recall = {{Correct} \over {CorrectPossible}} = {{TP} \over {TP + FN}}
+			\end{equation}
 
-				\begin{equation}
-					Accuracy = {{TP + TN} \over {TP + TN + FP + FN}} = {{\sum_{i,j=1}^{n} a_{ij}} \over {\sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}}} = {{Correct_{all}} \over {CorrectPossible_{all}}}
-				\end{equation}
+			\de{Oder genauer für die Klasse c:}
+			\en{Or more precisely for class c:}
 
-				\de{Die \textbf{Top-5-Genauigkeit} ist eine weitere Genauigkeitsangabe. Jedoch wird hier nicht nur der beste Treffer einbezogen, sondern auch die nächsten weiteren vier. Sobald die richtige Klasse innerhalb der ersten fünf vorhergesagten Klassen gefunden werden kann, so ist auch diese Vorhersage wahr:}
-				\en{The \textbf{Top 5 Accuracy} is another accuracy specification. However, not only the best hit is included here, but also the next four. As soon as the correct class can be found within the first five predicted classes, this prediction is also true:}
-				
-				\begin{equation}
-					Accuracy_{top-5} = {{CorrectWithinTheBest5Classes_{all}} \over {CorrectPossible_{all}}}
-				\end{equation}
+			\begin{equation}
+				Recall_{@c} = {{a_{cc}} \over {\sum_{i=1}^{n} a_{ci}}}
+			\end{equation}
 
-				\de{Die Genauigkeit des gesamten Modells ist eine gute Aussagekraft über die Leistungsfähigkeit des Modells. Ein Problem tritt jedoch in Extremfällen auf, bei denen nicht mehr zuverlässig Annahmen gemacht werden können. Zum Beispiel wenn man es mit einem unbalancierten Datensatz zu tun hat\autocite{geron2017supervisedlearningConfusionMatrix}. Beispiel: Angenommen man hätte ein Modell, dass immer die Klasse \(class_1\) vorhersagt. Die Klasse \(class_1\) besteht aus 9990 Elementen und von den anderen Klassen \(class_2\) bis \(class_n\) hat man genau 10. Dann sieht die Confusion Matrix wie folgt aus:}
-				\en{The accuracy of the entire model is a good indication of the performance of the model. However, a problem occurs in extreme cases where assumptions can no longer be made reliably. For example, if one is working with an unbalanced dataset\autocite{geron2017supervisedlearningConfusionMatrix}. Example: Suppose one has a model that always predicts the class \(class_1\). The class \(class_1\) consists of 9990 elements and from the other classes \(class_2\) to \(class_n\) one has exactly 10. Then the Confusion Matrix looks like this:}
+		% -------------------- %
+		% F-Measure %
+		% -------------------- %
+		\subsubsection{F-Measure}
+			\de{F-Measure\autocite{noauthor_f1_2020} kombiniert Präzision und Rückruf, wobei der Parameter \(\beta\) die Gewichtung darstellt:}
+			\en{F-Measure\autocite{noauthor_f1_2020} combines precision and recall, with the parameter \(\beta\) representing the weighting:}
+			\begin{equation}
+				F_\beta =
+				(1 + \beta^2) \cdot {{Precision\cdot Recall}\over{\beta^2 \cdot Precision + Recall}} = 
+				{{(1 + \beta^2) \cdot TP}\over{(1 + \beta^2) \cdot TP + \beta^2 \cdot FN + FP}}
+			\end{equation}
 
-				%\clearpage
-				\begin{table}[htb]
-					\centering
-					\scalebox{0.75}{
-						{\def\arraystretch{2}\tabcolsep=5pt
-							\begin{tabular}{cc|c|c|c|c|}
-								\cline{3-6}
-								& & \multicolumn{4}{c|}{\textbf{predicted}} \\ \cline{3-6} 
-								& & \boldmath\(class_1\) & \boldmath\(class_2\) & \textbf{\ldots} & \boldmath\(class_n\) \\ \hline
-								\multicolumn{1}{|l|}{\multirow{4}{*}{\rotatebox{90}{\textbf{actual}}}} & \boldmath\(class_1\) & \(TP = 9990\)                  & \multicolumn{3}{c|}{\(FN = 0\)} \\ \cline{2-6} 
-								\multicolumn{1}{|c|}{} & \boldmath\(class_2\) & \multirow{3}{*}{\(FP = 10\)} & \multicolumn{3}{c|}{\multirow{3}{*}{\(TN = 0\)}} \\ \cline{2-2}
-								\multicolumn{1}{|c|}{} & \textbf{\ldots} & & \multicolumn{3}{c|}{}                   \\ \cline{2-2}
-								\multicolumn{1}{|c|}{} & \boldmath\(class_n\) & & \multicolumn{3}{c|}{}                   \\ \hline
-							\end{tabular}
-						}
-					}
-					\captionof{table}{Confusion matrix example}\label{tbl:table_confusion_matrix}
-				\end{table}
+			\de{Je höher der \(\beta\), desto mehr Wert wird auf Precision statt auf Recall gelegt. Das ist wichtig, wenn man mehr Wert auf die Qualität der Verhersage legt, als auf die Erkennungsgenauigkeit. Z.B. bei einer Vorhersage von Krankheiten: Zuordnung von Klasse Krank bei gesunden Menschen ist hier genauso fatal wie auch die Zuordnung von Klasse Gesund bei kranken Menschen. Mit einem Wert von \(\beta = 0,5\) erhält man eine Gleichverteilung beider Werte und wird F1 score genannt:}
+			\en{The higher \(\beta\) the more importance is placed on precision instead of recall. This is important if one puts more importance on the quality of the prediction than on the accuracy of prediction. For example, when predicting diseases: assigning class ``ill'' to healthy people is just as fatal as assigning class ``healthy'' to sick people. A value of \(\beta = 0.5\) one gets an equal distribution of both values and is called F1 score:}
 
-				\de{Die Modell-Genauigkeit ist ein ist in diesem Fall 99,9\%, obwohl es ein schlechtes Modell ist:}
-				\en{The model accuracy in this case is 99.9\%, although it is a bad model:}
+			\begin{equation}
+				F_1 =
+				{{2 \cdot Precision \cdot Recall}\over{Precision + Recall}} = 
+				{{2 \cdot TP}\over{2 \cdot TP + FN + FP}}
+			\end{equation}
 
-				\begin{equation}
-					Accuracy = 99,9\%
-				\end{equation}
+		% -------------------- %
+		% loss function %
+		% -------------------- %
+		\subsubsection{Loss function}
+		\label{sec:section_loss_function}
+			\de{Da es sich hierbei um ein Klassifzierungsproblem und nicht um ein Regressionsproblem handelt, greift man bei der Vorhersage auf die Softmax-Regression zurück. Dabei wird nach jeder Vorhersage ein Vektor \(\lambda\) der Größe \(n\) zurückgegeben, wobei \(n\) der Anzahl der zu unterscheidenden Klassen entspricht\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(\hat{p}\) Wert entspricht dabei der Wahrscheinlichkeit, dass es die Klasse \(class_n\) ist:}
+			\en{Since this is a classification problem and not a regression problem, the prediction is based on softmax regression. After each prediction, a vector \(\lambda\) of the size \(n\) is returned, where \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual \(\hat{p}\) value corresponds to the probability that it is class \(class_n\):}
 
-				\de{Deswegen gibt es weitere Performance Metriken wie Precision, Recall und F-Measure.}
-				\en{Therefore there are additional performance metrics like Precision, Recall and F-Measure.}
+			\begin{equation}
+				\lambda = 
+				\left(
+					\begin{array}{c}
+					\hat{p}_{1}\\
+					\hat{p}_{2}\\
+					\hat{p}_{3}\\
+					\vdots\\
+					\hat{p}_{n}\\
+					\end{array}
+				\right)
+				\quad\Biggl\lvert \quad \sum_{i=1}^n \hat{p_i} = 1
+			\end{equation}
 
-			% -------------------- %
-			% Precision %
-			% -------------------- %
-			\paragraph{Precision}
-				\de{Precision\autocite{noauthor_precision_2020} sagt aus, wie zuverlässig die Aussage einer Vorhersage einer Klasse ist:}
-				\en{Precision\autocite{noauthor_precision_2020} expresses how reliable the statement of a prediction of a class is:}
+			\de{Der erwartete Wert der Parameterfunktion und somit der aktuellen Klasse wird als One Hot Vektor zurückgegeben. Der Wert 1 entspricht der erwarteten Klasse. Alle anderen Klassen geben 0 zurück. Dies nennt man auch One Hot Encoding (am Beispiel von Klasse 2):}
+			\en{The expected value of the parameter function and thus of the current class is returned as a one hot vector. The value 1 corresponds to the expected class. All other classes return 0. This is also called one hot encoding (using the example of class 2):}
 
-				\begin{equation}
-					Precision = {{Correct} \over {Actual}} = {{TP} \over {TP + FP}}
-				\end{equation}
+			\begin{equation}
+				g(\vartheta_2) = 
+				\left(
+					\begin{array}{c}
+					0\\
+					1\\
+					0\\
+					\vdots\\
+					0\\
+					\end{array}
+				\right)
+			\end{equation}
 
-				\de{Oder genauer für die Klasse c:}
-				\en{Or more precisely for class c:}
+			\de{Die Verlustfunktion\autocite{noauthor_verlustfunktion_2018} ordnet jeder Vorhersage einen Schaden zu, der durch den Vergleich mit dem wahren Wert bzw. Parameter entsteht. Dazu wird der Abstand der vorhergesagten Klasse zur wahren Klasse berechnet (sind sie gleich ist der Abstand 0). Bessert sich mit Anpassung des Modells (Lernvorgang) die Vorhersage aller vorhergesagten Klassen zu ihren wahren Klassen, so verkleinert sich auch der Wert der Verlustfunktion. Eine typische Verlustfunktion ist z.B. für einen r-dimensionalen Raum:}
+			\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction, which results from the comparison with the true value or parameter. For this purpose, the distance between the predicted class and the true class is calculated (if they are equal, the distance is 0).  If the adaptation of the model (learning process) improves the prediction of all predicted classes to their true classes, the value of the loss function is also reduced.  A typical loss function is e.g. for an r-dimensional space:}
 
-				\begin{equation}
-					Precision_{@c} = {{a_{cc}} \over {\sum_{i=1}^{n} a_{ic}}}
-				\end{equation}
+			\begin{equation}
+				L_r(\vartheta, \lambda) := \lVert \lambda - g(\vartheta) \rVert^r
+			\end{equation}
 
-			% -------------------- %
-			% Recall %
-			% -------------------- %
-			\paragraph{Recall}
-				\de{Recall\autocite{noauthor_precision_2020} ist die Genauigkeit einer Klasse. Das bedeutet wie gut konnte die Klasse vorhergesehen werden:}
-				\en{Recall\autocite{noauthor_precision_2020} is the accuracy of a class. This means how well the class could be predicted:}
+			\de{\(\lambda\) stellt hierbei den geschätzte Wert und \(g(\vartheta)\) die Parameterfunktion dar, welche den realen Wert für \(\vartheta\) zurückliefert. Der mittlere Verlust auf den gesamten Datensatz mit \(n\) Elementen beträgt somit:}
+			\en{\(\lambda\) represents the estimated value and \(g(\vartheta)\) the parameter function which returns the actual value for \(\vartheta\). The average loss on the entire data set with \(n\) elements is thus:}
 
-				\begin{equation}
-					Recall = {{Correct} \over {CorrectPossible}} = {{TP} \over {TP + FN}}
-				\end{equation}
-
-				\de{Oder genauer für die Klasse c:}
-				\en{Or more precisely for class c:}
-
-				\begin{equation}
-					Recall_{@c} = {{a_{cc}} \over {\sum_{i=1}^{n} a_{ci}}}
-				\end{equation}
-
-			% -------------------- %
-			% F-Measure %
-			% -------------------- %
-			\paragraph{F-Measure}
-				\de{F-Measure\autocite{noauthor_f1_2020} kombiniert Präzision und Rückruf, wobei der Parameter \(\beta\) die Gewichtung darstellt:}
-				\en{F-Measure\autocite{noauthor_f1_2020} combines precision and recall, with the parameter \(\beta\) representing the weighting:}
-				\begin{equation}
-					F_\beta =
-					(1 + \beta^2) \cdot {{Precision\cdot Recall}\over{\beta^2 \cdot Precision + Recall}} = 
-					{{(1 + \beta^2) \cdot TP}\over{(1 + \beta^2) \cdot TP + \beta^2 \cdot FN + FP}}
-				\end{equation}
-
-				\de{Je höher der \(\beta\), desto mehr Wert wird auf Precision statt auf Recall gelegt. Das ist wichtig, wenn man mehr Wert auf die Qualität der Verhersage legt, als auf die Erkennungsgenauigkeit. Z.B. bei einer Vorhersage von Krankheiten: Zuordnung von Klasse Krank bei gesunden Menschen ist hier genauso fatal wie auch die Zuordnung von Klasse Gesund bei kranken Menschen. Mit einem Wert von \(\beta = 0,5\) erhält man eine Gleichverteilung beider Werte und wird F1 score genannt:}
-				\en{The higher \(\beta\) the more importance is placed on precision instead of recall. This is important if one puts more importance on the quality of the prediction than on the accuracy of prediction. For example, when predicting diseases: assigning class ``ill'' to healthy people is just as fatal as assigning class ``healthy'' to sick people. A value of \(\beta = 0.5\) one gets an equal distribution of both values and is called F1 score:}
-
-				\begin{equation}
-					F_1 =
-					{{2 \cdot Precision \cdot Recall}\over{Precision + Recall}} = 
-					{{2 \cdot TP}\over{2 \cdot TP + FN + FP}}
-				\end{equation}
-
-			% -------------------- %
-			% loss function %
-			% -------------------- %
-			\paragraph{Loss function}
-			\label{sec:section_loss_function}
-				\de{Da es sich hierbei um ein Klassifzierungsproblem und nicht um ein Regressionsproblem handelt, greift man bei der Vorhersage auf die Softmax-Regression zurück. Dabei wird nach jeder Vorhersage ein Vektor \(\lambda\) der Größe \(n\) zurückgegeben, wobei \(n\) der Anzahl der zu unterscheidenden Klassen entspricht\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(\hat{p}\) Wert entspricht dabei der Wahrscheinlichkeit, dass es die Klasse \(class_n\) ist:}
-				\en{Since this is a classification problem and not a regression problem, the prediction is based on softmax regression. After each prediction, a vector \(\lambda\) of the size \(n\) is returned, where \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual \(\hat{p}\) value corresponds to the probability that it is class \(class_n\):}
-
-				\begin{equation}
-					\lambda = 
-					\left(
-						\begin{array}{c}
-						\hat{p}_{1}\\
-						\hat{p}_{2}\\
-						\hat{p}_{3}\\
-						\vdots\\
-						\hat{p}_{n}\\
-						\end{array}
-					\right)
-					\quad\Biggl\lvert \quad \sum_{i=1}^n \hat{p_i} = 1
-				\end{equation}
-
-				\de{Der erwartete Wert der Parameterfunktion und somit der aktuellen Klasse wird als One Hot Vektor zurückgegeben. Der Wert 1 entspricht der erwarteten Klasse. Alle anderen Klassen geben 0 zurück. Dies nennt man auch One Hot Encoding (am Beispiel von Klasse 2):}
-				\en{The expected value of the parameter function and thus of the current class is returned as a one hot vector. The value 1 corresponds to the expected class. All other classes return 0. This is also called one hot encoding (using the example of class 2):}
-
-				\begin{equation}
-					g(\vartheta_2) = 
-					\left(
-						\begin{array}{c}
-						0\\
-						1\\
-						0\\
-						\vdots\\
-						0\\
-						\end{array}
-					\right)
-				\end{equation}
-
-				\de{Die Verlustfunktion\autocite{noauthor_verlustfunktion_2018} ordnet jeder Vorhersage einen Schaden zu, der durch den Vergleich mit dem wahren Wert bzw. Parameter entsteht. Dazu wird der Abstand der vorhergesagten Klasse zur wahren Klasse berechnet (sind sie gleich ist der Abstand 0). Bessert sich mit Anpassung des Modells (Lernvorgang) die Vorhersage aller vorhergesagten Klassen zu ihren wahren Klassen, so verkleinert sich auch der Wert der Verlustfunktion. Eine typische Verlustfunktion ist z.B. für einen r-dimensionalen Raum:}
-				\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction, which results from the comparison with the true value or parameter. For this purpose, the distance between the predicted class and the true class is calculated (if they are equal, the distance is 0).  If the adaptation of the model (learning process) improves the prediction of all predicted classes to their true classes, the value of the loss function is also reduced.  A typical loss function is e.g. for an r-dimensional space:}
-
-				\begin{equation}
-					L_r(\vartheta, \lambda) := \lVert \lambda - g(\vartheta) \rVert^r
-				\end{equation}
-
-				\de{\(\lambda\) stellt hierbei den geschätzte Wert und \(g(\vartheta)\) die Parameterfunktion dar, welche den realen Wert für \(\vartheta\) zurückliefert. Der mittlere Verlust auf den gesamten Datensatz mit \(n\) Elementen beträgt somit:}
-				\en{\(\lambda\) represents the estimated value and \(g(\vartheta)\) the parameter function which returns the actual value for \(\vartheta\). The average loss on the entire data set with \(n\) elements is thus:}
-
-				\begin{equation}
-					\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \lambda_i)
-				\end{equation}
+			\begin{equation}
+				\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \lambda_i)
+			\end{equation}
 
 		\subsection{Machine learning}
 		\label{sec:section_machine_learning}
 			\de{Maschinelles Lernen ist ein Oberbegriff für die künstliche Generierung von Wissen aus Erfahrung. Es verfolgt den Ansatz des induktiven Lernens (siehe auch Kapitel \hyperref[sec:section_inductive_approach]{``induktiver Ansatz''}).}
 			\en{Machine learning is a generic term for the artificial generation of knowledge from experience. It follows the approach of inductive learning (see also chapter \hyperref[sec:section_inductive_approach]{``inductive approach''}).}
+			
+			
+			
+			% -------------------- %
+			% Short definitions %
+			% -------------------- %
+			\subsubsection{Short definitions}
+			\label{sec:section_short_definitions}
+				\paragraph{Learning epoch}
+				\label{sec:section_learning_epoch}
+					\de{Unter einer Lernepoche versteht man den einmaligen Trainingsdurchlauf mit allen Trainingsdatensätzen. Meist reicht ein Trainingsdurchlauf nicht aus, weshalb weitere Lernepochen im Anschluß erfolgen. Sobald mit weiteren Lernepochen die Leistungsfähigkeit des Netzwerkes nicht weiter steigt, beendet man das Training.}
+					\en{A learning epoch is understood to be the one time training run with all training data sets. Usually one training run is not sufficient, which is why further learning epochs follow. As soon as the performance of the network does not increase anymore with further epochs, the training is terminated.}
+					
+				\paragraph{Learning rate}
+				\label{sec:section_learning_rate}
+					\de{Die Lernrate ist ein Abstimmungsparameter in einem Optimierungsalgorithmus. Dieser sagt aus, wie groß die Schrittweite bei jeder Iteration ist, mit der sich die Parameter auf das Minimum einer Verlustfunktion zubewegen. Sie sollte nicht zu hoch (Minimum wird nicht gefunden) und nicht zu klein sein (sehr langsames Lernen). Die Lernrate wird oft mit dem Zeichen \(\eta\) oder \(\alpha\) bezeichnet.}
+					\en{The learning rate is a tuning parameter in an optimization algorithm. It expresses how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
+					
+				\paragraph{Batch size}
+				\label{sec:section_batch_size}
+					\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
+					\en{The batch size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. Normally it is intended to train all training data per epoch with one process. Especially in the area of image classification this is usually not possible due to the limited memory, so an epoch is divided into many small batches. The advantage is that one only has to keep the data in memory which is necessary for the current batch. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
+
+				\paragraph{Data augmentation}
+				\label{sec:section_data_augmentation}
+					\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Dies wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern.}
+					\en{Data augmentation is the artificial augmentation of a data set. This is primarily used when only little data is available. Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training. \hl{Is there an example that proves this quickly?}}
+			
+			
+			% -------------------- %
+			% Methods of machine learning %
+			% -------------------- %
+			\subsubsection{Methods of machine learning}
+			\label{sec:section_methods_of_machine_learning}
+				\de{Je nach Art und Vorgehensweise der Überwachung des Trainings lassen sich verschiedene Machine-Learning-System einordnen. Dabei wird unterschieden, welche Art von Daten uns vorliegen oder diese selbst bestimmt werden müssen.}
+				\en{Different \ac{ml} systems can be classified according to the type and procedure of monitoring the training. A distinction is made as to which type of data is available or has to be determined by the user.}
+	
+				% -------------------- %
+				% Supervised learning %
+				% -------------------- %
+				\paragraph{Supervised learning}
+				\label{sec:section_supervised_learning}
+					\de{Das überwachte Lernen bezieht sich auf ein maschinelles Lernen mit bekannten Trainingsdatensätzen (siehe auch Kapitel \hyperref[sec:section_inductive_approach]{``induktiver Ansatz''}). Der Lernprozess wiederrum bezieht sich auf die Fähigkeit einer künstlichen Intelligenz, Regelmäßigkeiten und Muster zu reproduzieren. Die Ergebnisse sind durch Naturgesetze oder Expertenwissen bekannt und werden für die Lehre des Systems verwendet, in dem ein Trainingsset erstellt wird, welcher die gewünschten Lösungen enthält. Man nennt dies auch gelabelte Daten. Der Lernalgorithmus versucht nun epochenweise eine Hypothese zu finden, die eine möglichst genaue Vorhersagen auf unbekannten Daten ermöglicht. Eine Hypothese ist in diesem Fall ein Bild, das jedem Eingabewert (das Bild selbst) den angenommenen Ausgabewert (die vorhergesagte Klasse) zuordnet. Diese Arbeit macht ausgiebigen Gebrauch von überwachtem Lernen.}
+					\en{Supervised learning refers to \ac{ml} with known training data sets (see also chapter \hyperref[sec:section_inductive_approach]{``inductive approach''}). The learning process in turn refers to the ability of an \ac{ai} to reproduce regularities and patterns. The results are known by laws of nature or expert knowledge and are used to teach the system by creating a training set containing the desired solutions. This is also called labelled data. The learning algorithm now tries to find a hypothesis epoch by epoch, which allows the most accurate predictions on unknown data. A hypothesis in this case is an image that assigns the assumed output value (the predicted class) to each input value (the image itself). This work makes extensive use of supervised learning.}
+		
+					\de{Beim Überwachten Lernen wird einer Klassifizierungsfunktion (meist ein künstliches neuronales Netz) ein Eingangsvektor zugeführt. Der Eingangsvektor erzeugt mit Hilfe der Klassifizierungsfunktion einen Ausgabevektor, die dieses neuronale Netz in seinem aktuellen Zustand produziert\footnote{Das neuronale Netzwerk besteht aus vielen (meist Millionen) Parametern, welche während des Lernprozesses angepasst werden können, um den Fehler zu minimieren.}. Dieser Wert wird mit dem Wert verglichen, den es eigentlich ausgeben soll. Der Vergleich des Soll- und Istzustandes gibt Auskunft wie und in welcher Form Änderungen am Netzwerk vorgenommen werden müssen, um dem Istzustand weiter anzugleichen und den Fehler zu minimieren. Für künstliche neuronale Netzwerke ohne versteckter Schicht (einlagiges Perzeptron\autocite{noauthor_perceptron_2020}) kann die Delta-Regel\autocite{noauthor_least_2020} für die Korrektur vorgenommen werden. Bei Netzwerken mit einer oder mehreren versteckten Schichten verwendet man Backpropagation\autocite{noauthor_backpropagation_2020} um den Fehler zu minimieren. Backpropagation ist eine Verallgemeinerung der Delta-Regel.}
+					\en{In supervised learning, an input vector is fed to a classification function (usually an \acl{ann}). The input vector generates an output vector using the classification function, which produces this neural network in its current state\footnote{The neural network consists of many (usually millions) parameters, which can be adjusted during the learning process to minimize the error.}. This value is compared with the value that it should actually output. The comparison of the nominal and actual state provides information on how and in what form changes must be made to the network in order to further approximate the actual state and minimize the error. For \ac{ann} without a hidden layer (single-layer perceptron\autocite{noauthor_perceptron_2020}), the delta rule\autocite{noauthor_least_2020} for correction can be applied. For networks with one or more hidden layers backpropagation\autocite{noauthor_backpropagation_2020} is used to minimize the error. Backpropagation is a generalization of the delta rule.}
+	
+					\de{Das neuronale Netzwerke ist nur ein Algorithmus aus der Kategorie der überwachten Lernalgorithmen. Weitere mögliche Algorithmen sind:}
+					\en{The neural network is only one algorithm from the category of supervised learning algorithms. Other possible algorithms are:}
+					
+					\begin{itemize}
+						\item k-nearest neighbors\autocite{noauthor_k-nearest_2020}
+						\item Linear regression\autocite{noauthor_linear_2020}
+						\item Logistic regression\autocite{noauthor_logistic_2020}
+						\item Support-vector machine\autocite{noauthor_support-vector_2020}
+						\item Random forest\autocite{noauthor_random_2020}
+						\item etc.
+					\end{itemize}
+			
+				% -------------------- %
+				% Unsupervised learning %
+				% -------------------- %
+				\paragraph{Unsupervised learning}
+				\label{sec:section_unsupervised_learning}
+					\de{Beim unüberwachtem Lernen versucht man auch ohne gelabelte Daten an eine Kenntnis von Mustern zu erlangen. Angenommen man hätte mehrere Bilder von Burgern, Pizza und Donuts, welche sich unsortiert in einem Datenset befinden. Das unüberwachte Lernen versucht nun Ähnlichkeiten zu finden, um diese Bilder zu gruppieren. Im besten Fall erhält man am Ende drei unbenannte Gruppen \(A\), \(B\) und \(C\). Analysten werden sich diese Gruppen im Nachgang genauer anschauen und ein Fazit daraus ziehen, sofern dies möglich ist: Gruppe \(A\) trägt dann den Namen Burger, Gruppe \(B\) Pizzen, etc.}
+					\en{In unsupervised learning, one tries to gain knowledge of patterns even without labelled data. Suppose one has several pictures of burgers, pizza and doughnuts, which are unsorted in a data set. Unsupervised learning now tries to find similarities in order to cluster these images. In the best case one gets three unnamed groups \(A\), \(B\) and \(C\) at the end. Analysts will take a closer look at these groups afterwards and draw a conclusion if possible:  Group \(A\) is then called Burger, Group \(B\) Pizzas, etc.}
+					
+					\de{\noindent Folgende unüberwachte Lernalgorithmen können zur Gruppierung verwendet werden:}
+					\en{\noindent The following unsupervised learning algorithms can be used for clustering:}
+					
+					\begin{itemize}
+						\item k-means\autocite{noauthor_k-means_2020}
+						\item Hierarchical clustering\autocite{noauthor_hierarchical_2020}
+						\item Expectation–maximization \autocite{noauthor_expectationmaximization_2020}
+						\item etc.
+					\end{itemize}
+				
+					\de{Eine Technik, die hierarchische Clusteranalyse (siehe Kapitel \hyperref[sec:section_validation_hierarchical classification]{``Hierarchical classification''}), wird später verwendet um die Einführung von Hierarchien zu erleichtern. Für die allgemeine Analyse, den Finden von optimalen Parametern für das Lernen von Modellen, wird diese Art des Lernens in dieser Arbeit nicht verwendet.}
+					\en{One technique, hierarchical clustering (see chapter \hyperref[sec:section_validation_hierarchical classification]{``Hierarchical classification''}), is used later to facilitate the introduction of hierarchies. For the general analysis, the finding of optimal parameters for learning models, this kind of learning is not used in this thesis.}
+	
+			\label{}
+				% -------------------- %
+				% Reinforcement learning %
+				% -------------------- %
+				\paragraph{Reinforcement learning}
+				\label{sec:section_reinforcement_learning}
+					\de{Reinforcement learning\autocite{noauthor_reinforcement_2020} ist eine Art des maschinellen Lernens, bei der ein Agent selbstständig die bestmögliche Strategie für die Erreichung eines Zieles erlernt. Für die Erreichung des Ziels sind Aktionen notwendig, welche zu bestimmten Zeitpunkten Belohnungen hervorbringen. Diese Belohnungen können auch negative sein (Bestrafung). Anhand dieser Belohnungen gilt es in Summe den bestmöglichen Belohnungswert zu erzielen. Bei der Klassifizierung von Bildern ist diese Art des Lernens nicht relevant, weshalb hier auch nicht weiter darauf eingegangen wird.}
+					\en{Reinforcement learning\autocite{noauthor_reinforcement_2020} is a type of \ac{ml} in which an agent independently learns the best possible strategy for achieving a goal. To achieve the goal, actions are necessary which produce rewards at certain points in time. These rewards can also be negative (punishment). Based on these rewards, the aim is to achieve the best possible reward value. This type of learning is not relevant for the classification of images, which is why it will not be discussed further here.}
+					
+
 
 			\subsubsection{Artificial neural network}
 				\de{Künstliche neuronale Netzwerke stellen Funktionen bereit, welche in der Lage sind hochkomplexe Daten im mehrdimensionalem Raum zu trennen. Bei großen und hochgradig komplexen Aufgaben, wie beispielsweise der Klassifizierung von Milliarden von Bildern, Sprach- und Texterkennungen, schneiden neuronale Netze meist besser ab, als andere Machine Learning Verfahren. Der erhebliche Zuwachs an Rechenkapizität seit den 1990ern ermöglicht das Trainieren großer neuronaler Netzwerke innerhalb eines sinnvollen Zeitraumes. Künstliche neuronale Netzwerke sind die Kernkomponente des Deep Learnings, welche eine Methode des machinellen Lernens bezeichnet.}
-				\en{\Aclp{ann} provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other machine learning methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning, which denotes a method of machine learning.}
+				\en{\Aclp{ann} provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other \ac{ml} methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning, which denotes a method of \ac{ml}.}
 
 				\de{Neuronale Netzwerke verarbeiten einen Eingabevektor und wandeln ihn in einen neuen Ausgabevektor um. Sie sind Netze aus vielen hintereinander und parallel geschalteten künstlichen Neuronen. Ein künstliches Neuron wiederrum wandelt einen Vektor in ein Skalar um, indem es die Eingänge \(\bar{x}\) mit den veränderlichen Parametern \(\bar{\omega}\) skaliert, aufsummiert und mit einem Bias \(b\) korrigiert (der Bias ist ebenso eine veränderliche Variable). Die Aktivierungsfunktion stellt sicher, dass aus dem Polynom ersten Grades (lineares Regressionsmodell) eine nichtlineare Funktion wird\autocite{noauthor_aktivierungsfunktionen_2019}:}
 				\en{Neural networks process an input vector \(\bar{x}\) and convert it into a new output vector \(\hat{\bar{x}}\). They are networks of many artificial neurons connected in series and parallel. An artificial neuron in turn converts a vector into a scalar by scaling and summing the inputs \(\bar{x}\) with the changeable parameters \(\bar{\omega}\) and correcting them with a bias \(b\) (the bias is also a changeable variable). The activation function ensures that the first degree polynomial (linear regression model) becomes a nonlinear function\autocite{noauthor_aktivierungsfunktionen_2019}:}
@@ -892,19 +922,8 @@
 					f(\bar{x}, \bar{\omega}, b) = sgn(\bar{\omega}^\intercal \cdot \bar{x} + b)
 				\end{equation}
 
-				\de{\noindent Mit dieser linearen Funktion lässt sich das nachfolgende Problem leicht klassifizieren:}
-				\en{\noindent With this linear function the following problem can be easily classified:}
-
-				\begin{figure}[H]
-					\begin{center}
-						\scalebox{0.5}{\input{images/pgf/linear_classifier.pgf}}
-					\end{center}
-					\caption{Simple class shattering}
-					\label{fig:evaluation_simple_class_shattering}
-				\end{figure}
-	
-				\de{Die Funktion entspricht einem neuronalen Netz ohne verdeckte Schicht und enthält nur eine Eingangs- und eine Ausgangsschicht mit einem künstlichem Neuron ohne Aktivierungsfunktion. Die Dimension, die diese Funktion trennen kann, ist zwei und wird als VC-Dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. Anders ausgedrückt kann diese Funktion kann genau zwei Klassen linear trennen. Aber was ist mit nichtlinearen Problemen?:}
-				\en{The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is two and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. In other words, this function can separate exactly two classes linearly. But what about nonlinear problems?:}
+				\de{Mit dieser linearen Funktion lässt sich das Klassifizierungsproblem in Problem 1 in Abbildung~\ref{fig:overview_linear_nonlinear_classification} leicht klassifizieren. Die Funktion entspricht einem neuronalen Netz ohne verdeckte Schicht und enthält nur eine Eingangs- und eine Ausgangsschicht mit einem künstlichem Neuron ohne Aktivierungsfunktion. Die Dimension, die diese Funktion trennen kann, ist zwei und wird als VC-Dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. Anders ausgedrückt kann diese Funktion kann genau zwei Klassen linear trennen. Aber was ist mit nichtlinearen Problemen?}
+				\en{With this linear function, the classification problem of the first representation of figure~\ref{fig:overview_linear_nonlinear_classification} can be easily classified. The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is two and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. In other words, this function can separate exactly two classes linearly. But what about nonlinear problems?}
 				
 				\begin{figure}[H]
 					\begin{center}
@@ -928,7 +947,7 @@
 			\subsubsection{Convolutional neuronal network}
 			\label{sec:section_convolutional_neuronal_network}
 				\de{Ein neuronales Netzwerk verarbeitet einen Vektor und gibt einen neuen Vektor zurück. Das Problem bei Eingabedaten wie Bildern ist, dass sie auf den ersten Blick nicht erfolgreich als Vektor beschrieben werden können, um mit einem normalem neuronalem Netzwerk trainiert werden zu können. Man braucht einen Algorithmus, welcher auch matrizenähnliche Eingaben verarbeiten kann und in der Lage ist Muster zu erkennen. Dabei wurde in der Vergangenheit das Prinzip der Convolutional Layer entwickelt. Ein Convolutional Layer nimmt ein Matrix Eingang entgegen, transformiert diese und gibt wie auch bei den künstlichen Neuronen einen Ausgangswert zurück (in diesem Fall eine weitere Matrix). Dieser Ausgangswert wird danach an die nächste Schicht weitergegeben. Dabei beinhaltet ein Convolutional Layer eine Menge \(n\) an quadratischen Matrizen (meist 3x3 oder 5x5 Matrizen). Diese Matrizen werden Filter genannt. Jeder Filter\footnote{Filter, welche z.B. Kanten, Ecken, Quadrate, etc. erkennen können und in tieferen Layern Dinge wie Augen, Ohren, Haare, etc.} wird nun jeweils von links oben bis rechts unten über die Pixel des Bildes mittels Skalarprodukt miteinander verrechnet, wobei ein neues Bild entsteht. Die soganannte Feature Map. Bei einer Anzahl von \(n\) Filtern entstehen am Ende \(n\) Feature Maps und heben die in den Filtern definierten Merkmale jeweils im neu errechneten Bild hervor. Dieser Vorgang wird auch Faltung genannt\autocite{deeplizard2017CNNExplained}.}
-				\en{A neural network processes a vector and returns a new vector. The problem with input data such as images is that at first view they cannot be successfully described as vectors to be trained with a normal neural network. One needs an algorithm that can handle matrix-like inputs and that is able to recognize patterns. In the past the principle of the convolutional layer was developed. A convolutional layer receives a matrix input, transforms it and returns an output value (in this case another matrix). This output value is then passed on to the next layer. A convolutional layer contains a set \(n\) of square matrices (usually 3x3 or 5x5 matrices). These matrices are called filters. Each filter\footnote{Filters, which can recognize edges, corners, squares, etc. and in deeper layers things like eyes, ears, hair, etc.} is now calculated from top left to bottom right over the pixels of the image using a scalar product, which creates a new image. The so-called Feature Map. With a number of \(n\) filters, \(n\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
+				\en{An \acl{ann} processes a vector and returns a new vector. The problem with input data such as images is that at first view they cannot be successfully described as vectors to be trained with a normal neural network. One needs an algorithm that can handle matrix-like inputs and that is able to recognize patterns. In the past the principle of the convolutional layer was developed. A convolutional layer receives a matrix input, transforms it and returns an output value (in this case another matrix). This output value is then passed on to the next layer. A convolutional layer contains a set \(n\) of square matrices (usually 3x3 or 5x5 matrices). These matrices are called filters. Each filter\footnote{Filters, which can recognize edges, corners, squares, etc. and in deeper layers things like eyes, ears, hair, etc.} is now calculated from top left to bottom right over the pixels of the image using a scalar product, which creates a new image. The so-called Feature Map. With a number of \(n\) filters, \(n\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
 
 				\de{Neuronale Netze, welche Gebrauch von Convolutional Layern machen, werden \acsp{cnn} und haben einen entscheidenden Beitrag zum Fortschritt der Bildklassifizierung und auch in anderen Bereichen wie Spracherkennung geleistet. Neben den Convolutional Layern existieren in einem Convolutional Neuronal Network weitere spezielle Layer, welche sich von normalen Neuronalen Netzen unterscheiden: Z.B. die Pooling Layer. In einem Pooling Layer werden überflüssige Informationen verworfen und die Featuremaps verkleinert. Dieser Vorgang verringert den Speicherbedarf und erhöht Berechnungsgeschwindigkeit. Die Convolutional Layer und die Pooling Layer wechseln sich in aller Regel jeweils ab, bis am Ende statt einer \(n x n\) Matrix des Eingangsbildes ein großer Vektor entsteht, welcher von einem normalen neuronalem Netzwerk weiterverarbeitet werden kann und schlußendlich in dem schon beschriebenen One Hot Vektor endet.}
 				\en{Neural networks that make use of convolutional layers are called \acfp{cnn} and have made a decisive contribution to the progress of image classification and also in other areas like speech recognition. In addition to the convolutional layers, a \ac{cnn} has other special layers that differ from normal neural networks: For example the Pooling Layer. In a pooling layer, unnecessary information is discarded and feature maps are reduced in size. This process reduces memory requirements and increases calculation speed. The convolutional layer and the pooling layer usually alternate until a large vector is created at the end instead of a \(n x n\) matrix of the input image, which can be further processed by a normal neural network and finally ends in the already described one hot vector.}
@@ -1204,7 +1223,7 @@
 							(13.15,1.15) --
 							(12.5,0.5);
 					\end{tikzpicture}
-					\caption[Architecture of a traditional \acl{cnn} with transfer learning]{The green area (the neural network) was replaced by a network (red) adapted to the new problem (see \fullref{fig:traditional-convolutional-network}).}
+					\caption[Architecture of a traditional \acl{cnn} with transfer learning]{The green area (see figure~\ref{fig:traditional-convolutional-network}) was replaced by a new \acl{nn} (red) adapted to the new problem.}
 					\label{fig:transfer-learning-example}
 				\end{figure}
 
@@ -1228,26 +1247,6 @@
 					\label{fig:comparison_cnn}
 				\end{figure}
 				\footnotetext{Source: \url{https://towardsdatascience.com/neural-network-architectures-156e5bad51ba}}
-
-		\subsection{Further definitions}
-		\label{sec:section_further_definitions}
-			\subsubsection{Learning epoch}
-			\label{sec:section_learning_epoch}
-				\de{Unter einer Lernepoche versteht man den einmaligen Trainingsdurchlauf mit allen Trainingsdatensätzen. Meist reicht ein Trainingsdurchlauf nicht aus, weshalb weitere Lernepochen im Anschluß erfolgen. Sobald mit weiteren Lernepochen die Leistungsfähigkeit des Netzwerkes nicht weiter steigt, beendet man das Training.}
-				\en{A learning epoch is understood to be the one time training run with all training data sets. Usually one training run is not sufficient, which is why further learning epochs follow. As soon as the performance of the network does not increase anymore with further epochs, the training is terminated.}
-			\subsubsection{Learning rate}
-			\label{sec:section_learning_rate}
-				\de{Die Lernrate ist ein Abstimmungsparameter in einem Optimierungsalgorithmus. Dieser sagt aus, wie groß die Schrittweite bei jeder Iteration ist, mit der sich die Parameter auf das Minimum einer Verlustfunktion zubewegen. Sie sollte nicht zu hoch (Minimum wird nicht gefunden) und nicht zu klein sein (sehr langsames Lernen). Die Lernrate wird oft mit dem Zeichen \(\eta\) oder \(\alpha\) bezeichnet.}
-				\en{The learning rate is a tuning parameter in an optimization algorithm. It expresses how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
-			\subsubsection{Batch size}
-			\label{sec:section_batch_size}
-				\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
-				\en{The batch size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. Normally it is intended to train all training data per epoch with one process. Especially in the area of image classification this is usually not possible due to the limited memory, so an epoch is divided into many small batches. The advantage is that one only has to keep the data in memory which is necessary for the current batch. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
-
-			\subsubsection{Data augmentation}
-			\label{sec:section_data_augmentation}
-				\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Dies wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern.}
-				\en{Data augmentation is the artificial augmentation of a data set. This is primarily used when only little data is available. Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training. \hl{Is there an example that proves this quickly?}}
 
 
 
@@ -1284,7 +1283,7 @@
 			
 		\subsection{Working environment and model creation}
 			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind im nachfolgend genanntem Github-Repository öffentlich einsehbar: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. Dieses Framework wurde in Python geschrieben. Python ist in den letzten Jahren zu den wichtigsten Programmiersprachen im Bereich des Machine Learnings und der Datenwissenschaften herangewachsen.\autocite{noauthor_most_2015} Die Bibliotheken dieser Programmiersprache enthalten schon von Beginn an viele vorgefertigte und hilfreiche Funktionen und Basis-Frameworks. Auch die Community mit ihren vielen Foren und Blogartikeln sind sehr breit aufgestellt. Als Python Maschine Learning Framework wurde Keras verwendet, da Keras als viele einheitliche Schnittstellen zu Backends wie TensorFlow enthält und das produzierte Modell auch in anderen Programmiersprachen wie Java weiterverwendet werden kann\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
-			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in the following Github repository: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. This framework was written in Python. Python has become one of the most important programming languages in the field of machine learning and data sciences in recent years.\autocite{noauthor_most_2015} The libraries of this programming language contain many ready-made and helpful functions and basic frameworks right from scratch. The community with its many forums and blog articles is also very broad. As Python Machine Learning Framework Keras was used, because Keras contains as many uniform interfaces to backends like TensorFlow and the produced model can also be reused in other programming languages like Java\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
+			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in the following Github repository: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. This framework was written in Python. Python has become one of the most important programming languages in the field of \ac{ml} and data sciences in recent years.\autocite{noauthor_most_2015} The libraries of this programming language contain many ready-made and helpful functions and basic frameworks right from scratch. The community with its many forums and blog articles is also very broad. As python machine learning framework Keras was used, because Keras contains as many uniform interfaces to backends like TensorFlow and the produced model can also be reused in other programming languages like Java\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
 			
 			\de{Alle Modelle in den nachfolgenden Kapiteln wurden mit dem oben genanntem Framework erstellt, welches es erlaubt alle hier in der Arbeit genannten Hyperparameter einzustellen: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. Ein Kommandozeilenaufruf könnte nach erfolgreicher Installation mit den Standard-Werten z.B. wie folgt aussehen:}
 			\en{All models in the following chapters were created with the above mentioned framework, which allows to set all hyperparameters mentioned in this thesis: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. A command line call with the default values could look like the following after successful installation:}
