@@ -108,6 +108,10 @@
 % Footmarks always at the end of the page
 \usepackage[bottom]{footmisc}
 
+%
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
 % allow some special characters
 \DeclareUnicodeCharacter{2212}{-}
 
@@ -712,13 +716,13 @@
 					
 				\paragraph{Batch size}
 				\label{sec:section_batch_size}
-					\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig über das Netzwerk übertragen werden, bevor die Parameter im Netzwerk angepasst werden. Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt. Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind. Der Nachteil ist der erhöhte Rechenaufwand und eine ungenaue Schätzung des Gradienten, da sich die Änderung nur auf den aktuellen Batch und nicht auf alle Bilder bezieht\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
-					\en{The batch size defines the number of images that are transmitted simultaneously over the network before the parameters in the network are customized. Normally it is intended to train all training data per epoch with one process. Especially in the area of image classification this is usually not possible due to the limited memory, so an epoch is divided into many small batches. The advantage is that one only has to keep the data in memory which is necessary for the current batch. The disadvantage is the increased computing effort and an inaccurate estimation of the gradient, because the change only applies to the current batch and not to all images\footnote{``What is batch size in neural network?'', itdxer on stackexchange.com, February 9, 2020, \url{https://stats.stackexchange.com/questions/153531/what-is-batch-size-in-neural-network}}.}
+					\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig vorwärts und rückwärts durch das neuronale Netzwerk geleitet werden, bevor die Parameter im Netzwerk angepasst werden (Gradientenaktualisierung). Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt (Mini-Batches). Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind und damit eine Überanpassung reguliert werden kann. Der Nachteil ist eine erhöhte Varianz (Rauschen in der Genauigkeit des Modells), da es unwahrscheinlich ist, dass eine kleine Stichprobe eine gute Darstellung des gesamten Datensatzes ist. Ebenso erhöht sich der Rechenaufwand da die Backpropagation entsprechend der Anzahl der Mini-Batches erhöht. Es gibt keine magische Regel für die richtige Wahl der Batch Size. Dies ist ein Hyperparameter, der vor Beginn des Trainings bestimmt werden muss\autocite{noauthor_epochs_nodate}.}
+					\en{The batch size defines the number of images that are simultaneously passed forward and backward through the \ac{nn} before the parameters in the network are adjusted (gradient update). Normally it is intended to train all training data per epoch with one process. Especially in the field of image classification this is usually not possible due to the limited memory, which is why an epoch is divided into many small batches (mini-batches). The advantage is that one only has to keep the data in memory that is necessary for the current batch and an overfitting can be regulated.  The disadvantage is an increased variance (noise in the accuracy of the model), since it is unlikely that a small batch is a good representation of the entire data set. The computing time increases as well, since the backpropagation increases according to the number of mini-batches. There is no magic rule for choosing the right batch size. This is a hyperparameter that must be determined before the training begins\autocite{noauthor_epochs_nodate}.}
 
 				\paragraph{Data augmentation}
 				\label{sec:section_data_augmentation}
-					\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Dies wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern.}
-					\en{Data augmentation is the artificial augmentation of a data set. This is primarily used when only little data is available. Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training. \hl{Is there an example that proves this quickly?}}
+					\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Diese Technik wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat oder das Datenset nicht ausreichend balanciert ist. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern\autocite{perez2017effectiveness}.}
+					\en{Data augmentation is the artificial augmentation of a data set. This technique is primarily used when only little data is available or the data set is not sufficiently balanced (unbalanced data set). Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training\autocite{perez2017effectiveness}.}
 			
 			
 			% -------------------- %
@@ -1543,6 +1547,8 @@ user$ ml train \
 	
 			\subsubsection{Different batch sizes}
 			\label{sec:section_validation_comparison_different_bs}
+			
+				\en{Link\autocite{radiuk2017impact}}
 	
 				\begin{figure}[H]
 					\begin{center}
@@ -1638,9 +1644,6 @@ user$ ml train \
 				
 				\de{Die Modellgenauigkeit erhöht sich von 83,6\% auf 85,6\%. Eine Steigerung von insgesamt 2\%. Wohlgemerkt: Der Validierungsdatensatz ist immer noch derselbe! Allerdings bedeutet das auch ein Anstieg der benötigten Rechenzeit. Während die Berechnung des Datensatzes ohne Data Augmentation nur zweieinhalb Stunden braucht, benötigt man für den neuen Datensatz die vierfache Zeit. Fazit: Data Augmentation geth mit einer verbesserten Genauigkeit einher, benötigt aber auch im gleichem Atemzug mehr Rechenzeit. Wenn Rechenzeit keine Rolle spielt, so ist dies eine Möglichkeit die Genauigkeit etwas zu verbessern.}
 				\en{The model accuracy increases from 83.6\% to 85.6\%. An overall increase of 2\%. Note: The validation data set is still the same! However, this also means an increase in the required computing time. While the calculation of the data set without data augmentation takes only two and a half hours, the new data set takes four times as long. Conclusion: Data Augmentation is associated with improved accuracy, but also requires more computing time in the same breath. If computing time is not important, this is one way to improve the accuracy a little.}
-	
-			\subsubsection{Enrichment of the data set from other data sources}
-				\noindent ...
 			
 			\subsubsection{Hierarchical classification}
 			\label{sec:section_validation_hierarchical classification}
@@ -1827,7 +1830,11 @@ user$ ml train \
 			\begin{itemize}
 				\item Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable?
 			\end{itemize}
-			\item Don't Decay the Learning Rate, Increase the Batch Size: https://arxiv.org/abs/1711.00489
+			\item More ideas
+			\begin{itemize}
+				\item Don't Decay the Learning Rate, Increase the Batch Size: https://arxiv.org/abs/1711.00489
+				\item Enrichment of the data set from other data sources
+			\end{itemize}
 		\end{itemize}
 		
 		
