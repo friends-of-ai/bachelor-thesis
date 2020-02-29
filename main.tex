@@ -939,13 +939,13 @@
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=1.0\textwidth]{images/simple_neuronal_network}
-					\caption[Simple neuronal network with one hidden layer]{Simple neuronal network with one hidden layer\footnotemark}
-					\label{fig:beispiel4}
+					\caption[Simple neural network with one hidden layer]{Simple neural network with one hidden layer\footnotemark}
+					\label{fig:simple_neural_network}
 				\end{figure}
 				\footnotetext{Source: \url{http://playground.tensorflow.org/}}
 		
-			\subsubsection{Convolutional neuronal network}
-			\label{sec:section_convolutional_neuronal_network}
+			\subsubsection{Convolutional neural network}
+			\label{sec:section_convolutional_neural_network}
 				\de{Ein neuronales Netzwerk verarbeitet einen Vektor und gibt einen neuen Vektor zurück. Das Problem bei Eingabedaten wie Bildern ist, dass sie auf den ersten Blick nicht erfolgreich als Vektor beschrieben werden können, um mit einem normalem neuronalem Netzwerk trainiert werden zu können. Man braucht einen Algorithmus, welcher auch matrizenähnliche Eingaben verarbeiten kann und in der Lage ist Muster zu erkennen. Dabei wurde in der Vergangenheit das Prinzip der Convolutional Layer entwickelt. Ein Convolutional Layer nimmt ein Matrix Eingang entgegen, transformiert diese und gibt wie auch bei den künstlichen Neuronen einen Ausgangswert zurück (in diesem Fall eine weitere Matrix). Dieser Ausgangswert wird danach an die nächste Schicht weitergegeben. Dabei beinhaltet ein Convolutional Layer eine Menge \(n\) an quadratischen Matrizen (meist 3x3 oder 5x5 Matrizen). Diese Matrizen werden Filter genannt. Jeder Filter\footnote{Filter, welche z.B. Kanten, Ecken, Quadrate, etc. erkennen können und in tieferen Layern Dinge wie Augen, Ohren, Haare, etc.} wird nun jeweils von links oben bis rechts unten über die Pixel des Bildes mittels Skalarprodukt miteinander verrechnet, wobei ein neues Bild entsteht. Die soganannte Feature Map. Bei einer Anzahl von \(n\) Filtern entstehen am Ende \(n\) Feature Maps und heben die in den Filtern definierten Merkmale jeweils im neu errechneten Bild hervor. Dieser Vorgang wird auch Faltung genannt\autocite{deeplizard2017CNNExplained}.}
 				\en{An \acl{ann} processes a vector and returns a new vector. The problem with input data such as images is that at first view they cannot be successfully described as vectors to be trained with a normal neural network. One needs an algorithm that can handle matrix-like inputs and that is able to recognize patterns. In the past the principle of the convolutional layer was developed. A convolutional layer receives a matrix input, transforms it and returns an output value (in this case another matrix). This output value is then passed on to the next layer. A convolutional layer contains a set \(n\) of square matrices (usually 3x3 or 5x5 matrices). These matrices are called filters. Each filter\footnote{Filters, which can recognize edges, corners, squares, etc. and in deeper layers things like eyes, ears, hair, etc.} is now calculated from top left to bottom right over the pixels of the image using a scalar product, which creates a new image. The so-called Feature Map. With a number of \(n\) filters, \(n\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
 
@@ -1242,7 +1242,7 @@
 		
 				\begin{figure}[H]
 					\centering
-					\includegraphics[width=1.0\textwidth]{images/tl_models}
+					\includegraphics[width=0.75\textwidth]{images/tl_models}
 					\caption[Overview of current and known convolutional neural networks]{Overview of current and known convolutional neural networks\footnotemark}
 					\label{fig:comparison_cnn}
 				\end{figure}
@@ -1257,10 +1257,7 @@
 	\section{Related work}
 		\de{Es existieren eine Reihe von Untersuchungen zur Bildklassifikation auf sehr großen Datensätzen.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Meist ist diese riese Anzahl von Klassifikationsklassen und Datenmengen gar nicht erwünscht. Weiterhin gibt es viele Untersuchungen auf kleinen Datensätzen.\autocite{chollet2016building}\textsuperscript{,}\autocite{sagar_deep_2019} Was diesen Untersuchungen meist mangelt ist eine Übersicht und ein Vergleich der gängigen Hyperparameter in Bezug auf die Modellgenauigkeit in einer einzigen Arbeit. Diese Arbeit wird darauf eingehen. Daten sind teuer in der Beschaffung und meist nicht einfach zu bekommen (siehe Kapitel ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). Und im Gegensatz dazu, treten Bildklassifikationen in immer mehr Bereichen unseres Lebens auf und finden auch in immer mehr in Unternehmen eine direkte Verwendung, welche bisher keinen Gebrauch davon gemacht haben und sich nun überlegen eigene Implemantionen einzuführen. Da sind z.B. Unternehmen, welche versuchen aufgrund verschiedener Daten Produkte zu klassifizieren. Ist es unter dem Kostenpunkte betrachtet eine gute Idee oder bleibt einem der Schritt zu den Softwaretools von Unternehmensriesen wie Microsoft, Google und Co. nicht verwehrt? Ein Mensch sieht ein Produkt  \(X\) und ordnet es ein: Anhand des Textes, der Beschreibungung oder eines Bildes. Manchmal bleibt nur noch ein Bild, weil z.B. Texte nicht richtig gepflegt wurden oder nur kryptische Werte zurückliefern. Und auch dann ist diese Klassifizierung für den Menschen oftmals keine Herausforderung, denn er erkennt auch in diesem Fall das Produkt \(X\) aufgrund des noch vorhandenen Bildes.}
 		\en{There are a number of studies on image classification on very large datasets.\autocite{deng2010does}\textsuperscript{,}\autocite{sun2014deep}\textsuperscript{,}\autocite{krizhevsky2012imagenet} Most of the time this huge number of classification classes and datasets is not desired. Furthermore, there are many investigations on small data sets.\autocite{chollet2016building}\textsuperscript{,}\autocite{sagar_deep_2019} What these investigations usually lack is an overview and comparison of the common hyperparameters with respect to model accuracy in a single thesis. This thesis will deal with this. Data is expensive to obtain and usually not easy to get (see chapter ``\hyperref[sec:section_balanced_training_data_set]{Balanced training data set}''). And in contrast, image classifications are appearing in more and more areas of our life and are also being used directly in more and more companies that have not made use of them so far and are now considering introducing their own implementations. There are e.g. companies which try to classify products based on different data. Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable? A person sees a product  \(X\) and classifies it: From the text, the description or an image. Sometimes only an image remains, because e.g. texts have not been maintained properly or only return cryptic values. And even then, this classification is often not a challenge for humans: Because in this case, they recognize the product \(X\) based on the still existing image.}
-
-		\de{Diese Arbeit beschäftigt sich mit dem Bildklassifizierungsteil. Da es sich hierbei um Unternehmen mit begrenzten Ressourcen handelt, steht nun die Frage im Raum: Mit welchen Mitteln, Techniken und Kniffen ist es möglich dennoch eine erfolgreiche Bildklassifizierung durchzuführen. Müssen die in \fullref{sec:section_insufficient_amount_of_data} erwähnten Bedingungen erfüllt werden oder sind erfolgreiche Klassifizierungen auch schon mit weniger möglich? Kann man durch Anpassung bestimmter Abstimmungsparameter das Optimum aus der Erstellung von Modellen herausholen? Ist z.B. eine Clusteranalyse und die damit verbundene kategorische Untergliederung der Klassifizierung ein erfolgreicher Ansatz? Diese und andere Fragen sollen mit dieser Arbeit geklärt werden. Und ich wage an dieser Stelle zu behaupten, dass es möglich ist auch mit weniger Anforderungen zu einem guten Ziel zu kommen.}
-		\en{This thesis deals with the image classification part. Since these are companies with limited resources, the question is: With which tools, techniques and tricks is it possible to carry out a successful image classification. Do the conditions mentioned in \fullref{sec:section_insufficient_amount_of_data} have to be fulfilled or are successful classifications already possible with less? Is it possible to get the most out of model creation by adjusting certain tuning parameters? For example, is a cluster analysis and the associated categorical breakdown of the classification a successful approach? These and other questions are to be clarified with this thesis. And I dare to say at this point that it is possible to reach a good goal even with fewer requirements.}
-		
+			
 		
 		
 	% -------------------- %
@@ -1271,15 +1268,12 @@
 	\label{sec:section_considerations_and_implementation}
 	
 		\subsection{Research questions and hypthesis section}
-		
-			\en{...}
+			\de{Diese Arbeit beschäftigt sich mit dem Bildklassifizierungsteil. Zum Beispiel in der Anwendung für Unternehmen oder Umgebungen mit begrenzten Ressourcen. Folgende Fragen ergeben sich: Mit welchen Mitteln, Techniken und Ideen ist es möglich auch mit wenig Ressourcen ein erfolgreiches Bildklassifizierungsmodell zu erstelle? Müssen die in \fullref{sec:section_insufficient_amount_of_data} erwähnten Bedingungen erfüllt werden oder sind erfolgreiche Klassifizierungen auch schon mit weniger möglich? Kann man durch Anpassung bestimmter Abstimmungsparameter das Optimum aus der Erstellung von Modellen herausholen? Ist z.B. eine Clusteranalyse und die damit verbundene kategorische Untergliederung der Klassifizierung ein erfolgreicher Ansatz? Diese und andere Fragen sollen mit dieser Arbeit geklärt werden. Und ich wage an dieser Stelle zu behaupten, dass es möglich ist auch mit weniger Anforderungen zu einem guten Ziel zu kommen.}
+			\en{This thesis deals with the image classification part.  For example in the application for companies or environments with limited resources. The following questions arise: With which tools, techniques and ideas is it possible to create a successful image classification model even with few resources? Do the conditions mentioned in \fullref{sec:section_insufficient_amount_of_data} have to be fulfilled or are successful classifications already possible with less? Is it possible to get the most out of model creation by adjusting certain tuning parameters? For example, is a cluster analysis and the associated categorical breakdown of the classification a successful approach? These and other questions are to be clarified with this thesis. And I dare to say at this point that it is possible to reach a good goal even with fewer requirements.}
 	
 		\subsection{Working environment and model creation}
-			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind in einem Github-Repository öffentlich einsehbar\autocite{hempel_keras_2020}. Dieses Framework wurde in Python geschrieben. Python ist in den letzten Jahren zu den wichtigsten Programmiersprachen im Bereich des Machine Learnings und der Datenwissenschaften herangewachsen.\autocite{noauthor_most_2015} Die Bibliotheken dieser Programmiersprache enthalten schon von Beginn an viele vorgefertigte und hilfreiche Funktionen und Basis-Frameworks. Auch die Community mit ihren vielen Foren und Blogartikeln sind sehr breit aufgestellt. Als Python Maschine Learning Framework wurde Keras verwendet, da Keras als viele einheitliche Schnittstellen zu Backends wie TensorFlow enthält und das produzierte Modell auch in anderen Programmiersprachen wie Java weiterverwendet werden kann\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
-			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available a GitHub repository\autocite{hempel_keras_2020}. This framework was written in Python. Python has become one of the most important programming languages in the field of \ac{ml} and data sciences in recent years.\autocite{noauthor_most_2015} The libraries of this programming language contain many ready-made and helpful functions and basic frameworks right from scratch. The community with its many forums and blog articles is also very broad. As python machine learning framework Keras was used, because Keras contains as many uniform interfaces to backends like TensorFlow and the produced model can also be reused in other programming languages like Java\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
-			
-			\de{Alle Modelle in den nachfolgenden Kapiteln wurden mit dem oben genanntem Framework erstellt, welches es erlaubt alle hier in der Arbeit genannten Hyperparameter einzustellen: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. Ein Kommandozeilenaufruf könnte nach erfolgreicher Installation mit den Standard-Werten z.B. wie folgt aussehen:}
-			\en{All models in the following chapters were created with the above mentioned framework, which allows to set all hyperparameters mentioned in this thesis: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. A command line call with the default values could look like the following after successful installation:}
+			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind in einem Github-Repository öffentlich einsehbar\autocite{hempel_keras_2020}. Dieses Framework erlaubt es alle hier in der Arbeit genannten Hyperparameter einzustellen\autocite{hempel_keras_nodate}. Ein Kommandozeilenaufruf könnte nach erfolgreicher Installation mit den Standard-Werten z.B. wie nachfolgend aussehen. Das erstellte Modell befindet sich im angegebenen Verzeichnis mit dem Namen \texttt{model.h5}:}
+			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in a GitHub repository\autocite{hempel_keras_2020}. This framework allows you to set all the hyperparameters mentioned in this thesis\autocite{hempel_keras_nodate}. A command line call with the default values could look like the following after successful installation. The created model is located in the specified directory with the name \texttt{model.h5}:}
 
 			\begin{lstlisting}[frame=single,caption={Example command line call to train a specified data path},captionpos=b,basicstyle=\small]
 user$ ml train \
@@ -1289,11 +1283,12 @@ user$ ml train \
 			\end{lstlisting}
 	
 		\subsection{Performance}
+		\label{sec:section_performance_gpu_cpu}
 			\de{Wenn man beabsichtigt ein Deep Neuronal Networks (DNN) zu implementieren und zu optimieren, müssen die Berechnungen auf der GPU erfolgen. Es ist auch möglich, Berechnungen auf der \ac{cpu} durchzuführen. Auch die Installation von Keras für CPU-gesteuerte Berechnungen ist viel einfacher, da die Installation der GPU-Treiber nicht notwendig ist. Dies hat jedoch den Nachteil, dass das Training größerer Modelle wesentlich länger dauert. Gute Modelle für die Klassifizierung von z.B. Bildern werden erst nach mehreren Trainingseinheiten erreicht. Trainingseinheiten erfordern viel Rechenleistung in Form von vielen Matrixoperationen. Eine GPU ist prädestiniert für Matrixoperationen\autocite{fatahalian2004understanding}.}
 			\en{If one intends to implement and optimize \acp{dnn}, the calculations must take place on the \ac{gpu}. It is also possible to run calculations on the \ac{cpu}. Also, the installation of Keras for \ac{cpu} driven computations is much easier, because the installation of the \ac{gpu} drivers is not necessary. The disadvantage of this, however, is that it takes much longer to train larger models. Good models for the classification of e.g. pictures are only achieved after several training units. Training units require a lot of computing power in the form of many matrix operations. A \ac{gpu} is predestined for matrix operations\autocite{fatahalian2004understanding}.}
 			
-			\de{Nachfolgend folgt ein tabellarischer Leistungsvergleich auf der Grundlage des Kaggle-Blumendatensatzes Training\footnote{Flowers Recognition, Kaggle, Febrary 21, 2020, \url{https://www.kaggle.com/alxmamaev/flowers-recognition}}. Dieser Bildersatz besteht aus 5 Klassen mit etwa 4242 Trainingsbildern (10 epochs, InceptionV3)\footnote{GPU vs CPU, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/hardware/gpu-vs-cpu.md}}:}
-			\en{The following is a tabular comparison of performance based on the Kaggle flower data set training\footnote{Flowers Recognition, Kaggle, Febrary 21, 2020, \url{https://www.kaggle.com/alxmamaev/flowers-recognition}}. This image set consists of 5 classes with about 4242 training images (10 epochs, InceptionV3)\footnote{GPU vs CPU, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/hardware/gpu-vs-cpu.md}}:}
+			\de{Tabelle \ref{tbl:table_performance_comparison} zeigt einen tabellarischen Leistungsvergleich auf der Grundlage des Kaggle-Blumendatensatzes Training\autocite{noauthor_flowers_nodate}. Dieser Bildersatz besteht aus 5 Klassen mit etwa 4242 Trainingsbildern (10 epochs, InceptionV3)\autocite{hempel_keras_nodate-1}:}
+			\en{Table \ref{tbl:table_performance_comparison} shows a tabular comparison of performance based on the Kaggle flower data set training\autocite{noauthor_flowers_nodate}. This image set consists of 5 classes with about 4242 training images (10 epochs, InceptionV3)\autocite{hempel_keras_nodate-1}:}
 			
 			%\clearpage
 			\renewcommand\theadfont{\bfseries}
@@ -1322,12 +1317,21 @@ user$ ml train \
 		\label{sec:section_experiment_setup}
 		
 			\subsubsection*{Software specifics}
-			
 				\paragraph*{Python v3.6.9}
+					\de{Python ist in den letzten Jahren zu den wichtigsten Programmiersprachen im Bereich des Machine Learnings und der Datenwissenschaften herangewachsen.\autocite{noauthor_most_2015} Die Sprache wurde als Programmiersprache gewählt, da es eine große Anzahl von \ac{ml}-Bibliotheken zur Auswahl hat. Die Tatsache das die TensorFlow \ac{api} hauptsächlich auf die Verwendung mit Python ausgerichtet ist und damit eine stabile Entwicklung möglich ist, trug ebenfalls zur Wahl bei.}
+					\en{Python has become one of the most important programming languages in the field of machine learning and data sciences in recent years.\autocite{noauthor_most_2015} The language was chosen as programming language because it has a large number of \ac{ml} libraries to choose from. The fact that the TensorFlow \ac{api} is mainly designed for use with Python and thus allows stable development is also a contributing factor to the choice.}
 				
-				\paragraph*{TensorFlow GPU v1.14.0}
+				\paragraph*{TensorFlow GPU v1.14.0 and Keras-GPU v2.2.4}
+					\de{TensorFlow GPU wurde in Verbindung mit Keras-GPU v2.2.4 gewählt, um die Berechnungen auf der GPU und nicht auf der CPU durchzuführen. Dies hat die Zeit der Modellerstellung erheblich verkürzt (siehe Kapitel ``\hyperref[sec:section_performance_gpu_cpu]{Performance}'').}
+					\en{TensorFlow GPU was chosen in conjunction with Keras GPU v2.2.4 to perform the calculations on the GPU and not on the CPU. This has significantly reduced the time of model creation (see chapter ``\hyperref[sec:section_performance_gpu_cpu]{Performance}'').}
 				
 				\paragraph*{Keras v2.2.4}
+					\de{Bei den nachfolgenden Experimenten wird TensorFlow als Backend verwendet. Keras übersetzt die Funktionsaufrufe in die entsprechenden Funktionen von TensorFlow. Keras als als obergeordnete Bibliothek vereinfacht die Verwendung von Tensorflow, vereinfacht den Code, macht ihn lesbarer und minimiert Fehler.}
+					\en{In the following experiments TensorFlow is used as backend. Keras translates the function calls into the corresponding functions of TensorFlow. Keras as the parent library simplifies the use of TensorFlow, makes the code easier to read and minimizes errors.}
+				
+				\paragraph*{Deeplearning4j v1.0.0-beta3}
+					\de{Deeplearning4j ist eine Programmierbibliothek für tiefes Lernen, die für Java geschrieben wurde, sowie ein Computerframework mit breiter Unterstützung für Algorithmen für tiefes Lernen\autocite{noauthor_deeplearning4j_2019}. Sie wird in dieser Arbeit nicht explizit für die Modellerstellung verwendet, jedoch sei erwähnt, dass man mit dieser Programmierbibliothek Keras-Modelle einlesen und verwenden kann\autocite{hempel_keras_2019}.}
+					\en{Deeplearning4j is a deep learning programming library written for Java and a computer framework with wide support for deep learning algorithms\autocite{noauthor_deeplearning4j_2019}. It is not explicitly used for model creation in this thesis, but it should be mentioned that this programming library allows to read in and use Keras models\autocite{hempel_keras_2019}.}
 
 
 
@@ -1836,12 +1840,13 @@ user$ ml train \
 		\addcontentsline{toc}{section}{List of acronyms}
 		\begin{acronym}[General]
 			\acro{ai}[AI]{artificial intelligence}
+			\acro{api}[API]{application programming interface}
 			\acro{ann}[ANN]{artificial neural network}
 			\acro{cnn}[CNN]{convolutional neural network}
 			\acro{cpu}[CPU]{central processing unit}
 			\acro{da}[DA]{data augmentation}
 			\acro{dl}[DL]{deep learning}
-			\acro{dnn}[DNN]{deep neuronal network}
+			\acro{dnn}[DNN]{deep neural network}
 			\acro{ds}[DS]{data set}
 			\acro{gpu}[GPU]{graphics processing unit}
 			\acro{hp}[HP]{hyperparameter}
