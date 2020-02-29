@@ -1264,26 +1264,19 @@
 		
 		
 	% -------------------- %
-	% Results %
+	% Considerations and implementation %
 	% -------------------- %
 	\pagebreak
 	\section{Considerations and implemention}
 	\label{sec:section_considerations_and_implementation}
-
-
-
-	% -------------------- %
-	% Results %
-	% -------------------- %
-	\pagebreak
-	\section{Results}
-	\label{sec:section_results}
-		\de{In diesem Teil der Arbeit werden die Untersuchungen vorgestellt und die entsprechenden Auswertungen dazu. Dabei wurden in den jeweiligen Kapiteln Modelle mit den angegebenen Parametern und Techniken erstellt mit welcher man in der Lage ist Bildklassifikationen durchzuführen. Das Modell muss trainiert werden, wobei eine Entscheidung auf viele variable Parameter wie die Lernrate \(\eta\), die Optimierer, aber auch Dinge wie das \ac{cnn} Modell gefällt werden muss. Als Basis dient ein Standardsetup, welches im nachfolgendem Kapitel ``\nameref{sec:section_validation_process_preamble}'' erklärt wird. Von diesem Standard-Setup ausgehend werden die variablen Parameter in den entsprechenden Kapiteln jeweils verändert und diskutiert. Das Ziel soll sein die Parameter zu finden, mit welchem die Erkennungsgenauigkeiten der Modelle besonders hoch ausfallen: hohe Genauigkeiten und kleiner Verlust (loss function).}
-		\en{In this part of the thesis the investigations and the corresponding evaluations will be presented. For each chapter models with the given parameters and techniques have been created with which image classifications can be performed. The model has to be trained, whereby a decision has to be made on many variable parameters like the learning rate \(\eta\), the optimizers, but also things such as the \ac{cnn} model. The basis is a standard setup, which is explained in the following chapter ``\nameref{sec:section_validation_process_preamble}''. Starting from this standard setup, the variable parameters are changed and discussed in the corresponding chapters. The goal is to find the parameters with which the recognition accuracy of the models is particularly high: high accuracy and small loss function.}
-			
+	
+		\subsection{Research questions and hypthesis section}
+		
+			\en{...}
+	
 		\subsection{Working environment and model creation}
-			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind im nachfolgend genanntem Github-Repository öffentlich einsehbar: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. Dieses Framework wurde in Python geschrieben. Python ist in den letzten Jahren zu den wichtigsten Programmiersprachen im Bereich des Machine Learnings und der Datenwissenschaften herangewachsen.\autocite{noauthor_most_2015} Die Bibliotheken dieser Programmiersprache enthalten schon von Beginn an viele vorgefertigte und hilfreiche Funktionen und Basis-Frameworks. Auch die Community mit ihren vielen Foren und Blogartikeln sind sehr breit aufgestellt. Als Python Maschine Learning Framework wurde Keras verwendet, da Keras als viele einheitliche Schnittstellen zu Backends wie TensorFlow enthält und das produzierte Modell auch in anderen Programmiersprachen wie Java weiterverwendet werden kann\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
-			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in the following Github repository: \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}\footnote{Keras Machine Learning Framework, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework}}. This framework was written in Python. Python has become one of the most important programming languages in the field of \ac{ml} and data sciences in recent years.\autocite{noauthor_most_2015} The libraries of this programming language contain many ready-made and helpful functions and basic frameworks right from scratch. The community with its many forums and blog articles is also very broad. As python machine learning framework Keras was used, because Keras contains as many uniform interfaces to backends like TensorFlow and the produced model can also be reused in other programming languages like Java\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
+			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind in einem Github-Repository öffentlich einsehbar\autocite{hempel_keras_2020}. Dieses Framework wurde in Python geschrieben. Python ist in den letzten Jahren zu den wichtigsten Programmiersprachen im Bereich des Machine Learnings und der Datenwissenschaften herangewachsen.\autocite{noauthor_most_2015} Die Bibliotheken dieser Programmiersprache enthalten schon von Beginn an viele vorgefertigte und hilfreiche Funktionen und Basis-Frameworks. Auch die Community mit ihren vielen Foren und Blogartikeln sind sehr breit aufgestellt. Als Python Maschine Learning Framework wurde Keras verwendet, da Keras als viele einheitliche Schnittstellen zu Backends wie TensorFlow enthält und das produzierte Modell auch in anderen Programmiersprachen wie Java weiterverwendet werden kann\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
+			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available a GitHub repository\autocite{hempel_keras_2020}. This framework was written in Python. Python has become one of the most important programming languages in the field of \ac{ml} and data sciences in recent years.\autocite{noauthor_most_2015} The libraries of this programming language contain many ready-made and helpful functions and basic frameworks right from scratch. The community with its many forums and blog articles is also very broad. As python machine learning framework Keras was used, because Keras contains as many uniform interfaces to backends like TensorFlow and the produced model can also be reused in other programming languages like Java\footnote{Keras Machine Learning Framework (Java Sources), Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework-java-sources}}.}
 			
 			\de{Alle Modelle in den nachfolgenden Kapiteln wurden mit dem oben genanntem Framework erstellt, welches es erlaubt alle hier in der Arbeit genannten Hyperparameter einzustellen: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. Ein Kommandozeilenaufruf könnte nach erfolgreicher Installation mit den Standard-Werten z.B. wie folgt aussehen:}
 			\en{All models in the following chapters were created with the above mentioned framework, which allows to set all hyperparameters mentioned in this thesis: \url{http://bit.ly/2SNVnvE}\footnote{Keras Machine Learning Framework - Arguments, Github, Febrary 21, 2020, \url{https://github.com/bjoern-hempel/keras-machine-learning-framework/blob/master/markdown/image-classification/arguments.md\#user-content-arguments-of-the-training-process}}. A command line call with the default values could look like the following after successful installation:}
@@ -1305,7 +1298,7 @@ user$ ml train \
 			%\clearpage
 			\renewcommand\theadfont{\bfseries}
 			\begin{table}[htb]
-				\small
+				\footnotesize
 				\centering
 				{\def\arraystretch{2}\tabcolsep=5pt
 					\begin{tabularx}{\linewidth}{ X | l | p{2cm} | l | l }
@@ -1324,6 +1317,28 @@ user$ ml train \
 			
 			\de{Während die Art des Rechengerätes (CPU or GPU) keinen Unterschied ausmacht was die Vor- und Nachbereitung betrifft, so macht es aber einen entscheidenden Unterschied bei der Trainingszeit. Die langsamste CPU benötigt mehr als 80 mal soviel Zeit, wie die schnellste Grafikkarteneinheit. Die Wahl des Rechengerätes für alle weiteren Tests fällt eindeutig auf die GPU.}
 			\en{While the type of computing device (\ac{cpu} or \ac{gpu}) makes no difference in terms of preparation and postprocessing, it does make a significant difference in training time. The slowest \ac{cpu} takes more than 80 times as many time as the fastest graphics card unit. The choice of the computing device for all further tests clearly falls on the \ac{gpu}.}
+	
+		\subsection{Experiment Setup}
+		\label{sec:section_experiment_setup}
+		
+			\subsubsection*{Software specifics}
+			
+				\paragraph*{Python v3.6.9}
+				
+				\paragraph*{TensorFlow GPU v1.14.0}
+				
+				\paragraph*{Keras v2.2.4}
+
+
+
+	% -------------------- %
+	% Results %
+	% -------------------- %
+	\pagebreak
+	\section{Results}
+	\label{sec:section_results}
+		\de{In diesem Teil der Arbeit werden die Untersuchungen vorgestellt und die entsprechenden Auswertungen dazu. Dabei wurden in den jeweiligen Kapiteln Modelle mit den angegebenen Parametern und Techniken erstellt mit welcher man in der Lage ist Bildklassifikationen durchzuführen. Das Modell muss trainiert werden, wobei eine Entscheidung auf viele variable Parameter wie die Lernrate \(\eta\), die Optimierer, aber auch Dinge wie das \ac{cnn} Modell gefällt werden muss. Als Basis dient ein Standardsetup, welches im nachfolgendem Kapitel ``\nameref{sec:section_validation_process_preamble}'' erklärt wird. Von diesem Standard-Setup ausgehend werden die variablen Parameter in den entsprechenden Kapiteln jeweils verändert und diskutiert. Das Ziel soll sein die Parameter zu finden, mit welchem die Erkennungsgenauigkeiten der Modelle besonders hoch ausfallen: hohe Genauigkeiten und kleiner Verlust (loss function).}
+		\en{In this part of the thesis the investigations and the corresponding evaluations will be presented. For each chapter models with the given parameters and techniques have been created with which image classifications can be performed. The model has to be trained, whereby a decision has to be made on many variable parameters like the learning rate \(\eta\), the optimizers, but also things such as the \ac{cnn} model. The basis is a standard setup, which is explained in the following chapter ``\nameref{sec:section_validation_process_preamble}''. Starting from this standard setup, the variable parameters are changed and discussed in the corresponding chapters. The goal is to find the parameters with which the recognition accuracy of the models is particularly high: high accuracy and small loss function.}
 	
 		\subsection{Model validation}
 
@@ -1690,7 +1705,7 @@ user$ ml train \
 						%\clearpage
 						\renewcommand\theadfont{\bfseries}
 						\begin{table}[htb]
-							\small
+							\footnotesize
 							\centering
 							{\def\arraystretch{2}\tabcolsep=5pt
 								\begin{tabularx}{\linewidth}{ l | r | r | r | r | r | X }
@@ -1717,7 +1732,7 @@ user$ ml train \
 									\texttt{group\textsubscript{7}} & 7 & 490& 16.6\% & \pbox[t]{20cm}{\flushRight 91.77\% \\ {\scriptsize @ ep. 14 }} & 82.61\% & {\scriptsize \texttt{burger}, \texttt{burrito}, \texttt{chicken\_wings}, \texttt{meatballs}, \texttt{quesadilla}, \texttt{sloppy\_joe}, \texttt{spaghetti}} \\
 
 									\Xhline{3\arrayrulewidth}
-									Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{79.23}}\%}
+									Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{79.23\%}}}
 
 								\end{tabularx}
 							}
@@ -1747,34 +1762,34 @@ user$ ml train \
 						%\clearpage
 						\renewcommand\theadfont{\bfseries}
 						\begin{table}[htb]
-							\small
+							\footnotesize
 							\centering
 							{\def\arraystretch{2}\tabcolsep=5pt
 								\begin{tabularx}{\linewidth}{ l | r | r | r | r | r | X }
 									\Xhline{3\arrayrulewidth}
 									\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} & \thead[l]{Classes} \\
 									\Xhline{3\arrayrulewidth}
-									preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0}} & & {\scriptsize \texttt{group\textsubscript{0}}, \texttt{group\textsubscript{1}}, \texttt{group\textsubscript{2}}, \texttt{group\textsubscript{3}}, \texttt{group\textsubscript{4}}, \texttt{group\textsubscript{5}}, \texttt{group\textsubscript{6}}, \texttt{group\textsubscript{7}} } \\
+									preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 88.93\% \\ {\scriptsize @ ep. 14}} & & {\scriptsize \texttt{group\textsubscript{0}}, \texttt{group\textsubscript{1}}, \texttt{group\textsubscript{2}}, \texttt{group\textsubscript{3}}, \texttt{group\textsubscript{4}}, \texttt{group\textsubscript{5}}, \texttt{group\textsubscript{6}}, \texttt{group\textsubscript{7}} } \\
 									
 									\hline
-									\texttt{group\textsubscript{0}} & 22 & 1,267 & 42.91\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0}} & 0\% & {\scriptsize \texttt{baked\_beans}, \texttt{beef\_stew}, \texttt{beef\_stroganoff}, \texttt{burger}, \texttt{burrito}, \texttt{caesar\_salad}, \texttt{chicken\_piccata}, \texttt{chicken\_wings}, \texttt{cobb\_salad}, \texttt{coleslaw}, \texttt{creamed\_spinach}, \texttt{french\_fries}, \texttt{frittata}, \texttt{kebabs}, \texttt{macaroni\_and\_cheese}, \texttt{meatballs}, \texttt{nachos}, \texttt{quesadilla}, \texttt{salad}, \texttt{sloppy\_joe}, \texttt{soup}, \texttt{spaghetti} } \\
+									\texttt{group\textsubscript{0}} & 22 & 1,267 & 42.91\% & \pbox[t]{20cm}{\flushRight 84.17\% \\ {\scriptsize @ ep. 18}} & 74.85\% & {\scriptsize \texttt{baked\_beans}, \texttt{beef\_stew}, \texttt{beef\_stroganoff}, \texttt{burger}, \texttt{burrito}, \texttt{caesar\_salad}, \texttt{chicken\_piccata}, \texttt{chicken\_wings}, \texttt{cobb\_salad}, \texttt{coleslaw}, \texttt{creamed\_spinach}, \texttt{french\_fries}, \texttt{frittata}, \texttt{kebabs}, \texttt{macaroni\_and\_cheese}, \texttt{meatballs}, \texttt{nachos}, \texttt{quesadilla}, \texttt{salad}, \texttt{sloppy\_joe}, \texttt{soup}, \texttt{spaghetti} } \\
 
-									\texttt{group\textsubscript{1}} & 5 & 296 & 10.02\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{bundt\_cake}, \texttt{buttermilk\_biscuits}, \texttt{cheesecake}, \texttt{granola\_bar}, \texttt{muffin} } \\
+									\texttt{group\textsubscript{1}} & 5 & 296 & 10.02\% & \pbox[t]{20cm}{\flushRight 93.21\% \\ {\scriptsize @ ep. 16 }} & 82.89\% & {\scriptsize \texttt{bundt\_cake}, \texttt{buttermilk\_biscuits}, \texttt{cheesecake}, \texttt{granola\_bar}, \texttt{muffin} } \\
 
-									\texttt{group\textsubscript{2}} & 4 & 249 & 8.43\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{guacamole}, \texttt{ice\_cream}, \texttt{mashed\_potatoes}, \texttt{popcorn} } \\
+									\texttt{group\textsubscript{2}} & 4 & 249 & 8.43\% & \pbox[t]{20cm}{\flushRight 94.85\% \\ {\scriptsize @ ep. 11 }} & 84.35\% & {\scriptsize \texttt{guacamole}, \texttt{ice\_cream}, \texttt{mashed\_potatoes}, \texttt{popcorn} } \\
 
-									\texttt{group\textsubscript{3}} & 1 & 63 & 2.13\% & 100.0\% & 0\% & {\scriptsize \texttt{martini} } \\
+									\texttt{group\textsubscript{3}} & 1 & 63 & 2.13\% & 100.0\% & 88.93\% & {\scriptsize \texttt{martini} } \\
 
-									\texttt{group\textsubscript{4}} & 2 & 158 & 5.35\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{margarita}, \texttt{smoothie} } \\
+									\texttt{group\textsubscript{4}} & 2 & 158 & 5.35\% & \pbox[t]{20cm}{\flushRight 99.30\% \\ {\scriptsize @ ep. 10 }} & 88.31\% & {\scriptsize \texttt{margarita}, \texttt{smoothie} } \\
 
-									\texttt{group\textsubscript{5}} & 12 & 677 & 22.93\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{baked\_salmon}, \texttt{calzone}, \texttt{corn\_dog}, \texttt{empanada}, \texttt{grilled\_cheese\_sandwich}, \texttt{lasagne}, \texttt{meatloaf}, \texttt{omelet}, \texttt{pancakes}, \texttt{pizza}, \texttt{stuffed\_pepper}, \texttt{waffles} } \\
+									\texttt{group\textsubscript{5}} & 12 & 677 & 22.93\% & \pbox[t]{20cm}{\flushRight 85.63\% \\ {\scriptsize @ ep. 11 }} & 76.15\% & {\scriptsize \texttt{baked\_salmon}, \texttt{calzone}, \texttt{corn\_dog}, \texttt{empanada}, \texttt{grilled\_cheese\_sandwich}, \texttt{lasagne}, \texttt{meatloaf}, \texttt{omelet}, \texttt{pancakes}, \texttt{pizza}, \texttt{stuffed\_pepper}, \texttt{waffles} } \\
 
-									\texttt{group\textsubscript{6}} & 3 & 160 & 5.42\% & \pbox[t]{20cm}{\flushRight 0\% \\ {\scriptsize @ ep. 0 }} & 0\% & {\scriptsize \texttt{cinnamon\_roll}, \texttt{donut}, \texttt{key\_lime\_pie} } \\
+									\texttt{group\textsubscript{6}} & 3 & 160 & 5.42\% & \pbox[t]{20cm}{\flushRight 93.13\% \\ {\scriptsize @ ep. 5 }} & 82.82\% & {\scriptsize \texttt{cinnamon\_roll}, \texttt{donut}, \texttt{key\_lime\_pie} } \\
 
-									\texttt{group\textsubscript{7}} & 1 & 83 & 2.81\% & 100.0\% & 0\% & {\scriptsize \texttt{brownies} } \\
+									\texttt{group\textsubscript{7}} & 1 & 83 & 2.81\% & 100.0\% & 88.93\% & {\scriptsize \texttt{brownies} } \\
 
 									\Xhline{3\arrayrulewidth}
-									Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{0.00}}\%}
+									Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{78.60\%}}}
 
 								\end{tabularx}
 							}
@@ -1808,6 +1823,7 @@ user$ ml train \
 			\begin{itemize}
 				\item Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable?
 			\end{itemize}
+			\item Don't Decay the Learning Rate, Increase the Batch Size: https://arxiv.org/abs/1711.00489
 		\end{itemize}
 		
 		
