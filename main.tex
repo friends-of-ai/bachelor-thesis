@@ -789,6 +789,7 @@
 
 
 			\subsubsection{Artificial neural network}
+			\label{sec:section_artificial_neural_network}
 				\de{Künstliche neuronale Netzwerke stellen Funktionen bereit, welche in der Lage sind hochkomplexe Daten im mehrdimensionalem Raum zu trennen. Bei großen und hochgradig komplexen Aufgaben, wie beispielsweise der Klassifizierung von Milliarden von Bildern, Sprach- und Texterkennungen, schneiden neuronale Netze meist besser ab, als andere Machine Learning Verfahren. Der erhebliche Zuwachs an Rechenkapizität seit den 1990ern ermöglicht das Trainieren großer neuronaler Netzwerke innerhalb eines sinnvollen Zeitraumes. Künstliche neuronale Netzwerke sind die Kernkomponente des Deep Learnings, welche eine Methode des machinellen Lernens bezeichnet.}
 				\en{\Aclp{ann} provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other \ac{ml} methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning, which denotes a method of \ac{ml}.}
 
@@ -1367,7 +1368,7 @@ user$ ml train \
 						\item \textbf{batch size:} 16
 						\item \textbf{drop out:} 50\%
 						\item \textbf{\ac{cnn} weights:} ImageNet
-						\item \textbf{activation function:} relu
+						\item \textbf{activation function:} ReLU
 						\item \textbf{optimizer:} sgd with Nesterov
 						\item \textbf{momentum:} 0.9 (with decay 0.0)
 						\item the entire training and validation set (14866 images - unless otherwise specified)
@@ -1550,6 +1551,9 @@ user$ ml train \
 				\en{A higher batch size value obviously leads to a faster and more predictable (more even) increase in validation accuracy in the first epochs (light blue trace with \(batch\_size=32\)), compared to a batch size of 16 (red trace), for example, where the accuracy ``jumps'' from epoch two to seven. However, it does not give the best result at the end of the 21 epochs. While a value of 16 for the batch size achieves an accuracy of 83.52\%, it only achieves 82.54\% with a value of 32. Up to a batch size of 16, however, it can be said that as the batch size increases, a better result is always achieved. Increasing the batch size reduces the required computing time as expected. In this case, it has been improved from eight hours to two hours. Overfitting is achieved very slowly with a batch size of 2, but this model is also the worst one with a detection accuracy of 67.13\%. Investigations with a slightly more balanced data set and an even higher batch size should be aimed at to further study the influence of the batch size.}
 		
 			\subsubsection{Different activation functions}
+			
+				\de{Die Aktivierungsfunktion stellt sicher, dass aus der linearen Klassifizierungsfunktion eine nichtlineare Funktion wird (siehe Kapitel ``\nameref{sec:section_artificial_neural_network}'') und mit deren Hilfe es erst möglich ist den Klassifizierungsraum für Bildklassifizierungen zu erstellen\autocite{noauthor_aktivierungsfunktionen_2019}. Es gibt eine Menge verschiedener Aktivierungsfunktionen, die sich in ihrer Art ein wenig unterscheiden. Der Einfluss auf die zu erreichenden Modellgenauigkeiten dieser verschiedenen Aktivierungsfunktionen ist in Abbildung \ref{fig:evaluation_overview_influence_difference_activation_functions} verzeichnet.}
+				\en{The activation function ensures that the linear classification function becomes a non-linear function (see chapter ``\nameref{sec:section_artificial_neural_network}'') and with its help it is possible to create the classification space for image classifications.\autocite{noauthor_aktivierungsfunktionen_2019}. There are a lot of different activation functions, which differ a little bit in their manner. The influence on the model accuracy to be achieved by these different activation functions is shown in figure \ref{fig:evaluation_overview_influence_difference_activation_functions}.}
 	
 				\begin{figure}[H]
 					\begin{center}
@@ -1561,7 +1565,8 @@ user$ ml train \
 					\label{fig:evaluation_overview_influence_difference_activation_functions}
 				\end{figure}
 				
-				\hl{Interpretation!}
+				\de{Die zu erreichenden Modellgenauigkeiten sind im Ergebnis sehr ähnlich. Dennoch gibt es kleine Unterschiede. Die Sigmoidfunktion, als auch die Aktivierungsfunktion ``Hard sigmoid'' konvergieren langsamer zur maximal möglichen Modellgenauigkeit. Die anderen vier Aktivierungsfunktionen konvergieren schneller und liegen mit etwa 20\% mehr Modellgenauigkeit in der ersten Epoche weiter vorn. Sie unterscheiden sich nicht sehr stark im Ergebnis. Das beste Ergebnis erreicht die Aktivierungsfunktion ``ReLU'' mit 83,52\%.}
+				\en{The model accuracies to be achieved are very similar in the result. Nevertheless, there are small differences. The sigmoid function, as well as the activation function ``Hard sigmoid'' converge more slowly to the maximum possible model accuracy. The other four activation functions converge faster and are further ahead with about 20\% more model accuracy in the first epoch. They do not differ very much in their results. The best result is achieved by the activation function ``ReLU'' with 83.52\%.}
 		
 			\subsubsection{Different number of learned epochs}
 	
