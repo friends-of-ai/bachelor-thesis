@@ -393,7 +393,7 @@
 		% -------------------- %
 		\subsection{Image classification}
 			\de{Klassifizierungen sind ein Prozess der Identifizierung, zu welcher Klasse ein unbeobachtetes Objekt gehört. Hierbei können eine Reihe von vordefinierten Klassen vorgegeben und anhand deren Eigenschaften versucht werden unbekannte und bisher unbeobachtete Objekt einzuordnen. Bei der Bildklassifizierung wird analog vorgegangen. Bei den zuvor genannten Objekten handelt es sich nun schlichtweg um Bilder.}
-			\en{Classifications are a process of identifying to which class an unobserved object belongs. Several predefined classes can be specified and, based on their properties, an attempt can be made to classify unknown and previously unobserved objects. The procedure for image classification is similar. The previously mentioned objects are now simply images.}
+			\en{Classifications are a process of identifying to which class an unobserved object belongs. Several predefined classes can be specified and, based on their properties, an attempt can be made to classify unknown and previously unobserved objects. The procedure for image classification is similar. The previously mentioned objects are now simply images (figure \ref{fig:cat_or_dog}).}
 
 			\begin{figure}[H]
 				\centering
@@ -420,7 +420,7 @@
 		\subsubsection{Deductive approach}
 		\label{sec:section_deductive_approach}
 			\de{Seit den späten 1960er Jahren hat man versucht, Bilder mit \textit{selbstgeschriebenen} Algorithmen zu klassifizieren. Dieser Teil der Computer Vision beschäftigt sich mit Techniken wie Bildentstehung, Bildbearbeitung und Bildsegmentierung. Im Bereich der Bildverarbeitung reihen sich bekannte Verfahren wie Kantenerkennungen, Merkmalsdetektoren, Randverknüpfungen, Kontrastverbesserungen, etc.\autocite{szeliski_computer_nodate} Allen Techniken gemein ist die Verwendung des deduktiven Ansatzes. Beim deduktiven Ansatz erstellt man Regeln (Merkmalsdetektoren), welche das gewünschte Ergebnis vorhersagen sollen. Diese Regeln werden vorgegeben und beschrieben und erlauben damit später eine Klassifizierung von unbekannten Objekten. Da das Modell und sein Algorithmus hinreichend bekannt ist, wird dieses Verfahren White-Box-Verfahren genannt.}
-			\en{Since the late 1960s, attempts have been made to classify images with \textit{self-written} algorithms. This part of computer vision deals with techniques such as image creation, image processing and image segmentation. In the field of image processing, well-known techniques such as edge detection, feature detectors, edge linking, contrast enhancement, etc. are used\autocite{szeliski_computer_nodate}. Common to all techniques is the use of the deductive approach. With the deductive approach, one creates rules (feature detectors) which are supposed to predict the desired result. These rules are given and described and thus allow later classification of unknown objects. Since the model and its algorithm are sufficiently well known, this procedure is called a white-box procedure.}
+			\en{Since the late 1960s, attempts have been made to classify images with \textit{self-written} algorithms. This part of computer vision deals with techniques such as image creation, image processing and image segmentation. In the field of image processing, well-known techniques such as edge detection, feature detectors, edge linking, contrast enhancement, etc. are used\autocite{szeliski_computer_nodate}. Common to all techniques is the use of the deductive approach. With the deductive approach, one creates rules (feature detectors) which are supposed to predict the desired result. These rules are given and described and thus allow later classification of unknown objects. Since the model and its algorithm are sufficiently well known, this procedure is called a white-box procedure (figure \ref{fig:overview_deductive_approach}).}
 
 			\begin{figure}[H]
 				\begin{center}
@@ -438,7 +438,7 @@
 		\subsubsection{Inductive approach}
 		\label{sec:section_inductive_approach}
 			\de{Der induktive Ansatz hingegen verfolgt einen anderen Ansatz Bilder zu klassifizieren. Das Ziel ist nicht die Vorgabe einer Regel, sondern das Vorgehen aus schon bekannten einzelnen Objekten eine Regel (Modell) automatisiert zu erlernen. Ein Modell meist eine komplexe Funktion und eine mathematische Abbildung eines Raumes (VC Dimension\autocite{noauthor_vapnikchervonenkis_2020}), in welcher einzelne Objekte mit ihren Eigenschaften abgebildet und getrennt werden können. Das Modell wird Stück für Stück den bekannten Objekten so angepasst, dass der Eingabewert dem Ausgabewert entspricht bzw. weitgehend entspricht (Backpropagation). Das Ziel ist es mit diesem Modell eine Funktion zu erstellen, welche in der Lage ist auch unbekannte Objekte bestmöglichst zu klassifizieren. Da der Raum dieses Modell meist fern der Vorstellungskraft und der Erklärungsmöglichkeit liegt, wird dieses Verfahren auch Black-Box-Verfahren genannt. Der hier beschriebene Vorgang wird meist bei jeder Art von \nameref{sec:section_supervised_classification} angewendet und ist ein Teil des \nameref{sec:section_machine_learning}.}
-			\en{The inductive approach, on the other hand, takes a different approach to classifying images. The goal is not to specify a rule, but to learn a rule (model) automatically from already known individual objects. A model is usually a complex function and a mathematical representation of a space, in which individual objects with their properties can be mapped and separated. This measure of the capacity that can be learned by this complex function is called \ac{vcd}\autocite{noauthor_vapnikchervonenkis_2020}. The model is adapted piece by piece to the known objects in such a way that the input value corresponds to the output value or corresponds to a large extent (backpropagation). The goal is to create a function with this model, which can classify unknown objects in the best possible way. Because the space of this model is mostly far away from the imagination and the possibility of explanation, this procedure is also called a black-box procedure. The procedure described here is mostly used for any kind of \nameref{sec:section_supervised_classification} and is a part of \nameref{sec:section_machine_learning}.}
+			\en{The inductive approach, on the other hand, takes a different approach to classifying images. The goal is not to specify a rule, but to learn a rule (model) automatically from already known individual objects. A model is usually a complex function and a mathematical representation of a space, in which individual objects with their properties can be mapped and separated. This measure of the capacity that can be learned by this complex function is called \ac{vcd}\autocite{noauthor_vapnikchervonenkis_2020}. The model is adapted piece by piece to the known objects in such a way that the input value corresponds to the output value or corresponds to a large extent (backpropagation). The goal is to create a function with this model, which can classify unknown objects in the best possible way. Because the space of this model is mostly far away from the imagination and the possibility of explanation, this procedure is also called a black-box procedure (figure \ref{fig:overview_inductive_approach}). The procedure described here is mostly used for any kind of supervised learning (see chapter ``\nameref{sec:section_supervised_learning}'') and is a part of \ac{ml} (see chapter ``\nameref{sec:section_machine_learning}'').}
 
 			\begin{figure}[H]
 				\begin{center}
@@ -459,7 +459,7 @@
 			\en{Neural networks have made \textit{enormous} progress in the field of pattern recognition in recent years. A decisive factor is that the data for learning must be of high quality and easy for the network to process. Wrongly classified or irrelevant data could cause the network to learn something wrong. This also applies to non-existent or unsuitable pre-processing\autocite{osinga2019data}.}
 
 			\de{Mit dem Beginn eines Klassifizierungsprojektes stellt sich die Frage was genau man klassifizieren möchte und wie umfangreich die Klassifzierung ausfallen soll. Angenommen man möchte verschiedene Klassen von Essen identifizieren, so könnten das Klassen wie Pizza, Burger, Donuts und Lasagne sein (etc.). Zu diesen Klassen benötigt man nun eine große Anzahl an Bildern. Diese Daten sollten im Idealfall die Realität möglichst gut widerspiegeln. Eine große Variation ist von Vorteil (ausbalancierter Datenset): verschiedene Blickwinkel, Größe, Position, Farbhelligkeiten, Variationen, Anzahl, etc. Bilder von z.B. nur einer Farbhelligkeit oder nur einem Blickwinkel sollten vermieden werden. Sind die Daten nicht ausbalanciert, so müssen diese entsprechend korrigiert werden: z.B. durch Hinzufügen weiterer Daten, Bildverarbeitung oder durch Entfernen von Daten, welche für eine Unausgewogenheit sorgen. Weiterhin sollten die ausgewählten Klassen untereinander klar optisch trennbar sein. Sind sich zwei Klassen optisch sehr ähnlich und selbst durch einen Menschen nicht wirklich unterscheidbar, sollte darüber nachgedacht werden diese zusammenzufassen (z.B. "burger" und "veggie burger"):}
-			\en{With the beginning of a classification project, the question arises what exactly one wants to classify and how extensive the classification should be. Assuming one wants to identify different classes of food, this could be classified as pizza, burgers, doughnuts and lasagna (etc.). For these classes, one now needs a large number of images. Ideally, this data should reflect reality as well as possible. A large variation is advantageous (balanced data set): different viewing angles, size, position, colour brightness, variations, number, etc. Images of e.g. only one colour brightness or only one viewing angle should be avoided. If the data are not balanced, they must be corrected accordingly: e.g. by adding further data, image processing or by removing data that causes an imbalance. Furthermore, the selected classes should be clearly optically separable from each other. If two classes are visually very similar and not really distinguishable even by a human, consideration should be given to combining them (e.g. "burger" and "veggie burger"):}
+			\en{With the beginning of a classification project, the question arises what exactly one wants to classify and how extensive the classification should be. Assuming one wants to identify different classes of food, this could be classified as burgers (figure \ref{fig:class_burger}), doughnuts (figure \ref{fig:class_doughnut}) or pizza (figure \ref{fig:class_pizza}), etc. For these classes, one now needs a large number of images. Ideally, this data should reflect reality as well as possible. A large variation is advantageous (balanced data set): different viewing angles, size, position, colour brightness, variations, number, etc. Images of e.g. only one colour brightness or only one viewing angle should be avoided. If the data are not balanced, they must be corrected accordingly: e.g. by adding further data, image processing or by removing data that causes an imbalance. Furthermore, the selected classes should be clearly optically separable from each other. If two classes are visually very similar and not really distinguishable even by a human, consideration should be given to combining them (e.g. "burger" and "veggie burger").}
 
 			\begin{figure}[H]
 				\centering
@@ -479,8 +479,8 @@
 				\includegraphics[width=0.19\textwidth]{images/data/donut/donut176.jpg}
 				\includegraphics[width=0.19\textwidth]{images/data/donut/donut205.jpg}
 				\includegraphics[width=0.19\textwidth]{images/data/donut/donut440.jpg}
-				\caption[Example pictures of a donut class]{Example pictures of a donut class}
-				\label{fig:class_donut}
+				\caption[Example pictures of a doughnut class]{Example pictures of a doughnut class}
+				\label{fig:class_doughnut}
 			\end{figure}
 
 			\begin{figure}[H]
@@ -494,16 +494,8 @@
 				\label{fig:class_pizza}
 			\end{figure}
 
-			\de{An Daten zu gelangen ist oftmals nicht so einfach. Jede Datenquelle hat ihre eigenen Besonderheiten. Eine Möglichkeit an Daten zu gelangen wäre ein automatische Crawling von Bilddatenbanken, Suchmaschinen oder Rezensionen, in welchen Bilder vorkommen. Ein gewisses Maß an Kreativität ist von Vorteil:}
-			\en{Accessing data is often not that easy. Every data source has its own special features. One way to access data would be an automatic crawling of image databases, search engines or reviews in which images appear. A certain amount of creativity is advantageous:}
-
-			\begin{itemize}
-				\item Google
-				\item Bing
-				\item Flickr
-				\item TripAdvisor
-				\item etc.
-			\end{itemize}
+			\de{An Daten zu gelangen ist oftmals nicht so einfach. Jede Datenquelle hat ihre eigenen Besonderheiten. Eine Möglichkeit an Daten zu gelangen wäre ein automatische Crawling von Bilddatenbanken (Flickr), Suchmaschinen (Google, Bing) oder Rezensionen (TripAdvisor), in welchen Bilder vorkommen und mit dem Text in Verbindung gebracht werden können (``Das hier ist der beste Donut, den ich je gegessen habe.''). Eine kreative Herangehensweise ist hier von Vorteil.}
+			\en{Accessing data is often not that easy. Every data source has its own special features. One way to access data would be an automatic crawling of image databases (Flickr\autocite{noauthor_flickr_nodate}), search engines (Google\autocite{noauthor_google_nodate}, Bing\autocite{noauthor_bing_nodate}) or reviews (TripAdvisor), in which images appear and can be associated with the text (``This here is the best doughnut I've ever eaten.''). A creative approach is an advantage here.}
 			
 			\de{Die wahrscheinlich teuerste Variante an Daten zu gelangen ist die händische Suche und Klassifizierung durch z.B. einen Ontologen. Dieser beurteilt und sucht verschiedenen Bilder und ordnet diese händisch in die entsprechenden Klassen ein. Auch eine kombinierte Variante ist möglich und wahrscheinlich zu bevorzugen: Automatisches Crawling und händisches aussortieren falscher, ungünstiger oder irrelevanter Bilder.}
 			\en{Probably the most expensive way to obtain data is to search and classify them manually, e.g. by an ontologist. The ontologist evaluates and searches for different images and manually classifies them in the appropriate classes. A combined variant is also possible and probably preferable: automatic crawling and manual sorting out of incorrect, unfavorable or irrelevant images.}
@@ -536,7 +528,7 @@
 		% -------------------- %
 		\subsubsection{Confusion matrix}
 		 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während jede Spalte die Anzahl oder eine Zahlenangaben in Prozent der vorhergesagten Klasse angibt (oder umgekehrt)\autocite{noauthor_confusion_2020-1}:}
-		 	\en{The confusion matrix is a special quadratic matrix in the field of \ac{ml} that allows the visualization of the performance of a predictive model. Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\autocite{noauthor_confusion_2020-1}:}
+		 	\en{The confusion matrix is a special quadratic matrix in the field of \ac{ml} that allows the visualization of the performance of a predictive model (figure \ref{tbl:figure_confusion_matrix_1}). Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\autocite{noauthor_confusion_2020-1}. }
 
 			\begin{table}[htb]
 				\centering
@@ -553,7 +545,7 @@
 						\end{tabular}
 					}
 				}
-				\captionof{table}{Confusion matrix}\label{tbl:table_confusion_matrix}
+				\captionof{figure}{Confusion matrix}\label{tbl:figure_confusion_matrix_1}
 			\end{table}
 
 		 	\de{Zum Schluß besitzt die Confusion Matrix folgenden Aufbau, wobei die Anzahl von Elementen in der Klasse \(C_{i,P}\) vorhergesagt wurde, obwohl (\(\boldsymbol{\cong}\)) es hätte Klasse \(C_{j,A}\) sein müssen:}
@@ -585,8 +577,8 @@
 				Accuracy_{top-5} = {{CorrectWithinTheBest5Classes_{all}} \over {CorrectPossible_{all}}}
 			\end{equation}
 
-			\de{Die Genauigkeit des gesamten Modells ist eine gute Aussagekraft über die Leistungsfähigkeit des Modells. Ein Problem tritt jedoch in Extremfällen auf, bei denen nicht mehr zuverlässig Annahmen gemacht werden können. Zum Beispiel wenn man es mit einem unbalancierten Datensatz zu tun hat\autocite{geron2017supervisedlearningConfusionMatrix}. Beispiel: Angenommen man hätte ein Modell, dass immer die Klasse \(class_1\) vorhersagt. Die Klasse \(class_1\) besteht aus 9990 Elementen und von den anderen Klassen \(class_2\) bis \(class_n\) hat man genau 10. Dann sieht die Confusion Matrix wie folgt aus:}
-			\en{The accuracy of the entire model is a good indication of the performance of the model. However, a problem occurs in extreme cases where assumptions can no longer be made reliably. For example, if one is working with an unbalanced dataset\autocite{geron2017supervisedlearningConfusionMatrix}. Example: Suppose one has a model that always predicts the class \(class_1\). The class \(class_1\) consists of 9990 elements and from the other classes \(class_2\) to \(class_n\) one has exactly 10. Then the Confusion Matrix looks like this:}
+			\de{Die Genauigkeit des gesamten Modells ist eine gute Aussagekraft über die Leistungsfähigkeit des Modells. Ein Problem tritt jedoch in Extremfällen auf, bei denen nicht mehr zuverlässig Annahmen gemacht werden können. Zum Beispiel wenn man es mit einem unbalancierten Datensatz zu tun hat\autocite{geron2017supervisedlearningConfusionMatrix}. Beispiel: Angenommen man hätte ein Modell, dass immer die Klasse \(class_1\) vorhersagt. Die Klasse \(class_1\) besteht aus 9990 Elementen und von den anderen Klassen \(class_2\) bis \(class_n\) hat man genau 10. Dann sieht die Confusion Matrix wie in nachfolgender Abbildung aus.}
+			\en{The accuracy of the entire model is a good indication of the performance of the model. However, a problem occurs in extreme cases where assumptions can no longer be made reliably. For example, if one is working with an unbalanced dataset\autocite{geron2017supervisedlearningConfusionMatrix}. Example: Suppose one has a model that always predicts the class \(class_1\). The class \(class_1\) consists of 9990 elements and from the other classes \(class_2\) to \(class_n\) one has exactly 10. Then the confusion matrix looks like in the following figure (figure \ref{tbl:figure_confusion_matrix_2}).}
 
 			%\clearpage
 			\begin{table}[htb]
@@ -604,7 +596,7 @@
 						\end{tabular}
 					}
 				}
-				\captionof{table}{Confusion matrix example}\label{tbl:table_confusion_matrix}
+				\captionof{figure}{Confusion matrix example}\label{tbl:figure_confusion_matrix_2}
 			\end{table}
 
 			\de{Die Modell-Genauigkeit ist ein ist in diesem Fall 99,9\%, obwohl es ein schlechtes Modell ist:}
@@ -828,7 +820,7 @@
 				\en{\Aclp{ann} provide functions that are able to separate highly complex data in multidimensional space. For large and highly complex tasks, such as the classification of billions of images, speech and text recognition, neural networks usually perform better than other \ac{ml} methods. The significant increase in computational capacity since the 1990s allows the training of large neural networks within a reasonable period of time. Artificial neural networks are the core component of deep learning, which denotes a method of \ac{ml}.}
 
 				\de{Neuronale Netzwerke verarbeiten einen Eingabevektor und wandeln ihn in einen neuen Ausgabevektor um. Sie sind Netze aus vielen hintereinander und parallel geschalteten künstlichen Neuronen. Ein künstliches Neuron wiederrum wandelt einen Vektor in ein Skalar um, indem es die Eingänge \(\bar{x}\) mit den veränderlichen Parametern \(\bar{\omega}\) skaliert, aufsummiert und mit einem Bias \(b\) korrigiert (der Bias ist ebenso eine veränderliche Variable). Die Aktivierungsfunktion stellt sicher, dass aus dem Polynom ersten Grades (lineares Regressionsmodell) eine nichtlineare Funktion wird\autocite{noauthor_aktivierungsfunktionen_2019}:}
-				\en{Neural networks process an input vector \(\bar{x}\) and convert it into a new output vector \(\hat{\bar{x}}\). They are networks of many artificial neurons connected in series and parallel. An artificial neuron in turn converts a vector into a scalar by scaling and summing the inputs \(\bar{x}\) with the changeable parameters \(\bar{\omega}\) and correcting them with a bias \(b\) (the bias is also a changeable variable). The activation function ensures that the first degree polynomial (linear regression model) becomes a nonlinear function\autocite{noauthor_aktivierungsfunktionen_2019}:}
+				\en{Neural networks process an input vector \(\bar{x}\) and convert it into a new output vector \(\hat{\bar{x}}\). They are networks of many artificial neurons connected in series and parallel. An artificial neuron in turn converts a vector into a scalar by scaling and summing the inputs \(\bar{x}\) with the changeable parameters \(\bar{\omega}\) and correcting them with a bias \(b\) (the bias is also a changeable variable). The activation function ensures that the first degree polynomial (linear regression model) becomes a nonlinear function\autocite{noauthor_aktivierungsfunktionen_2019} (figure \ref{fig:construction_of_an_an}).}
 
 				\begin{figure}[H]
 					\[
@@ -865,10 +857,11 @@
 						\quad\Biggl\lvert \quad h = step(z) = step(\bar{\omega}^\intercal \cdot \bar{x} + b)
 					\]
 					\caption{The construction of an artificial neuron}
+					\label{fig:construction_of_an_an}
 				\end{figure}
 
 				\de{Das künstliche neuronale Netz baut sich aus vielen hintereinandergeschalteten Layern zusammen, welche wiederrum parallel geschaltete Neuronen enthalten:}
-				\en{The artificial neural network is composed of many layers connected in series, which again contain neurons connected in parallel:}
+				\en{The artificial neural network is composed of many layers connected in series, which again contain neurons connected in parallel (figure \ref{fig:construction_of_a_simple_ann}).}
 
 				\begin{figure}[H]
 					\centering
@@ -952,6 +945,7 @@
 						\end{tikzpicture}
 					}
 					\caption{The construction of a simple neural network}
+					\label{fig:construction_of_a_simple_ann}
 				\end{figure}
 	
 				\de{Ein neuronales Netzwerk ist in der Lage komplexe Eingaben zu klassifizieren. Doch wie genau funktioniert das? Die nachfolgende Klassifikationsfunktion ist in der Lage einfache Klassenprobleme zu trennen, wobei \(\bar{x}\) die Koordinaten der einzelnen Klassenpunkte darstellen und \(\bar{w}\) und \(b\) lernbare Parameter sind:}
@@ -962,22 +956,22 @@
 				\end{equation}
 
 				\de{Mit dieser linearen Funktion lässt sich das Klassifizierungsproblem in Problem 1 in Abbildung~\ref{fig:overview_linear_nonlinear_classification} leicht klassifizieren. Die Funktion entspricht einem neuronalen Netz ohne verdeckte Schicht und enthält nur eine Eingangs- und eine Ausgangsschicht mit einem künstlichem Neuron ohne Aktivierungsfunktion. Die Dimension, die diese Funktion trennen kann, ist zwei und wird als VC-Dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. Anders ausgedrückt kann diese Funktion kann genau zwei Klassen linear trennen. Aber was ist mit nichtlinearen Problemen?}
-				\en{With this linear function, the classification problem of the first representation of figure~\ref{fig:overview_linear_nonlinear_classification} can be easily classified. The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is two and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. In other words, this function can separate exactly two classes linearly. But what about nonlinear problems?}
+				\en{With this linear function, the classification problem of the first representation of figure \ref{fig:overview_linear_nonlinear_classification} (i) can be easily classified. The function corresponds to a neural network without a hidden layer and contains only one input and one output layer with one artificial neuron without activation function. The dimension that this function can separate is two and is called VC dimension\footnote{Vapnik–Chervonenkis dimension: \url{https://en.wikipedia.org/wiki/Convolutional_neural_network}}. In other words, this function can separate exactly two classes linearly. But what about nonlinear problems?}
 				
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{1.0}{\includetex{classification}}
+						\scalebox{0.75}{\includetex{classification}}
 					\end{center}
 					\caption{Linear vs. nonlinear classification}
 					\label{fig:overview_linear_nonlinear_classification}
 				\end{figure}
 	
 				\de{Für das zweite Problem kann man die Funktion noch anpassen. Für das dritte nichtlineare Problem ist der Klassifikationsraum nicht mehr ausreichend und erfordert einen anderen Algorithmus. Und hier kommen die neuronalen Netze ins Spiel. Ein Tool, um das Trennen von Daten zu visualisieren und die Funktionsweise der einzelnen Layer zu testen ist \url{https://playground.tensorflow.org}\footnote{Neural Network Right Here in Your Browser: \url{https://playground.tensorflow.org}}. Ein nichtlineares Problem kann im einfachsten Fall schon mit einer hinzugefügten versteckten Schicht mit drei weiteren Neuronen gelöst werden:}
-				\en{For the second problem one can still adjust the function. For the third nonlinear problem the classification space is no longer sufficient and requires a different algorithm. And this is where the neural networks come into play. A tool to visualize the separation of data and to test the functionality of the individual layers is \url{https://playground.tensorflow.org}\footnote{Neural Network Right Here in Your Browser: \url{https://playground.tensorflow.org}}. In the simplest case, a nonlinear problem can be solved by adding a hidden layer with three additional neurons:}
+				\en{For the second classification problem one can still adjust the function (figure \ref{fig:overview_linear_nonlinear_classification}, \lowroman{2}). For the third nonlinear problem (figure \ref{fig:overview_linear_nonlinear_classification}, \lowroman{3}) the classification space is no longer sufficient and requires a different algorithm. And this is where the neural networks come into play. A tool to visualize the separation of data and to test the functionality of the individual layers is \url{https://playground.tensorflow.org}\footnote{Neural Network Right Here in Your Browser: \url{https://playground.tensorflow.org}}. In the simplest case, a nonlinear problem can be solved by adding a hidden layer with three additional neurons (figure \ref{fig:simple_neural_network}).}
 
 				\begin{figure}[H]
 					\centering
-					\includegraphics[width=1.0\textwidth]{images/simple_neuronal_network}
+					\includegraphics[width=0.75\textwidth]{images/simple_neuronal_network}
 					\caption[Simple neural network with one hidden layer]{Simple neural network with one hidden layer\footnotemark}
 					\label{fig:simple_neural_network}
 				\end{figure}
