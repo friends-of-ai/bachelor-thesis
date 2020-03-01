@@ -1663,7 +1663,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 	
 			\subsubsection{Data augmentation}
 				\de{Wie in Kapitel ``\nameref{sec:section_data_augmentation}'' beschrieben, ist die Hauptaufgabe von Data augmentation neue neue Trainingsdaten aus den bestehenden zu generieren. Der Trainingsdatensatz wird somit künstlich vergrößert. Diese Technik gehört mit zu den Regularisierungstechniken, da sie Overfitting entgegenwirken kann\autocite{geron2017supervisedlearningDataAugmentation}. Nachfolgend ein Beispieldatenset, bei dem das erste originale Bild gedreht, gespiegelt, verzerrt wird und der Datensatz von einem Bild auf insgesamt 12 Bilder vergrößert wird:}
-				\en{As described in chapter ``\nameref{sec:section_data_augmentation}'' the main task of data augmentation is to generate new training data from the existing data. The training data set is artificially augmented in this way. This technique is one of the regularization techniques, as it can counteract overfitting\autocite{geron2017supervisedlearningDataAugmentation}. Below is an example data set in which the first original image is rotated, mirrored, distorted and the data set is enlarged from one image to a total number of 12 images:}
+				\en{As described in chapter ``\nameref{sec:section_data_augmentation}'' the main task of data augmentation is to generate new training data from the existing data. The training data set is artificially augmented in this way. This technique is one of the regularization techniques, as it can counteract overfitting\autocite{geron2017supervisedlearningDataAugmentation}. Below is an example data set in which the first original image is rotated, mirrored, distorted and the data set is enlarged from one image to a total number of 12 images (figure \ref{fig:data_augmentation}).}
 	
 				\begin{figure}[H]
 					\begin{center}
@@ -1674,7 +1674,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 				\end{figure}
 				
 				\de{Mit dieser Technik wird nun der bestehende \texttt{food-50} Datensatz angepasst, bis jede Klasse insgesamt 1000 Bilder enthält und der Datensatz insgesamt ausbalanciert ist. Klassen mit wenigen Daten erhalten entsprechend mehr künstlich angepasste Daten, Klassen mit vielen Daten entsprechend weniger. Das Ergebnis ist, dass aus den ursprünglich 11913 Bildern nun insgesamt 50000 Bilder wurden und der Datensatz von insgesamt 765 MB auf 1,78 GB angewachsen ist. Der Validierungsdatensatz bleibt unverändert, um das Testergebnis nicht zu verfälschen. Nachfolgend das Auswertungsdiagramm:}
-				\en{Using this technique, the existing \texttt{food-50} dataset is now adjusted until each class contains a total number of 1000 images and the dataset is balanced overall. Classes with few data will receive more artificially adjusted data, classes with many data will receive less. The result is that the original 11913 images have now become a total number of 50000 images and the data set has grown from 765 MB to 1.78 GB. The validation data set remains unchanged in order not to falsify the test result. The evaluation diagram is shown below:}
+				\en{Using this technique, the existing \texttt{food-50} dataset is now adjusted until each class contains a total number of 1000 images and the dataset is balanced overall. Classes with few data will receive more artificially adjusted data, classes with many data will receive less. The result is that the original 11913 images have now become a total number of 50000 images and the data set has grown from 765 MB to 1.78 GB. The validation data set remains unchanged in order not to falsify the test result. The evaluation diagram is shown below (figure \ref{fig:evaluation_data_augmentation}).}
 				
 				\begin{figure}[H]
 					\begin{center}
@@ -1713,7 +1713,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 						\quad\Biggl\lvert \quad \sum_{i=1}^{50} \hat{p_i} = 1
 					\end{equation}
 					
-					\de{Von diesen Wahrscheinlichkeitsvektoren wird nun jeweils für jede Klasse ein Durchschnittsvektor aller \(n\) Elemente bestimmt, welche zur entsprechenden Klasse wirklich gehören. Man erhält also für dieses 50 Klassenmodell entsprechend 50 Klassenvektoren mit der Dimension 50:}
+					\de{Von diesen Wahrscheinlichkeitsvektoren wird nun jeweils für jede Klasse ein Durchschnittsvektor aller \(n\) Elemente bestimmt, welche zur entsprechenden Klasse wirklich gehören. Man erhält also für dieses 50 Klassenmodell entsprechend 50 Klassenvektoren mit der Dimension 50.}
 					\en{From these probability vectors, an average vector of all \(n\) elements is determined for each class, which really belong to the respective class. Thus, for this 50 class model, one obtains 50 class vectors with the dimension 50:}
 					
 					\begin{equation}
@@ -1725,8 +1725,8 @@ model = Model(inputs = base_model.input, outputs = predictions)
 						}{n}
 					\end{equation}
 					
-					\de{Mittels Principal component analysis werden diese mehrdimensionalen Vektoren in einem zweidimensionalen Raum transformiert, um diese grafisch darstellen zu können:}
-					\en{Principal component analysis is used to transform these multidimensional vectors into a two-dimensional space in order to display them visually:}
+					\de{Mittels Principal component analysis werden diese mehrdimensionalen Vektoren in einem zweidimensionalen Raum transformiert, um diese grafisch darstellen zu können.} 
+					\en{Principal component analysis is used to transform these multidimensional vectors into a two-dimensional space in order to display them visually (figure \ref{fig:analysis_pca_food_50}).}
 				
 					\begin{figure}[H]
 						\begin{center}
@@ -1738,8 +1738,16 @@ model = Model(inputs = base_model.input, outputs = predictions)
 						\label{fig:analysis_pca_food_50}
 					\end{figure}
 					
-					\de{Wie erwartet kann man nun sofort ähnliche Klassen erkennen: Getränke (orange), Kuchen (blau) und Salate (grün).}
-					\en{As expected, one can now immediately recognize similar classes: drinks (orange), cakes (blue) and salads (green).}
+					\de{Wie erwartet kann man nun sofort ähnliche Klassen erkennen: Getränke (orange), Kuchen (blau) und Salate (grün). In den nachfolgenden beiden Kapiteln werden die Modellgenauigkeiten für die Vorklassifizierung als auch die Unterklassen wie üblich bestimmt. Um die Gesamtgenauigkeit der Modelle bestimmen zu können, müsste dies manuell einzeln geschehen, da eine Klassifizierung mittels Untergruppen nicht vorgesehen ist. Stattdessen wird die Gesamtgenauigkeit statistisch vorgenommen:}
+					\en{As expected, one can now immediately recognize similar classes: drinks (orange), cakes (blue) and salads (green). In the following two chapters, the model accuracies for the pre-classification as well as the subclasses are determined as usual. In order to determine the overall accuracy of the models, this would have to be done manually one at a time, since classification using subgroups is not intended. Instead, the overall accuracy is determined statistically:}
+					
+					\begin{equation}
+						\widehat{acc}_{group} = acc_{preclassification} \cdot acc_{group}
+					\end{equation}
+					
+					\begin{equation}
+						acc_{top-1} = \sum_{group=0}^7 ratio_{files_{val}, group} \cdot \widehat{acc}_{group}
+					\end{equation}
 					
 					\paragraph{\(k\)-means clustering}
 				
@@ -1789,14 +1797,6 @@ model = Model(inputs = base_model.input, outputs = predictions)
 							}
 							\captionof{table}[Grouped classes with k-means]{Grouped classes with k-means. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes}
 						\end{table}
-						
-						\begin{equation}
-							\widehat{acc}_{group} = acc_{preclassification} \cdot acc_{group}
-						\end{equation}
-						
-						\begin{equation}
-							acc_{top-1} = \sum_{group=0}^7 ratio_{files_{val}, group} \cdot \widehat{acc}_{group}
-						\end{equation}
 					
 					\paragraph{Agglomerative hierarchical clustering}
 					
