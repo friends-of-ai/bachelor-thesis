@@ -48,6 +48,36 @@
 \usepackage{acronym}
 \usepackage{pbox}
 
+% lstlisting formating
+\definecolor{commentgreen}{RGB}{2,112,10}
+\definecolor{eminence}{RGB}{108,48,130}
+\definecolor{weborange}{RGB}{255,165,0}
+\definecolor{frenchplum}{RGB}{129,20,83}
+\lstset {
+    language=Python,
+    frame=tb,
+    tabsize=4,
+    showstringspaces=false,
+    numbers=left,
+    %upquote=true,
+    commentstyle=\color{commentgreen},
+    keywordstyle=\color{eminence},
+    stringstyle=\color{red},
+    basicstyle=\small\ttfamily, % basic font setting
+    emph={int,char,double,float,unsigned,void,bool},
+    emphstyle={\color{blue}},
+    escapechar=\&,
+    xleftmargin=2.9em,
+    xrightmargin=0.3em,
+    framexleftmargin=2.5em,
+    % keyword highlighting
+    classoffset=1, % starting new class
+    otherkeywords={>,<,.,;,-,!,=,~},
+    morekeywords={>,<,.,;,-,!,=,~},
+    keywordstyle=\color{weborange},
+    classoffset=0,
+}
+
 % tikzpiture libraries
 \usetikzlibrary{positioning}
 \usetikzlibrary{math}
@@ -1277,10 +1307,10 @@
 			\en{This thesis deals with the image classification part.  For example in the application for companies or environments with limited resources. The following questions arise: With which tools, techniques and ideas is it possible to create a successful image classification model even with few resources? Do the conditions mentioned in \fullref{sec:section_insufficient_amount_of_data} have to be fulfilled or are successful classifications already possible with less? Is it possible to get the most out of model creation by adjusting certain tuning parameters? For example, is a cluster analysis and the associated categorical breakdown of the classification a successful approach? These and other questions are to be clarified with this thesis. And I dare to say at this point that it is possible to reach a good goal even with fewer requirements.}
 	
 		\subsection{Working environment and model creation}
-			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind in einem Github-Repository öffentlich einsehbar\autocite{hempel_keras_2020}. Dieses Framework erlaubt es alle hier in der Arbeit genannten Hyperparameter einzustellen\autocite{hempel_keras_nodate}. Ein Kommandozeilenaufruf könnte nach erfolgreicher Installation mit den Standard-Werten z.B. wie nachfolgend aussehen. Das erstellte Modell befindet sich im angegebenen Verzeichnis mit dem Namen \texttt{model.h5}:}
-			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in a GitHub repository\autocite{hempel_keras_2020}. This framework allows to set all the \aclp{HP} mentioned in this thesis\autocite{hempel_keras_nodate}. A command line call with the default values could look like the following after successful installation. The created model is located in the specified directory with the name \texttt{model.h5}:}
+			\de{Der gesamte Quellcode für die Umgebung und das Framework um Modelle trainieren zu können und welche für diese Arbeit verwendet worden sind, sind sind in einem Github-Repository öffentlich einsehbar\autocite{hempel_keras_2020}. Dieses Framework erlaubt es alle hier in der Arbeit genannten Hyperparameter einzustellen\autocite{hempel_keras_nodate}. Nachfolgend ein Beispiel für ein Kommandozeilenaufruf mit den Standardwerten aus dem Kapitel ``\nameref{sec:section_default_setup}'' (Listing \ref{lst:listing_command_call}). Das erstellte Modell befindet sich im angegebenen Verzeichnis mit dem Namen \texttt{model.h5}:}
+			\en{All source code for the environment and the framework to train models and which has been used for this thesis is available in a GitHub repository\autocite{hempel_keras_2020}. This framework allows to set all the \aclp{hp} mentioned in this thesis\autocite{hempel_keras_nodate}. Below is an example of a command line call with the default values from the chapter ``\nameref{sec:section_default_setup}'' (Listing \ref{lst:listing_command_call}). The created model is located in the specified directory with the name \texttt{model.h5}:}
 
-			\begin{lstlisting}[frame=single,caption={Example command line call to train a specified data path},captionpos=b,basicstyle=\small]
+			\begin{lstlisting}[frame=single,caption={Example command line call to train the given data path},captionpos=b,basicstyle=\small,language=bash,label=lst:listing_command_call]
 user$ ml train \
       --use-train-val \
       --data-path=./data/raw/food-50 \
@@ -1588,6 +1618,25 @@ user$ ml train \
 				\en{As suspected, there is no significant improvement after 21 learning periods. The best result until the 21st learning epoch was achieved after the 21st epoch (\(momentum=0.9\), 83.04\%) and after the 19th epoch (\(momentum=0.95\), 83.55\%). This could then be improved in the 29th epoch to 83.49\% (\(momentum=0.9\)) and in the 44th epoch to 84.00\% (\(momentum=0.95\)). Conclusion: Increases are still possible, but an improvement of about 0.5\% requires a doubling of the computing time.}
 		
 			\subsubsection{Influence of dropout}
+				\de{Der Parameter Dropout gehört ebenfalls zur Gruppe der Regularisierungsparameter. Er hilft ebenfalls ein Overfitting zu vermeiden, in dem per Zufall einzelne Neuronen im neuronalem Netz deaktiviert werden und keinen Beitrag zum Training leisten, ohne dass das restliche Modell davon beeinflusst wird. Hiermit wird erzwungen, dass nicht immer alle Merkmale mit einem Mal erlernt werden, sondern nur ein Teil davon. In der Abbildung \ref{fig:evaluation_overview_influence_dropout} werden die Ergebnisse verscheidener Dropout Werte gegenübergestellt. Die Dropout Schicht findet Anwendung nach dem CNN innerhalb des verbundenen neuronalen Netzwerkes (Listing \ref{lst:lstlisting_python_dropout}).}
+				\en{The dropout parameter also belongs to the regularization parameter group. It also helps to avoid overfitting, in which individual neurons in the \ac{nn} are randomly deactivated and do not contribute to training without affecting the rest of the model. This forces that not always all features are learned at once, but only a part of them. In the figure \ref{fig:evaluation_overview_influence_dropout} the results of different dropout values are compared. The dropout layer is used after the \ac{cnn} within the connected \acl{nn} (Listing \ref{lst:lstlisting_python_dropout}).}
+				
+				\begin{lstlisting}[frame=single,caption={Example of a dropout layer after the CNN model},captionpos=b,basicstyle=\small,language=Python,label=lst:lstlisting_python_dropout]
+# definition of some parameters
+num_classes = 50
+dim=299
+dropout=0.5
+
+# get the transfer learning model, add dropout and and build the final
+# model
+base_model = InceptionV3(input_shape=(dim, dim, 3), weights='imagenet',
+                         include_top=False)
+x = base_model.output
+x = GlobalAveragePooling2D()(x)
+x = Dropout(dropout)(x)
+predictions = Dense(num_classes, activation= 'softmax')(x)
+model = Model(inputs = base_model.input, outputs = predictions)
+				\end{lstlisting}
 	
 				\begin{figure}[H]
 					\begin{center}
@@ -1599,7 +1648,8 @@ user$ ml train \
 					\label{fig:evaluation_overview_influence_dropout}
 				\end{figure}
 				
-				\hl{Here are a few words about overfitting.}
+				\de{Wie man sehen kann hilft die Dropout Technik Overfitting zu vermeiden. Je größer der Dropout Wert ist, desto langsamer steigt der Wert der Trainingsgenauigkeit. Das beste Ergebnis bei gleichen Rechenzeiten aller Experimente erhält man mit einem Dropout Wert von \(0,5\) welcher eine Modellgenauigkeit von 83,52\% erreicht. Darüber hinaus und darunter sinken die Modellgenauigkeiten wieder etwas mit einer Ausnahme: Beim Experiment ohne Dropout (\(dropout=0.0\)) wird eine Modellgenauigkeit von 83,49\% in der 15. Epoche erreicht. Verglichen dem besten Ergebniss unterscheidet sich dieses Ergebnis nur minimal (um 0,03\%). Dieses Ergebnis ist interessant und sollte weitergehend untersucht werden. Die Vermutung liegt nahe, dass bei höheren Werten des Dropouts längere Trainingszeiten eingeplant werden müssen und das Experiment ohne Dropout schnell zu einem Maximum gelang. Insbesondere bei einem Dropout Wert von \(0,9\) liegt die Vermutung nahe, dass mit mehr Trainingsepochen ein noch besserer Wert ermittelt werden kann. Fazit: Bei aktuellen CNNs ist es offensichtlich nicht notwendig bei gleicher Rechenzeit die Regularisierungstechnik Dropout einsetzen zu müssen. Auch ohne Dropout erhält man mit die höchste Modellgenauigkeit. Das Experiment sollte jedoch mit weiteren Trainingsdatensets wiederholt werden.}
+				\en{As one can see the dropout technique helps to avoid overfitting. The higher the dropout value, the slower the training accuracy value increases. The best result with the same computing time of all experiments is obtained with a dropout value of \(0.5\) which reaches a model accuracy of 83.52\%. Beyond that and below the model accuracy decreases again slightly with one exception: In the experiment without dropout (\(dropout=0.0\)) a model accuracy of 83.49\% is achieved in the 15th epoch. Compared to the best result, this result differs only minimally (by 0.03\%). This result is interesting and should be investigated further. The assumption is that higher dropout values require longer training times and that the experiment quickly reached a maximum without dropout. Especially with a dropout value of \(0.9\) it is probable that with more training epochs an even better value can be determined. Conclusion: With current CNNs it is obviously not necessary to use the regularization technique dropout with equal computing time. Even without dropout you get the highest model accuracy. However, the experiment should be repeated with further training data sets.}
 
 
 	
