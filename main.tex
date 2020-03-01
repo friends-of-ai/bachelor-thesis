@@ -475,9 +475,9 @@
 			\en{Probably the most expensive way to obtain data is to search and classify them manually, e.g. by an ontologist. The ontologist evaluates and searches for different images and manually classifies them in the appropriate classes. A combined variant is also possible and probably preferable: automatic crawling and manual sorting out of incorrect, unfavorable or irrelevant images.}
 
 		% -------------------- %
-		% Training, test and evaluation data set %
+		% Training, validation and test data set %
 		% -------------------- %
-		\subsubsection{Training, test and evaluation data set}
+		\subsubsection{Training, validation and test data set}
 		\label{sec:section_training_test_and_evaluation}
 			\de{Vor dem Beginn mit dem Training von ausbalancierten Bildern müssen diese in einen Trainings-, einen Test- und eventuell in einen Validierungsdatensatz aufgeteilt werden. Dies ist notwendig, da neuronale Netze zu einem Teil nicht verallgemeinern, sondern auswendig lernen werden (overfitting\autocite{noauthor_overfitting_2020}). Die Idee ist es mit einem Trainingsdatensatz zu trainieren, während mit dem Validierungsdatensatz die Allgemeingültigkeit des Netzes und seiner Parameter überwacht wird. Anhand der Ergebnisse werden zur Laufzeit Anpassungen vorgenommen. Da die Anpassung der Parameter anhand der Testdaten vorgenommen wird, gibt es noch einen unabhängigen Testdatensatz, welcher eine erneute Überprüfung des Modells auf bisher unbeteiligte Daten vornimmt. Dieser stellt sicher, dass nicht versehentlich Hyperparameter nur speziell für den Validierungsdatensatz optimiert werden\autocite{osinga2019data}. Die Verwendung des Testdatensatz ist optional und simuliert das Modell unter realen Bedingungen. Ist die Anzahl der Daten begrenzt und kann dieser Datensatz z.B. auch dem Trainingsdatensatz hinzugefügt werden. In dieser Arbeit wird auf den Testdatensatz verzichtet und sämtliche Auswertungen beziehen sich auf den Validierungsdatensatz.}
 			\en{Before starting the training of balanced images, they must be divided into a training, a test and possibly a validation data set. This is necessary because \ac{nn} will not generalize to some extent, but will learn by heart (overfitting\autocite{noauthor_overfitting_2020}). The idea is to train with a training data set, while the validation data set is used to monitor the general validity of the network and its parameters. Based on the results, adjustments are made at runtime. Since the adjustment of the parameters is carried out using the test data, there is also an independent test data set, which carries out a renewed check of the model for previously uninvolved data. This ensures that hyperparameters are not inadvertently optimized for the validation data set only\autocite{osinga2019data}. The use of the test data set is optional and simulates the model under real conditions. If the number of data is limited, this data record can also be added to the training data record, for example. In this thesis, the test data set is not used and all evaluations refer to the validation data set.}
@@ -1320,7 +1320,8 @@ user$ ml train \
 		\subsection{Experiment Setup}
 		\label{sec:section_experiment_setup}
 		
-			\subsubsection*{Software specifics}
+			\subsubsection{Software specifics}
+			\label{sec:section_software_specifics}
 				\paragraph*{Python v3.6.9}
 					\de{Python ist in den letzten Jahren zu den wichtigsten Programmiersprachen im Bereich des Machine Learnings und der Datenwissenschaften herangewachsen.\autocite{noauthor_most_2015} Die Sprache wurde als Programmiersprache gewählt, da es eine große Anzahl von \ac{ml}-Bibliotheken zur Auswahl hat. Die Tatsache das die TensorFlow \ac{api} hauptsächlich auf die Verwendung mit Python ausgerichtet ist und damit eine stabile Entwicklung möglich ist, trug ebenfalls zur Wahl bei.}
 					\en{Python has become one of the most important programming languages in the field of machine learning and data sciences in recent years.\autocite{noauthor_most_2015} The language was chosen as programming language because it has a large number of \ac{ml} libraries to choose from. The fact that the TensorFlow \ac{api} is mainly designed for use with Python and thus allows stable development is also a contributing factor to the choice.}
@@ -1337,7 +1338,42 @@ user$ ml train \
 					\de{Deeplearning4j ist eine Programmierbibliothek für tiefes Lernen, die für Java geschrieben wurde, sowie ein Computerframework mit breiter Unterstützung für Algorithmen für tiefes Lernen\autocite{noauthor_deeplearning4j_2019}. Sie wird in dieser Arbeit nicht explizit für die Modellerstellung verwendet, jedoch sei erwähnt, dass man mit dieser Programmierbibliothek Keras-Modelle einlesen und verwenden kann\autocite{hempel_keras_2019}.}
 					\en{Deeplearning4j is a deep learning programming library written for Java and a computer framework with wide support for deep learning algorithms\autocite{noauthor_deeplearning4j_2019}. It is not explicitly used for model creation in this thesis, but it should be mentioned that this programming library allows to read in and use Keras models\autocite{hempel_keras_2019}.}
 
+			\subsubsection{Used data set}
+			\label{sec:section_used_data_set}
+				\de{Beim verwendeten Datensatz handelt es sich um einen Essensdatensatz bestehend aus 50 Klassen, 14.866 Bilddateien und hat eine Größe von 765 MB (\texttt{food-50}). Dieser Datensatz wurde händisch erstellt und gelabelt. Die Dateien sind ungleichmäßig zwischen den Klassen verteilt (unbalanced). Bevor man den Trainingsprozess beginnen kann, muss der verwendete Datensatz in einen Trainings- und einen Validierungsdatensatz aufgeteilt werden. Als Verhältnis wurden 80\% Trainings- und 20\% Validierungsdaten gewählt (11.913 Bilder versus 2,953 Bilder). Die Klasse \texttt{baked\_beans} enthält zum Beispiel 167 Trainingsbilder und 41 Validierungsbilder (Abbildung \ref{fig:implementation_number_train_files}). Ein Testdatensatz wird in dieser Arbeit nicht verwendet.}
+				\en{The used data set is a food data set consisting of 50 classes, 14,866 image files and has a size of 765 MB (\texttt{food-50}). This data set was created and labelled manually. The files are unevenly distributed between the classes (unbalanced). Before you can start the training process, the used data set must be split into a training and a validation data set.  As a ratio 80\% training and 20\% validation data was chosen (11,913 images versus 2,953 images). For example, the class \texttt{baked\_beans} contains 167 training images and 41 validation images (Figure \ref{fig:implementation_number_train_files}). A test data set is not used in this thesis.}
+				
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{0.75}{
+							\inputpgf{images/pgf}{number-of-files.pgf}
+						}
+					\end{center}
+					\caption[Number of training files and validation files]{Number of training files and validation files.}
+					\label{fig:implementation_number_train_files}
+				\end{figure}
 
+				\subsubsection{Default setup}
+					\de{Mit Ausnahme der \ac{cnn}-Modellversuche basierten alle Tests auf den folgenden Parametern (wobei ein Wert der Parameter je nach Kapitel variierte):}
+					\en{With the exception of the \ac{cnn} model tests, all tests were based on the following parameters
+				(whereby one value of the parameters varied depending on the chapter):}
+			
+					\begin{itemize}
+						\item \textbf{model:} \texttt{InceptionV3}
+						\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
+						\item \textbf{epochs:} 21 (learning rate from epoch 15 to 21: 0,00025)
+						\item \textbf{image size:} 299x299 pixels
+						\item \textbf{batch size:} 16
+						\item \textbf{drop out:} 50\%
+						\item \textbf{\ac{cnn} weights:} ImageNet
+						\item \textbf{activation function:} relu
+						\item \textbf{optimizer:} sgd with Nesterov
+						\item \textbf{momentum:} 0.9 (with decay 0.0)
+						\item the entire training and validation set (14866 images - unless otherwise specified)
+					\end{itemize}
+					
+				\de{\noindent Verschiedene Modelle wurden im Kapitel ``\nameref{sec:section_validation_compare_cnn_models}'' mit den gleichen Parametern wie oben ausprobiert: \texttt{DenseNet121}, \texttt{DenseNet201}, \texttt{InceptionResNetV2}, \texttt{InceptionV3}, \texttt{NASNetLarge}, \texttt{ResNet50}, \texttt{VGG19} und \texttt{Xception}}
+				\en{\noindent Different models were tried out in chapter ``\nameref{sec:section_validation_comparison_cnn_models}'' with the same parameters as above: \texttt{DenseNet121}, \texttt{DenseNet201}, \texttt{InceptionResNetV2}, \texttt{InceptionV3}, \texttt{NASNetLarge}, \texttt{ResNet50}, \texttt{VGG19} and \texttt{Xception}}
 
 	% -------------------- %
 	% Results %
@@ -1352,55 +1388,7 @@ user$ ml train \
 
 			\subsubsection{Preamble}
 			\label{sec:section_validation_process_preamble}
-				\de{Bevor man den Validierungsprozess beginnen kann, muss der verwendete Datensatz entsprechend vorbereitet werden. Bei diesem in dieser Arbeit verwendetem Datensatz handelt es sich um einen Essensdatensatz mit insgesamt 50 Klassen: \texttt{food-50}. Dieser Datensatz enthält 50 Ordner mit den jeweiligen vorhandenen vorklassifizierten Bildern bei einer Größe von 765 MB. Die Ordner müssen in einen Validierungs- und einen Trainingsdatensatz aufgeteilt werden. Als Verhältnis wurden 20\% Validierungs- und 80\% Trainingsdaten gewählt:}
-				\en{Before the validation process can be started, the data set used must be prepared properly. The data set used in this thesis is a meal data set with a number of 50 classes: \texttt{food-50}. This data set contains 50 folders with the respective existing pre-classified images with a size of 765 MB. The folders must be divided into a validation record and a training record. The ratio is 20\% validation and 80\% training data:}
-				
-				\paragraph*{Training data}
-					\begin{itemize}
-						\item 11,913 images
-						\item classified within 50 classes
-						\item different number of images per class (unbalanced)
-					\end{itemize}
-				
-				\paragraph*{Validation data}
-					\begin{itemize}
-						\item 2,953 images
-						\item classified within 50 classes
-						\item different number of images per class (unbalanced)
-					\end{itemize}
-					
-				\paragraph*{Default setup}
-					\de{Mit Ausnahme der \ac{cnn}-Modellversuche basierten alle Tests auf den folgenden Parametern (wobei ein Wert der Parameter je nach Kapitel variierte):}
-					\en{With the exception of the \ac{cnn} model tests, all tests were based on the following parameters
-				(whereby one value of the parameters varied depending on the chapter):}
-			
-					\begin{itemize}
-						\item \textbf{model:} InceptionV3
-						\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
-						\item \textbf{epochs:} 21 (learning rate from epoch 15 to 21: 0,00025)
-						\item \textbf{image size:} 299x299 pixels
-						\item \textbf{batch size:} 16
-						\item \textbf{drop out:} 50\%
-						\item \textbf{\ac{cnn} weights:} ImageNet
-						\item \textbf{activation function:} relu
-						\item \textbf{optimizer:} sgd with Nesterov
-						\item \textbf{momentum:} 0.9 (with decay 0.0)
-						\item the entire training and validation set (14866 images - unless otherwise specified)
-					\end{itemize}
-					
-				\de{\noindent Verschiedene Modelle wurden im Kapitel ``\nameref{sec:section_validation_compare_cnn_models}'' mit den gleichen Parametern wie oben ausprobiert:}
-				\en{\noindent Different models were tried out in chapter ``\nameref{sec:section_validation_comparison_cnn_models}'' with the same parameters as above:}
-			
-				\begin{itemize}
-					\item DenseNet121
-					\item DenseNet201
-					\item InceptionResNetV2
-					\item InceptionV3
-					\item NASNetLarge
-					\item ResNet50
-					\item VGG19
-					\item Xception
-				\end{itemize}
+				\en{...}
 
 			\subsubsection{Influence of number of trained images on accuracy}
 			\label{sec:section_validation_number_of_train_files}
