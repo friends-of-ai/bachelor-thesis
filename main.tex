@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[11pt]{article}
 
 % add links to document
 \PassOptionsToPackage{hyphens}{url}\usepackage[hidelinks]{hyperref}
@@ -30,7 +30,8 @@
 \usepackage{transparent}
 \usepackage[utf8]{inputenc}
 \usepackage{csquotes}
-\usepackage[style=verbose-ibid,backend=bibtex]{biblatex}
+%\usepackage[style=verbose-ibid,backend=bibtex]{biblatex}
+\usepackage[style=verbose,backend=bibtex,autocite=footnote]{biblatex}
 \usepackage{multirow}
 \usepackage{caption}
 \usepackage{colortbl}\usepackage{float}
@@ -51,6 +52,8 @@
 \usepackage{appendix}
 \usepackage{makeidx}
 \usepackage{verbatim}
+\usepackage[T1]{fontenc}
+\fontfamily{georgia}\selectfont
 
 % style the page numbers
 \makeatletter
@@ -545,8 +548,8 @@
 			\de{Vor dem Beginn mit dem Training von ausbalancierten Bildern müssen diese in einen Trainings-, einen Test- und eventuell in einen Validierungsdatensatz aufgeteilt werden. Dies ist notwendig, da neuronale Netze zu einem Teil nicht verallgemeinern, sondern auswendig lernen werden (overfitting\autocite{noauthor_overfitting_2020}). Die Idee ist es mit einem Trainingsdatensatz zu trainieren, während mit dem Validierungsdatensatz die Allgemeingültigkeit des Netzes und seiner Parameter überwacht wird. Anhand der Ergebnisse werden zur Laufzeit Anpassungen vorgenommen. Da die Anpassung der Parameter anhand der Testdaten vorgenommen wird, gibt es noch einen unabhängigen Testdatensatz, welcher eine erneute Überprüfung des Modells auf bisher unbeteiligte Daten vornimmt. Dieser stellt sicher, dass nicht versehentlich Hyperparameter nur speziell für den Validierungsdatensatz optimiert werden\autocite{osinga2019data}. Die Verwendung des Testdatensatz ist optional und simuliert das Modell unter realen Bedingungen. Ist die Anzahl der Daten begrenzt und kann dieser Datensatz z.B. auch dem Trainingsdatensatz hinzugefügt werden. In dieser Arbeit wird auf den Testdatensatz verzichtet und sämtliche Auswertungen beziehen sich auf den Validierungsdatensatz.}
 			\en{Before starting the training of balanced images, they must be divided into a training, a test and possibly a validation data set. This is necessary because \acp{nn} will not generalize to some extent, but will learn by heart (overfitting\autocite{noauthor_overfitting_2020}). The idea is to train with a training data set, while the validation data set is used to monitor the general validity of the network and its parameters. Based on the results, adjustments are made at runtime. Since the adjustment of the parameters is carried out using the test data, there is also an independent test data set, which carries out a renewed check of the model for previously uninvolved data. This ensures that hyperparameters are not inadvertently optimized for the validation data set only\autocite{osinga2019data}. The use of the test data set is optional and simulates the model under real conditions. If the number of data is limited, this data record can also be added to the training data record, for example. In this thesis, the test data set is not used and all evaluations refer to the validation data set.}
 
-			\de{Eine optimale Aufteilung des Trainings- und Validierungsdatensatzes ist abhängig von dem vorliegenden Klassifizierungsproblem und die Anzahl der Daten, welche zur Verfügung stehen. In dieser Arbeit wird ein Verhältnis aus 80 Prozent Trainingsdaten und 20 Prozent Validierungsdaten verwendet, sofern nicht anders angegeben.}
-			\en{An optimal division of the training and validation data set depends on the existing classification problem and the amount of data available. In this thesis a ratio of 80 percent training data and 20 percent validation data is used, unless otherwise stated.}
+			\de{Eine optimale Aufteilung des Trainings- und Validierungsdatensatzes ist abhängig von dem vorliegenden Klassifizierungsproblem und die Anzahl der Daten, welche zur Verfügung stehen. In dieser Arbeit wird nach dem Pareto Prinzip ein Verhältnis aus 80 Prozent Trainingsdaten und 20 Prozent Validierungsdaten verwendet, sofern nicht anders angegeben.}
+			\en{An optimal division of the training and validation data set depends on the existing classification problem and the amount of data available. In this thesis a ratio of 80 percent training data and 20 percent validation data is used according to the Pareto principle, unless otherwise stated.}
 
 
 
@@ -561,8 +564,8 @@
 		% Confusion Matrix %
 		% -------------------- %
 		\subsubsection{Confusion matrix}
-		 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während jede Spalte die Anzahl oder eine Zahlenangaben in Prozent der vorhergesagten Klasse angibt (oder umgekehrt)\autocite{noauthor_confusion_2020-1}:}
-		 	\en{The confusion matrix is a special quadratic matrix in the field of \ac{ml} that allows the visualization of the performance of a predictive model (Figure \ref{tbl:figure_confusion_matrix_1}). Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa)\autocite{noauthor_confusion_2020-1}. }
+		 	\de{Die Confusion Matrix ist eine spezielle quadratische Matrix auf dem Gebiet des maschinellen Lernens, das die Visualisierung der Leistung eines Vorhersage-Modells ermöglicht. Jede Zeile der Matrix repräsentiert die tatsächliche Klasse, während in jeder Spalte die Anzahl der entsprechend vorhergesagten Klassen angegeben werden (oder umgekehrt). Es wird eine spezielle Klasse \(class_1\) betrachtet: \ac{tp} entspricht dabei dem Wert der richtig ermittelten Vorhersagen der aktuell betrachteten Klasse. \ac{fn} gibt an, wie oft die aktuell betrachtete Klasse falsch ermittelt wurde. \ac{fp} gibt an, wie oft andere Klassen als die aktuell betrachtete Klasse ermittelt wurden. \ac{tn} wiederum gibt an, dass andere Klassen als die aktuelle Klasse auch richtig als andere Klassen vorhergesagt wurden\autocite{noauthor_confusion_2020-1}.}
+		 	\en{The confusion matrix is a special quadratic matrix in the field of \ac{ml} that allows the visualization of the performance of a predictive model (Figure \ref{tbl:figure_confusion_matrix_1}). Each row of the matrix represents the actual class, while each column indicates the number or a numerical value as a percentage of the predicted class (or vice versa). A special class \(class_1\) is considered: \Ac{tp} corresponds to the value of the correctly determined predictions of the class currently under consideration. \Ac{fn} indicates how often other classes are detected as the class currently under consideration. \Ac{fp} indicates how often classes other than the currently viewed class were determined. \Ac{tn} in turn indicates that classes other than the current class were correctly predicted as the other classes\autocite{noauthor_confusion_2020-1}.}
 
 			\begin{table}[htb]
 				\centering
@@ -1914,16 +1917,14 @@ model = Model(inputs = base_model.input, outputs = predictions)
 		
 		
 
-	\appendix
-	\renewcommand\thefigure{\thesection.\arabic{figure}}
-		
 	% -------------------- %
 	% List of acronyms %
 	% -------------------- %
-	\pagebreak
+	\clearpage
 	\section*{List of acronyms}
 		\addcontentsline{toc}{section}{List of acronyms}
 		\begin{acronym}[General]
+			\setlength{\itemsep}{0em}
 			\acro{ai}[AI]{artificial intelligence}
 			\acro{api}[API]{application programming interface}
 			\acro{ann}[ANN]{artificial neural network}
@@ -1933,6 +1934,8 @@ model = Model(inputs = base_model.input, outputs = predictions)
 			\acro{dl}[DL]{deep learning}
 			\acro{dnn}[DNN]{deep neural network}
 			\acro{ds}[DS]{data set}
+			\acro{fn}[FN]{false negative}
+			\acro{fp}[FP]{false positive}
 			\acro{gpu}[GPU]{graphics processing unit}
 			\acro{hp}[HP]{hyperparameter}
 			\acro{ml}[ML]{machine learning}
@@ -1940,6 +1943,8 @@ model = Model(inputs = base_model.input, outputs = predictions)
 			\acro{rl}[RL]{reinforcement learning}
 			\acro{sgd}[SGD]{stochastic gradient descent}
 			\acro{td}[TD]{training data}
+			\acro{tn}[TN]{true negative}
+			\acro{tp}[TP]{true positive}
 			\acro{tl}[TL]{transfer learning}
 			\acro{vc}[VC]{Vapnik–Chervonenkis}
 			\acro{vcd}[VCD]{Vapnik–Chervonenkis dimension}
@@ -1998,6 +2003,8 @@ model = Model(inputs = base_model.input, outputs = predictions)
 	% -------------------- %
 	% appendix %
 	% -------------------- %
+	\appendix
+	\renewcommand\thefigure{\thesection.\arabic{figure}}
 	\pagebreak
 	\section{Appendix}
 		\setcounter{figure}{0}
