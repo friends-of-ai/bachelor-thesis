@@ -47,6 +47,40 @@
 \usepackage{pxfonts}
 \usepackage{acronym}
 \usepackage{pbox}
+\usepackage{subcaption}
+\usepackage{appendix}
+\usepackage{makeidx}
+\usepackage{verbatim}
+
+% style the page numbers
+\makeatletter
+
+\newcommand\frontmatter{%
+    \cleardoublepage
+  %\@mainmatterfalse
+  \pagenumbering{roman}}
+
+\newcommand\mainmatter{%
+    \cleardoublepage
+ % \@mainmattertrue
+  \pagenumbering{arabic}}
+
+\newcommand\backmatter{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+ % \@mainmatterfalse
+   }
+
+\makeatother
+
+% make index
+\makeindex
+
+% captionsetup
+\captionsetup{compatibility=false}
 
 % lstlisting formating
 \definecolor{commentgreen}{RGB}{2,112,10}
@@ -290,6 +324,7 @@
 % Start document %
 % -------------------- %
 \begin{document}
+	\frontmatter
 
 
 
@@ -312,14 +347,14 @@
 	% Abstract %
 	% -------------------- %
 	\section*{Abstract}
-		\en{Artificial neural networks have achieved an error rate of less than 5 percent in the ImageNet software competitions in recent years and are well suited to find patterns in data. Therefore, these networks (models) have to be trained with known data sets and adapted accordingly. Data sets are usually very expensive to obtain and should therefore be used with care and good quality. The training of the models takes place under the influence of many hyperparameters, which have to be determined beforehand. It is important to use the best possible model with its best possible parameters. In this thesis the creation of models for image classification by \ac{ml} is discussed and the model accuracies are compared. The main goal of the thesis is to find optimal parameters and techniques for classification, which also allows to create an optimal model with little training data.}
+		\en{Artificial neural networks have achieved an error rate of less than 5 percent in the ImageNet software competitions in recent years and are well suited to find patterns in data. Therefore, these networks have to be trained with known data sets and adapted accordingly. Data sets are usually very expensive to obtain and should therefore be used with care and good quality. The training of the models takes place under the influence of many hyperparameters, which have to be determined beforehand. It is important to use the best possible model with its best possible parameters. In this thesis the creation of models for image classification by \ac{ml} is discussed and the model accuracies are compared. The main goal of the thesis is to find optimal \acp{hp} and techniques for classification, which also allows to create an optimal model from a small training data set.}
 		
 		\subsection*{Keywords}
 			\en{Image Classification, Small Data Set, Hyperparameter, Data Augmentation, Convolutional Neural Network (CNN), Machine Learning, Deep Learning}
 			
 	\pagebreak
 	\section*{Kurzfassung}
-		\en{Künstliche neuronale Netze haben es in den letzen Jahren bei den ImageNet Software-Wettbewerben auf unter unter 5 Prozent Fehlerrate geschaft und eignen sich gut darin Muster in Daten zu finden. Hierzu müssen diese Netze (Modelle) vorher mit bekannten Datensätzen trainiert und entsprechend angepasst werden. Datensätze sind meist sehr teuer in der Beschaffung und sollten deshalb mit Bedacht und guter Qualität eingesetzt werden. Das Training der Modelle findet unter dem Einfluss vieler Hyperparameter statt, welche es vorher zu bestimmen gilt. Dabei ist darauf zu achten das bestmögliche Modell mit seinen bestmöglichen Parametern zu verwenden. In dieser Arbeit wird auf das Erstellen von Modellen für die Bildklassifikation mittels maschinellem Lernen eingegangen und es werden die Modellgenauigkeiten miteinander verglichen. Das Hauptziel der Arbeit ist es, optimale Parameter und Techniken für die Klassifikation zu finden, die es auch ermöglichen, mit wenig Trainingsdaten ein optimales Modell zu erstellen.}
+		\en{Künstliche neuronale Netze haben es in den letzen Jahren bei den ImageNet Software-Wettbewerben auf unter unter 5 Prozent Fehlerrate geschaft und eignen sich gut darin Muster in Daten zu finden. Hierzu müssen diese Netze vorher mit bekannten Datensätzen trainiert und entsprechend angepasst werden. Datensätze sind meist sehr teuer in der Beschaffung und sollten deshalb mit Bedacht und guter Qualität eingesetzt werden. Das Training der Modelle findet unter dem Einfluss vieler Hyperparameter statt, welche es vorher zu bestimmen gilt. Dabei ist darauf zu achten das bestmögliche Modell mit seinen bestmöglichen Parametern zu verwenden. In dieser Arbeit wird auf das Erstellen von Modellen für die Bildklassifikation mittels maschinellem Lernen eingegangen und es werden die Modellgenauigkeiten miteinander verglichen. Das Hauptziel der Arbeit ist es, optimale Hyperparameter und Techniken für die Klassifikation zu finden, die es auch ermöglichen, mit einem kleinen Trainingsdatenset ein optimales Modell zu erstellen.}
 		
 		\subsection*{Schlüsselwörter}
 			\en{Bildklassifizierung, Kleiner Datensatz, Hyperparameter, Data Augmentation, Convolutional Neural Network (CNN), Machine Learning, Deep Learning}
@@ -357,9 +392,10 @@
 	% Introduction %
 	% -------------------- %
 	\pagebreak
+	\mainmatter
 	\section{Introduction}
 		\de{In dieser Arbeit wird auf der Erstellung von Modellen zur Bildklassifikation mittels maschinellem Lernen eingegangen. Viele variable Parameter (Hyperparameter) werden beim Erstellen der Modelle einen entscheidenden Einfluss auf die Genauigkeit des Modells haben und werden hier im Detail verglichen. Neben der Genauigkeit der Modelle spielt auch die benötigte Rechenzeit eine Rolle, welche benötigt wird, um die Modelle zu erstellen und soll mit in die Auswertung einbezogen werden. Ich gehe davon aus, dass eine kleine Lernrate verbunden mit vielen Lern-Epochen und entsprechend mehr benötigter Rechenzeit bessere Ergebnisse erzielen werden, als wenige Lernepochen verbunden mit einer hohe Lernrate (langsame Anpassung vs. schnelle Anpassung). Auch gehe ich davon aus, dass eine hohe Qualität und eine größere Menge an Daten das Ergebnis entschieden positiv beeinflussen werden. Neue und komplexere Convolutional Neuronale Netzwerke stufe ich erfolgreicher in der Modellgenauigkeit ein als schön etwas ältere und kleinere Modelle.}
-		\en{This thesis deals with the creation of models for image classification using \acf{ml}. Many variable parameters (hyperparameters) will have a decisive influence on the accuracy of the model when creating the models and are compared here in detail. In addition to the accuracy of the models, the computing time required to create the models also plays a role and should be included in the evaluation. I assume that a small learning rate combined with many learning epochs and correspondingly more computing time required will achieve better results than a few learning epochs combined with a high learning rate (slow adaptation vs. fast adaptation). I also assume that a high quality and a larger amount of data will have a decidedly positive influence on the result. New and more complex \acp{cnn} are more successful in model accuracy than older and smaller models.}
+		\en{This thesis deals with the creation of models for image classification using \acf{ml}. Many variable parameters (hyperparameters) will have a decisive influence on the accuracy of the model when creating the models and are compared here in detail. In addition to the accuracy of the models, the computing time required to create the models also plays a role and should be included in the evaluation. I assume that a small learning rate combined with many learning epochs and correspondingly more computing time required will achieve better results than a few learning epochs combined with a high learning rate (slow adaptation vs. fast adaptation). I also assume that a high quality and a larger amount of data will have a significantly positive influence on the result. New and more complex \acp{cnn} are more successful in model accuracy than older and smaller models.}
 	
 	
 
@@ -369,7 +405,7 @@
 		\subsection{Insufficient amount of data}
 		\label{sec:section_insufficient_amount_of_data}
 			\de{Gibt man einem Menschen einen Donut und erkärt ihm, dass es ein Donut ist, so ist dieser nach einigem Wiederholen selbstständig in der Lage diesen Donut in der Zukunft zu klassifizieren. Bei Machine Learning ist diese Problematik etwas komplexer. Wie bei den meisten machinellen Lernverfahren benötigt man eine große Menge an Daten. Wieviel ist nicht richtig belegt. Gerade wenn man es mit vielen vorherzusagenden Klassen zu tun hat, erhöht sich die Datenmenge erfahrungsgemäß. In einem Paper aus dem Jahre 2012 wurde eine Vorgehensweise beschrieben, mit welcher der erste Platz beim alljährlichen ImageNet Wettbewerb gewonnen wurde. Dabei wurden 1000 Bilder pro Klasse bei einer Klassenanzahl von 1000 verwendet und eine top-5 Fehlerrate von 15.3\% erreicht.\autocite{krizhevsky2012imagenet}. Andere Artikel, welche sich mit diesem Thema beschäftigen, bestetigen diese Anzahl an Bildern pro Klasse.\autocite{sagar_deep_2019}\textsuperscript{,}\autocite{warden_how_2017}}
-			\en{If one gives a person a doughnut and explain to him that it is a doughnut, then after some repetition he is able to classify this doughnut in the future. With \ac{ml} this problem is a bit more complex. As with most \ac{ml} methods, a large amount of data is required. How much is not properly documented. Especially when one is dealing with many classes to be predicted, experience shows that the amount of data increases. In a paper from 2012, a procedure was described for winning first place in the annual ImageNet competition. This was done using 1000 images per class with a class count of 1000 and a top-5 error rate of 15.3\%.\autocite{krizhevsky2012imagenet} Other articles dealing with this topic confirm this number of images per class.\autocite{sagar_deep_2019}\textsuperscript{,}\autocite{warden_how_2017}}
+			\en{If one gives a person a doughnut and explain to him that it is a doughnut, then after some repetition he is able to recognize any kind of doughnut in the future. With \ac{ml} this problem is a bit more complex. As with most \ac{ml} methods, a large amount of data is required. How much is not properly documented. Especially when one is dealing with many classes to be predicted, experience shows that the amount of data increases. In a paper from 2012, a procedure was described for winning first place in the annual ImageNet competition. This was done using 1000 images per class with a class count of 1000 and a top-5 error rate of 15.3\%.\autocite{krizhevsky2012imagenet} Other articles dealing with this topic confirm this number of images per class.\autocite{sagar_deep_2019}\textsuperscript{,}\autocite{warden_how_2017}}
 	
 			\de{Je nach Anzahl von zu trainierenden Klassen gelangt man somit schnell zu einem benötigten Datenset, welches aus mehrere Gigabyte an Daten besteht. Mittels Transfer Learning ist es möglich diese Zahl nochmals etwas zu reduzieren, jedoch bleibt das Problem der vielen Daten bestehen. Ein Paper von Microsoft aus dem Jahre 2001\autocite{banko2001scaling} zeigte zur damaligen Zeit, dass einfache Algorithmen mit genügend Daten ähnliche Ergebnisse lieferten, wie komplexe Algorithmen auf Basis weniger Daten. Dabei bezogen sich die Forscher auf Daten, welche Sprachkonstrukte klassifizieren sollten:}
 			\en{Depending on the number of classes to be trained, one will quickly arrive at the required data set, which consists of several gigabytes of data. With \acf{tl} it is possible to reduce this number a little bit, but the problem of the large amount of data remains. A paper  from Microsoft in 2001\autocite{banko2001scaling} showed at that time that simple algorithms with enough data gave similar results as complex algorithms based on less data. The researchers referred to data which should classify language constructs:}
@@ -397,15 +433,14 @@
 		% -------------------- %
 		\subsection{Image classification}
 			\de{Klassifizierungen sind ein Prozess der Identifizierung, zu welcher Klasse ein unbeobachtetes Objekt gehört. Hierbei können eine Reihe von vordefinierten Klassen vorgegeben und anhand deren Eigenschaften versucht werden unbekannte und bisher unbeobachtete Objekt einzuordnen. Bei der Bildklassifizierung wird analog vorgegangen. Bei den zuvor genannten Objekten handelt es sich nun schlichtweg um Bilder.}
-			\en{Classifications are a process of identifying to which class an unobserved object belongs. Several predefined classes can be specified and, based on their properties, an attempt can be made to classify unknown and previously unobserved objects. The procedure for image classification is similar. The previously mentioned objects are now simply images (Figure \ref{fig:cat_or_dog}).}
+			\en{Classifications are a process of identifying to which class an unobserved object belongs. Several predefined classes can be specified and, based on their properties, an attempt can be made to classify unknown and previously unobserved objects. The procedure for image classification is similar. The previously mentioned objects are now simply images (as shown in Figure \ref{fig:cat_or_dog}).}
 
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.4\textwidth]{images/cat_dog}
-				\caption[Cat and dog comparison]{Is it a dog or a cat?\footnotemark}
+				\caption{Cat and dog comparison}
 				\label{fig:cat_or_dog}
 			\end{figure}
-			\footnotetext{Source: \url{https://towardsdatascience.com/image-classifier-cats-vs-dogs-with-convolutional-neural-networks-cnns-and-google-colabs-4e9af21ae7a8}}
 
 			\de{Lange Zeit galt die automatische Erkennung von Objekten, Personen und Szenen in Bildern durch Computer als unmöglich. Die Komplexität schien zu groß, als dass man sie einem Algorithmus programmatisch beibringen könnte. Bis noch vor einigen Jahrzehnten hat man so versucht Bildklassifikation durch manuell entwickelte Algorithmen zu erreichen. Die automatisierte Klassifikation anhand von vorgegebenen und vorklassifizierten Daten und dem automatisierten Erstellen von Modellen war ein neuer Schritt in eine neue Vorgehensweise. Die dabei immer mehr zur Verfügung stehende Rechenzeit spielt dabei genauso eine entscheidende Rolle am Erfolg wie parallelen Berechnungen auf mehreren \acp{gpu}, die Entwicklung effizienterer Algorithmen und Methoden wie \acl{da} und der Aufbau von Online-Datenbanken mit großen Mengen an beschrifteten Daten (ImageNet)\autocite{seif_deep_2019}. Mittlerweile ist die Bilderkennung ein weit verbreitetes Anwendungsgebiet des maschinellen Lernens. Häufig werden für Bilder sogenannte "\acp{cnn}\autocite{noauthor_convolutional_2020}" oder auch "ConvNets" verwendet.}
 			\en{For a long time, the automatic recognition of objects, people and scenes in images by computers was considered impossible. The complexity seemed too great to be programmatically taught to an algorithm. Until a few decades ago, attempts were made to achieve image classification by manually developed algorithms. Automated classification based on given and pre-classified data sets and the automated creation of models was a new step into a new approach. The ever increasing amount of available computing time plays as much a decisive role in the success as parallel computations on several \acp{gpu}, the development of more efficient algorithms and methods such as \acl{da} and the establishment of online databases with large amounts of labeled data (ImageNet)\autocite{seif_deep_2019}. Meanwhile, image recognition has become a widespread application area of \ac{ml}. So-called "\acp{cnn}"\autocite{noauthor_convolutional_2020} or "ConvNets" are often used for images.}
@@ -463,39 +498,37 @@
 			\en{Neural networks have made \textit{enormous} progress in the field of pattern recognition in recent years. A decisive factor is that the data for learning must be of high quality and easy for the network to process. Wrongly classified or irrelevant data could cause the network to learn something wrong. This also applies to non-existent or unsuitable pre-processing\autocite{osinga2019data}.}
 
 			\de{Mit dem Beginn eines Klassifizierungsprojektes stellt sich die Frage was genau man klassifizieren möchte und wie umfangreich die Klassifzierung ausfallen soll. Angenommen man möchte verschiedene Klassen von Essen identifizieren, so könnten das Klassen wie Pizza, Burger, Donuts und Lasagne sein (etc.). Zu diesen Klassen benötigt man nun eine große Anzahl an Bildern. Diese Daten sollten im Idealfall die Realität möglichst gut widerspiegeln. Eine große Variation ist von Vorteil (ausbalancierter Datenset): verschiedene Blickwinkel, Größe, Position, Farbhelligkeiten, Variationen, Anzahl, etc. Bilder von z.B. nur einer Farbhelligkeit oder nur einem Blickwinkel sollten vermieden werden. Sind die Daten nicht ausbalanciert, so müssen diese entsprechend korrigiert werden: z.B. durch Hinzufügen weiterer Daten, Bildverarbeitung oder durch Entfernen von Daten, welche für eine Unausgewogenheit sorgen. Weiterhin sollten die ausgewählten Klassen untereinander klar optisch trennbar sein. Sind sich zwei Klassen optisch sehr ähnlich und selbst durch einen Menschen nicht wirklich unterscheidbar, sollte darüber nachgedacht werden diese zusammenzufassen (z.B. "burger" und "veggie burger"):}
-			\en{With the beginning of a classification project, the question arises what exactly one wants to classify and how extensive the classification should be. Assuming one wants to identify different classes of food, this could be classified as burgers (Figure \ref{fig:class_burger}), doughnuts (Figure \ref{fig:class_doughnut}) or pizza (Figure \ref{fig:class_pizza}), etc. For these classes, one now needs a large number of images. Ideally, this data should reflect reality as well as possible. A large variation is advantageous (balanced data set): different viewing angles, size, position, colour brightness, variations, number, etc. Images of e.g. only one colour brightness or only one viewing angle should be avoided. If the data are not balanced, they must be corrected accordingly: e.g. by adding further data, image processing or by removing data that causes an imbalance. Furthermore, the selected classes should be clearly optically separable from each other. If two classes are visually very similar and not really distinguishable even by a human, consideration should be given to combining them (e.g. "burger" and "veggie burger").}
+			\en{With the beginning of a classification project, the question arises what exactly one wants to classify and how extensive the classification should be. Assuming one wants to identify different classes of food, this could be classified as burgers (as shown in Figure \ref{fig:class_burger_doughnut_pizza}a), doughnuts (Figure \ref{fig:class_burger_doughnut_pizza}b) or pizza (Figure \ref{fig:class_burger_doughnut_pizza}c), etc. For these classes, one now needs a large number of images. Ideally, this data should reflect reality as well as possible. A large variation is advantageous (balanced data set): different viewing angles, size, position, colour brightness, variations, number, etc. Images of e.g. only one colour brightness or only one viewing angle should be avoided. If the data are not balanced, they must be corrected accordingly: e.g. by adding further data, image processing or by removing data that causes an imbalance. Furthermore, the selected classes should be clearly optically separable from each other. If two classes are visually very similar and not really distinguishable even by a human, consideration should be given to combining them (e.g. "burger" and "veggie burger").}
 
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=0.19\textwidth]{images/data/burger/burger28.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/burger/burger77.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/burger/burger89.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/burger/burger162.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/burger/burger449.jpeg}
-				\caption[Example pictures of a burger class]{Example pictures of a burger class}
-				\label{fig:class_burger}
-			\end{figure}
+				\begin{subfigure}[b]{1.025\textwidth}
+					\includegraphics[width=0.19\textwidth]{images/data/burger/burger28.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger/burger77.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger/burger89.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger/burger162.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger/burger449.jpeg}
+				\end{subfigure}
 
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.19\textwidth]{images/data/donut/donut116.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/donut/donut155.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/donut/donut176.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/donut/donut205.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/donut/donut440.jpg}
-				\caption[Example pictures of a doughnut class]{Example pictures of a doughnut class}
-				\label{fig:class_doughnut}
-			\end{figure}
+				\vspace{5pt}
+				\begin{subfigure}[b]{1.025\textwidth}
+					\includegraphics[width=0.19\textwidth]{images/data/donut/donut116.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/donut/donut155.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/donut/donut176.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/donut/donut205.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/donut/donut440.jpg}
+				\end{subfigure}
 
-			\begin{figure}[H]
-				\centering
-				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza73.png}
-				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza76.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza92.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza108.jpg}
-				\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza239.jpg}
-				\caption[Example pictures of a pizza class]{Example pictures of a pizza class}
-				\label{fig:class_pizza}
+				\vspace{5pt}
+				\begin{subfigure}[b]{1.025\textwidth}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza73.png}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza76.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza92.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza108.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza239.jpg}
+       				\end{subfigure}
+				\caption[Example of pictures of a burger, doughnut and pizza class]{(a) Example of pictures of a burger class (top), (b) Example pictures of a doughnut class (middle), (c) Example of pictures of a burger class (bottom)}
+				\label{fig:class_burger_doughnut_pizza}
 			\end{figure}
 
 			\de{An Daten zu gelangen ist oftmals nicht so einfach. Jede Datenquelle hat ihre eigenen Besonderheiten. Eine Möglichkeit an Daten zu gelangen wäre ein automatische Crawling von Bilddatenbanken (Flickr), Suchmaschinen (Google, Bing) oder Rezensionen (TripAdvisor), in welchen Bilder vorkommen und mit dem Text in Verbindung gebracht werden können (``Das hier ist der beste Donut, den ich je gegessen habe.''). Eine kreative Herangehensweise ist hier von Vorteil.}
@@ -775,6 +808,7 @@
 					\en{The neural network is only one algorithm from the category of supervised learning algorithms. Other possible algorithms are:}
 					
 					\begin{itemize}
+						\setlength\itemsep{0em}
 						\item k-nearest neighbors\autocite{noauthor_k-nearest_2020}
 						\item Linear regression\autocite{noauthor_linear_2020}
 						\item Logistic regression\autocite{noauthor_logistic_2020}
@@ -795,6 +829,7 @@
 					\en{\noindent The following unsupervised learning algorithms can be used for clustering:}
 					
 					\begin{itemize}
+						\setlength\itemsep{0em}
 						\item k-means\autocite{noauthor_k-means_2020}
 						\item Hierarchical clustering\autocite{noauthor_hierarchical_2020}
 						\item Expectation–maximization \autocite{noauthor_expectationmaximization_2020}
@@ -1268,6 +1303,7 @@
 				\en{Last but not least, here are a few current and well-known convolutional neural networks (Figure \ref{fig:comparison_cnn}). They differ mainly in the following metrics, whereby in combination each network has its advantages and disadvantages:}
 
 				\begin{itemize}
+					\setlength\itemsep{0em}
 					\item the top-1 accuracy (based on the ImageNet image dataset)
 					\item the computing operations which are required for a single forward pass (G-Ops)
 					\item the model size (for comparison: the model size of \texttt{InceptionV3} is about 180 MB)
@@ -1369,18 +1405,8 @@ user$ ml train \
 
 			\subsubsection{Used data set}
 			\label{sec:section_used_data_set}
-				\de{Beim verwendeten Datensatz handelt es sich um einen Essensdatensatz bestehend aus 50 Klassen, 14.866 Bilddateien und hat eine Größe von 765 MB (\texttt{food-50}). Dieser Datensatz wurde händisch erstellt und gelabelt. Die Dateien sind ungleichmäßig zwischen den Klassen verteilt (unbalanced). Bevor man den Trainingsprozess beginnen kann, muss der verwendete Datensatz in einen Trainings- und einen Validierungsdatensatz aufgeteilt werden. Als Verhältnis wurden 80\% Trainings- und 20\% Validierungsdaten gewählt (11.913 Bilder versus 2,953 Bilder). Die Klasse \texttt{baked\_beans} enthält zum Beispiel 167 Trainingsbilder und 41 Validierungsbilder (Abbildung \ref{fig:implementation_number_train_files}). Ein Testdatensatz wird in dieser Arbeit nicht verwendet.}
-				\en{The used data set is a food data set consisting of 50 classes, 14,866 image files and has a size of 765 MB (\texttt{food-50}). This data set was created and labelled manually. The files are unevenly distributed between the classes (unbalanced). Before you can start the training process, the used data set must be split into a training and a validation data set.  As a ratio 80\% training and 20\% validation data was chosen (11,913 images versus 2,953 images). For example, the class \texttt{baked\_beans} contains 167 training images and 41 validation images (Figure \ref{fig:implementation_number_train_files}). A test data set is not used in this thesis.}
-				
-				\begin{figure}[H]
-					\begin{center}
-						\scalebox{0.75}{
-							\inputpgf{images/pgf}{number-of-files.pgf}
-						}
-					\end{center}
-					\caption[Number of training files and validation files]{Number of training files and validation files.}
-					\label{fig:implementation_number_train_files}
-				\end{figure}
+				\de{Beim verwendeten Datensatz handelt es sich um einen Essensdatensatz bestehend aus 50 Klassen, 14.866 Bilddateien und hat eine Größe von 765 MB (\texttt{food-50}). Dieser Datensatz wurde händisch erstellt und gelabelt. Die Dateien sind ungleichmäßig zwischen den Klassen verteilt (unbalanced). Bevor man den Trainingsprozess beginnen kann, muss der verwendete Datensatz in einen Trainings- und einen Validierungsdatensatz aufgeteilt werden. Als Verhältnis wurden 80\% Trainings- und 20\% Validierungsdaten gewählt (11.913 Bilder versus 2,953 Bilder). Die Klasse mit dem kleinsten Bilderset ist \texttt{french\_fries} und enthält 36 Trainingsbilder und 8 Validierungsbilder. Die Klasse mit dem größten Bilderset ist \texttt{grilled\_cheese\_sandwich} und enthält über 390 Bilder im Trainingsdatensatz, sowie über 97 Bilder im Validierungsdatensatz. Im Schnitt enthalten alle Klassen rund 240 Trainingsdaten, sowie 60 Testdaten (im Detail in Abbildung \ref{fig:implementation_number_train_files} zu einzusehen). Ein Testdatensatz wird in dieser Arbeit nicht verwendet.}
+				\en{The used data set is a food data set consisting of 50 classes, 14,866 image files and has a size of 765 MB (\texttt{food-50}). This data set was created and labelled manually. The files are unevenly distributed between the classes (unbalanced). Before you can start the training process, the used data set must be split into a training and a validation data set.  As a ratio 80\% training and 20\% validation data was chosen (11,913 images versus 2,953 images). The class with the smallest image set is \texttt{french\_fries} and contains 36 training images and 8 validation images. The class with the largest image set is \texttt{grilled\_cheese\_sandwich} and contains over 390 images in the training data set and over 97 images in the validation data set. On average, all classes contain about 240 training data and 60 test data (see Figure \ref{fig:implementation_number_train_files} for details). A test data set is not used in this thesis.}
 
 				\subsubsection{Default setup}
 				\label{sec:section_default_setup}
@@ -1389,6 +1415,7 @@ user$ ml train \
 				(whereby one value of the parameters varied depending on the chapter):}
 			
 					\begin{itemize}
+						\setlength\itemsep{0em}
 						\item \textbf{model:} \texttt{InceptionV3}
 						\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
 						\item \textbf{epochs:} 21 (the learning rate \(\eta\) from epoch 15 to 21 is 0,00025)
@@ -1863,30 +1890,37 @@ model = Model(inputs = base_model.input, outputs = predictions)
 		\hl{What's the outcome? What else is possible? How can this work be continued? In here!}
 		
 		\begin{itemize}
+			\setlength\itemsep{0em}
 			\item What are the best parameters?
 			\item What is the best approach?
 			\item What else should be investigated?
 			\begin{itemize}
+				\setlength\itemsep{0em}
 				\item More precise analysis of incorrectly classified data: Is there any room for improvement here?
 			\end{itemize}
 			\item What else is missing in this thesis?
 			\item Questions asked in this thesis:
 			\begin{itemize}
+				\setlength\itemsep{0em}
 				\item Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable?
 			\end{itemize}
 			\item More ideas
 			\begin{itemize}
+				\setlength\itemsep{0em}
 				\item Don't Decay the Learning Rate, Increase the Batch Size: https://arxiv.org/abs/1711.00489
 				\item Enrichment of the data set from other data sources
 			\end{itemize}
 		\end{itemize}
 		
 		
+
+	\appendix
+	\renewcommand\thefigure{\thesection.\arabic{figure}}
 		
 	% -------------------- %
 	% List of acronyms %
 	% -------------------- %
-	\pagebreak	
+	\pagebreak
 	\section*{List of acronyms}
 		\addcontentsline{toc}{section}{List of acronyms}
 		\begin{acronym}[General]
@@ -1927,29 +1961,57 @@ model = Model(inputs = base_model.input, outputs = predictions)
 	% -------------------- %
 	% List of links %
 	% -------------------- %
-	\pagebreak	
-	\section*{List of interesting links}
-		\addcontentsline{toc}{section}{List of links}
-		\begin{itemize}
-			\item Deep learning unbalanced training data?
+	\begin{comment}
+		\pagebreak	
+		\section*{List of interesting links}
+			\addcontentsline{toc}{section}{List of links}
 			\begin{itemize}
-				\item \url{https://towardsdatascience.com/deep-learning-unbalanced-training-data-solve-it-like-this-6c528e9efea6}
+				\setlength\itemsep{0em}
+				\item Deep learning unbalanced training data?
+				\begin{itemize}
+					\setlength\itemsep{0em}
+					\item \url{https://towardsdatascience.com/deep-learning-unbalanced-training-data-solve-it-like-this-6c528e9efea6}
+				\end{itemize}
+				\item Data Augmentation
+				\begin{itemize}
+					\setlength\itemsep{0em}
+					\item \url{https://machinelearningmastery.com/how-to-configure-image-data-augmentation-when-training-deep-learning-neural-networks/}
+				\end{itemize}
+				\item Stop Feeding Garbage To Your Model! — The 6 biggest mistakes with datasets and how to avoid them.
+				\begin{itemize}
+					\setlength\itemsep{0em}
+					\item \url{https://hackernoon.com/stop-feeding-garbage-to-your-model-the-6-biggest-mistakes-with-datasets-and-how-to-avoid-them-3cb7532ad3b7}
+				\end{itemize}
+				\begin{itemize}
+					\setlength\itemsep{0em}
+					\item \url{https://towardsdatascience.com/advanced-topics-in-deep-convolutional-neural-networks-71ef1190522d}
+				\end{itemize}
+				\begin{itemize}
+					\setlength\itemsep{0em}
+					\item \url{https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53}
+				\end{itemize}
 			\end{itemize}
-			\item Data Augmentation
-			\begin{itemize}
-				\item \url{https://machinelearningmastery.com/how-to-configure-image-data-augmentation-when-training-deep-learning-neural-networks/}
-			\end{itemize}
-			\item Stop Feeding Garbage To Your Model! — The 6 biggest mistakes with datasets and how to avoid them.
-			\begin{itemize}
-				\item \url{https://hackernoon.com/stop-feeding-garbage-to-your-model-the-6-biggest-mistakes-with-datasets-and-how-to-avoid-them-3cb7532ad3b7}
-			\end{itemize}
-			\begin{itemize}
-				\item \url{https://towardsdatascience.com/advanced-topics-in-deep-convolutional-neural-networks-71ef1190522d}
-			\end{itemize}
-			\begin{itemize}
-				\item \url{https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53}
-			\end{itemize}
-		\end{itemize}
+	\end{comment}
+
+
+
+	% -------------------- %
+	% appendix %
+	% -------------------- %
+	\pagebreak
+	\section{Appendix}
+		\setcounter{figure}{0}
+
+		\subsection*{Number of training and validation files}
+			\begin{figure}[H]
+				\begin{center}
+					\scalebox{0.75}{
+						\inputpgf{images/pgf}{number-of-files.pgf}
+					}
+				\end{center}
+				\caption[Number of training and validation files]{Number of training and validation files.}
+				\label{fig:implementation_number_train_files}
+			\end{figure}
 		
 		
 		
@@ -1958,11 +2020,12 @@ model = Model(inputs = base_model.input, outputs = predictions)
 	% acknowledgement %
 	% -------------------- %
 	\pagebreak
+	\backmatter
 	\section*{Acknowledgement}
 		\thispagestyle{empty}
 		
-		\de{Der schwierigste Teil für mich ist diese Danksagung. Weil es für mich keinen Unterschied macht, wer an erster oder letzter Stelle steht. Jede Person hat ihren Teil beigetragen und ist für diese Arbeit und mich gleich wichtig. Dennoch versuche ich es: An dieser Stelle möchte ich mich bei allen Personen bedanken, die zum Gelingen dieser Arbeit beigetragen haben. An erster Stelle: Prof. Dr. Karl Heinz Hoffmann, welcher mich ermutigt hat nach meinem abgebrochenem Studium vor über 15 Jahren dieses wieder aufzunehmen und den Abschluß nachzuholen. An zweiter Stelle der Firma "ressourcenmangel dresden GmbH", welche mir die Freiheit gab überhaupt neben dem Job mein Studium nachzuholen. An dritter Stelle David Urbansky, ein großartiger Fachmann auf dem Gebiet der Sentimentanalyse und Klassifizierungen von Dingen aller Art. Er war es, der mich die ganze Zeit Haut an Haut begleitet hat und mir mit hilfreichen Tipps und Ideen zur Seite stand. An vierter Stelle Prof. Dr. Angela Thränhardt Professorin für "Theoretische Physik - Simulation neuer Materialien" an der Technischen Universität Chemnitz, welche es mir ermöglichte ein etwas themenfremdes Gebiet in dieser Arbeit angehen zu können. An fünfter Stelle meiner Familie, welche mir permanent zur Seite stand und mich bei diesem Thema unterstützt hat. Und zu guter Letzt: ...}
-		\en{The hardest part for me is this acknowledgment. Because it doesn't make any difference to me who comes first or last. Each person has done his or her part and is equally important for this thesis and me. Nevertheless I try: At this point I would like to thank all the people who have helped me to make this work a success. First and foremost: Prof. Dr. Karl Heinz Hoffmann, who encouraged me to resume my studies after I had broken off my studies more than 15 years ago and to catch up on my degree. In second place the company "ressourcenmangel dresden GmbH", which gave me the freedom to catch up my studies besides my job. In third place David Urbansky from the semknox company, a great expert in the field of sentiment analysis and classifications of all kinds of things. He was the one who accompanied me skin to skin the whole time and supported me with helpful tips and ideas. In fourth place Prof. Dr. Angela Thränhardt Professor for "Theoretical Physics - Simulation of New Materials" at the Chemnitz University of Technology, which enabled me to tackle a somewhat unrelated area in this work. In fifth place was my family, who was permanently at my side and supported me with this topic. And last but not least... \hl{TODO}}
+		\de{Der schwierigste Teil für mich ist diese Danksagung. Weil es für mich keinen Unterschied macht, wer an erster oder letzter Stelle steht. Jede Person hat ihren Teil beigetragen und ist für diese Arbeit und mich gleich wichtig. Dennoch versuche ich es: An dieser Stelle möchte ich mich bei allen Personen bedanken, die zum Gelingen dieser Arbeit beigetragen haben. An erster Stelle: Prof. Dr. Karl Heinz Hoffmann, welcher mich ermutigt hat nach meinem abgebrochenem Studium vor über 15 Jahren dieses wieder aufzunehmen und den Abschluß nachzuholen. An zweiter Stelle David Urbansky, ein großartiger Fachmann auf dem Gebiet der Sentimentanalyse und Klassifizierungen von Dingen aller Art. Er war es, der mich die ganze Zeit Haut an Haut begleitet hat und mir mit hilfreichen Tipps und Ideen zur Seite stand. An dritter Stelle Prof. Dr. Angela Thränhardt Professorin für "Theoretische Physik - Simulation neuer Materialien" an der Technischen Universität Chemnitz, welche es mir ermöglichte ein etwas themenfremdes Gebiet in dieser Arbeit angehen zu können. An vierter Stelle meiner Familie, welche mir permanent zur Seite stand und mich bei diesem Thema unterstützt hat. Und zu guter Letzt: ...}
+		\en{The hardest part for me is this acknowledgment. Because it doesn't make any difference to me who comes first or last. Each person has done his or her part and is equally important for this thesis and me. Nevertheless I try: At this point I would like to thank all the people who have helped me to make this work a success. First and foremost: Prof. Dr. Karl Heinz Hoffmann, who encouraged me to resume my studies after I had broken off my studies more than 15 years ago and to catch up on my degree. In second place David Urbansky from the semknox company, a great expert in the field of sentiment analysis and classifications of all kinds of things. He was the one who accompanied me skin to skin the whole time and supported me with helpful tips and ideas. In third place Prof. Dr. Angela Thränhardt Professor for "Theoretical Physics - Simulation of New Materials" at the Chemnitz University of Technology, which enabled me to tackle a somewhat unrelated area in this work. In fourth place was my family, who was permanently at my side and supported me with this topic. And last but not least... \hl{TODO}}
 	
 
 
