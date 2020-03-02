@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[10pt]{article}
 
 % add links to document
 \PassOptionsToPackage{hyphens}{url}\usepackage[hidelinks]{hyperref}
@@ -585,15 +585,26 @@
 				\captionof{figure}{Confusion matrix}\label{tbl:figure_confusion_matrix_1}
 			\end{table}
 
-		 	\de{Zum Schluß besitzt die Confusion Matrix folgenden Aufbau, wobei die Anzahl von Elementen in der Klasse \(C_{i,P}\) vorhergesagt wurde, obwohl (\(\boldsymbol{\cong}\)) es hätte Klasse \(C_{j,A}\) sein müssen:}
-			\en{Finally, the Confusion Matrix has the following structure, where the number of elements in the class \(C_{i,P}\) was predicted although (\(\boldsymbol{\cong}\)) it should have been class \(C_{j,A}\):}
+		 	\de{Zum Schluß besitzt die Confusion Matrix folgenden Aufbau, wobei die Anzahl von Elementen in der Klasse \(P_{i}\) vorhergesagt wurde, obwohl (\(\cong\)) es hätte Klasse \(A_{j}\) sein müssen. Alle Werte auf der Diagonalen wurden richtig vorhergesehen.}
+			\en{Finally, the confusion matrix has the following structure, where the number of elements in the class \(P_{i}\) was predicted (P - predicted) although (\(\cong\)) it should have been class \(A_{j}\) (A - actual). All values on the diagonal were correctly predicted (\(\widehat{=}\), \(i\) and \(j\) are equal).}
 
 			\begin{equation}
 				\boldsymbol{M}_{confusion} = \begin{bmatrix}
-					\#C_{1,P}\boldsymbol{\cong} C_{1,A} & \dots & \#(C_{n,P}\boldsymbol{\cong} C_{1,A}) \\
+					\#(P_{1}\widehat{=} A_{1}) & \dots & \#(P_{n}\cong A_{1}) \\
 					\vdots & \ddots & \vdots \\
-					\#(C_{1,P}\boldsymbol{\cong} C_{n,A}) & \dots & \#(C_{n,P}\boldsymbol{\cong} C_{n,A})
-				\end{bmatrix} = (a_{nn})
+					\#(P_{1}\cong A_{n}) & \dots & \#(P_{n}\widehat{=} A_{n})
+				\end{bmatrix} = (m_{nn})
+			\end{equation}
+
+			\de{Wenn alle Elememte neben der Hauptdiagonalen 0 sind, so wurden alle Klassen richtig vorhergesehen.}
+			\en{If all elements next to the main diagonal are 0, then all classes were correctly predicted.}
+
+			\begin{equation}
+				\boldsymbol{M}_{confusion} = \begin{bmatrix}
+					\#(P_{1}\widehat{=} A_{1}) & \dots & 0 \\
+					\vdots & \ddots & \vdots \\
+					0 & \dots & \#(P_{n}\widehat{=} A_{n})
+				\end{bmatrix} = (m_{nn})
 			\end{equation}
 
 		% -------------------- %
