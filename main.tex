@@ -53,6 +53,7 @@
 \usepackage{makeidx}
 \usepackage{verbatim}
 \usepackage[T1]{fontenc}
+\usepackage{accents}
 %\fontfamily{georgia}\selectfont
 
 % style the page numbers
@@ -310,6 +311,9 @@
     \@esphack
   \endgroup}
 \makeatother
+
+% hatset
+\newcommand{\hatset}[1]{\accentset{\wedge}{#1}}
 
 % add language switcher functions \de and \en
 \newif\ifen
@@ -586,13 +590,13 @@
 			\end{table}
 
 		 	\de{Zum Schluß besitzt die Confusion Matrix folgenden Aufbau, wobei die Anzahl von Elementen in der Klasse \(P_{i}\) vorhergesagt wurde, obwohl (\(\cong\)) es hätte Klasse \(A_{j}\) sein müssen. Alle Werte auf der Diagonalen wurden richtig vorhergesehen.}
-			\en{Finally, the confusion matrix has the following structure, where the number of elements in the class \(P_{i}\) was predicted (P - predicted) although (\(\cong\)) it should have been class \(A_{j}\) (A - actual). All values on the diagonal were correctly predicted (\(\widehat{=}\), \(i\) and \(j\) are equal).}
+			\en{Finally, the confusion matrix has the following structure, where the number of elements in the class \(P_{i}\) was predicted (P - predicted) although (\(\cong\)) it should have been class \(A_{j}\) (A - actual). All values on the diagonal were correctly predicted (\(\hatset{=}\) when \(i\) and \(j\) are equal).}
 
 			\begin{equation}
 				\boldsymbol{M}_{confusion} = \begin{bmatrix}
-					\#(P_{1}\widehat{=} A_{1}) & \dots & \#(P_{n}\cong A_{1}) \\
+					\#(P_{1}\hatset{=} A_{1}) & \dots & \#(P_{n}\cong A_{1}) \\
 					\vdots & \ddots & \vdots \\
-					\#(P_{1}\cong A_{n}) & \dots & \#(P_{n}\widehat{=} A_{n})
+					\#(P_{1}\cong A_{n}) & \dots & \#(P_{n}\hatset{=} A_{n})
 				\end{bmatrix} = (m_{nn})
 			\end{equation}
 
@@ -601,9 +605,9 @@
 
 			\begin{equation}
 				\boldsymbol{M}_{confusion} = \begin{bmatrix}
-					\#(P_{1}\widehat{=} A_{1}) & \dots & 0 \\
+					\#(P_{1}\hatset{=} A_{1}) & \dots & 0 \\
 					\vdots & \ddots & \vdots \\
-					0 & \dots & \#(P_{n}\widehat{=} A_{n})
+					0 & \dots & \#(P_{n}\hatset{=} A_{n})
 				\end{bmatrix} = (m_{nn})
 			\end{equation}
 
@@ -615,7 +619,7 @@
 			\en{\textbf{Top-1 accuracy} is probably the most important accuracy. It tells one the percentage of the model's best prediction of the data in the validation set that matches the expected class.}
 
 			\begin{equation}
-				Accuracy = {{TP + TN} \over {TP + TN + FP + FN}} = {{\sum_{i,j=1}^{n} a_{ij}} \over {\sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij}}} = {{Correct_{all}} \over {CorrectPossible_{all}}}
+				Accuracy = {{TP + TN} \over {TP + TN + FP + FN}} = {{\sum_{i,j=1}^{n} m_{ij}} \over {\sum_{i=1}^{n} \sum_{j=1}^{n} m_{ij}}} = {{Correct_{all}} \over {CorrectPossible_{all}}}
 			\end{equation}
 
 			\de{Die \textbf{Top-5-Genauigkeit} ist eine weitere Genauigkeitsangabe. Jedoch wird hier nicht nur der beste Treffer einbezogen, sondern auch die nächsten weiteren vier. Sobald die richtige Klasse innerhalb der ersten fünf vorhergesagten Klassen gefunden werden kann, so ist auch diese Vorhersage wahr:}
@@ -672,7 +676,7 @@
 			\en{Or more precisely for class c:}
 
 			\begin{equation}
-				Precision_{@c} = {{a_{cc}} \over {\sum_{i=1}^{n} a_{ic}}}
+				Precision_{@c} = {{m_{cc}} \over {\sum_{i=1}^{n} m_{ic}}}
 			\end{equation}
 
 		% -------------------- %
@@ -690,7 +694,7 @@
 			\en{Or more precisely for class c:}
 
 			\begin{equation}
-				Recall_{@c} = {{a_{cc}} \over {\sum_{i=1}^{n} a_{ci}}}
+				Recall_{@c} = {{m_{cc}} \over {\sum_{i=1}^{n} m_{ci}}}
 			\end{equation}
 
 		% -------------------- %
