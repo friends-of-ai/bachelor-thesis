@@ -53,7 +53,7 @@
 \usepackage{makeidx}
 \usepackage{verbatim}
 \usepackage[T1]{fontenc}
-\fontfamily{georgia}\selectfont
+%\fontfamily{georgia}\selectfont
 
 % style the page numbers
 \makeatletter
@@ -818,18 +818,20 @@
 					\de{Beim Überwachten Lernen wird einer Klassifizierungsfunktion (meist ein künstliches neuronales Netz) ein Eingangsvektor zugeführt. Der Eingangsvektor erzeugt mit Hilfe der Klassifizierungsfunktion einen Ausgabevektor, die dieses neuronale Netz in seinem aktuellen Zustand produziert\footnote{Das neuronale Netzwerk besteht aus vielen (meist Millionen) Parametern, welche während des Lernprozesses angepasst werden können, um den Fehler zu minimieren.}. Dieser Wert wird mit dem Wert verglichen, den es eigentlich ausgeben soll. Der Vergleich des Soll- und Istzustandes gibt Auskunft wie und in welcher Form Änderungen am Netzwerk vorgenommen werden müssen, um dem Istzustand weiter anzugleichen und den Fehler zu minimieren. Für künstliche neuronale Netzwerke ohne versteckter Schicht (einlagiges Perzeptron\autocite{noauthor_perceptron_2020}) kann die Delta-Regel\autocite{noauthor_least_2020} für die Korrektur vorgenommen werden. Bei Netzwerken mit einer oder mehreren versteckten Schichten verwendet man Backpropagation\autocite{noauthor_backpropagation_2020} um den Fehler zu minimieren. Backpropagation ist eine Verallgemeinerung der Delta-Regel.}
 					\en{In supervised learning, an input vector is fed to a classification function (usually an \acl{ann}). The input vector generates an output vector using the classification function, which produces this neural network in its current state\footnote{The neural network consists of many (usually millions) parameters, which can be adjusted during the learning process to minimize the error.}. This value is compared with the value that it should actually output. The comparison of the nominal and actual state provides information on how and in what form changes must be made to the network in order to further approximate the actual state and minimize the error. For \ac{ann} without a hidden layer (single-layer perceptron\autocite{noauthor_perceptron_2020}), the delta rule\autocite{noauthor_least_2020} for correction can be applied. For networks with one or more hidden layers backpropagation\autocite{noauthor_backpropagation_2020} is used to minimize the error. Backpropagation is a generalization of the delta rule.}
 	
-					\de{Das neuronale Netzwerke ist nur ein Algorithmus aus der Kategorie der überwachten Lernalgorithmen. Weitere mögliche Algorithmen sind:}
-					\en{The neural network is only one algorithm from the category of supervised learning algorithms. Other possible algorithms are:}
-					
-					\begin{itemize}
-						\setlength\itemsep{0em}
-						\item k-nearest neighbors\autocite{noauthor_k-nearest_2020}
-						\item Linear regression\autocite{noauthor_linear_2020}
-						\item Logistic regression\autocite{noauthor_logistic_2020}
-						\item Support-vector machine\autocite{noauthor_support-vector_2020}
-						\item Random forest\autocite{noauthor_random_2020}
-						\item etc.
-					\end{itemize}
+					%\begin{minipage}{\textwidth}
+						\de{Das neuronale Netzwerke ist nur ein Algorithmus aus der Kategorie der überwachten Lernalgorithmen. Weitere mögliche Algorithmen sind:}
+						\en{The neural network is only one algorithm from the category of supervised learning algorithms. Other possible algorithms are:}
+						
+						\begin{itemize}
+							\setlength\itemsep{0em}
+							\item k-nearest neighbors\autocite{noauthor_k-nearest_2020}
+							\item Linear regression\autocite{noauthor_linear_2020}
+							\item Logistic regression\autocite{noauthor_logistic_2020}
+							\item Support-vector machine\autocite{noauthor_support-vector_2020}
+							\item Random forest\autocite{noauthor_random_2020}
+							\item etc.
+						\end{itemize}
+				%\end{minipage}
 			
 				% -------------------- %
 				% Unsupervised learning %
@@ -999,7 +1001,7 @@
 				\end{figure}
 	
 				\de{Ein neuronales Netzwerk ist in der Lage komplexe Eingaben zu klassifizieren. Doch wie genau funktioniert das? Die nachfolgende Klassifikationsfunktion ist in der Lage einfache Klassenprobleme zu trennen, wobei \(\bar{x}\) die Koordinaten der einzelnen Klassenpunkte darstellen und \(\bar{w}\) und \(b\) lernbare Parameter sind:}
-				\en{A neural network is able to classify complex inputs. But how exactly does that work? The following classification function is able to separate simple class problems, where \(\bar{x}\) represent the coordinates of the corresponding class points and \(\bar{w}\) and \(b\) are learnable parameters:}
+				\en{A neural network is able to classify complex inputs. But how exactly does that work? The following classification function is able to separate simple class problems, where \(\bar{x}\) represents the coordinates of the corresponding class points and \(\bar{w}\) and \(b\) are learnable parameters:}
 	
 				\begin{equation}
 					f(\bar{x}, \bar{\omega}, b) = sgn(\bar{\omega}^\intercal \cdot \bar{x} + b)
