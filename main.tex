@@ -722,11 +722,11 @@
 		% -------------------- %
 		\subsubsection{Loss function}
 		\label{sec:section_loss_function}
-			\de{Da es sich hierbei um ein Klassifzierungsproblem und nicht um ein Regressionsproblem handelt, greift man bei der Vorhersage auf die Softmax-Regression zurück. Dabei wird nach jeder Vorhersage ein Vektor \(\lambda\) der Größe \(n\) zurückgegeben, wobei \(n\) der Anzahl der zu unterscheidenden Klassen entspricht\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(\hat{p}\) Wert entspricht dabei der Wahrscheinlichkeit, dass es die Klasse \(class_n\) ist:}
-			\en{Since this is a classification problem and not a regression problem, the prediction is based on softmax regression. After each prediction, a vector \(\lambda\) of the size \(n\) is returned, where \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual \(p\) value corresponds to the probability that it is class \(class_n\):}
+			\de{Die letzte Schicht eines Klassifikators auf Basis eines neuronalen Netzes ist meist eine Softmax Funktion\autocite{noauthor_softmax_2019}. Dabei wird einem Element ein Vektor \(\lambda\) der Größe \(n\) zugewiesen und ist der vorhergesagter Wert \(\boldsymbol\lamda\) von diesem Element. Die Größe \(n\) entspricht dabei der Anzahl der zu unterscheidenden Klassen\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(p\) Wert entspricht dabei der Wahrscheinlichkeit, dass es sich um die Klasse \(class_n\) handelt (Gleichung \ref{eq:equation_softmax_vector}).}
+			\en{The last layer of a \ac{nn}-based classifier is mostly a softmax function\autocite{noauthor_softmax_2019}. It assigns a vector \(\boldsymbol\lambda\) of size \(n\) to an element and is the predicted value of this element. The size \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual \(p\) value of \(\boldsymbol\lambda\) corresponds to the probability that it is class \(class_n\) (Equation \ref{eq:equation_softmax_vector}).}
 
 			\begin{equation}
-				\lambda = 
+				\boldsymbol\lambda = 
 				\left(
 					\begin{array}{c}
 					p_{1}\\
@@ -737,13 +737,14 @@
 					\end{array}
 				\right)
 				\quad\Biggl\lvert \quad \sum_{i=1}^n p_i = 1
+				\label{eq:equation_softmax_vector}
 			\end{equation}
 
 			\de{Der erwartete Wert der Parameterfunktion und somit der aktuellen Klasse wird als One Hot Vektor zurückgegeben. Der Wert 1 entspricht der erwarteten Klasse. Alle anderen Klassen geben 0 zurück. Dies nennt man auch One Hot Encoding (am Beispiel von Klasse 2):}
-			\en{The expected value of the parameter function and thus of the current class is returned as a one hot vector. The value 1 corresponds to the expected class. All other classes return 0. This is also called one hot encoding (using the example of class 2):}
+			\en{The expected value of the parameter function \(\boldsymbol g(\vartheta)\) and thus of the current element and its expected labelled class is returned as a so-called "one-hot vector". The vector element for the expected class has the value 1, all others have the value 0. This is also called one hot encoding (using the example of class 2):}
 
 			\begin{equation}
-				g(\vartheta_2) = 
+				\boldsymbol g(\vartheta_2) = 
 				\left(
 					\begin{array}{c}
 					0\\
@@ -759,14 +760,14 @@
 			\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction, which results from the comparison with the true value or parameter. For this purpose, the distance between the predicted class and the true class is calculated (if they are equal, the distance is 0).  If the adaptation of the model (learning process) improves the prediction of all predicted classes to their true classes, the value of the loss function is also reduced.  A typical loss function is e.g. for an r-dimensional space:}
 
 			\begin{equation}
-				L_r(\vartheta, \lambda) := \lVert \lambda - g(\vartheta) \rVert^r
+				L_r(\vartheta, \boldsymbol\lambda) := \lVert \boldsymbol\lambda - \boldsymbol g(\vartheta) \rVert^r
 			\end{equation}
 
 			\de{\(\lambda\) stellt hierbei den geschätzte Wert und \(g(\vartheta)\) die Parameterfunktion dar, welche den realen Wert für \(\vartheta\) zurückliefert. Der mittlere Verlust auf den gesamten Datensatz mit \(n\) Elementen ist somit:}
 			\en{\(\lambda\) represents the estimated value and \(g(\vartheta)\) the parameter function which returns the actual value for \(\vartheta\). The average loss on the entire data set with \(n\) elements is thus:}
 
 			\begin{equation}
-				\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \lambda_i)
+				\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \boldsymbol\lambda_i)
 			\end{equation}
 
 		\subsection{Machine learning}
@@ -1750,13 +1751,13 @@ model = Model(inputs = base_model.input, outputs = predictions)
 						\boldsymbol\lambda_{class_{m}} = 
 						\left(
 							\begin{array}{c}
-							\hat{p}_{1}\\
-							\hat{p}_{2}\\
+							p_{1}\\
+							p_{2}\\
 							\vdots\\
-							\hat{p}_{50}\\
+							p_{50}\\
 							\end{array}
 						\right)
-						\quad\Biggl\lvert \quad \sum_{i=1}^{50} \hat{p_i} = 1
+						\quad\Biggl\lvert \quad \sum_{i=1}^{50} p_i = 1
 					\end{equation}
 					
 					\de{Von diesen Wahrscheinlichkeitsvektoren wird nun jeweils für jede Klasse ein Durchschnittsvektor aller \(n\) Elemente bestimmt, welche zur entsprechenden Klasse wirklich gehören. Man erhält also für dieses 50 Klassenmodell entsprechend 50 Klassenvektoren mit der Dimension 50.}
