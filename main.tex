@@ -1766,10 +1766,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 					\begin{equation}
 						\forall\ 50\ classes, m = 1 \dots 50:
 						\overline{\boldsymbol\lambda}_{class_{m}} =
-						\frac{
-							\sum_{i=1}^{n}
-							\boldsymbol\lambda_{class_{m}}
-						}{n}
+						\frac{1}{n} \cdot \sum_{i=1}^{n} \boldsymbol\lambda_{class_{m}}
 					\end{equation}
 					
 					\de{Mittels Principal component analysis werden diese mehrdimensionalen Vektoren in einem zweidimensionalen Raum transformiert, um diese grafisch darstellen zu können.} 
