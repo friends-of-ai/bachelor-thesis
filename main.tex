@@ -511,34 +511,34 @@
 			\en{Neural networks have made \textit{enormous} progress in the field of pattern recognition in recent years. A decisive factor is that the data for learning must be of high quality and easy for the network to process. Wrongly classified or irrelevant data could cause the network to learn something wrong. This also applies to non-existent or unsuitable pre-processing\autocite{osinga2019data}.}
 
 			\de{Mit dem Beginn eines Klassifizierungsprojektes stellt sich die Frage was genau man klassifizieren möchte und wie umfangreich die Klassifzierung ausfallen soll. Angenommen man möchte verschiedene Klassen von Essen identifizieren, so könnten das Klassen wie Pizza, Burger, Donuts und Lasagne sein (etc.). Zu diesen Klassen benötigt man nun eine große Anzahl an Bildern. Diese Daten sollten im Idealfall die Realität möglichst gut widerspiegeln. Eine große Variation ist von Vorteil (ausbalancierter Datenset): verschiedene Blickwinkel, Größe, Position, Farbhelligkeiten, Variationen, Anzahl, etc. Bilder von z.B. nur einer Farbhelligkeit oder nur einem Blickwinkel sollten vermieden werden. Sind die Daten nicht ausbalanciert, so müssen diese entsprechend korrigiert werden: z.B. durch Hinzufügen weiterer Daten, Bildverarbeitung oder durch Entfernen von Daten, welche für eine Unausgewogenheit sorgen. Weiterhin sollten die ausgewählten Klassen untereinander klar optisch trennbar sein. Sind sich zwei Klassen optisch sehr ähnlich und selbst durch einen Menschen nicht wirklich unterscheidbar, sollte darüber nachgedacht werden diese zusammenzufassen (z.B. "burger" und "veggie burger"):}
-			\en{With the beginning of a classification project, the question arises what exactly one wants to classify and how extensive the classification should be. Assuming one wants to identify different classes of food, this could be classified as burgers (as shown in Figure \ref{fig:class_burger_doughnut_pizza}a), doughnuts (Figure \ref{fig:class_burger_doughnut_pizza}b) or pizza (Figure \ref{fig:class_burger_doughnut_pizza}c), etc. For these classes, one now needs a large number of images. Ideally, this data should reflect reality as well as possible. A large variation is advantageous (balanced data set): different viewing angles, size, position, colour brightness, variations, number, etc. Images of e.g. only one colour brightness or only one viewing angle should be avoided. If the data are not balanced, they must be corrected accordingly: e.g. by adding further data, image processing or by removing data that causes an imbalance. Furthermore, the selected classes should be clearly optically separable from each other. If two classes are visually very similar and not really distinguishable even by a human, consideration should be given to combining them (e.g. "burger" and "veggie burger").}
+			\en{With the beginning of a classification project, the question arises what exactly one wants to classify and how extensive the classification should be. Assuming one wants to identify different classes of food, these could be classes like burgers (as shown in Figure \ref{fig:class_burger_doughnut_pizza}a), doughnuts (Figure \ref{fig:class_burger_doughnut_pizza}b) or pizza (Figure \ref{fig:class_burger_doughnut_pizza}c), etc. For these classes, one now needs a large number of images. Ideally, this data should reflect reality as far as possible. A large variation is advantageous (balanced data set): different viewing angles, size, position, colour brightness, variations, number, etc. Images of e.g. only one colour brightness or only one viewing angle should be avoided. If the data are not balanced, they must be corrected accordingly: e.g. by adding further data, image processing or by removing data that causes an imbalance. Furthermore, the selected classes should be clearly optically separable from each other. If two classes are visually very similar and not really distinguishable even by a human, consideration should be given to combining them (e.g. "burger" and "veggie burger").}
 
 			\begin{figure}[H]
 				\centering
 				\begin{subfigure}[b]{1.025\textwidth}
-					\includegraphics[width=0.19\textwidth]{images/data/burger/burger28.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/burger/burger77.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/burger/burger89.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/burger/burger162.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/burger/burger449.jpeg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger2/1.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger2/2.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger2/3.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger2/4.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/burger2/5.jpg}
 				\end{subfigure}
 
 				\vspace{5pt}
 				\begin{subfigure}[b]{1.025\textwidth}
-					\includegraphics[width=0.19\textwidth]{images/data/donut/donut116.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/donut/donut155.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/donut/donut176.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/donut/donut205.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/donut/donut440.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/donut2/1.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/donut2/2.png}
+					\includegraphics[width=0.19\textwidth]{images/data/donut2/3.png}
+					\includegraphics[width=0.19\textwidth]{images/data/donut2/4.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/donut2/5.png}
 				\end{subfigure}
 
 				\vspace{5pt}
 				\begin{subfigure}[b]{1.025\textwidth}
-					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza73.png}
-					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza76.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza92.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza108.jpg}
-					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza239.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza2/1.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza2/2.png}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza2/3.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza2/4.jpg}
+					\includegraphics[width=0.19\textwidth]{images/data/pizza2/5.jpg}
        				\end{subfigure}
        				
 				\caption[Example of pictures of a burger, doughnut and pizza class]{(a) Example of pictures of a burger class (top), (b) Example pictures of a doughnut class (middle), (c) Example of pictures of a burger class (bottom)}
