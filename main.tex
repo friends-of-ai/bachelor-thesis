@@ -614,7 +614,7 @@
 			\end{equation}
 
 			\de{Die Verlustfunktion\autocite{noauthor_verlustfunktion_2018} ordnet jeder Vorhersage einen Schaden zu, der durch den Vergleich mit dem wahren Wert bzw. Parameter entsteht. Backpropagation berechnet den Gradienten der Verlustfunktion, welcher mit \(m(\vartheta)\) entsteht. Dazu wird der Abstand der vorhergesagten Klasse zur wahren Klasse berechnet (sind sie gleich ist der Abstand 0). Bessert sich mit Anpassung des Modells (Lernvorgang) die Vorhersage aller vorhergesagten Klassen zu ihren wahren Klassen, so verkleinert sich auch der Wert der Verlustfunktion. Eine typische Verlustfunktion ist z.B. für einen r-dimensionalen Raum:}
-			\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction, which results from the comparison with the true value or parameter. Backpropagation\autocite{noauthor_backpropagation_2020} (see chapter ``\nameref{sec:section_backpropagation}'') calculates for each element \(\vartheta\)  the gradient of the loss function which results with \(m(\vartheta)\). For this purpose, the distance between the predicted class and the true class is calculated (if they are equal, the distance is 0).  If the adaptation of the model (learning process) improves the prediction of all predicted classes to their true classes, the value of the loss function is also reduced. As an example, a typical loss function for an r-dimensional space is shown in Equation \eqref{eq:equation_loss_function}.}
+			\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction \(\boldsymbol\lambda\), which results from the comparison with the true value of the parameter function \(\boldsymbol g(\vartheta_{class})\). Backpropagation (see chapter ``\nameref{sec:section_backpropagation}'') calculates for each element \(\vartheta\) the gradient of the loss function which results with \(\boldsymbol M(\vartheta)\). The gradient is used to adapt the parameters of function \(\boldsymbol M(\vartheta)\) to reduce the prediction error. If the adaptation of the model improves the prediction of an element to its true value, the value of the loss function is also reduced. As an example, a typical loss function for an r-dimensional space for one element is shown in Equation \eqref{eq:equation_loss_function}.}
 
 			\begin{equation}
 				\label{eq:equation_loss_function}
@@ -622,7 +622,7 @@
 			\end{equation}
 
 			\de{\(\lambda\) stellt hierbei den geschätzte Wert und \(g(\vartheta)\) die Parameterfunktion dar, welche den realen Wert für \(\vartheta\) zurückliefert. Der mittlere Verlust auf den gesamten Datensatz mit \(n\) Elementen ist somit:}
-			\en{\(\boldsymbol\lambda\) represents the estimated value and \(g(\vartheta)\) the parameter function which returns the actual value for \(\vartheta\). The average loss on the entire data set with \(k\) elements is thus:}
+			\en{\(\boldsymbol\lambda\) represents the estimated value and \(g(\vartheta)\) the parameter function which returns the actual value for \(\vartheta\). The loss function is not only determined for one element. It is necessary to consider all elements together to create a model that generalises. The average loss on the entire data set with \(k\) elements is thus:}
 
 			\begin{equation}
 				\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \boldsymbol\lambda_i)
