@@ -614,7 +614,7 @@
 			\end{equation}
 
 			\de{Die Verlustfunktion\autocite{noauthor_verlustfunktion_2018} ordnet jeder Vorhersage einen Schaden zu, der durch den Vergleich mit dem wahren Wert bzw. Parameter entsteht. Backpropagation berechnet den Gradienten der Verlustfunktion, welcher mit \(m(\vartheta)\) entsteht. Dazu wird der Abstand der vorhergesagten Klasse zur wahren Klasse berechnet (sind sie gleich ist der Abstand 0). Bessert sich mit Anpassung des Modells (Lernvorgang) die Vorhersage aller vorhergesagten Klassen zu ihren wahren Klassen, so verkleinert sich auch der Wert der Verlustfunktion. Eine typische Verlustfunktion ist z.B. für einen r-dimensionalen Raum:}
-			\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction \(\boldsymbol\lambda\), which results from the comparison with the true value of the parameter function \(\boldsymbol g(\vartheta_{class})\). Backpropagation (see chapter ``\nameref{sec:section_backpropagation}'') calculates for each element \(\vartheta\) the gradient of the loss function which results with \(\boldsymbol M(\vartheta)\). The gradient is used to adapt the parameters of function \(\boldsymbol M(\vartheta)\) to reduce the prediction error. If the adaptation of the model improves the prediction of an element to its true value, the value of the loss function is also reduced. As an example, a typical loss function for an r-dimensional space for one element is shown in Equation \eqref{eq:equation_loss_function}.}
+			\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction \(\boldsymbol\lambda\), which results from the comparison with the true value of the parameter function \(\boldsymbol g(\vartheta_{class})\). Backpropagation (see chapter ``\nameref{sec:section_backpropagation}'') calculates for each element \(\vartheta\) the gradient of the loss function which results with \(\boldsymbol M(\vartheta)\). The gradient is used to adapt the parameters of function \(\boldsymbol M(\vartheta)\) to reduce the prediction error. As an example, a typical loss function for an r-dimensional space for one element is shown in Equation \eqref{eq:equation_loss_function}.}
 
 			\begin{equation}
 				\label{eq:equation_loss_function}
@@ -723,9 +723,17 @@
 				Accuracy = 99,9\%
 			\end{equation}
 
-			\de{Deswegen gibt es weitere Performance Metriken wie Precision, Recall und F-Measure.}
-			\en{Therefore there are additional performance metrics like Precision, Recall and F-Measure.}
+			\de{Das Beispiel ist ein Extembeispiel und soll verdeutlichen, dass die Genauigkeit nicht immer die beste Wahl einer Klassifikationsmetrik ist, obwohl sie in dieser Arbeit sehr häufig verwendet wird. Die Klassen im verwendetem Datensatz sollten so gut es geht gleichverteilt sein (balanciert). Der in dieser Arbeit verwendete Datensatz ist nicht sehr gut gleichverteilt (Siehe Abbildung \ref{fig:implementation_number_train_files}). Der im Kapitel ``\nameref{sec:section_data_augmention}'' verwendete Datensatz ist hingegen sehr gut ausbalanciert.}
+			\en{The example is an extreme example and is intended to illustrate that accuracy is not always the best choice of a classification metric, although it is very often used in this paper. The classes in the used dataset should be balanced as far as possible. The data set used in this thesis is not very well balanced (see figure \ref{fig:implementation_number_train_files}), but far away from the extreme example above. The data set used in the chapter ``\nameref{sec:section_data_augmention}'' is very well balanced.}
 
+		% -------------------- %
+		% Other metrics %
+		% -------------------- %
+		\subsubsection{Other metrics}
+			\de{Es gibt noch andere Metriken wie Precision, Recall und F-Measure, auf die hier aber nicht weiter eingegangen wird, weil sie in dieser Arbeit nicht verwendet werden. Precision sagt zum Beispiel aus, wie zuverlässig die Aussage einer Vorhersage einer Klasse ist. Es berechnet sich aus dem Verhältnis der richtig klassifierten Objekte gegenüber aller Vorhersagen dieser Klasse.}
+			\en{There are other metrics such as precision, recall and F-measure, but they will not be discussed here because they are not used in this thesis. Precision, for example, is used how reliable the statement of a prediction of a class is. It is calculated from the ratio of the correctly classified objects of a class to all predictions of this class.}
+
+		\begin{comment}
 		% -------------------- %
 		% Precision %
 		% -------------------- %
@@ -787,7 +795,7 @@
 		\label{sec:section_machine_learning}
 			\de{Maschinelles Lernen ist ein Oberbegriff für die künstliche Generierung von Wissen aus Erfahrung\autocite{de1998machine}. Es verfolgt den Ansatz des induktiven Lernens (siehe auch Kapitel \nameref{sec:section_inductive_approach}).}
 			\en{Machine learning is a generic term for the artificial generation of knowledge from experience\autocite{de1998machine}. It follows the approach of inductive learning (see also chapter \nameref{sec:section_inductive_approach}).}
-			
+			\end{comment}
 			
 			
 			% -------------------- %
@@ -798,6 +806,10 @@
 
 				\paragraph{Backpropagation}
 				\label{sec:section_backpropagation}
+					\hl{...}
+
+				\paragraph{Overfitting und underfitting}
+				\label{sec:section_overfitting}
 					\hl{...}
 					
 				\paragraph{Batch size}
@@ -1783,6 +1795,7 @@ user$ ml train \
 
 	
 			\subsubsection{Data augmentation}
+			\label{sec:section_data_augmention}
 				\de{Wie in Kapitel ``\nameref{sec:section_data_augmentation}'' beschrieben, ist die Hauptaufgabe von Data augmentation neue neue Trainingsdaten aus den bestehenden zu generieren. Der Trainingsdatensatz wird somit künstlich vergrößert. Diese Technik gehört mit zu den Regularisierungstechniken, da sie Overfitting entgegenwirken kann\autocite{geron2017supervisedlearningDataAugmentation}. Nachfolgend ein Beispieldatenset, bei dem das erste originale Bild gedreht, gespiegelt, verzerrt wird und der Datensatz von einem Bild auf insgesamt 12 Bilder vergrößert wird:}
 				\en{As described in chapter ``\nameref{sec:section_data_augmentation}'' the main task of data augmentation is to generate new training data from the existing data. The training data set is artificially augmented in this way. This technique is one of the regularization techniques, as it can counteract overfitting\autocite{geron2017supervisedlearningDataAugmentation}. Below is an example data set in which the first original image is rotated, mirrored, distorted and the data set is enlarged from one image to a total number of 12 images (Figure \ref{fig:data_augmentation}).}
 	
