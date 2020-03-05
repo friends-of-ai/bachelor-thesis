@@ -571,6 +571,65 @@
 		\de{Die Wahl der richtigen Metrik ist bei der Bewertung von Modellen des maschinellen Lernens von entscheidender Bedeutung. Metriken werden zur Überwachung und Messung der Leistung eines Modells während des Trainings und des Tests verwendet. Im nachfolgenden werden einige wichtige Metriken erklärt.}
 		\en{Choosing the right metric is crucial in evaluating \ac{ml} models. Metrics are used to monitor and measure the performance of a model during training and testing. Some important metrics are explained below.}
 
+
+
+		% -------------------- %
+		% loss function %
+		% -------------------- %
+		\subsubsection{Loss function}
+		\label{sec:section_loss_function}
+			\de{Für die Klassifikation eines Bildes \(\vartheta\) wird in der Regel ein neuronales Netzwerk verwendet. Die Funktion für dieses Modell werde mit \(\boldsymbol M(\vartheta)\) angegeben. Bei diesem Model ist letzte Schicht eines Klassifikators auf Basis eines neuronalen Netzes meist eine Softmax Funktion\autocite{noauthor_softmax_2019}. Dabei wird einem Element ein Vektor \(\lambda\) der Größe \(n\) zugewiesen und ist der vorhergesagter Wert \(\boldsymbol\lamda\) von diesem Element. Die Größe \(n\) entspricht dabei der Anzahl der zu unterscheidenden Klassen\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(p\) Wert entspricht dabei der Wahrscheinlichkeit, dass es sich um die Klasse \(class_n\) handelt (Gleichung \ref{eq:equation_softmax_vector}).}
+			\en{For the classification of an image \(\vartheta\) a \ac{nn} is usually used. The function for this model is specified with \(\boldsymbol M(\vartheta)\). In this model the last layer of this \ac{nn}-based classifier is mostly a softmax function\autocite{noauthor_softmax_2019}. It assigns a vector \(\boldsymbol\lambda\) of size \(n\) to an element \(\vartheta\) and is the predicted value of this element. The size \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual value \(p\) of \(\boldsymbol\lambda\) corresponds to the probability that it is class \(class_n\) (Equation \ref{eq:equation_softmax_vector}).}
+
+			\begin{equation}
+				\boldsymbol M(\vartheta) =
+				\boldsymbol\lambda = 
+				\left(
+					\begin{array}{c}
+					p_{1}\\
+					p_{2}\\
+					p_{3}\\
+					\vdots\\
+					p_{n}\\
+					\end{array}
+				\right)
+				\quad\Biggl\lvert \quad \sum_{i=1}^n p_i = 1
+				\label{eq:equation_softmax_vector}
+			\end{equation}
+
+			\de{Der erwartete Wert der Parameterfunktion und somit der aktuellen Klasse wird als One Hot Vektor zurückgegeben. Der Wert 1 entspricht der erwarteten Klasse. Alle anderen Klassen geben 0 zurück. Dies nennt man auch One Hot Encoding (am Beispiel von Klasse 2):}
+			\en{The expected value of the parameter function \(\boldsymbol g(\vartheta)\) and thus of the current element \(\vartheta\) and its expected labelled class is returned as a so-called "one-hot vector". The vector element for the expected class has the value 1, all others have the value 0. This is also called one hot encoding (using the example of an element of \(class_2\)):}
+
+			\begin{equation}
+				\boldsymbol g(\vartheta_{class_2}) = 
+				\left(
+					\begin{array}{c}
+					0\\
+					1\\
+					0\\
+					\vdots\\
+					0\\
+					\end{array}
+				\right)
+			\end{equation}
+
+			\de{Die Verlustfunktion\autocite{noauthor_verlustfunktion_2018} ordnet jeder Vorhersage einen Schaden zu, der durch den Vergleich mit dem wahren Wert bzw. Parameter entsteht. Backpropagation berechnet den Gradienten der Verlustfunktion, welcher mit \(m(\vartheta)\) entsteht. Dazu wird der Abstand der vorhergesagten Klasse zur wahren Klasse berechnet (sind sie gleich ist der Abstand 0). Bessert sich mit Anpassung des Modells (Lernvorgang) die Vorhersage aller vorhergesagten Klassen zu ihren wahren Klassen, so verkleinert sich auch der Wert der Verlustfunktion. Eine typische Verlustfunktion ist z.B. für einen r-dimensionalen Raum:}
+			\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction, which results from the comparison with the true value or parameter. Backpropagation\autocite{noauthor_backpropagation_2020} (see chapter ``\nameref{sec:section_backpropagation}'') calculates for each element \(\vartheta\)  the gradient of the loss function which results with \(m(\vartheta)\). For this purpose, the distance between the predicted class and the true class is calculated (if they are equal, the distance is 0).  If the adaptation of the model (learning process) improves the prediction of all predicted classes to their true classes, the value of the loss function is also reduced. As an example, a typical loss function for an r-dimensional space is shown in Equation \eqref{eq:equation_loss_function}.}
+
+			\begin{equation}
+				\label{eq:equation_loss_function}
+				L_r(\vartheta, \boldsymbol\lambda) := \lVert \boldsymbol\lambda - \boldsymbol g(\vartheta) \rVert^r
+			\end{equation}
+
+			\de{\(\lambda\) stellt hierbei den geschätzte Wert und \(g(\vartheta)\) die Parameterfunktion dar, welche den realen Wert für \(\vartheta\) zurückliefert. Der mittlere Verlust auf den gesamten Datensatz mit \(n\) Elementen ist somit:}
+			\en{\(\boldsymbol\lambda\) represents the estimated value and \(g(\vartheta)\) the parameter function which returns the actual value for \(\vartheta\). The average loss on the entire data set with \(k\) elements is thus:}
+
+			\begin{equation}
+				\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \boldsymbol\lambda_i)
+			\end{equation}
+
+
+
 		% -------------------- %
 		% Confusion Matrix %
 		% -------------------- %
@@ -724,59 +783,6 @@
 				{{2 \cdot TP}\over{2 \cdot TP + FN + FP}}
 			\end{equation}
 
-		% -------------------- %
-		% loss function %
-		% -------------------- %
-		\subsubsection{Loss function}
-		\label{sec:section_loss_function}
-			\de{Die letzte Schicht eines Klassifikators auf Basis eines neuronalen Netzes ist meist eine Softmax Funktion\autocite{noauthor_softmax_2019}. Dabei wird einem Element ein Vektor \(\lambda\) der Größe \(n\) zugewiesen und ist der vorhergesagter Wert \(\boldsymbol\lamda\) von diesem Element. Die Größe \(n\) entspricht dabei der Anzahl der zu unterscheidenden Klassen\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(p\) Wert entspricht dabei der Wahrscheinlichkeit, dass es sich um die Klasse \(class_n\) handelt (Gleichung \ref{eq:equation_softmax_vector}).}
-			\en{The last layer of a \ac{nn}-based classifier is mostly a softmax function\autocite{noauthor_softmax_2019}. It assigns a vector \(\boldsymbol\lambda\) of size \(n\) to an element and is the predicted value of this element. The size \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual \(p\) value of \(\boldsymbol\lambda\) corresponds to the probability that it is class \(class_n\) (Equation \ref{eq:equation_softmax_vector}).}
-
-			\begin{equation}
-				\boldsymbol\lambda = 
-				\left(
-					\begin{array}{c}
-					p_{1}\\
-					p_{2}\\
-					p_{3}\\
-					\vdots\\
-					p_{n}\\
-					\end{array}
-				\right)
-				\quad\Biggl\lvert \quad \sum_{i=1}^n p_i = 1
-				\label{eq:equation_softmax_vector}
-			\end{equation}
-
-			\de{Der erwartete Wert der Parameterfunktion und somit der aktuellen Klasse wird als One Hot Vektor zurückgegeben. Der Wert 1 entspricht der erwarteten Klasse. Alle anderen Klassen geben 0 zurück. Dies nennt man auch One Hot Encoding (am Beispiel von Klasse 2):}
-			\en{The expected value of the parameter function \(\boldsymbol g(\vartheta)\) and thus of the current element and its expected labelled class is returned as a so-called "one-hot vector". The vector element for the expected class has the value 1, all others have the value 0. This is also called one hot encoding (using the example of class 2):}
-
-			\begin{equation}
-				\boldsymbol g(\vartheta_2) = 
-				\left(
-					\begin{array}{c}
-					0\\
-					1\\
-					0\\
-					\vdots\\
-					0\\
-					\end{array}
-				\right)
-			\end{equation}
-
-			\de{Die Verlustfunktion\autocite{noauthor_verlustfunktion_2018} ordnet jeder Vorhersage einen Schaden zu, der durch den Vergleich mit dem wahren Wert bzw. Parameter entsteht. Dazu wird der Abstand der vorhergesagten Klasse zur wahren Klasse berechnet (sind sie gleich ist der Abstand 0). Bessert sich mit Anpassung des Modells (Lernvorgang) die Vorhersage aller vorhergesagten Klassen zu ihren wahren Klassen, so verkleinert sich auch der Wert der Verlustfunktion. Eine typische Verlustfunktion ist z.B. für einen r-dimensionalen Raum:}
-			\en{The loss function\autocite{noauthor_verlustfunktion_2018} assigns a loss to each prediction, which results from the comparison with the true value or parameter. For this purpose, the distance between the predicted class and the true class is calculated (if they are equal, the distance is 0).  If the adaptation of the model (learning process) improves the prediction of all predicted classes to their true classes, the value of the loss function is also reduced.  A typical loss function is e.g. for an r-dimensional space:}
-
-			\begin{equation}
-				L_r(\vartheta, \boldsymbol\lambda) := \lVert \boldsymbol\lambda - \boldsymbol g(\vartheta) \rVert^r
-			\end{equation}
-
-			\de{\(\lambda\) stellt hierbei den geschätzte Wert und \(g(\vartheta)\) die Parameterfunktion dar, welche den realen Wert für \(\vartheta\) zurückliefert. Der mittlere Verlust auf den gesamten Datensatz mit \(n\) Elementen ist somit:}
-			\en{\(\lambda\) represents the estimated value and \(g(\vartheta)\) the parameter function which returns the actual value for \(\vartheta\). The average loss on the entire data set with \(n\) elements is thus:}
-
-			\begin{equation}
-				\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \boldsymbol\lambda_i)
-			\end{equation}
-
 		\subsection{Machine learning}
 		\label{sec:section_machine_learning}
 			\de{Maschinelles Lernen ist ein Oberbegriff für die künstliche Generierung von Wissen aus Erfahrung\autocite{de1998machine}. Es verfolgt den Ansatz des induktiven Lernens (siehe auch Kapitel \nameref{sec:section_inductive_approach}).}
@@ -789,6 +795,29 @@
 			% -------------------- %
 			\subsubsection{Short definitions}
 			\label{sec:section_short_definitions}
+
+				\paragraph{Backpropagation}
+				\label{sec:section_backpropagation}
+					\hl{...}
+					
+				\paragraph{Batch size}
+				\label{sec:section_batch_size}
+					\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig vorwärts und rückwärts durch das neuronale Netzwerk geleitet werden, bevor die Parameter im Netzwerk angepasst werden (Gradientenaktualisierung). Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt (Mini-Batches). Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind und damit eine Überanpassung reguliert werden kann. Der Nachteil ist eine erhöhte Varianz (Rauschen in der Genauigkeit des Modells), da es unwahrscheinlich ist, dass eine kleine Stichprobe eine gute Darstellung des gesamten Datensatzes ist. Ebenso erhöht sich der Rechenaufwand da die Backpropagation entsprechend der Anzahl der Mini-Batches erhöht. Es gibt keine magische Regel für die richtige Wahl der Batch Size. Dies ist ein Hyperparameter, der vor Beginn des Trainings bestimmt werden muss\autocite{noauthor_epochs_nodate}.}
+					\en{The batch size defines the number of images that are simultaneously passed forward and backward through the \ac{nn} before the parameters in the network are adjusted (gradient update). Normally it is intended to train all training data per epoch with one process. Especially in the field of image classification this is usually not possible due to the limited memory, which is why an epoch is divided into many small batches (mini-batches). The advantage is that one only has to keep the data in memory that is necessary for the current batch and an overfitting can be regulated.  The disadvantage is an increased variance (noise in the accuracy of the model), since it is unlikely that a small batch is a good representation of the entire data set. The computing time increases as well, since the backpropagation increases according to the number of mini-batches. There is no magic rule for choosing the right batch size. This is a hyperparameter that must be determined before the training begins\autocite{noauthor_epochs_nodate}.}
+
+				\paragraph{Class}
+				\label{sec:section_class}
+					\hl{...}
+
+				\paragraph{Data augmentation}
+				\label{sec:section_data_augmentation}
+					\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Diese Technik wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat oder das Datenset nicht ausreichend balanciert ist. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern\autocite{perez2017effectiveness}.}
+					\en{Data augmentation is the artificial augmentation of a data set. This technique is primarily used when only little data is available or the data set is not sufficiently balanced (unbalanced data set). Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training\autocite{perez2017effectiveness}.}
+
+				\paragraph{Dropout}
+				\label{sec:section_dropout}
+					\hl{...}
+
 				\paragraph{Learning epoch}
 				\label{sec:section_learning_epoch}
 					\de{Unter einer Lernepoche versteht man den einmaligen Trainingsdurchlauf mit allen Trainingsdatensätzen. Meist reicht ein Trainingsdurchlauf nicht aus, weshalb weitere Lernepochen im Anschluß erfolgen. Sobald mit weiteren Lernepochen die Leistungsfähigkeit des Netzwerkes nicht weiter steigt, beendet man das Training.}
@@ -798,16 +827,10 @@
 				\label{sec:section_learning_rate}
 					\de{Die Lernrate ist ein Abstimmungsparameter in einem Optimierungsalgorithmus. Dieser sagt aus, wie groß die Schrittweite bei jeder Iteration ist, mit der sich die Parameter auf das Minimum einer Verlustfunktion zubewegen. Sie sollte nicht zu hoch (Minimum wird nicht gefunden) und nicht zu klein sein (sehr langsames Lernen). Die Lernrate wird oft mit dem Zeichen \(\eta\) oder \(\alpha\) bezeichnet.}
 					\en{The learning rate is a tuning parameter in an optimization algorithm. It expresses how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
-					
-				\paragraph{Batch size}
-				\label{sec:section_batch_size}
-					\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig vorwärts und rückwärts durch das neuronale Netzwerk geleitet werden, bevor die Parameter im Netzwerk angepasst werden (Gradientenaktualisierung). Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt (Mini-Batches). Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind und damit eine Überanpassung reguliert werden kann. Der Nachteil ist eine erhöhte Varianz (Rauschen in der Genauigkeit des Modells), da es unwahrscheinlich ist, dass eine kleine Stichprobe eine gute Darstellung des gesamten Datensatzes ist. Ebenso erhöht sich der Rechenaufwand da die Backpropagation entsprechend der Anzahl der Mini-Batches erhöht. Es gibt keine magische Regel für die richtige Wahl der Batch Size. Dies ist ein Hyperparameter, der vor Beginn des Trainings bestimmt werden muss\autocite{noauthor_epochs_nodate}.}
-					\en{The batch size defines the number of images that are simultaneously passed forward and backward through the \ac{nn} before the parameters in the network are adjusted (gradient update). Normally it is intended to train all training data per epoch with one process. Especially in the field of image classification this is usually not possible due to the limited memory, which is why an epoch is divided into many small batches (mini-batches). The advantage is that one only has to keep the data in memory that is necessary for the current batch and an overfitting can be regulated.  The disadvantage is an increased variance (noise in the accuracy of the model), since it is unlikely that a small batch is a good representation of the entire data set. The computing time increases as well, since the backpropagation increases according to the number of mini-batches. There is no magic rule for choosing the right batch size. This is a hyperparameter that must be determined before the training begins\autocite{noauthor_epochs_nodate}.}
 
-				\paragraph{Data augmentation}
-				\label{sec:section_data_augmentation}
-					\de{Als Data Augmentation bezeichnet man die künstliche Vergrößerung eines Datensets. Diese Technik wird vorrangig dann angewendet, wenn man nur wenig Daten zur Verfügung hat oder das Datenset nicht ausreichend balanciert ist. Dabei werden bestehende Bilder gedreht, gespiegelt, Farbkorrekturen vorgenommen, ausgeschnitten, etc. Die Data Augmentation kann die Modellgenauigkeit beim Training verbessern\autocite{perez2017effectiveness}.}
-					\en{Data augmentation is the artificial augmentation of a data set. This technique is primarily used when only little data is available or the data set is not sufficiently balanced (unbalanced data set). Existing images are rotated, mirrored, color adjusted, cropped, etc. Data Augmentation can improve model accuracy during training\autocite{perez2017effectiveness}.}
+				\paragraph{Momentum}
+				\label{sec:section_momentum}
+					\hl{...}
 			
 			
 			% -------------------- %
@@ -866,14 +889,17 @@
 					\de{Eine Technik, die hierarchische Clusteranalyse (siehe Kapitel ``\nameref{sec:section_validation_hierarchical classification}''), wird später verwendet um die Einführung von Hierarchien zu erleichtern. Für die allgemeine Analyse, den Finden von optimalen Parametern für das Lernen von Modellen, wird diese Art des Lernens in dieser Arbeit nicht verwendet.}
 					\en{One technique called hierarchical clustering (see chapter ``\nameref{sec:section_validation_hierarchical classification}'') is used later to facilitate the introduction of hierarchies. For the general analysis, the finding of optimal parameters for learning models, this kind of learning is not used in this thesis.}
 	
-			\label{}
+
+
 				% -------------------- %
 				% Reinforcement learning %
 				% -------------------- %
+				\begin{comment}
 				\paragraph{Reinforcement learning}
 				\label{sec:section_reinforcement_learning}
 					\de{Reinforcement learning\autocite{noauthor_reinforcement_2020} ist eine Art des maschinellen Lernens, bei der ein Agent selbstständig die bestmögliche Strategie für die Erreichung eines Zieles erlernt. Für die Erreichung des Ziels sind Aktionen notwendig, welche zu bestimmten Zeitpunkten Belohnungen hervorbringen. Diese Belohnungen können auch negative sein (Bestrafung). Anhand dieser Belohnungen gilt es in Summe den bestmöglichen Belohnungswert zu erzielen. Bei der Klassifizierung von Bildern ist diese Art des Lernens nicht relevant, weshalb hier auch nicht weiter darauf eingegangen wird.}
 					\en{Reinforcement learning\autocite{noauthor_reinforcement_2020} is a type of \ac{ml} in which an agent independently learns the best possible strategy for achieving a goal. To achieve the goal, actions are necessary which produce rewards at certain points in time. These rewards can also be negative (punishment). Based on these rewards, the aim is to achieve the best possible reward value. This type of learning is not relevant for the classification of images, which is why it will not be discussed further here.}
+				\end{comment}
 					
 
 
@@ -1003,7 +1029,7 @@
 							    \draw [->] (hidden-\i) -- (output-\j);
 							
 							% print labels
-							\foreach \l [count=\x from 0] in {Input, Hidden, Ouput}
+							\foreach \l [count=\x from 0] in {Input, Hidden, Output}
 							  \node [align=center, above] at (\x*2,2) {\l \\ layer};
 						\end{tikzpicture}
 					}
@@ -1495,7 +1521,7 @@ user$ ml train \
 				\end{figure}
 
 				\de{Alle Modelle mit Ausnahme von \texttt{DenseNet201} und \texttt{NASNetLarge} wurden mit einer Batch Size von 16 trainiert (\(bs=16\)). Aufgrund des begrenzten Speichers von 6GB der Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}} wurden \texttt{DenseNet201} mit einer Batch Size von 8 und \texttt{NASNetLarge} mit einer Batch Size von 4 trainiert. Ein wirklicher Vergleich dieser beiden Ausnahmen ist somit nicht wirklich möglich, soll jedoch an dieser Stelle auch nicht weggelassen werden. Ein größerer Batch-Wert geht mit erhöhter Rechenzeit und langsameren Ansteigen von der Genauigkeit einher (siehe Kapitel ``\nameref{sec:section_validation_comparison_different_bs}''). Ein Vergleich mit Darstellung \fullref{fig:comparison_cnn} zeigt ähnliche Genauigkeiten und benötigte Rechenzeiten: Das beste Modell wurde mit \texttt{DenseNet201} mit einer Genauigkeit von 88,58\% erreicht. Das Modell mit der geringsten Genauigkeit ist das schon etwas ältere VGG19 Modell mit 77,29\%. Stellt man Rechenzeit und zu erreichende Genauigkeiten gegenüber, so fällt einem das \texttt{InceptionV3} Modell auf (rote Kurve). Es ist das zweitbeste Modell und erreicht das Ergebnis in einem mittlerem Bereich von ca. zweieinhalb Stunden. Das beste Modell \texttt{DenseNet201} benötigt für sein Ergebnis mehr als doppelt soviel Zeit. Die Wahl für alle weiteren Experimente viel aus diesem Grund auf das \ac{cnn} Modell \texttt{InceptionV3}, da es ein gutes Ergebnis innerhalb einer vergleichsweisen geringen Zeitspanne erreicht.}
-				\en{All models except \texttt{DenseNet201} and \texttt{NASNetLarge} were trained with a batch size of 16 (\(bs=16\)). Due to the limited 6 Gbyte memory of the Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}}, \texttt{DenseNet201} was trained with a batch size of 8 and \texttt{NASNetLarge} with a batch size of 4. A real comparison of these two exceptions isn't really possible, but shouldn't be omitted at this point. A larger batch value is associated with increased computing time and slower increase in accuracy (see chapter ``\nameref{sec:section_validation_comparison_different_bs}''). A comparison with Figure \ref{fig:comparison_cnn} (``\nameref{fig:comparison_cnn}'') shows similar accuracies and required computing time: The best model was achieved with \texttt{DenseNet201} with an accuracy of 88.58\%. The model with the lowest accuracy is the somewhat older VGG19 model with 77.29\%. If one compares the computing time and the accuracies to be achieved, one notices the \texttt{InceptionV3} model (red trace). It is the second best model and reaches the result in a medium range of about two and a half hours. The best model \texttt{DenseNet201} needs more than twice as much time for its result. The choice for all further experiments is therefore the \ac{cnn} model \texttt{InceptionV3}, because it achieves a good result within a comparatively short period of time.}
+				\en{All models except \texttt{DenseNet201} and \texttt{NASNetLarge} were trained with a batch size of 16 (\(bs=16\)). Due to the limited 6 Gbyte memory of the Nvidia GTX 1060\footnote{GeForce 10 series, Wikipedia contributors, February 22, 2020, \url{https://en.wikipedia.org/wiki/GeForce_10_series}}, \texttt{DenseNet201} was trained with a batch size of 8 and \texttt{NASNetLarge} with a batch size of 4. A real comparison of these two exceptions is not really possible, but should not be omitted at this point. A larger batch value is associated with increased computing time and slower increase in accuracy (see chapter ``\nameref{sec:section_validation_comparison_different_bs}''). A comparison with Figure \ref{fig:comparison_cnn} (``\nameref{fig:comparison_cnn}'') shows similar accuracies and required computing time: The best model was achieved with \texttt{DenseNet201} with an accuracy of 88.58\%. The model with the lowest accuracy is the somewhat older VGG19 model with 77.29\%. If one compares the computing time and the accuracies to be achieved, one notices the \texttt{InceptionV3} model (red trace). It is the second best model and reaches the result in a medium range of about two and a half hours. The best model \texttt{DenseNet201} needs more than twice as much time for its result. The choice for all further experiments is therefore the \ac{cnn} model \texttt{InceptionV3}, because it achieves a good result within a comparatively short period of time.}
 		
 			\subsubsection{Use of the \acf{tl} approach}
 			\label{sec:section_use_of_the_transfer_learning_approach}
