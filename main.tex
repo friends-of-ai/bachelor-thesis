@@ -210,6 +210,8 @@
     \import{images/other/}{#1.pdf_tex}
 }
 
+
+
 % some definitions
 \def\flushRight{\leftskip0pt plus 1fill\rightskip0pt}
 
@@ -473,7 +475,7 @@
 				\begin{center}
 					\scalebox{1.0}{\includetex{deductive_approach}}
 				\end{center}
-				\caption{Deductive approach}
+				\caption{Deductive approach (the shown model is a white-box model)}
 				\label{fig:overview_deductive_approach}
 			\end{figure}
 
@@ -491,7 +493,7 @@
 				\begin{center}
 					\scalebox{1.0}{\includetex{inductive_approach}}
 				\end{center}
-				\caption{Inductive approach}
+				\caption{Inductive approach  (the shown model is a black-box model)}
 				\label{fig:overview_inductive_approach}
 			\end{figure}
 
@@ -535,6 +537,7 @@
 					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza108.jpg}
 					\includegraphics[width=0.19\textwidth]{images/data/pizza/pizza239.jpg}
        				\end{subfigure}
+       				
 				\caption[Example of pictures of a burger, doughnut and pizza class]{(a) Example of pictures of a burger class (top), (b) Example pictures of a doughnut class (middle), (c) Example of pictures of a burger class (bottom)}
 				\label{fig:class_burger_doughnut_pizza}
 			\end{figure}
@@ -1019,6 +1022,7 @@
 					\begin{center}
 						\scalebox{0.75}{\includetex{classification}}
 					\end{center}
+					\vspace*{-10pt}
 					\caption{Linear vs. nonlinear classification}
 					\label{fig:overview_linear_nonlinear_classification}
 				\end{figure}
@@ -1103,6 +1107,7 @@
 					\DrawBox[thick, black!30!green, densely dotted, fill=green!50!white, fill opacity=0.2]{tl31}{br31}
 					\DrawBox[thick, black!30!green, densely dotted, fill=green!50!white, fill opacity=0.2]{tl32}{br32}
 					
+					\vspace*{-10pt}
 					\caption[Simple convolution and simple pooling]{Simple convolution and simple pooling}
 					\label{fig:simple-convolution-and-simple-pooling}
 				\end{figure}
@@ -1473,10 +1478,11 @@ user$ ml train \
 				
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1.0}{
 							\inputpgf{images/evaluation}{number_train_files.pgf}
 						}
 					\end{center}
+					\vspace*{-20pt}
 					\caption{Overview of influence of number of trained images on accuracy}
 					\label{fig:evaluation_number_train_files}
 				\end{figure}
@@ -1494,10 +1500,11 @@ user$ ml train \
 
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1.0}{
 							\inputpgf{images/evaluation}{different_models.pgf}
 						}
 					\end{center}
+					\vspace*{-20pt}
 					\caption{Overview of known \ac{cnn} models}
 					\label{fig:evaluation_different_models}
 				\end{figure}
@@ -1513,12 +1520,24 @@ user$ ml train \
 				
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1.0}{
 							\inputpgf{images/evaluation}{transfer_learning.pgf}
 						}
 					\end{center}
+					\vspace*{-20pt}
 					\caption{Overview of use of the \ac{tl} approach}
 					\label{fig:evaluation_transfer_learning}
+				\end{figure}
+				
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{1.0}{
+							\inputpgf{images/evaluation}{transfer_learning_without.pgf}
+						}
+					\end{center}
+					\vspace*{-20pt}
+					\caption{Overview of training without \ac{tl} approach}
+					\label{fig:evaluation_transfer_learning_without}
 				\end{figure}
 
 				\de{Wie erwartet erziehlt das Modell mit dem Transfer Learning Ansatz ein besseres Ergebnis bei gleicher Rechenzeit (blaue Linie versus orangene Linie). In der ersten Epoche erreicht das Modell ohne Transfer Learning Ansatz einen Genauigkeitswert von 8,5\% und steigert sich in 21 Lernepochen auf 38,2\%. Die Trainingsgenauigkeit mit 58,8\% liegt dabei noch weit unter den Werten, welche mit TL nach wenigen Epochen erreicht werden. Dies bedeutet, das ein Lernen von Features mit den vorhandenen Daten weiter erfolgen kann. Beginnt man mit einem trainierten Netzwerk, so erreicht man schon mit der ersten Epoche einen besseren Genauigkeitswert von 68,9\% und kann diesen weiter steigern bis 83,6\% in der 21. Epoche. Die rote und grüne Linie verfolgen den Ansatz die Genauigkeit auch ohne TL weiter zu erhöhen. Dabei ließ sich vor allem mit einem Dropout von \(dropout=0.0\) eine Genauigkeit von 48,2\% erreichen (immer noch unter dem Wert mit TL Ansatz), wobei die Trainingsgenauigkeit schon bei 99,59\% angelangt ist. Damit ist ein weiteres Generalisieren theoretisch nicht mehr möglich. Um hier weitere Fortschritte zu erzielen und bessere Genauigkeiten auf bisher unbekannte Bilder zu erreichen, werden weitere Bilder zum Lernen von Featues benötigt. Fazit: Für das Trainieren von Ansätzen ohne TL reicht das aktuell vorhandene Bilderset nicht mehr aus um bessere oder gleiche Werte wie beim TL Ansatz zu erreichen. Transfer Learning zu verwenden ist gerade bei der Verwendung kleiner Datensätze eine gute Idee.}
@@ -1530,10 +1549,11 @@ user$ ml train \
 
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1.0}{
 							\inputpgf{images/evaluation}{number_trainable_layers.pgf}
 						}
 					\end{center}
+					\vspace*{-20pt}
 					\caption{Overview of influence of the number of trained layers}
 					\label{fig:evaluation_number_trainable_layers}
 				\end{figure}
@@ -1559,10 +1579,11 @@ user$ ml train \
 					
 					\begin{figure}[H]
 						\begin{center}
-							\scalebox{0.75}{
+							\scalebox{1.0}{
 								\inputpgf{images/evaluation}{best_optimizer.pgf}
 							}
 						\end{center}
+						\vspace*{-20pt}
 						\caption{Overview of best optimizer}
 						\label{fig:evaluation_optimizer}
 					\end{figure}
@@ -1577,12 +1598,24 @@ user$ ml train \
 	
 					\begin{figure}[H]
 						\begin{center}
-							\scalebox{0.75}{
+							\scalebox{1}{
 								\inputpgf{images/evaluation}{momentum.pgf}
 							}
 						\end{center}
-						\caption{Overview momentum vs Nesterov momentum}
+							\vspace*{-20pt}
+						\caption{Overview Nesterov momentum}
 						\label{fig:evaluation_momentum}
+					\end{figure}
+	
+					\begin{figure}[H]
+						\begin{center}
+							\scalebox{1}{
+								\inputpgf{images/evaluation}{momentum_without_nr.pgf}
+							}
+						\end{center}
+						\vspace*{-20pt}
+						\caption{Overview of different momentum values without Nesterov}
+						\label{fig:evaluation_momentum_without}
 					\end{figure}
 	
 					\de{Die Genauigkeit steigen bei beiden Modellen mit (w/ nest.) und ohne Nesterov (w/o nest.) stetig mit steigender Lernrate \(\eta\) an, bis sie mit \(\eta=0,9\) (w/o nest.) bzw. \(\eta=0,95\) (w/ nest.) ihren Zenit bei 83,35\% bzw. 84,37\% erreichen. Dabei fällt auf, das je kleiner die Lernrate \(\eta\) ist, die Genauigkeit vorhersehbarer gleichmäßiger steigt, das ``Maximum'' bei 21 Epochen jedoch nicht erreicht wird. Mit steigender Lernrate, z.B. beim Maximum von \(\eta=0,98\) beim Nesterov Modell (braune Linie), springen die Modellgenauigkeiten und können auch mal mit einer weiteren Epoche komplett in die negative Richtung laufen. Beim besten Modell (olive Linie, w/ nest.) passiert exakt das Gleiche, jedoch werden am Ende damit die besten Ergebnisse erzielt.}
@@ -1598,10 +1631,11 @@ user$ ml train \
 	
 					\begin{figure}[H]
 						\begin{center}
-							\scalebox{0.75}{
+							\scalebox{1}{
 								\inputpgf{images/evaluation}{scheduling_learning_rate.pgf}
 							}
 						\end{center}
+						\vspace*{-20pt}
 						\caption{Overview of a dynamic learning rate on accuracy}
 						\label{fig:evaluation_scheduling_learning_rate}
 					\end{figure}
@@ -1616,12 +1650,24 @@ user$ ml train \
 	
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1}{
 							\inputpgf{images/evaluation}{batch_size.pgf}
 						}
 					\end{center}
-					\caption{Overview of the influence of a different batch size}
+					\vspace*{-20pt}
+					\caption{Overview of the influence of a different batch size (validation)}
 					\label{fig:evaluation_overview_influence_batch_size}
+				\end{figure}
+				
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{1}{
+							\inputpgf{images/evaluation}{batch_size_train.pgf}
+						}
+					\end{center}
+					\vspace*{-20pt}
+					\caption{Overview of the influence of a different batch size (training)}
+					\label{fig:evaluation_overview_influence_batch_size_train}
 				\end{figure}
 				
 				\de{Ein höherer Wert der Batch Size führt offensichtlich zu einem schnellerem und vorhersehbarerem (gleichmäßigerem) Anstieg der Validierungsgenauigkeit in den ersten Epochen (hellblaue Linie mit \(batch\_size=32\)), gegenüber einer Batch Size von zum Beispiel 16, bei der die Genauigkeit von Epoche zwei bis sieben ``springt''. Jedoch liefert sie nicht das beste Ergebnis am Ende der 21 Epochen. Während ein Wert von 16 bei der Batch Size eine Genauigkeit von 83.52\% erreicht, so erreicht diese nur 82.54\% bei einem Wert von 32. Bis zur Batch Size von 16 kann jedoch gesagt werden, dass mit dem Ansteigen der Größe der Batch-Size immer ein besseres Ergebnis erreicht wird. Ein Erhöhen der Batch-Size verringert die benötigte Rechenzeit wie erwartet. In diesem Fall konnte diese von acht Stunden auf zwei Stunden verbessert werden. Ein Overfitting wird bei einer Batch Size von 2 nur sehr langsam erreicht, jedoch ist dieses Modell mit einer Erkennungsgenauigkeit von 67,13\% auch das Schlechteste. Untersuchungen mit einem etwas mehr ausbalanciertem Datenset und einer noch höheren Batch Size sollten angestrebt werden, um den Einfluss der Batch Size weiter zu untersuchen.}
@@ -1634,10 +1680,11 @@ user$ ml train \
 	
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1.0}{
 							\inputpgf{images/evaluation}{activation_function.pgf}
 						}
 					\end{center}
+					\vspace*{-20pt}
 					\caption{Overview of the influence of difference activation functions}
 					\label{fig:evaluation_overview_influence_difference_activation_functions}
 				\end{figure}
@@ -1652,10 +1699,11 @@ user$ ml train \
 	
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1.0}{
 							\inputpgf{images/evaluation}{epochs.pgf}
 						}
 					\end{center}
+					\vspace*{-20pt}
 					\caption{Overview of the influence of a longer training period with more epochs}
 					\label{fig:evaluation_overview_influence_more_epochs}
 				\end{figure}
@@ -1665,33 +1713,28 @@ user$ ml train \
 		
 			\subsubsection{Influence of dropout}
 				\de{Der Parameter Dropout gehört ebenfalls zur Gruppe der Regularisierungsparameter. Er hilft ebenfalls ein Overfitting zu vermeiden, in dem per Zufall einzelne Neuronen im neuronalem Netz deaktiviert werden und keinen Beitrag zum Training leisten, ohne dass das restliche Modell davon beeinflusst wird. Hiermit wird erzwungen, dass nicht immer alle Merkmale mit einem Mal erlernt werden, sondern nur ein Teil davon. In der Abbildung \ref{fig:evaluation_overview_influence_dropout} werden die Ergebnisse verscheidener Dropout Werte gegenübergestellt. Die Dropout Schicht findet Anwendung nach dem CNN innerhalb des verbundenen neuronalen Netzwerkes (Listing \ref{lst:lstlisting_python_dropout}).}
-				\en{The dropout parameter also belongs to the regularization parameter group. It also helps to avoid overfitting, in which individual neurons in the \ac{nn} are randomly deactivated and do not contribute to training without affecting the rest of the model. This forces that not always all features are learned at once, but only a part of them. In the Figure \ref{fig:evaluation_overview_influence_dropout} the results of different dropout values are compared. The dropout layer is used after the \ac{cnn} within the connected \acl{nn} (Listing \ref{lst:lstlisting_python_dropout}).}
-				
-				\begin{lstlisting}[frame=single,caption={Example of a dropout layer after the \ac{cnn} model},captionpos=b,basicstyle=\small,language=Python,label=lst:lstlisting_python_dropout]
-# definition of some parameters
-num_classes = 50
-dim=299
-dropout=0.5
-
-# get the transfer learning model, add dropout and and build the final
-# model
-base_model = InceptionV3(input_shape=(dim, dim, 3), weights='imagenet',
-                         include_top=False)
-x = base_model.output
-x = GlobalAveragePooling2D()(x)
-x = Dropout(dropout)(x)
-predictions = Dense(num_classes, activation= 'softmax')(x)
-model = Model(inputs = base_model.input, outputs = predictions)
-				\end{lstlisting}
+				\en{The dropout parameter also belongs to the regularization parameter group. It also helps to avoid overfitting, in which individual neurons in the \ac{nn} are randomly deactivated and do not contribute to training without affecting the rest of the model. This forces that not always all features are learned at once, but only a part of them. In the Figure \ref{fig:evaluation_overview_influence_dropout} the results of different dropout values are compared. The dropout layer is used after the \ac{cnn} within the connected \acl{nn} (for an example code see Listing \ref{lst:lstlisting_python_dropout} in the appendix).}
 	
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1.0}{
 							\inputpgf{images/evaluation}{dropout.pgf}
 						}
 					\end{center}
-					\caption{Overview of the dropout parameter}
+					\vspace*{-20pt}
+					\caption{Overview of the dropout parameter (validation)}
 					\label{fig:evaluation_overview_influence_dropout}
+				\end{figure}
+	
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{1.0}{
+							\inputpgf{images/evaluation}{dropout_train.pgf}
+						}
+					\end{center}
+					\vspace*{-20pt}
+					\caption{Overview of the dropout parameter (training)}
+					\label{fig:evaluation_overview_influence_dropout_train}
 				\end{figure}
 				
 				\de{Wie man sehen kann hilft die Dropout Technik Overfitting zu vermeiden. Je größer der Dropout Wert ist, desto langsamer steigt der Wert der Trainingsgenauigkeit. Das beste Ergebnis bei gleichen Rechenzeiten aller Experimente erhält man mit einem Dropout Wert von \(0,5\) welcher eine Modellgenauigkeit von 83,52\% erreicht. Darüber hinaus und darunter sinken die Modellgenauigkeiten wieder etwas mit einer Ausnahme: Beim Experiment ohne Dropout (\(dropout=0.0\)) wird eine Modellgenauigkeit von 83,49\% in der 15. Epoche erreicht. Verglichen dem besten Ergebniss unterscheidet sich dieses Ergebnis nur minimal (um 0,03\%). Dieses Ergebnis ist interessant und sollte weitergehend untersucht werden. Die Vermutung liegt nahe, dass bei höheren Werten des Dropouts längere Trainingszeiten eingeplant werden müssen und das Experiment ohne Dropout schnell zu einem Maximum gelang. Insbesondere bei einem Dropout Wert von \(0,9\) liegt die Vermutung nahe, dass mit mehr Trainingsepochen ein noch besserer Wert ermittelt werden kann. Fazit: Bei aktuellen CNNs ist es offensichtlich nicht notwendig bei gleicher Rechenzeit die Regularisierungstechnik Dropout einsetzen zu müssen. Auch ohne Dropout erhält man mit die höchste Modellgenauigkeit. Das Experiment sollte jedoch mit weiteren Trainingsdatensets wiederholt werden.}
@@ -1726,10 +1769,11 @@ model = Model(inputs = base_model.input, outputs = predictions)
 				
 				\begin{figure}[H]
 					\begin{center}
-						\scalebox{0.75}{
+						\scalebox{1.0}{
 							\inputpgf{images/evaluation}{data_augmentation.pgf}
 						}
 					\end{center}
+					\vspace*{-20pt}
 					\caption{Comparison of data augmentation}
 					\label{fig:evaluation_data_augmentation}
 				\end{figure}
@@ -1792,6 +1836,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 					
 					\begin{equation}
 						acc_{top-1} = \sum_{group=0}^7 ratio_{files_{val}, group} \cdot \widehat{acc}_{group}
+						\label{eqn:equation_statistic_top_1}
 					\end{equation}
 					
 					\paragraph{\(k\)-means clustering}
@@ -1806,42 +1851,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 							\label{fig:analysis_grouped_classes_with_k_means}
 						\end{figure}
 						
-						%\clearpage
-						\renewcommand\theadfont{\bfseries}
-						\begin{table}[htb]
-							\footnotesize
-							\centering
-							{\def\arraystretch{2}\tabcolsep=5pt
-								\begin{tabularx}{\linewidth}{ l | r | r | r | r | r | X }
-									\Xhline{3\arrayrulewidth}
-									\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} & \thead[l]{Classes} \\
-									\Xhline{3\arrayrulewidth}
-									preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 90.02\% \\ {\scriptsize @ ep. 15}} & & {\scriptsize \texttt{group\textsubscript{0}}, \texttt{group\textsubscript{1}}, \texttt{group\textsubscript{2}}, \texttt{group\textsubscript{3}}, \texttt{group\textsubscript{4}}, \texttt{group\textsubscript{5}}, \texttt{group\textsubscript{6}}, \texttt{group\textsubscript{7}} } \\
-									
-									\hline
-									\texttt{group\textsubscript{0}} & 18 & 919 & 31.1\% & \pbox[t]{20cm}{\flushRight 83.94\% \\ {\scriptsize @ ep. 11}} & 75.56\% & {\scriptsize \texttt{baked\_salmon}, \texttt{calzone}, \texttt{chicken\_piccata}, \texttt{corn\_dog}, \texttt{empanada}, \texttt{french\_fries}, \texttt{frittata}, \texttt{grilled\_cheese\_sandwich}, \texttt{kebabs}, \texttt{lasagne}, \texttt{meatloaf}, \texttt{omelet}, \texttt{pancakes}, \texttt{pizza}, \texttt{popcorn}, \texttt{stuffed\_pepper}, \texttt{waffles}} \\
-									
-									\texttt{group\textsubscript{1}} & 2 & 158 & 5.4\% & \pbox[t]{20cm}{\flushRight 99.30\% \\ {\scriptsize @ ep. 10 }} & 89.39\% & {\scriptsize \texttt{margarita}, \texttt{smoothie}} \\
-
-									\texttt{group\textsubscript{2}} & 5 & 296 & 10.0\% & \pbox[t]{20cm}{\flushRight 93.93\% \\ {\scriptsize @ ep. 16 }} & 84.56\% & {\scriptsize \texttt{bundt\_cake}, \texttt{buttermilk\_biscuits}, \texttt{cheesecake}, \texttt{granola\_bar}, \texttt{muffin}} \\
-
-									\texttt{group\textsubscript{3}} & 1 & 83 & 2,8\% & 100.0\% & 90.02\% & {\scriptsize \texttt{brownies}} \\
-
-									\texttt{group\textsubscript{4}} & 1 & 63 & 2,1\% & 100.0\% & 90.02\% & {\scriptsize \texttt{martini}} \\
-
-									\texttt{group\textsubscript{5}} & 4 & 221 & 7.5\% & \pbox[t]{20cm}{\flushRight 92.68\% \\ {\scriptsize @ ep. 17 }} & 83.43\% & {\scriptsize \texttt{cinnamon\_roll}, \texttt{donut}, \texttt{ice\_cream}, \texttt{key\_lime\_pie}} \\
-
-									\texttt{group\textsubscript{6}} & 12 & 723 & 24.5\% & \pbox[t]{20cm}{\flushRight 81.90\% \\ {\scriptsize @ ep. 10 }} & 73.73\% & {\scriptsize \texttt{baked\_beans}, \texttt{beef\_stew}, \texttt{beef\_stroganoff}, \texttt{caesar\_salad}, \texttt{cobb\_salad}, \texttt{coleslaw}, \texttt{creamed\_spinach}, \texttt{guacamole}, \texttt{macaroni\_and\_cheese}, \texttt{mashed\_potatoes}, \texttt{nachos}, \texttt{salad}, \texttt{soup}} \\
-									
-									\texttt{group\textsubscript{7}} & 7 & 490& 16.6\% & \pbox[t]{20cm}{\flushRight 91.77\% \\ {\scriptsize @ ep. 14 }} & 82.61\% & {\scriptsize \texttt{burger}, \texttt{burrito}, \texttt{chicken\_wings}, \texttt{meatballs}, \texttt{quesadilla}, \texttt{sloppy\_joe}, \texttt{spaghetti}} \\
-
-									\Xhline{3\arrayrulewidth}
-									Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{79.23\%}}}
-
-								\end{tabularx}
-							}
-							\captionof{table}[Grouped classes with k-means]{Grouped classes with k-means. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes}
-						\end{table}
+						acctop-1 = 79.23\% (the model accuracy was calculated according to Equation \eqref{eqn:equation_statistic_top_1}, see also table in the appendix \ref{tbl:table_grouped_classes_ahc})
 					
 					\paragraph{Agglomerative hierarchical clustering}
 					
@@ -1855,42 +1865,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 							\label{fig:analysis_grouped_classes_with_ahc}
 						\end{figure}
 						
-						%\clearpage
-						\renewcommand\theadfont{\bfseries}
-						\begin{table}[htb]
-							\footnotesize
-							\centering
-							{\def\arraystretch{2}\tabcolsep=5pt
-								\begin{tabularx}{\linewidth}{ l | r | r | r | r | r | X }
-									\Xhline{3\arrayrulewidth}
-									\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} & \thead[l]{Classes} \\
-									\Xhline{3\arrayrulewidth}
-									preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 88.93\% \\ {\scriptsize @ ep. 14}} & & {\scriptsize \texttt{group\textsubscript{0}}, \texttt{group\textsubscript{1}}, \texttt{group\textsubscript{2}}, \texttt{group\textsubscript{3}}, \texttt{group\textsubscript{4}}, \texttt{group\textsubscript{5}}, \texttt{group\textsubscript{6}}, \texttt{group\textsubscript{7}} } \\
-									
-									\hline
-									\texttt{group\textsubscript{0}} & 22 & 1,267 & 42.91\% & \pbox[t]{20cm}{\flushRight 84.17\% \\ {\scriptsize @ ep. 18}} & 74.85\% & {\scriptsize \texttt{baked\_beans}, \texttt{beef\_stew}, \texttt{beef\_stroganoff}, \texttt{burger}, \texttt{burrito}, \texttt{caesar\_salad}, \texttt{chicken\_piccata}, \texttt{chicken\_wings}, \texttt{cobb\_salad}, \texttt{coleslaw}, \texttt{creamed\_spinach}, \texttt{french\_fries}, \texttt{frittata}, \texttt{kebabs}, \texttt{macaroni\_and\_cheese}, \texttt{meatballs}, \texttt{nachos}, \texttt{quesadilla}, \texttt{salad}, \texttt{sloppy\_joe}, \texttt{soup}, \texttt{spaghetti} } \\
-
-									\texttt{group\textsubscript{1}} & 5 & 296 & 10.02\% & \pbox[t]{20cm}{\flushRight 93.21\% \\ {\scriptsize @ ep. 16 }} & 82.89\% & {\scriptsize \texttt{bundt\_cake}, \texttt{buttermilk\_biscuits}, \texttt{cheesecake}, \texttt{granola\_bar}, \texttt{muffin} } \\
-
-									\texttt{group\textsubscript{2}} & 4 & 249 & 8.43\% & \pbox[t]{20cm}{\flushRight 94.85\% \\ {\scriptsize @ ep. 11 }} & 84.35\% & {\scriptsize \texttt{guacamole}, \texttt{ice\_cream}, \texttt{mashed\_potatoes}, \texttt{popcorn} } \\
-
-									\texttt{group\textsubscript{3}} & 1 & 63 & 2.13\% & 100.0\% & 88.93\% & {\scriptsize \texttt{martini} } \\
-
-									\texttt{group\textsubscript{4}} & 2 & 158 & 5.35\% & \pbox[t]{20cm}{\flushRight 99.30\% \\ {\scriptsize @ ep. 10 }} & 88.31\% & {\scriptsize \texttt{margarita}, \texttt{smoothie} } \\
-
-									\texttt{group\textsubscript{5}} & 12 & 677 & 22.93\% & \pbox[t]{20cm}{\flushRight 85.63\% \\ {\scriptsize @ ep. 11 }} & 76.15\% & {\scriptsize \texttt{baked\_salmon}, \texttt{calzone}, \texttt{corn\_dog}, \texttt{empanada}, \texttt{grilled\_cheese\_sandwich}, \texttt{lasagne}, \texttt{meatloaf}, \texttt{omelet}, \texttt{pancakes}, \texttt{pizza}, \texttt{stuffed\_pepper}, \texttt{waffles} } \\
-
-									\texttt{group\textsubscript{6}} & 3 & 160 & 5.42\% & \pbox[t]{20cm}{\flushRight 93.13\% \\ {\scriptsize @ ep. 5 }} & 82.82\% & {\scriptsize \texttt{cinnamon\_roll}, \texttt{donut}, \texttt{key\_lime\_pie} } \\
-
-									\texttt{group\textsubscript{7}} & 1 & 83 & 2.81\% & 100.0\% & 88.93\% & {\scriptsize \texttt{brownies} } \\
-
-									\Xhline{3\arrayrulewidth}
-									Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{78.60\%}}}
-
-								\end{tabularx}
-							}
-							\captionof{table}[Grouped classes with agglomerative hierarchical clustering]{Grouped classes with agglomerative hierarchical clustering. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes_ahc}
-						\end{table}
+						acctop-1 = 78.60\% (the model accuracy was calculated according to Equation \eqref{eqn:equation_statistic_top_1}, see also table in the appendix \ref{tbl:table_grouped_classes_ahc})
 						
 						\de{}
 						\en{}
@@ -1954,6 +1929,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 			\acro{gpu}[GPU]{graphics processing unit}
 			\acro{hp}[HP]{hyperparameter}
 			\acro{ml}[ML]{machine learning}
+			\acro{le}[LE]{learning epochs}
 			\acro{nn}[NN]{neural network}
 			\acro{rl}[RL]{reinforcement learning}
 			\acro{sgd}[SGD]{stochastic gradient descent}
@@ -2018,11 +1994,19 @@ model = Model(inputs = base_model.input, outputs = predictions)
 	% -------------------- %
 	% appendix %
 	% -------------------- %
+	\clearpage
+	\pagenumbering{arabic}% resets `page` counter to 1
+	\renewcommand*{\thepage}{A\arabic{page}}
 	\appendix
 	\renewcommand\thefigure{\thesection.\arabic{figure}}
+	\renewcommand\thetable{\thesection.\arabic{table}}
+	\renewcommand\thelstlisting{\thesection.\arabic{lstlisting}}
+	\setcounter{figure}{0}
+	\setcounter{table}{0}
+	\setcounter{lstlisting}{0}
+	
 	\pagebreak
 	\section{Appendix}
-		\setcounter{figure}{0}
 
 		\subsection*{Number of training and validation files}
 			\begin{figure}[H]
@@ -2034,6 +2018,104 @@ model = Model(inputs = base_model.input, outputs = predictions)
 				\caption[Number of training and validation files]{Number of training and validation files.}
 				\label{fig:implementation_number_train_files}
 			\end{figure}
+			
+			
+			
+		\subsection*{Example of a dropout layer after the \ac{cnn} model (Python code example)}
+			\begin{lstlisting}[frame=single,caption={Example of a dropout layer after the \ac{cnn} model},captionpos=b,basicstyle=\small,language=Python,label=lst:lstlisting_python_dropout]
+# definition of some parameters
+num_classes = 50
+dim=299
+dropout=0.5
+
+# get the transfer learning model, add dropout and and build the final
+# model
+base_model = InceptionV3(input_shape=(dim, dim, 3), weights='imagenet',
+                         include_top=False)
+x = base_model.output
+x = GlobalAveragePooling2D()(x)
+x = Dropout(dropout)(x)
+predictions = Dense(num_classes, activation= 'softmax')(x)
+model = Model(inputs = base_model.input, outputs = predictions)
+			\end{lstlisting}
+			
+			
+		\clearpage
+		\subsection*{Model accuracy of grouped classes with \(k\)-means}
+			\renewcommand\theadfont{\bfseries}
+			\begin{table}[htb]
+				\footnotesize
+				\centering
+				{\def\arraystretch{2}\tabcolsep=5pt
+					\begin{tabularx}{\linewidth}{ l | r | r | r | r | r | X }
+						\Xhline{3\arrayrulewidth}
+						\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} & \thead[l]{Classes} \\
+						\Xhline{3\arrayrulewidth}
+						preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 90.02\% \\ {\scriptsize @ ep. 15}} & & {\scriptsize \texttt{group\textsubscript{0}}, \texttt{group\textsubscript{1}}, \texttt{group\textsubscript{2}}, \texttt{group\textsubscript{3}}, \texttt{group\textsubscript{4}}, \texttt{group\textsubscript{5}}, \texttt{group\textsubscript{6}}, \texttt{group\textsubscript{7}} } \\
+						
+						\hline
+						\texttt{group\textsubscript{0}} & 18 & 919 & 31.1\% & \pbox[t]{20cm}{\flushRight 83.94\% \\ {\scriptsize @ ep. 11}} & 75.56\% & {\scriptsize \texttt{baked\_salmon}, \texttt{calzone}, \texttt{chicken\_piccata}, \texttt{corn\_dog}, \texttt{empanada}, \texttt{french\_fries}, \texttt{frittata}, \texttt{grilled\_cheese\_sandwich}, \texttt{kebabs}, \texttt{lasagne}, \texttt{meatloaf}, \texttt{omelet}, \texttt{pancakes}, \texttt{pizza}, \texttt{popcorn}, \texttt{stuffed\_pepper}, \texttt{waffles}} \\
+						
+						\texttt{group\textsubscript{1}} & 2 & 158 & 5.4\% & \pbox[t]{20cm}{\flushRight 99.30\% \\ {\scriptsize @ ep. 10 }} & 89.39\% & {\scriptsize \texttt{margarita}, \texttt{smoothie}} \\
+
+						\texttt{group\textsubscript{2}} & 5 & 296 & 10.0\% & \pbox[t]{20cm}{\flushRight 93.93\% \\ {\scriptsize @ ep. 16 }} & 84.56\% & {\scriptsize \texttt{bundt\_cake}, \texttt{buttermilk\_biscuits}, \texttt{cheesecake}, \texttt{granola\_bar}, \texttt{muffin}} \\
+
+						\texttt{group\textsubscript{3}} & 1 & 83 & 2,8\% & 100.0\% & 90.02\% & {\scriptsize \texttt{brownies}} \\
+
+						\texttt{group\textsubscript{4}} & 1 & 63 & 2,1\% & 100.0\% & 90.02\% & {\scriptsize \texttt{martini}} \\
+
+						\texttt{group\textsubscript{5}} & 4 & 221 & 7.5\% & \pbox[t]{20cm}{\flushRight 92.68\% \\ {\scriptsize @ ep. 17 }} & 83.43\% & {\scriptsize \texttt{cinnamon\_roll}, \texttt{donut}, \texttt{ice\_cream}, \texttt{key\_lime\_pie}} \\
+
+						\texttt{group\textsubscript{6}} & 12 & 723 & 24.5\% & \pbox[t]{20cm}{\flushRight 81.90\% \\ {\scriptsize @ ep. 10 }} & 73.73\% & {\scriptsize \texttt{baked\_beans}, \texttt{beef\_stew}, \texttt{beef\_stroganoff}, \texttt{caesar\_salad}, \texttt{cobb\_salad}, \texttt{coleslaw}, \texttt{creamed\_spinach}, \texttt{guacamole}, \texttt{macaroni\_and\_cheese}, \texttt{mashed\_potatoes}, \texttt{nachos}, \texttt{salad}, \texttt{soup}} \\
+						
+						\texttt{group\textsubscript{7}} & 7 & 490& 16.6\% & \pbox[t]{20cm}{\flushRight 91.77\% \\ {\scriptsize @ ep. 14 }} & 82.61\% & {\scriptsize \texttt{burger}, \texttt{burrito}, \texttt{chicken\_wings}, \texttt{meatballs}, \texttt{quesadilla}, \texttt{sloppy\_joe}, \texttt{spaghetti}} \\
+
+						\Xhline{3\arrayrulewidth}
+						Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{79.23\%}}}
+
+					\end{tabularx}
+				}
+				\captionof{table}[Grouped classes with k-means]{Grouped classes with k-means. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes}
+			\end{table}
+			
+			
+		\clearpage
+		\subsection*{Model accuracy of grouped classes with agglomerative hierarchical clustering}
+			\renewcommand\theadfont{\bfseries}
+			\begin{table}[htb]
+				\footnotesize
+				\centering
+				{\def\arraystretch{2}\tabcolsep=5pt
+					\begin{tabularx}{\linewidth}{ l | r | r | r | r | r | X }
+						\Xhline{3\arrayrulewidth}
+						\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} & \thead[l]{Classes} \\
+						\Xhline{3\arrayrulewidth}
+						preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 88.93\% \\ {\scriptsize @ ep. 14}} & & {\scriptsize \texttt{group\textsubscript{0}}, \texttt{group\textsubscript{1}}, \texttt{group\textsubscript{2}}, \texttt{group\textsubscript{3}}, \texttt{group\textsubscript{4}}, \texttt{group\textsubscript{5}}, \texttt{group\textsubscript{6}}, \texttt{group\textsubscript{7}} } \\
+						
+						\hline
+						\texttt{group\textsubscript{0}} & 22 & 1,267 & 42.91\% & \pbox[t]{20cm}{\flushRight 84.17\% \\ {\scriptsize @ ep. 18}} & 74.85\% & {\scriptsize \texttt{baked\_beans}, \texttt{beef\_stew}, \texttt{beef\_stroganoff}, \texttt{burger}, \texttt{burrito}, \texttt{caesar\_salad}, \texttt{chicken\_piccata}, \texttt{chicken\_wings}, \texttt{cobb\_salad}, \texttt{coleslaw}, \texttt{creamed\_spinach}, \texttt{french\_fries}, \texttt{frittata}, \texttt{kebabs}, \texttt{macaroni\_and\_cheese}, \texttt{meatballs}, \texttt{nachos}, \texttt{quesadilla}, \texttt{salad}, \texttt{sloppy\_joe}, \texttt{soup}, \texttt{spaghetti} } \\
+
+						\texttt{group\textsubscript{1}} & 5 & 296 & 10.02\% & \pbox[t]{20cm}{\flushRight 93.21\% \\ {\scriptsize @ ep. 16 }} & 82.89\% & {\scriptsize \texttt{bundt\_cake}, \texttt{buttermilk\_biscuits}, \texttt{cheesecake}, \texttt{granola\_bar}, \texttt{muffin} } \\
+
+						\texttt{group\textsubscript{2}} & 4 & 249 & 8.43\% & \pbox[t]{20cm}{\flushRight 94.85\% \\ {\scriptsize @ ep. 11 }} & 84.35\% & {\scriptsize \texttt{guacamole}, \texttt{ice\_cream}, \texttt{mashed\_potatoes}, \texttt{popcorn} } \\
+
+						\texttt{group\textsubscript{3}} & 1 & 63 & 2.13\% & 100.0\% & 88.93\% & {\scriptsize \texttt{martini} } \\
+
+						\texttt{group\textsubscript{4}} & 2 & 158 & 5.35\% & \pbox[t]{20cm}{\flushRight 99.30\% \\ {\scriptsize @ ep. 10 }} & 88.31\% & {\scriptsize \texttt{margarita}, \texttt{smoothie} } \\
+
+						\texttt{group\textsubscript{5}} & 12 & 677 & 22.93\% & \pbox[t]{20cm}{\flushRight 85.63\% \\ {\scriptsize @ ep. 11 }} & 76.15\% & {\scriptsize \texttt{baked\_salmon}, \texttt{calzone}, \texttt{corn\_dog}, \texttt{empanada}, \texttt{grilled\_cheese\_sandwich}, \texttt{lasagne}, \texttt{meatloaf}, \texttt{omelet}, \texttt{pancakes}, \texttt{pizza}, \texttt{stuffed\_pepper}, \texttt{waffles} } \\
+
+						\texttt{group\textsubscript{6}} & 3 & 160 & 5.42\% & \pbox[t]{20cm}{\flushRight 93.13\% \\ {\scriptsize @ ep. 5 }} & 82.82\% & {\scriptsize \texttt{cinnamon\_roll}, \texttt{donut}, \texttt{key\_lime\_pie} } \\
+
+						\texttt{group\textsubscript{7}} & 1 & 83 & 2.81\% & 100.0\% & 88.93\% & {\scriptsize \texttt{brownies} } \\
+
+						\Xhline{3\arrayrulewidth}
+						Overall & 50 & 2,953 & 100,0\% & \multicolumn{3}{r}{{\(acc_{top-1}\) = \large \textbf{78.60\%}}}
+
+					\end{tabularx}
+				}
+				\captionof{table}[Grouped classes with agglomerative hierarchical clustering]{Grouped classes with agglomerative hierarchical clustering. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes_ahc}
+			\end{table}
 		
 		
 		

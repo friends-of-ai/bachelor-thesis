@@ -54,15 +54,13 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{inductive_approach.pdf}}%
-    \put(0.10678912,0.19349962){\color[rgb]{0.49803922,0.37647059,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Input\end{tabular}}}}%
+    \put(0.10697808,0.19349962){\color[rgb]{0.49803922,0.37647059,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}input\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{inductive_approach.pdf}}%
-    \put(0.84250189,0.1292517){\color[rgb]{0.1254902,0.21960784,0.39215686}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Modell\end{tabular}}}}%
+    \put(0.84539683,0.1292517){\color[rgb]{0.1254902,0.21960784,0.39215686}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}model\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{inductive_approach.pdf}}%
-    \put(0.09922978,0.06500378){\color[rgb]{0.49803922,0.37647059,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Output\end{tabular}}}}%
+    \put(0.10061602,0.06500378){\color[rgb]{0.49803922,0.37647059,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}output\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{inductive_approach.pdf}}%
-    \put(0.82568405,0.16024187){\color[rgb]{0.1254902,0.21960784,0.39215686}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}(Black-Box)\end{tabular}}}}%
+    \put(0.45195163,0.1292517){\color[rgb]{0.21960784,0.34117647,0.1372549}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}ML strategy\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{inductive_approach.pdf}}%
-    \put(0.45114512,0.1292517){\color[rgb]{0.21960784,0.34117647,0.1372549}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}ML Strategy\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{inductive_approach.pdf}}%
   \end{picture}%
 \endgroup%
