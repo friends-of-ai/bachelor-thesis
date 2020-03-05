@@ -1735,6 +1735,10 @@ user$ ml train \
 			\en{As in chapter ``\nameref{sec:section_model_validation}'', the same settings are used as the default setup, unless otherwise specified. \texttt{InceptionV3} is used as \ac{cnn}. The data set and also the division into training and validation data set corresponds to the procedure of the previous chapters.}
 			
 			\subsubsection{Comparison of different neural network types}
+				\de{In diesem Kapitel geht es um die neuronale Schicht am Ende des Netzwerkes. Das \ac{cnn} Netzwerk für gewöhnlich am Ende mit einer oder mehreren Schichten von „normalen“ vollständig verbundenen Neuronen erweitert (\ac{dl} / Fully Connected Layer, siehe Kapitel ``\ref{sec:section_convolutional_neural_network}''). Diese Layer übersetzen die Eigenschaften aus dem \ac{cnn} in die Klassengenauigkeiten, welche vorhergesagt werden sollen. Bisher bestand in allen Experimenten diese Schicht aus einem einfachem Netzerk, bei dem eine Dropout Schicht gefolgt von einem Softmax Layer mit der Größe 50 verbunden wurde. Was passiert wenn man diese Schichten gegen komplexere bzw. noch einfachere Schichten tauscht (Figure \nameref{fig:evaluation_different_nn_types})?}
+				\en{This chapter deals with the neural layer at the end of the network. The \ac{cnn} network is usually extended at the end with one or more layers of "normal" fully connected neurons (\ac{dl} / fully connected layer, see chapter ``\nameref{sec:section_convolutional_neural_network}''). These layers translate the properties from the \ac{cnn} into the class accuracies. So far in all experiments this layer was a simple network, where a dropout layer followed by a softmax layer with size 50 was connected. What happens if you replace these layers with more complex or even simpler layers? (Figure \ref{fig:evaluation_different_nn_types})}
+
+			
 				\begin{figure}[H]
 					\begin{center}
 						\scalebox{1.0}{
@@ -1745,6 +1749,8 @@ user$ ml train \
 					\caption{Comparison of different neural network types}
 					\label{fig:evaluation_different_nn_types}
 				\end{figure}
+				
+
 	
 			\subsubsection{Data augmentation}
 				\de{Wie in Kapitel ``\nameref{sec:section_data_augmentation}'' beschrieben, ist die Hauptaufgabe von Data augmentation neue neue Trainingsdaten aus den bestehenden zu generieren. Der Trainingsdatensatz wird somit künstlich vergrößert. Diese Technik gehört mit zu den Regularisierungstechniken, da sie Overfitting entgegenwirken kann\autocite{geron2017supervisedlearningDataAugmentation}. Nachfolgend ein Beispieldatenset, bei dem das erste originale Bild gedreht, gespiegelt, verzerrt wird und der Datensatz von einem Bild auf insgesamt 12 Bilder vergrößert wird:}
