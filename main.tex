@@ -1382,28 +1382,8 @@ user$ ml train \
 			\de{Wenn man beabsichtigt ein Deep Neuronal Networks (DNN) zu implementieren und zu optimieren, müssen die Berechnungen auf der GPU erfolgen. Es ist auch möglich, Berechnungen auf der \ac{cpu} durchzuführen. Auch die Installation von Keras für CPU-gesteuerte Berechnungen ist viel einfacher, da die Installation der GPU-Treiber nicht notwendig ist. Dies hat jedoch den Nachteil, dass das Training größerer Modelle wesentlich länger dauert. Gute Modelle für die Klassifizierung von z.B. Bildern werden erst nach mehreren Trainingseinheiten erreicht. Trainingseinheiten erfordern viel Rechenleistung in Form von vielen Matrixoperationen. Eine GPU ist prädestiniert für Matrixoperationen\autocite{fatahalian2004understanding}.}
 			\en{If one intends to implement and optimize \acp{dnn}, the calculations must take place on the \ac{gpu}. It is also possible to run calculations on the \ac{cpu}. Also, the installation of Keras for \ac{cpu} driven computations is much easier, because the installation of the \ac{gpu} drivers is not necessary. The disadvantage of this, however, is that it takes much longer to train larger models. Good models for the classification of e.g. pictures are only achieved after several training units. Training units require a lot of computing power in the form of many matrix operations. A \ac{gpu} is predestined for matrix operations\autocite{fatahalian2004understanding}.}
 			
-			\de{Tabelle \ref{tbl:table_performance_comparison} zeigt einen tabellarischen Leistungsvergleich auf der Grundlage des Kaggle-Blumendatensatzes Training\autocite{noauthor_flowers_nodate}. Dieser Bildersatz besteht aus 5 Klassen mit etwa 4242 Trainingsbildern (10 epochs, \texttt{InceptionV3})\autocite{hempel_keras_nodate-1} und wurde mit den Standard-Werten aus Kapitel ``\nameref{sec:section_default_setup}'' trainiert.}
-			\en{Table \ref{tbl:table_performance_comparison} shows a tabular comparison of performance based on the Kaggle flower data set training\autocite{noauthor_flowers_nodate}. This image set consists of 5 classes with about 4242 training images (10 epochs, \texttt{InceptionV3})\autocite{hempel_keras_nodate-1} and was trained with the default values from chapter ``\nameref{sec:section_default_setup}''.}
-			
-			%\clearpage
-			\renewcommand\theadfont{\bfseries}
-			\begin{table}[htb]
-				\footnotesize
-				\centering
-				{\def\arraystretch{2}\tabcolsep=5pt
-					\begin{tabularx}{\linewidth}{ X | l | p{2cm} | l | l }
-						\hline
-						\thead[l]{Device} & \thead[l]{Preparation} & \thead[l]{Train} & \thead[l]{Train (Factor)} & \thead[l]{Save model} \\
-						\hline
-						NVIDIA GeForce GTX 1060 6GB (Desktop) - Windows 10 & 17.5s & 303.5s\newline 00:05:03.5 & 1.00x & 33.8s \\
-						NVIDIA GeForce GT 750M 2GB (Notebook) - Windows 10 & 18.4s & 2415.0s\newline 00:40:15.0 & 7.96x & 29.8s \\
-						Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz (Single Core) - MacOS & 19.1s & 6393.7s\newline 01:46:33.7 & 21.07x & 41.4s \\
-						Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz (Single Core) - Windows & 16.9s & 9016.8s\newline 02:30:16.8 & 29.71x & 28.7s \\
-						Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz (Single Core) - Windows & 16.3s & 25183.4s\newline 06:59:43.4 & 82.97x & 28.3s
-					\end{tabularx}
-				}
-				\captionof{table}{Performance comparison}\label{tbl:table_performance_comparison}
-			\end{table}
+			\de{Tabelle \ref{tbl:table_performance_comparison} im Anhang zeigt einen tabellarischen Leistungsvergleich auf der Grundlage des Kaggle-Blumendatensatzes Training\autocite{noauthor_flowers_nodate}. Dieser Bildersatz besteht aus 5 Klassen mit etwa 4242 Trainingsbildern (10 epochs, \texttt{InceptionV3})\autocite{hempel_keras_nodate-1} und wurde mit den Standard-Werten aus Kapitel ``\nameref{sec:section_default_setup}'' trainiert.}
+			\en{Table \ref{tbl:table_performance_comparison} in the appendix in shows a tabular comparison of performance based on the Kaggle flower data set training\autocite{noauthor_flowers_nodate}. This image set consists of 5 classes with about 4242 training images\autocite{hempel_keras_nodate-1} and was trained with the default values from chapter ``\nameref{sec:section_default_setup}'' (but with only 10 epochs, \texttt{InceptionV3}).}
 			
 			\de{Während die Art des Rechengerätes (CPU or GPU) keinen Unterschied ausmacht was die Vor- und Nachbereitung betrifft, so macht es aber einen entscheidenden Unterschied bei der Trainingszeit. Die langsamste CPU benötigt mehr als 80 mal soviel Zeit, wie die schnellste Grafikkarteneinheit. Die Wahl des Rechengerätes für alle weiteren Tests fällt eindeutig auf die GPU.}
 			\en{While the type of computing device (\ac{cpu} or \ac{gpu}) makes no difference in terms of preparation and postprocessing, it makes a significant difference in training time. The slowest \ac{cpu} takes more than 80 times as many time as the fastest graphics card unit. The choice of the computing device for all further tests clearly falls on the \ac{gpu}.}
@@ -1425,9 +1405,11 @@ user$ ml train \
 					\de{Bei den nachfolgenden Experimenten wird TensorFlow als Backend verwendet. Keras übersetzt die Funktionsaufrufe in die entsprechenden Funktionen von TensorFlow. Keras als als obergeordnete Bibliothek vereinfacht die Verwendung von Tensorflow, vereinfacht den Code, macht ihn lesbarer und minimiert Fehler.}
 					\en{In the following experiments TensorFlow is used as backend. Keras translates the function calls into the corresponding functions of TensorFlow. Keras as the parent library simplifies the use of TensorFlow, makes the code easier to read and minimizes errors.}
 				
+				\begin{comment}
 				\paragraph*{Deeplearning4j v1.0.0-beta3}
 					\de{Deeplearning4j ist eine Programmierbibliothek für tiefes Lernen, die für Java geschrieben wurde, sowie ein Computerframework mit breiter Unterstützung für Algorithmen für tiefes Lernen\autocite{noauthor_deeplearning4j_2019}. Sie wird in dieser Arbeit nicht explizit für die Modellerstellung verwendet, jedoch sei erwähnt, dass man mit dieser Programmierbibliothek Keras-Modelle einlesen und verwenden kann\autocite{hempel_keras_2019}.}
 					\en{Deeplearning4j is a deep learning programming library written for Java and a computer framework with wide support for deep learning algorithms\autocite{noauthor_deeplearning4j_2019}. It is not explicitly used for model creation in this thesis, but it should be mentioned that this programming library allows to read in and use Keras models\autocite{hempel_keras_2019}.}
+				\end{comment}
 
 			\subsubsection{Used data set}
 			\label{sec:section_used_data_set}
@@ -1751,6 +1733,18 @@ user$ ml train \
 		
 			\de{Wie auch in Kapitel ``\nameref{sec:section_model_validation}'' werden auch hier die gleichen Einstellungen als Standard-Setup verwendet, sofern nicht anders angegeben. Als \ac{cnn} kommt \texttt{InceptionV3} zum Einsatz. Das Datenset und auch die Aufteilung in Trainings- und Validierungsdatenset entspricht der Vorgehensweise von den genannten Vorkapiteln.}
 			\en{As in chapter ``\nameref{sec:section_model_validation}'', the same settings are used as the default setup, unless otherwise specified. \texttt{InceptionV3} is used as \ac{cnn}. The data set and also the division into training and validation data set corresponds to the procedure of the previous chapters.}
+			
+			\subsubsection{Comparison of different neural network types}
+				\begin{figure}[H]
+					\begin{center}
+						\scalebox{1.0}{
+							\inputpgf{images/evaluation}{neuronal_network.pgf}
+						}
+					\end{center}
+					\vspace*{-20pt}
+					\caption{Comparison of different neural network types}
+					\label{fig:evaluation_different_nn_types}
+				\end{figure}
 	
 			\subsubsection{Data augmentation}
 				\de{Wie in Kapitel ``\nameref{sec:section_data_augmentation}'' beschrieben, ist die Hauptaufgabe von Data augmentation neue neue Trainingsdaten aus den bestehenden zu generieren. Der Trainingsdatensatz wird somit künstlich vergrößert. Diese Technik gehört mit zu den Regularisierungstechniken, da sie Overfitting entgegenwirken kann\autocite{geron2017supervisedlearningDataAugmentation}. Nachfolgend ein Beispieldatenset, bei dem das erste originale Bild gedreht, gespiegelt, verzerrt wird und der Datensatz von einem Bild auf insgesamt 12 Bilder vergrößert wird:}
@@ -2007,21 +2001,47 @@ user$ ml train \
 	
 	\pagebreak
 	\section{Appendix}
+	
+	
+	
+		\subsection{Performance comparison between \ac{gpu} and \ac{cpu}}
+			%\clearpage
+			\renewcommand\theadfont{\bfseries}
+			\begin{table}[htb]
+				\footnotesize
+				\centering
+				{\def\arraystretch{2}\tabcolsep=5pt
+					\begin{tabularx}{\linewidth}{ X | l | p{2cm} | l | l }
+						\hline
+						\thead[l]{Device} & \thead[l]{Preparation} & \thead[l]{Train} & \thead[l]{Train (Factor)} & \thead[l]{Save model} \\
+						\hline
+						NVIDIA GeForce GTX 1060 6GB (Desktop) - Windows 10 & 17.5s & 303.5s\newline 00:05:03.5 & 1.00x & 33.8s \\
+						NVIDIA GeForce GT 750M 2GB (Notebook) - Windows 10 & 18.4s & 2415.0s\newline 00:40:15.0 & 7.96x & 29.8s \\
+						Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz (Single Core) - MacOS & 19.1s & 6393.7s\newline 01:46:33.7 & 21.07x & 41.4s \\
+						Intel(R) Core(TM) i7-4712HQ CPU @ 2.30GHz (Single Core) - Windows & 16.9s & 9016.8s\newline 02:30:16.8 & 29.71x & 28.7s \\
+						Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz (Single Core) - Windows & 16.3s & 25183.4s\newline 06:59:43.4 & 82.97x & 28.3s
+					\end{tabularx}
+				}
+				\captionof{table}{Performance comparison between \ac{gpu} and \ac{cpu}}\label{tbl:table_performance_comparison}
+			\end{table}
+	
+	
 
-		\subsection*{Number of training and validation files}
+		\subsection{Number of training and validation files}
 			\begin{figure}[H]
 				\begin{center}
 					\scalebox{0.75}{
 						\inputpgf{images/pgf}{number-of-files.pgf}
 					}
 				\end{center}
+				\vspace*{-20pt}
 				\caption[Number of training and validation files]{Number of training and validation files.}
 				\label{fig:implementation_number_train_files}
 			\end{figure}
 			
 			
 			
-		\subsection*{Example of a dropout layer after the \ac{cnn} model (Python code example)}
+		\subsection{Example of a dropout layer after the \ac{cnn} model (Python code example)}
 			\begin{lstlisting}[frame=single,caption={Example of a dropout layer after the \ac{cnn} model},captionpos=b,basicstyle=\small,language=Python,label=lst:lstlisting_python_dropout]
 # definition of some parameters
 num_classes = 50
@@ -2040,8 +2060,8 @@ model = Model(inputs = base_model.input, outputs = predictions)
 			\end{lstlisting}
 			
 			
-		\clearpage
-		\subsection*{Model accuracy of grouped classes with \(k\)-means}
+		%\clearpage
+		\subsection{Model accuracy of grouped classes with \(k\)-means}
 			\renewcommand\theadfont{\bfseries}
 			\begin{table}[htb]
 				\footnotesize
@@ -2080,7 +2100,7 @@ model = Model(inputs = base_model.input, outputs = predictions)
 			
 			
 		\clearpage
-		\subsection*{Model accuracy of grouped classes with agglomerative hierarchical clustering}
+		\subsection{Model accuracy of grouped classes with agglomerative hierarchical clustering}
 			\renewcommand\theadfont{\bfseries}
 			\begin{table}[htb]
 				\footnotesize
