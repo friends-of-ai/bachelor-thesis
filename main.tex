@@ -597,22 +597,22 @@
 			\end{table}
 
 		 	\de{Zum Schluß besitzt die Confusion Matrix folgenden Aufbau (Gleichung \ref{eq:equation_confusion_matrix}), wobei die Anzahl von Elementen in der Klasse \(P_{i}\) vorhergesagt wurde, obwohl (\(\cong\)) es hätte Klasse \(A_{j}\) sein müssen. Alle Werte auf der Diagonalen wurden richtig vorhergesehen. Wenn das Modell eine Modellgenauigkeit von 100\% aufweist, dann wurden alle Klassen richtig vorhergesagt und alle Elemente neben der Hauptdiagonalen sind 0 (equation \ref{eq:equation_confusion_matrix_correct}).}
-			\en{Finally, the confusion matrix has the following structure (Equation \ref{eq:equation_confusion_matrix}), where the number of elements in the class \(P_{i}\) was predicted (P - predicted) although (\(\cong\)) it should have been class \(A_{j}\) (A - actual). All values on the diagonal were correctly predicted (\(\hatset{=}\)). If the model has a model accuracy of 100\%, then all classes were predicted correctly and all elements beside the main diagonal are 0 (Equation \ref{eq:equation_confusion_matrix_correct}).}
+			\en{Finally, the confusion matrix has the following structure (Equation \eqref{eq:equation_confusion_matrix}). \(P_{i,j}\) means \(class_i\) was predicted although it should have been class \(class_j\). All values on the main diagonal were correctly predicted (\(P_{i,i}\)). \(\#P_{i,j}\) in turn is the total number that \(class_i\) was recognized, although it should be \(class_j\). If the model has a model accuracy of 100\%, there are values greater than 0 only on the main diagonal and all other non-diagonal elements are 0 (Equation \eqref{eq:equation_confusion_matrix_correct}).}
 
 			\begin{equation}
 				\boldsymbol{M}_{confusion} = \begin{bmatrix}
-					\#(P_{1}\hatset{=} A_{1}) & \dots & \#(P_{n}\cong A_{1}) \\
+					\#P_{1,1} & \dots & \#P_{n,1} \\
 					\vdots & \ddots & \vdots \\
-					\#(P_{1}\cong A_{n}) & \dots & \#(P_{n}\hatset{=} A_{n})
+					\#P_{1,n} & \dots & \#P_{n,n}
 				\end{bmatrix} = (m_{nn})
 				\label{eq:equation_confusion_matrix}
 			\end{equation}
 
 			\begin{equation}
 				\boldsymbol{M}_{confusion} = \begin{bmatrix}
-					\#(P_{1}\hatset{=} A_{1}) & \dots & 0 \\
+					\#P_{1,1} & \dots & 0 \\
 					\vdots & \ddots & \vdots \\
-					0 & \dots & \#(P_{n}\hatset{=} A_{n})
+					0 & \dots & \#P_{n,n}
 				\end{bmatrix} = (m_{nn})
 				\label{eq:equation_confusion_matrix_correct}
 			\end{equation}
