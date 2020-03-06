@@ -39,7 +39,7 @@
      id="namedview187"
      showgrid="false"
      inkscape:zoom="4.0576923"
-     inkscape:cx="508.20029"
+     inkscape:cx="524.87981"
      inkscape:cy="225.99749"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
@@ -112,15 +112,7 @@
        font-size="11"
        transform="matrix(1,0,0,0.998297,308.684,19)"
        id="text29"
-       style="font-weight:700;font-size:11px;font-family:Calibri, Calibri_MSFontService, sans-serif">Linear <tspan
-   x="29.6845"
-   y="0"
-   id="tspan25">classification</tspan>
-<tspan
-   x="89.387001"
-   y="0"
-   id="tspan27">( ii)</tspan>
-</text>
+       style="font-weight:700;font-size:11px;font-family:Calibri, Calibri_MSFontService, sans-serif">Nonlinear classification (ii)</text>
     <path
        d="M-1.49745 6.88753e-07-1.49756-220.519 1.49735-220.519 1.49745-6.88753e-07ZM-4.49247-219.021-0.000104871-228.006 4.49226-219.021Z"
        transform="matrix(-1.00171 -0 -0 1 598.5 291.506)"
@@ -134,15 +126,7 @@
        font-size="11"
        transform="matrix(1,0,0,0.998297,594.526,19)"
        id="text39"
-       style="font-weight:700;font-size:11px;font-family:Calibri, Calibri_MSFontService, sans-serif">Nonlinear<tspan
-   x="46.194401"
-   y="0"
-   id="tspan35">classification</tspan>
-<tspan
-   x="105.897"
-   y="0"
-   id="tspan37">( iii)</tspan>
-</text>
+       style="font-weight:700;font-size:11px;font-family:Calibri, Calibri_MSFontService, sans-serif">Nonlinear classification (iii)</text>
     <path
        d="M0 0-141.761-203.293"
        stroke="#FF0000"

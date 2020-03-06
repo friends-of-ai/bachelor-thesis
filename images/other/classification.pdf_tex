@@ -54,11 +54,11 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{classification.pdf}}%
-    \put(0.0115454,0.34014423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Linear }\textbf{classification (i)}\end{tabular}}}}%
+    \put(0.0115454,0.34014423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Linear }\textbf{classification}\textbf{( i)}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{classification.pdf}}%
-    \put(0.37101442,0.34014423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Linear }\textbf{classification (ii)}\end{tabular}}}}%
+    \put(0.37101442,0.34014423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Nonlinear classification (ii)}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{classification.pdf}}%
-    \put(0.71457452,0.34014423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Nonlinear }\textbf{classification (iii)}\end{tabular}}}}%
+    \put(0.71457452,0.34014423){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{Nonlinear classification (iii)}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{classification.pdf}}%
   \end{picture}%
 \endgroup%
