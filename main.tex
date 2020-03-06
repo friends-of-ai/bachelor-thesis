@@ -54,6 +54,7 @@
 \usepackage{verbatim}
 \usepackage[T1]{fontenc}
 \usepackage{accents}
+\usepackage{hyperref}
 %\fontfamily{georgia}\selectfont
 
 % style the page numbers
@@ -579,7 +580,7 @@
 		\subsubsection{Loss function}
 		\label{sec:section_loss_function}
 			\de{Für die Klassifikation eines Bildes \(\vartheta\) wird in der Regel ein neuronales Netzwerk verwendet. Die Funktion für dieses Modell werde mit \(\boldsymbol M(\vartheta)\) angegeben. Bei diesem Model ist letzte Schicht eines Klassifikators auf Basis eines neuronalen Netzes meist eine Softmax Funktion\autocite{noauthor_softmax_2019}. Dabei wird einem Element ein Vektor \(\lambda\) der Größe \(n\) zugewiesen und ist der vorhergesagter Wert \(\boldsymbol\lamda\) von diesem Element. Die Größe \(n\) entspricht dabei der Anzahl der zu unterscheidenden Klassen\autocite{geron2017supervisedlearningDecisionBoundaries}. Jeder einzelne \(p\) Wert entspricht dabei der Wahrscheinlichkeit, dass es sich um die Klasse \(class_n\) handelt (Gleichung \ref{eq:equation_softmax_vector}).}
-			\en{For the classification of an image \(\vartheta\) a \ac{nn} is usually used. The function for this model is specified with \(\boldsymbol M(\vartheta)\). In this model the last layer of this \ac{nn}-based classifier is mostly a softmax function\autocite{noauthor_softmax_2019}. It assigns a vector \(\boldsymbol\lambda\) of size \(n\) to an element \(\vartheta\) and is the predicted value of this element. The size \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual value \(p\) of \(\boldsymbol\lambda\) corresponds to the probability that it is class \(class_n\) (Equation \eqref{eq:equation_softmax_vector}).}
+			\en{For the classification of an image \(\vartheta\) a \ac{nn} is usually used as a model. The function for this model is specified with \(\boldsymbol M(\vartheta)\). The last layer of this \ac{nn}-based classifier is mostly a softmax function\autocite{noauthor_softmax_2019}. The model assigns a vector \(\boldsymbol\lambda\) of size \(n\) to an element \(\vartheta\) and is the predicted value of this element. The size \(n\) corresponds to the number of classes to be distinguished\autocite{geron2017supervisedlearningDecisionBoundaries}. Each individual value \(p\) of \(\boldsymbol\lambda\) corresponds to the probability that it is class \(class_n\) (Equation \eqref{eq:equation_softmax_vector}).}
 
 			\begin{equation}
 				\boldsymbol M(\vartheta) =
@@ -790,12 +791,13 @@
 				{{2 \cdot Precision \cdot Recall}\over{Precision + Recall}} = 
 				{{2 \cdot TP}\over{2 \cdot TP + FN + FP}}
 			\end{equation}
+			\end{comment}
+
 
 		\subsection{Machine learning}
 		\label{sec:section_machine_learning}
 			\de{Maschinelles Lernen ist ein Oberbegriff für die künstliche Generierung von Wissen aus Erfahrung\autocite{de1998machine}. Es verfolgt den Ansatz des induktiven Lernens (siehe auch Kapitel \nameref{sec:section_inductive_approach}).}
 			\en{Machine learning is a generic term for the artificial generation of knowledge from experience\autocite{de1998machine}. It follows the approach of inductive learning (see also chapter \nameref{sec:section_inductive_approach}).}
-			\end{comment}
 			
 			
 			% -------------------- %
@@ -806,20 +808,23 @@
 
 				\paragraph{Backpropagation}
 				\label{sec:section_backpropagation}
-					\hl{...}
+					\de{Backpropagation\autocite{noauthor_backpropagation_2020} ist ein Verfahren für das Einlernen von künstlichen neuronalen Netzen während des Trainings. Zu jedem Zeitpunkt des Trainings die aktuelle Ausgabe des Netzwerkes bekannt und kann mit dem erwartete Ausgabe verglichen werden. Der Backpropagation Algorithmus versucht die Parameter des Netzwerkes so anzugleichen, das der Verlust zwischen aktueller Ausgabe und erwarteter Ausgabe kleiner wird (siehe auch Kapitel ``\nameref{sec:section_loss_function}'').}
+					\en{Backpropagation\autocite{noauthor_backpropagation_2020} is a procedure for tuning \acp{ann} during training. At any time during the training the current output of the network is known and can be compared with the expected output. The backpropagation algorithm tries to adjust the parameters of the network to reduce the loss between current output and expected output (see also chapter ``\nameref{sec:section_loss_function}'').}
 
 				\paragraph{Overfitting und underfitting}
 				\label{sec:section_overfitting}
-					\hl{...}
+					\de{Sowohl der Begriff Overfitting, als auch der Begriff Underfitting beschreiben zwei gegensätzliche Extreme und führen beide zu einer schlechten Leistung der Modellgenauigkeit auf Testdatensätze\autocite{jabbar2015methods}. Während beim Overfitting das Modell zu sehr auf die Einzelheiten des Trainingsdatensatz trainiert wurde, wurde beim Underfitting das Modell aufgrund fehlender Daten oder Rechenzeit nicht ausreichend genug trainiert. Ein überangepasstes Modell liefert meist sehr gute Trainingsgenauigkeiten. Das Ziel ist es einen Mittelweg zu finden, bei dem ein generalisiertes Modell trainiert wird, welches hohe Genauigkeiten auf einen Testdatensatz liefert, den das Modell zuvor noch nicht gesehen hat.}
+					\en{The term overfitting and the term underfitting describe two opposite extremes and both result in poor performance of model accuracy on test data sets\autocite{jabbar2015methods}. While with overfitting the model was trained too precisely on the details of the training data set, with underfitting the model was not trained sufficiently. An overfitted model usually provides very good training accuracies. The purpose is to find a middle way, where a generalized model is trained, which provides high accuracies on a test data set that the model has not seen before.}
 					
 				\paragraph{Batch size}
 				\label{sec:section_batch_size}
 					\de{Die Batch Size definiert die Anzahl der Bilder, die gleichzeitig vorwärts und rückwärts durch das neuronale Netzwerk geleitet werden, bevor die Parameter im Netzwerk angepasst werden (Gradientenaktualisierung). Normalerweise ist es pro Epoche vorgesehen alle Trainingsdaten mit einem Vorgang zu trainieren. Dies ist gerade im Bereich der Bildklassifizierung aufgrund des begrenzten Speichers meist nicht möglich, weshalb man eine Epoche in viele kleine Batches aufteilt (Mini-Batches). Der Vorteil besteht darin, dass man nur die Daten im Speicher halten muss, die für den aktuellen Batch nötig sind und damit eine Überanpassung reguliert werden kann. Der Nachteil ist eine erhöhte Varianz (Rauschen in der Genauigkeit des Modells), da es unwahrscheinlich ist, dass eine kleine Stichprobe eine gute Darstellung des gesamten Datensatzes ist. Ebenso erhöht sich der Rechenaufwand da die Backpropagation entsprechend der Anzahl der Mini-Batches erhöht. Es gibt keine magische Regel für die richtige Wahl der Batch Size. Dies ist ein Hyperparameter, der vor Beginn des Trainings bestimmt werden muss\autocite{noauthor_epochs_nodate}.}
-					\en{The batch size defines the number of images that are simultaneously passed forward and backward through the \ac{nn} before the parameters in the network are adjusted (gradient update). Normally it is intended to train all training data per epoch with one process. Especially in the field of image classification this is usually not possible due to the limited memory, which is why an epoch is divided into many small batches (mini-batches). The advantage is that one only has to keep the data in memory that is necessary for the current batch and an overfitting can be regulated.  The disadvantage is an increased variance (noise in the accuracy of the model), since it is unlikely that a small batch is a good representation of the entire data set. The computing time increases as well, since the backpropagation increases according to the number of mini-batches. There is no magic rule for choosing the right batch size. This is a hyperparameter that must be determined before the training begins\autocite{noauthor_epochs_nodate}.}
+					\en{The batch size defines the number of images that are simultaneously passed forward and backward through the \ac{nn} before the parameters in the network are adjusted (gradient update). Normally it is intended to train all training data per epoch with one process. Especially in the field of image classification this is usually not possible due to the limited memory, which is why an epoch is divided into many small batches (mini-batches). The advantage is that one only has to keep the data in memory that is necessary for the current batch. Furthermore, overfitting can be more easily limited with small batches\autocite{noauthor_epochs_nodate}. The disadvantage is an increased variance (noise in the accuracy of the model), since it is unlikely that a small batch is a good representation of the entire data set. The computing time increases as well, since the backpropagation increases according to the number of mini-batches. There is no magic rule for choosing the right batch size. This is a hyperparameter that must be determined before the training begins.}
 
 				\paragraph{Class}
 				\label{sec:section_class}
-					\hl{...}
+					\de{Eine Klasse ist in dieser Arbeit eine Zusammenfassung beliebiger Objekte. Diese Objekte sind definiert durch eine logische Eigenschaft, die alle Objekte dieser Klasse erfüllen. Das können z.B. von einem Beobachter definierte Bilder sein, welche eine Pizza enthalten. Alle diese Bilder werden der Klasse Pizza zugeordnet.}
+					\en{In this thesis, a class is a collection of arbitrary objects. These objects are defined by a logical property that all objects in this class satisfy. For example, these could be pictures that contain a pizza. All these images are now assigned to the class pizza.}
 
 				\paragraph{Data augmentation}
 				\label{sec:section_data_augmentation}
@@ -828,7 +833,8 @@
 
 				\paragraph{Dropout}
 				\label{sec:section_dropout}
-					\hl{...}
+					\de{Dropout ist eine Regularisierungstechnik zur Reduzierung von Überanpassungen in neuronalen Netzen\autocite{noauthor_dropout_2019}. Einfach ausgedrückt, bezieht sich der Begriff Drop-Out auf das Ignorieren von Verbindungen zwischen den Neuronen in einem neuronalem Netz während der Trainingsphase. Damit wird erreicht, dass das aktuell trainierte Objekt nur zum Teil gelernt wird. Die ignorierten Verbindungen werden nach dem Zufallsprinzip ausgewählt.}
+					\en{Dropout is a regularization technique to reduce overfitting in neural networks\autocite{noauthor_dropout_2019}. The term refers to ignoring connections between neurons in a neural network during the training period. This ensures that the currently trained object is only partially learned. The ignored connections are selected randomly.}
 
 				\paragraph{Learning epoch}
 				\label{sec:section_learning_epoch}
@@ -839,10 +845,6 @@
 				\label{sec:section_learning_rate}
 					\de{Die Lernrate ist ein Abstimmungsparameter in einem Optimierungsalgorithmus. Dieser sagt aus, wie groß die Schrittweite bei jeder Iteration ist, mit der sich die Parameter auf das Minimum einer Verlustfunktion zubewegen. Sie sollte nicht zu hoch (Minimum wird nicht gefunden) und nicht zu klein sein (sehr langsames Lernen). Die Lernrate wird oft mit dem Zeichen \(\eta\) oder \(\alpha\) bezeichnet.}
 					\en{The learning rate is a tuning parameter in an optimization algorithm. It expresses how large the step size is for each iteration with which the parameters move closer to the minimum of a loss function. It should not be too high (minimum is not found) and not too small (very slow learning). The learning rate is often indicated by the character \(\eta\) or \(\alpha\).}
-
-				\paragraph{Momentum}
-				\label{sec:section_momentum}
-					\hl{...}
 			
 			
 			% -------------------- %
