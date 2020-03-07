@@ -55,6 +55,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{accents}
 \usepackage{hyperref}
+\usepackage{tablefootnote}
 %\fontfamily{georgia}\selectfont
 
 % style the page numbers
@@ -1505,7 +1506,7 @@ user$ ml train \
 			\subsubsection{Used data set}
 			\label{sec:section_used_data_set}
 				\de{Beim verwendeten Datensatz handelt es sich um einen Essensdatensatz bestehend aus 50 Klassen, 14.866 Bilddateien und hat eine Größe von 765 MB (\texttt{food-50}). Dieser Datensatz wurde händisch erstellt und gelabelt. Die Dateien sind ungleichmäßig zwischen den Klassen verteilt (unbalanced). Bevor man den Trainingsprozess beginnen kann, muss der verwendete Datensatz in einen Trainings- und einen Validierungsdatensatz aufgeteilt werden. Als Verhältnis wurden 80\% Trainings- und 20\% Validierungsdaten gewählt (11.913 Bilder versus 2,953 Bilder). Die Klasse mit dem kleinsten Bilderset ist \texttt{french\_fries} und enthält 36 Trainingsbilder und 8 Validierungsbilder. Die Klasse mit dem größten Bilderset ist \texttt{grilled\_cheese\_sandwich} und enthält über 390 Bilder im Trainingsdatensatz, sowie über 97 Bilder im Validierungsdatensatz. Im Schnitt enthalten alle Klassen rund 240 Trainingsdaten, sowie 60 Testdaten (im Detail in Abbildung \ref{fig:implementation_number_train_files} zu einzusehen). Ein Testdatensatz wird in dieser Arbeit nicht verwendet.}
-				\en{The used data set is a food data set consisting of 50 classes, 14,866 image files and has a size of 765 Mbyte (\texttt{food-50}). This data set was created and labelled manually. The files are unevenly distributed between the classes (unbalanced). Before you can start the training process, the used data set must be split into a training and a validation data set.  As a ratio 80\% training and 20\% validation data was chosen (11,913 images versus 2,953 images). The class with the smallest image set is \texttt{french\_fries} and contains 36 training images and 8 validation images. The class with the largest image set is \texttt{grilled\_cheese\_sandwich} and contains over 390 images in the training data set and over 97 images in the validation data set. On average, all classes contain about 240 training data and 60 test data (see Figure \ref{fig:implementation_number_train_files} for details). A test data set is not used in this thesis.}
+				\en{The used data set is a food data set consisting of 50 classes, 14,866 image files and has a size of 765 Mbyte (\texttt{food-50}). This data set was created and labelled manually. The files are unevenly distributed between the classes (unbalanced). Before you can start the training process, the used data set must be split into a training and a validation data set.  As a ratio 80\% training and 20\% validation data was chosen (11,913 images versus 2,953 images). The class with the smallest image set is \texttt{french\_fries} and contains 36 training images and 8 validation images. The class with the largest image set is \texttt{grilled\_cheese\_sandwich} and contains over 390 images in the training data set and over 97 images in the validation data set. On average, all classes contain about 240 training data and 60 test data (see Figure \ref{fig:implementation_number_train_files} for details). An additional test data set is not used in this thesis (see chapter ``\nameref{sec:section_training_test_and_evaluation}'').}
 
 				\subsubsection{Default setup}
 				\label{sec:section_default_setup}
@@ -1522,7 +1523,7 @@ user$ ml train \
 						\item \textbf{batch size:} 16
 						\item \textbf{drop out:} 50\%
 						\item \textbf{\ac{cnn} weights:} ImageNet
-						\item \textbf{activation function:} ReLU
+						\item \textbf{activation function:} \ac{relu}
 						\item \textbf{optimizer:} \ac{sgd} with Nesterov
 						\item \textbf{momentum:} 0.9 (with decay 0.0)
 						\item the entire training and validation set (14,866 images - unless otherwise specified)
@@ -1538,7 +1539,7 @@ user$ ml train \
 	\section{Results}
 	\label{sec:section_results}
 		\de{In diesem Teil der Arbeit werden die Untersuchungen vorgestellt und die entsprechenden Auswertungen dazu. Dabei wurden in den jeweiligen Kapiteln Modelle mit den angegebenen Parametern und Techniken erstellt mit welcher man in der Lage ist Bildklassifikationen durchzuführen. Das Modell muss trainiert werden, wobei eine Entscheidung auf viele variable Parameter wie die Lernrate \(\eta\), die Optimierer, aber auch Dinge wie das \ac{cnn} Modell gefällt werden muss. Als Basis dient ein Standardsetup, welches Kapitel ``\nameref{sec:section_default_setup}'' erklärt wurde. Von diesem Standard-Setup ausg.ehend werden die variablen Parameter in den entsprechenden Kapiteln jeweils verändert und diskutiert. Das Ziel soll sein die Parameter zu finden, mit welchem die Erkennungsgenauigkeiten der Modelle besonders hoch ausfallen: hohe Genauigkeiten und kleiner Verlust (loss function).}
-		\en{In this part of the thesis the investigations and the corresponding evaluations will be presented. For each chapter models with the given parameters and techniques have been created with which image classifications can be performed. The model has to be trained, whereby a decision has to be made on many variable parameters like the learning rate \(\eta\), the optimizers, but also things such as the \ac{cnn} model. The basis is a standard setup, which was explained in chapter ``\nameref{sec:section_default_setup}''. Starting from this standard setup, the variable parameters are changed and discussed in the corresponding chapters. The goal is to find the parameters with which the recognition accuracy of the models is particularly high: high accuracy and small loss function.}
+		\en{In this part of the thesis the investigations and the corresponding evaluations will be presented. For each chapter models with the given parameters and techniques have been created with which image classifications can be performed. The model has to be trained, whereby a decision has to be made on many variable parameters like the learning rate \(\eta\), the optimizers, but also things such as the \ac{cnn} model. The basis is a standard setup, which was explained in chapter ``\nameref{sec:section_default_setup}''. Starting from this standard setup, the variable parameters are changed and discussed in the corresponding chapters. The purpose is to find the parameters with which the recognition accuracy of the models is high.}
 	
 		\subsection{Model validation}
 		\label{sec:section_model_validation}
@@ -1547,7 +1548,7 @@ user$ ml train \
 			\label{sec:section_validation_number_of_train_files}
 	
 				\de{Die erste Frage die sich stellt: Welchen Einfluß hat die Anzahl der zu trainierenden Daten auf die Genauigkeit des Modells? Hierzu wird das Standard-Setup aus dem Kapitel ``\nameref{sec:section_default_setup}'' verwendet und das Modell mit einer verschiedenen Anzahl von Trainingsdaten trainiert. Während das Validierungsdatenset immer gleich bleibt, wird die Gesamtanzahl der zu trainierenden Daten von 500 stückweise auf die Gesamtanzahl von 11.913 erhöht. Da es sich um einen unausgeglichenen Datensatz handelt, bleibt prozentuall gesehen die Anzahl in den jeweiligen Klassen gleich. Lediglich die Gesamtanzahl wird auf die entsprechenden Werte verändert: 500, 1.000, 2.000, etc.}
-				\en{The first question that comes up: What influence does the amount of data to be trained have on the accuracy of the model? For this purpose, the standard setup from the chapter ``\nameref{sec:section_default_setup}'' is used and the model is trained with a different number of training data. While the validation data set always stays the same, the total number of data to be trained is increased from 500 data sets to the total number of 11,913. Since this is an unbalanced data set, the number remains the same in each class in percentage terms. Only the total number is changed to the corresponding values: 500, 1,000, 2,000, etc. (Figure \ref{fig:evaluation_number_train_files}).}
+				\en{The first question that comes up: What influence does the amount of data to be trained have on the accuracy of the model? For this purpose, the standard setup from the chapter ``\nameref{sec:section_default_setup}'' is used and the model is trained with a different number of training data. While the validation data set always stays the same, the total number of data to be trained is increased from 500 data elements to the total number of 11,913. Since this is an unbalanced data set, the number remains the same in each class in percentage terms. Only the total number is changed to the corresponding values: 500, 1,000, 2,000, etc. (Figure \ref{fig:evaluation_number_train_files}).}
 				
 				\begin{figure}[H]
 					\begin{center}
@@ -1560,11 +1561,11 @@ user$ ml train \
 					\label{fig:evaluation_number_train_files}
 				\end{figure}
 
-				\de{Wie erwartet hat die Anzahl der zu trainierenden Bilder einen entscheidenden Einfluß auf die Modellgenauigkeit. Während mit 500 Bildern eine Genauigkeit von 45,76\% erreicht werden kann, sind es mit fast 12.000 Bildern schon 83,59\% nach 21 Epochen. Mit jeder Erhöhung der Bildanzahl kann man eine Verbesserung der Genauigkeit feststellen. Der Anstieg der Genauigkeit erfolgt nicht linear mit Zunahme der Trainingsdatensätze. Obwohl die Genauigkeit im oberen Bereich (mehr als 8,000 Bilder) immer noch zu steigen scheint, so sind die Sprünge nicht mehr sehr groß und bewegen sich offenbar an eine Grenze. Für weitere Nachforschungen wäre es eine gute Idee, ab welcher Anzahl von Trainingsdatensätzen keine weiteren signifikanten Steigerungen in der Genauigkeiten mehr möglich sind. Da in diesem Datenset keine weiteren Daten mehr zur Verfügung standen, wird dieses Vorhaben hier nicht weiter verfolgt.}
-				\en{As expected, the number of images to be trained has a significant influence on the model accuracy. While with 500 images an accuracy of 45.76\% can be achieved, with almost 12,000 images it is already 83.59\% after 21 epochs. With every increase in the number of images, an improvement in accuracy can be observed. The improvement in accuracy is not linear with an increase in training data sets. Although the accuracy in the upper range (more than 8,000 images) still seems to increase, the jumps are not very big anymore and seem to be moving to a limit. For further research, it would be a good idea to find out from which number of training data sets no further significant increases in accuracy are possible. Since no further data was available in this data set, this project will not be pursued further here.}
+				\de{Wie erwartet hat die Anzahl der zu trainierenden Bilder einen entscheidenden Einfluß auf die Modellgenauigkeit. Während mit 500 Bildern eine Genauigkeit von 45,76\% erreicht werden kann, sind es mit fast 12.000 Bildern schon 83,59\% nach 21 Epochen. Mit jeder Erhöhung der Bildanzahl kann man eine Verbesserung der Genauigkeit feststellen. Der Anstieg der Genauigkeit erfolgt nicht linear mit Zunahme der Trainingsdatensätze. Obwohl die Genauigkeit im oberen Bereich (mehr als 8,000 Bilder) immer noch zu steigen scheint, so sind die Sprünge nicht mehr sehr groß und bewegen sich offenbar an eine Grenze. Für weitere Nachforschungen könnte man noch herausfinden, ab welcher Anzahl von Trainingsdatensätzen keine weiteren signifikanten Steigerungen in der Genauigkeiten mehr möglich sind. Da in diesem Datenset keine weiteren Daten mehr zur Verfügung standen, wird dieses Vorhaben hier nicht weiter verfolgt.}
+				\en{As expected, the number of images to be trained has a significant influence on the model accuracy. While with 500 images an accuracy of 45.76\% can be achieved, with almost 12,000 images it is already 83.59\% after 21 epochs. With every increase in the number of images, an improvement in accuracy can be observed. The improvement in accuracy is not linear with an increase in training data elements. Although the accuracy in the upper range (more than 5,000 images) still seems to increase, the jumps are not very big anymore and seem to be moving to a limit. For further research one could still find out from which number of training data elements no further significant increase in accuracy is possible. Since no further data was available in this data set, this project will not be pursued further here.}
 				
-				\de{Ein weiterer interessanter Punkt ist die Tatsache, dass mit der Erhöhung der Trainingsdaten theoretisch bis zu einem gewissen Punkt Rechenzeit eingespart werden kann. Sind die Datensätze nämlich deutlich zu klein, so erreicht man während des Trainings niemals eine Genaugkeit, welche Modelle mit wesentlich mehr Daten schon mit der ersten Epoche erreichen und übersteigen. Deutlich zu sehen: Bei 1000 Bildern (orangene Linie) kommt man maximal auf eine Genauigkeit von 61,42\% nach 18 Epochen und ungefähr 20 Minuten Rechenzeit. Verwendet man die 10-fache Menge an Bildern (10000 Bilder - braune Linie), so erreicht man schon in der ersten Epoche nach sechseinhalb Minuten eine Genauigkeit von 68,1\%.}
-				\en{Another interesting point is the fact that increasing the training data theoretically saves computing time up to a certain point. If the data sets are significantly too small, one will never reach an accuracy during training, which models with much more data reach and exceed already with the first epoch. Clearly to see: With 1,000 images (orange trace) one gets a maximum accuracy of 61.42\% after 18 epochs and about 20 minutes of computing time. If one uses 10 times the amount of images (10,000 images - brown trace), one reaches an accuracy of 68.1\% already in the first epoch after six and a half minutes.}
+				\de{Ein weiterer interessanter Punkt ist die Tatsache, dass mit der Erhöhung der Trainingsdaten theoretisch bis zu einem gewissen Punkt Rechenzeit eingespart werden kann. Das Beispiel mit einem Datenset von 11.913 Bilder (hellblaue Linie) erreicht schon in der ersten Epoche nach sechseinhalb Minuten Trainingszeit eine Genauigkeit von 68,1\%. Bei 1.000 Bildern (orangene Linie) kommt man maximal auf eine Genauigkeit von 61,42\% nach 18 Epochen und ungefähr 20 Minuten Rechenzeit. Ein signifikant zu kleines Datenset erreicht in diesem Fall nicht die Modellgenauigkeit, die ein etwa zehn mal so großes mit der ersten Epoche (und damit weniger Zeit) erreicht.}
+				\en{Another interesting point is the fact that increasing the training data can theoretically save computing time. The example with a data set of 11,913 images (light blue trace) reaches an accuracy of 68.1\% after six and a half minutes of training already in the first epoch. With 1,000 images (orange trace), the maximum accuracy is 61.42\% after 18 epochs and about 20 minutes computing time. In this case, a significantly too small data set does not reach the model accuracy that a data set about ten times as large reaches with the first epoch and less time.}
 
 			\subsubsection{Comparison of different \ac{cnn} models}
 			\label{sec:section_validation_comparison_cnn_models}
@@ -1982,6 +1983,7 @@ user$ ml train \
 			\item What are the best parameters?
 			\item What is the best approach?
 			\item What else should be investigated?
+			\item For further research, it would be a good idea to find out from which number of training data sets no further significant increases in accuracy are possible.
 			\begin{itemize}
 				\setlength\itemsep{0em}
 				\item More precise analysis of incorrectly classified data: Is there any room for improvement here?
@@ -2026,6 +2028,7 @@ user$ ml train \
 			\acro{ml}[ML]{machine learning}
 			\acro{le}[LE]{learning epochs}
 			\acro{nn}[NN]{neural network}
+			\acro{relu}[ReLU]{rectified linear unit}
 			\acro{rl}[RL]{reinforcement learning}
 			\acro{sgd}[SGD]{stochastic gradient descent}
 			\acro{td}[TD]{training data}
@@ -2114,7 +2117,7 @@ user$ ml train \
 				{\def\arraystretch{2}\tabcolsep=5pt
 					\begin{tabularx}{\linewidth}{ X | l | p{2cm} | l | l }
 						\hline
-						\thead[l]{Device} & \thead[l]{Preparation} & \thead[l]{Train} & \thead[l]{Train (Factor)} & \thead[l]{Save model} \\
+						\thead[l]{Training device} & \thead[l]{Time to load\\ the model} & \thead[l]{Training\\ time} & \thead[l]{Training\\ factor\footnotemark} & \thead[l]{Time to save\\the model} \\
 						\hline
 						NVIDIA GeForce GTX 1060 6GB (Desktop) - Windows 10 & 17.5s & 303.5s\newline 00:05:03.5 & 1.00x & 33.8s \\
 						NVIDIA GeForce GT 750M 2GB (Notebook) - Windows 10 & 18.4s & 2415.0s\newline 00:40:15.0 & 7.96x & 29.8s \\
@@ -2125,7 +2128,7 @@ user$ ml train \
 				}
 				\captionof{table}{Performance comparison between \ac{gpu} and \ac{cpu}}\label{tbl:table_performance_comparison}
 			\end{table}
-	
+			\footnotetext{Depending on the best result, which is marked with factor 1.0.}
 	
 
 		\subsection{Number of training and validation files}
