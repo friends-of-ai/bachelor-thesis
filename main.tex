@@ -1084,79 +1084,102 @@
 			\subsubsection{Convolutional neural network}
 			\label{sec:section_convolutional_neural_network}
 				\de{Ein neuronales Netzwerk verarbeitet einen Vektor und gibt einen neuen Vektor zurück. Das Problem bei Eingabedaten wie Bildern ist, dass sie auf den ersten Blick nicht erfolgreich als Vektor beschrieben werden können, um mit einem normalem neuronalem Netzwerk trainiert werden zu können. Man braucht einen Algorithmus, welcher auch matrizenähnliche Eingaben verarbeiten kann und in der Lage ist Muster zu erkennen. Dabei wurde in der Vergangenheit das Prinzip der Convolutional Layer entwickelt. Ein Convolutional Layer nimmt ein Matrix Eingang entgegen, transformiert diese und gibt wie auch bei den künstlichen Neuronen einen Ausgangswert zurück (in diesem Fall eine weitere Matrix). Dieser Ausgangswert wird danach an die nächste Schicht weitergegeben. Dabei beinhaltet ein Convolutional Layer eine Menge \(n\) an quadratischen Matrizen (meist 3x3 oder 5x5 Matrizen). Diese Matrizen werden Filter genannt. Jeder Filter\footnote{Filter, welche z.B. Kanten, Ecken, Quadrate, etc. erkennen können und in tieferen Layern Dinge wie Augen, Ohren, Haare, etc.} wird nun jeweils von links oben bis rechts unten über die Pixel des Bildes mittels Skalarprodukt miteinander verrechnet, wobei ein neues Bild entsteht. Die soganannte Feature Map. Bei einer Anzahl von \(n\) Filtern entstehen am Ende \(n\) Feature Maps und heben die in den Filtern definierten Merkmale jeweils im neu errechneten Bild hervor (Figure \ref{fig:simple-convolution-and-simple-pooling}a). Dieser Vorgang wird auch Faltung genannt\autocite{deeplizard2017CNNExplained}.}
-				\en{An \acl{ann} processes a vector and returns a new vector. The problem with input data such as images is that at first view they cannot be successfully described as vectors to be trained with a normal neural network. One needs an algorithm that can handle matrix-like inputs and that is able to recognize patterns. In the past the principle of the convolutional layer was developed. A convolutional layer receives a matrix input, transforms it and returns an output value (in this case another matrix). This output value is then passed on to the next layer. A convolutional layer contains a set \(n\) of square matrices (usually 3x3 or 5x5 matrices). These matrices are called filters. Each filter\footnote{Filters, which can recognize edges, corners, squares, etc. and in deeper layers things like eyes, ears, hair, etc.} is now calculated from top left to bottom right over the pixels of the image using a scalar product, which creates a new image (Figure \ref{fig:simple-convolution-and-simple-pooling}a). The so-called feature map. With a number of \(n\) filters, \(n\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
+				\en{An \acl{ann} processes a vector and returns a new vector. The problem with input data such as images is that at first view they cannot be successfully described as vectors to be trained with a normal neural network. One needs an algorithm that can handle matrix-like inputs and that is able to recognize patterns. In the past the principle of the convolutional layer was developed. A convolutional layer receives a matrix input, transforms it and returns an output value (in this case another matrix). This output value is then passed on to the next layer. A convolutional layer contains a set \(t\) of square matrices (usually \(3\times 3\) or \(5\times 5\) matrices, \(n\times n\)). These matrices are called filters\footnote{Filters, which can recognize edges, corners, squares, etc. and in deeper layers things like eyes, ears, hair, etc.} or convolution matrices are now applied to each area of the image (Equation \eqref{eq:equation_convolutional_filter}). This operation creates a new image (Figure \ref{fig:simple-convolution-and-simple-pooling}c) and is commonly named feature map.}
+
+				\begin{equation}
+					\label{eq:equation_convolutional_filter}
+					I^*(x, y) = \sum_{i = 1}^n \sum_{j = 1}^n I(x - i + a, y - j + a) \cdot k(i,j)
+					\quad\Biggl\lvert \quad
+					a = \frac{n+1}{2}
+				\end{equation}
+
+				\en{With a number of \(t\) filters, \(t\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
+
+
 				
 				\begin{figure}[H]
 					\centering
-					\begin{tabular}{ ccccccc }
-						image matrix (a) & & filter matrix (a) & & output matrix (a)(b) & & pooling (b) \\
-					
-						\begin{tabular}{|c|c|c|c|c|c|}
-							\hline
-							\tikzmark{tl11}0 & 1 & 1 & 0 & 1 & 1\\
-							\hline
-							1 & 1 & 1 & 0 & 1 & 0\\
-							\hline
-							0 & 1 & \tikzmark{tl21}0\tikzmark{br11} & 1 & 0 & 1\\
-							\hline
-							0 & 0 & 1 & 0 & 0 & 0\\
-							\hline
-							0 & 0 & 0 & 0 & 0\tikzmark{br21} & 1\\
-							\hline
-							0 & 0 & 1 & 0 & 0 & 0\\
-							\hline
-						\end{tabular} &
-					
-						\circled{$\times$} &
-						\begin{tabular}{|c|c|c|}
-							\hline
-							1 & 1 & 1\\
-							\hline
-							1 & 1 & 0\\
-							\hline
-							0 & 0 & 1\\
-							\hline
-						\end{tabular} &
-					
-						\LARGE{$\rightarrow$} &
-					
-						\begin{tabular}{|c|c|c|c|}
-							\hline
-							\tikzmark{tl12}4\tikzmark{br12} & 5 & \tikzmark{tl31}3 & 4\\
-							\hline
-							5 & 3 & 3 & 2\tikzmark{br31}\\
-							\hline
-							1 & 3 & \tikzmark{tl22}2\tikzmark{br22} & 3\\
-							\hline
-							2 & 1 & 1 & 0\\
-							\hline
-						\end{tabular} &
+					\scalebox{0.925}{
+						\begin{tabular}{ ccccccc }
+							Image matrix (a) & & Filter matrix (b) & & Output matrix (c) & & Pooling (d) \\
+							\\
 						
-						\LARGE{$\rightarrow$} &
-						\begin{tabular}{|c|c|c|}
-							\hline
-							5 & \tikzmark{tl32}4\tikzmark{br32}\\
-							\hline
-							3 & 3\\
-							\hline
+							\begin{tabular}{|c|c|c|c|c|c|}
+								\hline
+								\tikzmark{tl11}0 & 1 & 1 & 0 & 1 & 1\\
+								\hline
+								1 & 1 & 1 & 0 & 1 & 0\\
+								\hline
+								0 & 1 & \tikzmark{tl21}0\tikzmark{br11} & 1 & 0 & 1\\
+								\hline
+								0 & 0 & 1 & 0 & 0 & 0\\
+								\hline
+								0 & 0 & 0 & 0 & 0\tikzmark{br21} & 1\\
+								\hline
+								0 & 0 & 1 & 0 & 0 & 0\\
+								\hline
+							\end{tabular} &
+						
+							\circled{$\times$} &
+							\begin{tabular}{|c|c|c|}
+								\hline
+								1 & 1 & 1\\
+								\hline
+								1 & 1 & 0\\
+								\hline
+								0 & 0 & 1\\
+								\hline
+							\end{tabular} &
+						
+							\LARGE{$\rightarrow$} &
+	
+							\begin{tabular}{|c|c|c|c|c|c|}
+								\hline
+								1 & 2 & 2 & 2 & \tikzmark{tl31}1 & 2\\
+								\hline
+								3 & \tikzmark{tl12}4\tikzmark{br12} & 5 & 3 & 4 & 3\tikzmark{br31}\\
+								\hline
+								2 & 5 & 3 & 3 & 2 & 2\\
+								\hline
+								1 & 1 & 3 & \tikzmark{tl22}2\tikzmark{br22} & 3 & 1\\
+								\hline
+								0 & 2 & \tikzmark{tl41}1 & 1 & 0 & 1\\
+								\hline
+								0 & 0 & 1 & 1\tikzmark{br41} & 1 & 1\\
+								\hline
+							\end{tabular} &
+							
+							\LARGE{$\rightarrow$} &
+							\begin{tabular}{|c|c|c|}
+								\hline
+								4 & 5 & \tikzmark{tl32}4\tikzmark{br32}\\
+								\hline
+								5 & 3 & 3\\
+								\hline
+								2 & \tikzmark{tl42}1\tikzmark{br42} & 1\\
+								\hline
+							\end{tabular}
 						\end{tabular}
-					\end{tabular}
 					
-					\DrawBox[thick, red]{tl11}{br11}
-					\DrawBox[thick, red]{tl12}{br12}
-					\DrawBox[thick, blue]{tl21}{br21}
-					\DrawBox[thick, blue]{tl22}{br22}
+						\DrawBox[thick, red]{tl11}{br11}
+						\DrawBox[thick, red]{tl12}{br12}
+						\DrawBox[thick, blue]{tl21}{br21}
+						\DrawBox[thick, blue]{tl22}{br22}
+						
+						\DrawBox[thick, black!30!green, densely dotted, fill=green!50!white, fill opacity=0.2]{tl31}{br31}
+						\DrawBox[thick, black!30!green, densely dotted, fill=green!50!white, fill opacity=0.2]{tl32}{br32}
+						
+						\DrawBox[thick, black!30!orange, densely dotted, fill=orange!50!white, fill opacity=0.2]{tl41}{br41}
+						\DrawBox[thick, black!30!orange, densely dotted, fill=orange!50!white, fill opacity=0.2]{tl42}{br42}
+					}
 					
-					\DrawBox[thick, black!30!green, densely dotted, fill=green!50!white, fill opacity=0.2]{tl31}{br31}
-					\DrawBox[thick, black!30!green, densely dotted, fill=green!50!white, fill opacity=0.2]{tl32}{br32}
-					
-					\vspace*{-10pt}
+					\vspace*{0pt}
 					\caption[Simple convolution and simple pooling]{Simple convolution and simple pooling}
 					\label{fig:simple-convolution-and-simple-pooling}
 				\end{figure}
 
-				\de{Neuronale Netze, welche Gebrauch von Convolutional Layern machen, werden \acsp{cnn} und haben einen entscheidenden Beitrag zum Fortschritt der Bildklassifizierung und auch in anderen Bereichen wie Spracherkennung geleistet. Neben den Convolutional Layern existieren in einem Convolutional Neuronal Network weitere spezielle Layer, welche sich von normalen Neuronalen Netzen unterscheiden: Z.B. die Pooling Layer. In einem Pooling Layer werden überflüssige Informationen verworfen und die Featuremaps verkleinert (Figure \ref{fig:simple-convolution-and-simple-pooling}b). Dieser Vorgang verringert den Speicherbedarf und erhöht Berechnungsgeschwindigkeit. Die Convolutional Layer und die Pooling Layer wechseln sich in aller Regel jeweils ab, bis am Ende statt einer \(n x n\) Matrix des Eingangsbildes ein großer Vektor entsteht, welcher von einem normalen neuronalem Netzwerk weiterverarbeitet werden kann und schlußendlich in dem schon beschriebenen One Hot Vektor endet (Figure \ref{fig:traditional-convolutional-network}).}
-				\en{Neural networks that make use of convolutional layers are called \acfp{cnn} and have made a decisive contribution to the progress of image classification and also in other areas like speech recognition. In addition to the convolutional layers, a \ac{cnn} has other special layers that differ from normal neural networks: For example the pooling layer. In a pooling layer, unnecessary information is discarded and feature maps are reduced in size (Figure \ref{fig:simple-convolution-and-simple-pooling}b). This process reduces memory requirements and increases calculation speed. The convolutional layer and the pooling layer usually alternate until a large vector is created at the end instead of a \(n x n\) matrix of the input image. This can be further processed by a normal neural network and finally ends in the already described one hot vector (Figure \ref{fig:traditional-convolutional-network}).}
+				\de{Neuronale Netze, welche Gebrauch von Convolutional Layern machen, werden \acsp{cnn} und haben einen entscheidenden Beitrag zum Fortschritt der Bildklassifizierung und auch in anderen Bereichen wie Spracherkennung geleistet. Neben den Convolutional Layern existieren in einem Convolutional Neuronal Network weitere spezielle Layer, welche sich von normalen Neuronalen Netzen unterscheiden: Z.B. die Pooling Layer. In einem Pooling Layer werden überflüssige Informationen verworfen und die Featuremaps verkleinert (Figure \ref{fig:simple-convolution-and-simple-pooling}d). Dieser Vorgang verringert den Speicherbedarf und erhöht Berechnungsgeschwindigkeit. Die Convolutional Layer und die Pooling Layer wechseln sich in aller Regel jeweils ab, bis am Ende statt einer \(n x n\) Matrix des Eingangsbildes ein großer Vektor entsteht, welcher von einem normalen neuronalem Netzwerk weiterverarbeitet werden kann und schlußendlich in dem schon beschriebenen One Hot Vektor endet (Figure \ref{fig:traditional-convolutional-network}).}
+				\en{Neural networks that make use of convolutional layers are called \acfp{cnn} and have made a decisive contribution to the progress of image classification and also in other areas like speech recognition. In addition to the convolutional layers, a \ac{cnn} has other special layers that differ from normal neural networks: For example the pooling layer. In a pooling layer, unnecessary information is discarded and feature maps are reduced in size (Figure \ref{fig:simple-convolution-and-simple-pooling}d). This process reduces memory requirements and increases calculation speed. The convolutional layer and the pooling layer usually alternate until a large vector is created at the end instead of a \(n x n\) matrix of the input image. This can be further processed by a normal neural network and finally ends in the already described one hot vector (Figure \ref{fig:traditional-convolutional-network}).}
 
 				\begin{figure}[H]
 					\centering
