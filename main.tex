@@ -57,6 +57,7 @@
 \usepackage{hyperref}
 \usepackage{tablefootnote}
 %\fontfamily{georgia}\selectfont
+\usepackage{scalerel,stackengine}
 
 % style the page numbers
 \makeatletter
@@ -318,6 +319,8 @@
 
 % hatset
 \newcommand{\hatset}[1]{\accentset{\wedge}{#1}}
+\newcommand\equalhat{\mathrel{\stackon[1.5pt]{=}{\stretchto{%
+    \scalerel*[\widthof{=}]{\wedge}{\rule{1ex}{3ex}}}{0.5ex}}}}
 
 % add language switcher functions \de and \en
 \newif\ifen
@@ -1641,11 +1644,11 @@ user$ ml train \
 				\en{Skipping the training of layers in the convolutional part of the network immediately reduces the model accuracy significantly. One can save a lot of computing time if one only trains the last 36 levels (about one hour of computing time compared to two and a half hours if one trains all 315 levels), but the accuracy of the model increases steadily with the training of additional layers. The model accuracy could be improved from 64.8\% to 83.6\% when training all 315 layers from the InceptionV3 \ac{cnn}. The extra computing time required to train all layers in the convolutional part should be scheduled.}
 
 			\subsubsection{Influence of different error optimizers}
-				\de{Der Optimierer im Trainingsprozess dient dazu den Wert der Verlustfunktion zu verringern. Damit wird versucht den Wert der Vorhersagen so korrekt wie möglich wiederzugeben. Der Wert der Verlustfunktion ergibt sich aus der Differenz des erwarteten Wertes und des geschätzten Wertes der Funktion. Der einfachste Ansatz ist das Gradientenabstiegsverfahren\footnote{\textit{Gradient descent}. en. Page Version ID: 943737051. Mar. 2020. \tiny\textbf{URL}\footnotesize: \url{https://en.wikipedia.org/w/index.php?title=Gradient_descent&oldid=943737051} (visited on 03/07/2020)}, welches im Laufe der Zeit immer mehr verbessert wurde und weitere Optimierungsverfahren entstanden. Die Lernrate \(\eta\) bestimmt den Wert der Gewichtung, mit dem der Fehler korrigiert wird (siehe auch Kapitel ``\hyperref[sec:section_loss_function]{Loss function}''):}
-				\en{The optimizer in the training process is used to minimize the value of the loss function. This is an attempt to reflect the value of the predictions as correctly as possible. The value of the loss function is the difference between the expected value and the estimated value of the classification function. The simplest approach is the gradient descent algorithm\footnote{\textit{Gradient descent}. en. Page Version ID: 943737051. Mar. 2020. \tiny\textbf{URL}\footnotesize: \url{https://en.wikipedia.org/w/index.php?title=Gradient_descent&oldid=943737051} (visited on 03/07/2020)}, which has been improved over time and further optimization algorithms have been developed. The learning rate \(\eta\) determines the value of the weighting with which the error is corrected (see also chapter ``\hyperref[sec:section_loss_function]{Loss function}''):}
+				\de{Der Optimierer im Trainingsprozess dient dazu den Wert der Verlustfunktion zu verringern. Damit wird versucht den Wert der Vorhersagen so korrekt wie möglich wiederzugeben. Der Wert der Verlustfunktion ergibt sich aus der Differenz des erwarteten Wertes und des geschätzten Wertes der Funktion. Der einfachste Ansatz ist das Gradientenabstiegsverfahren\footnote{\textit{Gradient descent}. en. Page Version ID: 943737051. Mar. 2020. \tiny\textbf{URL}\footnotesize: \url{https://en.wikipedia.org/w/index.php?title=Gradient_descent&oldid=943737051} (visited on 03/07/2020)}, welches im Laufe der Zeit immer mehr verbessert wurde und weitere Optimierungsverfahren entstanden. Die Lernrate \(\eta\) bestimmt den Wert der Gewichtung, mit dem der Fehler korrigiert wird (siehe auch Kapitel ``\hyperref[sec:section_loss_function]{Loss function}''). Der neu ermittelte Wahrscheinlichkeitsvektor \(\boldsymbol \lambda\) wird dem Backpropagation Algorithmus zurückgegeben:}
+				\en{The optimizer in the training process is used to minimize the value of the loss function. This is an attempt to reflect the value of the predictions as correctly as possible. The value of the loss function is the difference between the expected value and the estimated value of the classification function. The simplest approach is the gradient descent algorithm\footnote{\textit{Gradient descent}. en. Page Version ID: 943737051. Mar. 2020. \tiny\textbf{URL}\footnotesize: \url{https://en.wikipedia.org/w/index.php?title=Gradient_descent&oldid=943737051} (visited on 03/07/2020)}, which has been improved over time and further optimization algorithms have been developed. The learning rate \(\eta\) determines the value of the weighting with which the error is corrected (see also chapter ``\hyperref[sec:section_loss_function]{Loss function}''). The recalculated probability vector \(\boldsymbol \lambda_{new}\) is passed back to the backpropagation algorithm:}
 
 				\begin{equation}
-					x_{n+1} = x_{n} - \eta \cdot \nabla F(x_{n}) = x_{n} - \eta \cdot L_r(\vartheta, \boldsymbol \lambda), \ n \geq 0
+					\boldsymbol \lambda_{new} = \boldsymbol \lambda_{current} - \eta \cdot L_r(\vartheta, \boldsymbol \lambda_{current})
 				\end{equation}
 				
 				\de{\noindent Dieser Bereich beschäftigt sich mit dem Thema Optimierer und seinen Parametern (besonders der Lernrate \(\eta\)) und welchen entscheidenden Einfluss diese auf die Modellgenauigkeit haben.}
@@ -1663,28 +1666,52 @@ user$ ml train \
 							}
 						\end{center}
 						\vspace*{-20pt}
-						\caption{Overview of best optimizer}
+						\caption{Overview of best optimizer (validation)}
 						\label{fig:evaluation_optimizer}
 					\end{figure}
 	
-					\de{Wie man sehen kann, fällt das Erbebnis sehr unterschiedlich aus. Während das Gradientenabstiegsverfahren mit und ohne Nesterov und das Adagrad Verfahren gute Werte liefern (82,0\% bis 83,6\% Genauigkeit) sehen die anderen Verfahren auf den ersten Blick nicht sehr brauchbar aus. Sie konvergieren sehr langsam: Adadelta, Adam und RMSprop. Alle Verfahren wurden entsprechend der Keras Dokumentation mit den empfohlenen Einstellungen durchgeführt\footnote{Usage of optimizers, https://keras.io, February 22, 2020, \url{https://keras.io/optimizers/}}. Bei allen Verfahren wurde eine Lernrate von \(\eta = 0.001\) gewählt.}
-					\en{As one can see, the results are very different. While the gradient descent method with and without Nesterov and the Adagrad method provide good values (82.0\% to 83.6\% accuracy), the other methods do not look very useful at first sight. They converge very slowly: Adadelta, Adam and RMSprop. All procedures were performed with the recommended settings according to the Keras documentation\footnote{Usage of optimizers, https://keras.io, February 22, 2020, \url{https://keras.io/optimizers/}}. A learning rate of \(\eta = 0.001\) was chosen for all procedures.}
+					\de{Wie man sehen kann, fällt das Erbebnis sehr unterschiedlich aus. Während das Gradientenabstiegsverfahren mit und ohne Nesterov und das Adagrad Verfahren gute Werte liefern (82,0\% bis 83,6\% Genauigkeit) sehen die anderen Verfahren auf den ersten Blick nicht sehr brauchbar aus. Sie konvergieren sehr langsam: Adadelta, Adam und RMSprop.}
+					\en{As one can see, the results are very different. While the gradient descent method with and without Nesterov and the Adagrad method provide good values (82.0\% to 83.6\% accuracy), the other methods do not look very useful at first sight. They converge very slowly: Adadelta, Adam and RMSprop (see also training validation in Figure \ref{fig:evaluation_optimizer_train}).}
+					
+					\begin{figure}[H]
+						\begin{center}
+							\scalebox{1.0}{
+								\inputpgf{images/evaluation}{best_optimizer_train.pgf}
+							}
+						\end{center}
+						\vspace*{-20pt}
+						\caption{Overview of best optimizer (training)}
+						\label{fig:evaluation_optimizer_train}
+					\end{figure}
+
+					\de{Alle Verfahren wurden entsprechend der Keras Dokumentation mit den empfohlenen Einstellungen durchgeführt\footnote{Usage of optimizers, https://keras.io, February 22, 2020, \url{https://keras.io/optimizers/}}. Bei allen Verfahren wurde eine Lernrate von \(\eta = 0.001\) gewählt.}
+					\en{All procedures were performed with the recommended settings according to the Keras documentation\footnote{Usage of optimizers, https://keras.io, February 22, 2020, \url{https://keras.io/optimizers/}}. A learning rate of \(\eta = 0.001\) was chosen for all procedures.}
 
 				\paragraph{Influence of the momentum and the Nesterov momentum}
 				\label{sec:section_influence_of_the_momentum_and_the_nesterov_momentum}
-					\de{Die beiden besten Verfahren aus dem vorhergehendem Kapitel ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison optimizer}'' SGD mit Nesterov und SGD ohne Nesterov sollen hier genauer untersucht werden. Der Lernparameter \(\eta\) spielt dabei eine entscheidende Rolle. Dieser wird von 0,5 bis in den kritischen Bereich von 0,98 variiert. Die Lernrate verringert sich nach jeweils 7 Epochen um 50\%. Das Ergebnis soll daraufhin verglichen und diskutiert werden.}
-					\en{The two best methods from the previous chapter ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison optimizer}'' SGD with Nesterov and SGD without Nesterov will be examined here in more detail. The learning parameter \(\eta\) plays a decisive role. It is varied from 0.5 to the critical range of 0.98 (Figure \ref{fig:evaluation_momentum}). The learning rate decreases by 50\% after every seven epochs. The results will then be compared and discussed.}
-	
-					\begin{figure}[H]
-						\begin{center}
-							\scalebox{1}{
-								\inputpgf{images/evaluation}{momentum.pgf}
-							}
-						\end{center}
-							\vspace*{-20pt}
-						\caption{Overview Nesterov momentum}
-						\label{fig:evaluation_momentum}
-					\end{figure}
+					\de{Die beiden besten Verfahren aus dem vorhergehendem Kapitel ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison optimizer}'' SGD mit Nesterov und SGD ohne Nesterov sollen hier genauer untersucht werden. Dabei wird diesmal das Augenmerk auf das Momentum gelegt, welches im Standard-Setup mit 0,9 angegeben wird. Anders als bei der einfachen SGD Methode, merkt sich die Momentum-Methode den Wert der letzte Aktualisierung von \(\boldsymbol \lambda\) und bestimmt mit Hilfe des Momentums \(\alpha\) wie hoch der Einfluss der letzten Änderung zusätzlich auf die aktuelle Änderung haben soll. Die Aktualisierung wird in die Richtung "beschleunigt", in welche sich die Fehlerkorrektur offensichtlich aktuell bewegt.}
+					\en{The two best methods from the previous chapter ``\hyperref[sec:section_validation_comparison_optimizer]{Comparison optimizer}'' SGD with Nesterov and SGD without Nesterov will be examined here in more detail. This time, the focus is on the momentum, which is specified as 0.9 in the standard setup. In contrast to the simple SGD method, the momentum method remembers the value of the last update of \(\boldsymbol \lambda\) and uses the momentum \(\alpha\) to define how high the influence of the last change of \(\boldsymbol \lambda\) additionally affects the current change of \(\boldsymbol \lambda\) (Equation \ref{eq:equation_momentum_lambda_difference}). The update is "accelerated" in the direction in which the error correction is obviously currently moving (Equation \ref{eq:equation_momentum_lambda}).}
+
+					\begin{equation}
+						\label{eq:equation_momentum_lambda_difference}
+						\nabla \boldsymbol \lambda_{new} = \alpha \cdot \nabla \boldsymbol \lambda_{old} - \eta \cdot L_r(\vartheta, \boldsymbol \lambda_{current})
+					\end{equation}
+
+					\begin{equation}
+						\label{eq:equation_momentum_lambda}
+						\boldsymbol \lambda_{new} = \boldsymbol \lambda_{current} + \nabla \boldsymbol \lambda_{new}
+					\end{equation}
+
+					\de{Das Nesterov Momentum ist eine einfache Änderung des normalen Momentums. Die Berechnung der Fehlerfunktion erfolgt nicht mehr nur aus dem aktuellem Wert von \(\boldsymbol \lambda\), sondern bezieht die derzeitige Änderung durch das Momentum mit ein (Gleichung \ref{eq:equation_momentum_lambda_nesterov}). Dies soll helfen Richtungsänderungen schneller zu korrigieren oder Overshoots zu vermeiden.}
+					\en{The Nesterov momentum is a simple modification of the normal momentum. The calculation of the error function is no longer based only on the current value of \(\boldsymbol \lambda\), but also includes the current change by the momentum (equation \ref{eq:equation_momentum_lambda_nesterov}). This should help to correct directional changes faster and avoid overshoots.}
+
+					\begin{equation}
+						\label{eq:equation_momentum_lambda_nesterov}
+						\boldsymbol \lambda_{new} = \boldsymbol \lambda_{current} + \alpha \cdot \nabla \boldsymbol \lambda_{old} - \eta \cdot L_r(\vartheta, \boldsymbol \lambda_{current} + \alpha \cdot \nabla \boldsymbol \lambda_{old})
+					\end{equation}
+
+					\de{Das Momentum wird in den nächsten beiden Experimenten von 0,5 bis in den Bereich von 0,98 variiert. Die Lernrate startet mit 0,001 und verringert sich nach jeweils 7 Epochen um 50\%. Das erste Experiment startet ohne das Nesterov Momentum (Abbildung \ref{fig:evaluation_momentum_without}), das zweite Experiment findet mit der Nesterov Momentum Methode statt (Abbildung \ref{fig:evaluation_momentum}). Das Ergebnis soll daraufhin verglichen und diskutiert werden.}
+					\en{In the next two experiment, the momentum is varied from 0.5 to the range of 0.98 (Figure \ref{fig:evaluation_momentum}). The learning rate starts at 0.001 and decreases by 50\% after every seven epochs. The first experiment starts without the Nesterov momentum (Figure \ref{fig:evaluation_momentum_without}), the second experiment uses the Nesterov momentum method (Figure \ref{fig:evaluation_momentum}). The results will then be compared and discussed.}
 	
 					\begin{figure}[H]
 						\begin{center}
@@ -1693,12 +1720,23 @@ user$ ml train \
 							}
 						\end{center}
 						\vspace*{-20pt}
-						\caption{Overview of different momentum values without Nesterov}
+						\caption{Overview of experiments of different momentum values without Nesterov (\(momentum\\ \hat{=}\ \alpha \))}
 						\label{fig:evaluation_momentum_without}
 					\end{figure}
 	
-					\de{Die Genauigkeit steigen bei beiden Modellen mit (w/ nest.) und ohne Nesterov (w/o nest.) stetig mit steigender Lernrate \(\eta\) an, bis sie mit \(\eta=0,9\) (w/o nest.) bzw. \(\eta=0,95\) (w/ nest.) ihren Zenit bei 83,35\% bzw. 84,37\% erreichen. Dabei fällt auf, das je kleiner die Lernrate \(\eta\) ist, die Genauigkeit vorhersehbarer gleichmäßiger steigt, das ``Maximum'' bei 21 Epochen jedoch nicht erreicht wird. Mit steigender Lernrate, z.B. beim Maximum von \(\eta=0,98\) beim Nesterov Modell (braune Linie), springen die Modellgenauigkeiten und können auch mal mit einer weiteren Epoche komplett in die negative Richtung laufen. Beim besten Modell (olive Linie, w/ nest.) passiert exakt das Gleiche, jedoch werden am Ende damit die besten Ergebnisse erzielt.}
-					\en{The accuracy of both models with (w/ nest.) and without Nesterov (w/o nest.) increases steadily with increasing learning rate \(\eta\) until they reach their zenith at 83.35\% and 84.37\% with \(\eta=0,9\) (w/o nest.) and \(\eta=0,95\) (w/ nest.) respectively. It is noticeable that the smaller the learning rate \(\eta\), the accuracy increases more evenly, but the ``maximum'' at 21 epochs is not reached. With increasing learning rate, e.g. at the maximum of \(\eta=0,98\) for the Nesterov model (brown trace), the model accuracies jump and can sometimes run completely in the negative direction with another epoch. With the best model (olive trace, w/ nest.) exactly the same happens, but in the end the best results are achieved.}
+					\begin{figure}[H]
+						\begin{center}
+							\scalebox{1}{
+								\inputpgf{images/evaluation}{momentum.pgf}
+							}
+						\end{center}
+							\vspace*{-20pt}
+						\caption{Overview of experiments of different momentum values without Nesterov (\(momentum\\ \hat{=}\ \alpha \))}
+						\label{fig:evaluation_momentum}
+					\end{figure}
+	
+					\de{Die Genauigkeit steigen bei beiden Modellen mit (w/ nest.) und ohne Nesterov (w/o nest.) stetig mit steigender Lernrate \(\eta\) an, bis sie mit \(\eta=0,9\) (w/o nest.) bzw. \(\eta=0,95\) (w/ nest.) ihren Zenit bei 83,35\% bzw. 84,37\% erreichen. Dabei fällt auf, das je kleiner die Lernrate \(\eta\) wird, die Genauigkeit vorhersehbarer gleichmäßiger steigt, das ``Maximum'' bei 21 Epochen jedoch nicht erreicht wird. Mit steigender Lernrate, z.B. beim Maximum von \(\eta=0,98\) beim Nesterov Modell (braune Linie), springen die Modellgenauigkeiten und können auch mal mit einer weiteren Epoche komplett in die negative Richtung laufen. Beim besten Modell (olive Linie, w/ nest.) passiert exakt das Gleiche, jedoch werden am Ende damit die besten Ergebnisse erzielt.}
+					\en{The accuracy of both experiments with (w/ nest.) and without Nesterov (w/o nest.) increases steadily with momentum \(\alpha\) until they reach their zenith at 83.35\% and 84.37\% with \(\alpha=0,9\) (w/o nest.) and \(\alpha=0,95\) (w/ nest.) respectively. It is noticeable that the smaller the momentum \(\alpha\), the accuracy increases more evenly, but the ``maximum'' at 21 epochs is not reached. With increasing momentum, e.g. at the maximum of \(\alpha=0,98\) for the Nesterov model (light blue trace), the model accuracies jump and can sometimes run completely in the negative direction with another epoch. With the best model (purple trace, w/ nest., \(\alpha = 0.95\)) exactly the same happens, but in the end the best results are achieved.}
 		
 				\paragraph{Influence of a dynamic learning rate on accuracy (scheduling)}
 					\de{Die Lernrate \(\eta\) gibt an, wieviel vom Fehler in das Modell zurückgegeben wird (Schrittweite). Ab einer bestimmten Anzahl von Lernepochen steigt die Modellgenauigkeit nicht mehr an, sondern springt um einen Wert herum (siehe grüne Linie in der nachfolgendem Abbildung), weil man aufgrund einer zu großen Schrittweite bei der Fehlerkorrektur das Optimum nicht erreichen kann. Es ist also eine gute Idee die Schrittweite im Laufe der Epochen schrittweise anzupassen und zu verkleinern. Hierzu wird die Lernrate \(\eta\) nach einer gewissen Anzahl von Epochen \(\mathcal{E}\) (z.B. alle 7 Epochen) mit dem Momentum \(\beta\) angepasst. Der Wert für \(\eta_1\) entspricht dem initialem Wert für die Lernrate:}
