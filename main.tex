@@ -150,8 +150,8 @@
 \newcommand{\DrawBox}[3][]{%
     \tikz[overlay,remember picture]{
     \draw[black,#1]
-      ($(#2) + (-0.85em,  2.40ex)$) rectangle
-      ($(#3) + ( 0.85em, -1.30ex)$);}
+      ($(#2) + (-0.65em,  1.15em)$) rectangle
+      ($(#3) + ( 0.65em, -0.54em)$);}
 }
 
 % literature reference
@@ -1094,71 +1094,92 @@
 				\end{equation}
 
 				\en{With a number of \(t\) filters, \(t\) feature maps are created at the end and highlight the features defined in the filters in the newly calculated image. This process is also called convolution\autocite{deeplizard2017CNNExplained}.}
-
-
 				
 				\begin{figure}[H]
 					\centering
-					\scalebox{0.925}{
+					\scalebox{1.0}{
 						\begin{tabular}{ ccccccc }
 							Image matrix (a) & & Filter matrix (b) & & Output matrix (c) & & Pooling (d) \\
 							\\
 						
-							\begin{tabular}{|c|c|c|c|c|c|}
-								\hline
-								\tikzmark{tl11}0 & 1 & 1 & 0 & 1 & 1\\
-								\hline
-								1 & 1 & 1 & 0 & 1 & 0\\
-								\hline
-								0 & 1 & \tikzmark{tl21}0\tikzmark{br11} & 1 & 0 & 1\\
-								\hline
-								0 & 0 & 1 & 0 & 0 & 0\\
-								\hline
-								0 & 0 & 0 & 0 & 0\tikzmark{br21} & 1\\
-								\hline
-								0 & 0 & 1 & 0 & 0 & 0\\
-								\hline
-							\end{tabular} &
+							{\def\arraystretch{1}\tabcolsep=4.5pt
+								{\setlength{\extrarowheight}{2pt}
+									\small
+									\begin{tabular}{|c|c|c|c|c|c|}
+										\hline
+										\tikzmark{tl11}0 & 1 & 1 & 0 & 1 & 1\\
+										\hline
+										1 & 1 & 1 & 0 & 1 & 0\\
+										\hline
+										0 & 1 & \tikzmark{tl21}0\tikzmark{br11} & 1 & 0 & 1\\
+										\hline
+										0 & 0 & 1 & 0 & 0 & 0\\
+										\hline
+										0 & 0 & 0 & 0 & 0\tikzmark{br21} & 1\\
+										\hline
+										0 & 0 & 1 & 0 & 0 & 0\\
+										\hline
+									\end{tabular}
+								}
+							} &
 						
 							\circled{$\times$} &
-							\begin{tabular}{|c|c|c|}
-								\hline
-								1 & 1 & 1\\
-								\hline
-								1 & 1 & 0\\
-								\hline
-								0 & 0 & 1\\
-								\hline
-							\end{tabular} &
+
+							{\def\arraystretch{1}\tabcolsep=4.5pt
+								{\setlength{\extrarowheight}{2pt}
+									\small
+									\begin{tabular}{|c|c|c|}
+										\hline
+										1 & 1 & 1\\
+										\hline
+										1 & 1 & 0\\
+										\hline
+										0 & 0 & 1\\
+										\hline
+									\end{tabular}
+								}
+							} &
 						
 							\LARGE{$\rightarrow$} &
 	
-							\begin{tabular}{|c|c|c|c|c|c|}
-								\hline
-								1 & 2 & 2 & 2 & \tikzmark{tl31}1 & 2\\
-								\hline
-								3 & \tikzmark{tl12}4\tikzmark{br12} & 5 & 3 & 4 & 3\tikzmark{br31}\\
-								\hline
-								2 & 5 & 3 & 3 & 2 & 2\\
-								\hline
-								1 & 1 & 3 & \tikzmark{tl22}2\tikzmark{br22} & 3 & 1\\
-								\hline
-								0 & 2 & \tikzmark{tl41}1 & 1 & 0 & 1\\
-								\hline
-								0 & 0 & 1 & 1\tikzmark{br41} & 1 & 1\\
-								\hline
-							\end{tabular} &
+
+							{\def\arraystretch{1}\tabcolsep=4.5pt
+								{\setlength{\extrarowheight}{2pt}
+									\small
+									\begin{tabular}{|c|c|c|c|c|c|}
+										\hline
+										1 & 2 & 2 & 2 & \tikzmark{tl31}1 & 2\\
+										\hline
+										3 & \tikzmark{tl12}4\tikzmark{br12} & 5 & 3 & 4 & 3\tikzmark{br31}\\
+										\hline
+										2 & 5 & 3 & 3 & 2 & 2\\
+										\hline
+										1 & 1 & 3 & \tikzmark{tl22}2\tikzmark{br22} & 3 & 1\\
+										\hline
+										0 & 2 & \tikzmark{tl41}1 & 1 & 0 & 1\\
+										\hline
+										0 & 0 & 1 & 1\tikzmark{br41} & 1 & 1\\
+										\hline
+									\end{tabular}
+								}
+							} &
 							
 							\LARGE{$\rightarrow$} &
-							\begin{tabular}{|c|c|c|}
-								\hline
-								4 & 5 & \tikzmark{tl32}4\tikzmark{br32}\\
-								\hline
-								5 & 3 & 3\\
-								\hline
-								2 & \tikzmark{tl42}1\tikzmark{br42} & 1\\
-								\hline
-							\end{tabular}
+
+							{\def\arraystretch{1}\tabcolsep=4.5pt
+								{\setlength{\extrarowheight}{2pt}
+									\small
+									\begin{tabular}{|c|c|c|}
+										\hline
+										4 & 5 & \tikzmark{tl32}4\tikzmark{br32}\\
+										\hline
+										5 & 3 & 3\\
+										\hline
+										2 & \tikzmark{tl42}1\tikzmark{br42} & 1\\
+										\hline
+									\end{tabular}
+								}
+							}
 						\end{tabular}
 					
 						\DrawBox[thick, red]{tl11}{br11}
