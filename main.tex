@@ -1917,9 +1917,9 @@ user$ ml train \
 					\label{fig:evaluation_data_augmentation}
 				\end{figure}
 				
-				\de{Die Modellgenauigkeit erhöht sich von 83,6\% auf 85,6\%. Eine Steigerung von insgesamt 2\%. Wohlgemerkt: Der Validierungsdatensatz ist immer noch derselbe! Allerdings bedeutet das auch ein Anstieg der benötigten Rechenzeit. Während die Berechnung des Datensatzes ohne Data Augmentation nur zweieinhalb Stunden braucht, benötigt man für den neuen Datensatz die vierfache Zeit. Fazit: Data Augmentation geth mit einer verbesserten Genauigkeit einher, benötigt aber auch im gleichem Atemzug mehr Rechenzeit. Wenn Rechenzeit keine Rolle spielt, so ist dies eine Möglichkeit die Genauigkeit etwas zu verbessern.}
-				\en{The model accuracy increases from 83.6\% to 85.6\%. An overall increase of 2\%. Note: The validation data set is still the same! However, this also means an increase in the required computing time. While the calculation of the data set without data augmentation takes only two and a half hours, the new data set takes four times as long. Conclusion: Data Augmentation is associated with improved accuracy, but also requires more computing time in the same breath. If computing time is not important, this is one way to improve the accuracy a little.}
-			
+				\de{Die Modellgenauigkeit erhöht sich von 83,6\% auf 85,6\% und steigert sich damit um insgesamt 2\%. Während die Berechnung des Datensatzes ohne Data Augmentation nur zweieinhalb Stunden braucht, benötigt man für den neuen Datensatz die vierfache Zeit. Fazit: Data Augmentation geht mit einer verbesserten Genauigkeit einher, benötigt aber auch mehr Rechenzeit. Wenn Rechenzeit keine Rolle spielt, so ist dies eine Möglichkeit die Genauigkeit etwas zu verbessern. Es sollte erwähnt werden, dass der Datensatz mit der Vergrößerung des Datensatzes ausbalanciert wurde. Das bedeutet, dass sich in jeder Klasse gleich viele Datensätze zum Trainieren befanden. Zu diesem Zeitpunkt kann nicht genau gesagt werden, ob sich die Verbesserung durch die Erhöhung der zur Verfügung stehenden Daten erreicht werden konnte, sondern das Ausbalancieren des Datensatzes ebenfalls zur Verbesserung beitrug. Dies sollte in weiteren Versuchen genauer untersucht werden.}
+				\en{The model accuracy increases from 83.6\% to 85.6\% and shows an overall increase of 2\%. While the calculation of the data set without data augmentation takes only two and a half hours, the new data set takes four times as long. Conclusion: Data Augmentation is associated with improved accuracy, but also requires more computing time. If computing time is not important, this is one way to improve the accuracy a little. It should be mentioned that the data set was balanced with data augmentation. That means that there were the same number of elements for training in each class. At this point, it is not clear to say whether this improvement could only be achieved by increasing the available data or whether balancing the data set did also contribute the improvement. This should be investigated in further experiments.}
+
 			\subsubsection{Hierarchical classification}
 			\label{sec:section_validation_hierarchical classification}
 				\de{Durch die Verwendung eines einzigen Modelles für alle Klassen, sind die bisherigen Klassifikatoren darauf trainiert, den Verlust am Klassenausgabevektor zu minimieren. Jede bisher verwendete Klasse hat den gleichen Rang sowohl beim Training, als auch bei der Klassifizierung. Die Vorhersage von "Pizza" kostet genauso viel wie die Vorhersage von "Martini".}
@@ -2010,78 +2010,90 @@ user$ ml train \
 						\en{}
 			
 			\subsubsection{Binary classifiers}
-				\de{Was passiert, wenn man jede Klasse einzeln trainiert und jede Klasse sein eigenes Modell erhält? Das bestehende Datenset zu je 50 Klassen muss modifiziert werden.
+				\de{Ein binärer Klassifizierer kennt nur zwei Zustände. Entweder trifft eine Eigenschaft zu oder sie trifft nicht zu. Lässt man zum Beispiel mit einem Klassifikator der Klasse \texttt{salad} ein Element klassifizieren, so gibt dieser Klassifikator zurück, mit welcher Wahrscheinlichkeit dieses Bild Salat ist oder nicht:}
+				\en{A binary classifier knows only two states.  Either a property is true or it is not true. For example, if one uses a classifier of the class \texttt{salad} to classify an element, this classifier returns the probability returns the probability that this image is salad or not (Equation \eqref{eq:equation_binary_probability_vector}).}
+
+					\begin{equation}
+						\label{eq:equation_binary_probability_vector}
+						\hat{\boldsymbol\lambda}_{class_{m}} = 
+						\left(
+							\begin{array}{c}
+							p_{True}\\
+							p_{False}
+							\end{array}
+						\right)
+						\quad\Biggl\lvert \quad p_{True} + p_{Negative} = 1
+					\end{equation}
+
+				
+				\de{Für die binäre Klassifikation mit mehr als zwei Klassen benötigt man für jede Klasse einen eigenen Klassifizierer. Für den hier in der Arbeit verwendeten Essensdatensatz \texttt{food-50} werden 50 Klassifizierungsmodelle erstellt, welche jedes einzelne in der Lage ist eine Aussage zu treffen, mit welcher Wahrscheinlichkeit ein zu klassifizierendes Element zu seiner Klasse gehört oder nicht. Obwohl diese Aussage grundsätzlich der Aussage eines einzelnen bisher verwendeten 50 Klassen Klassifizierers entspricht, so werden hier die Erkennungen auf einzelne Modelle verteilt. Theoretisch sollte sich damit die Vapnik–Chervonenkis Dimension erhöhen. Die Frage die sich nun stellt: Ist es damit möglich die Modellgenauigkeit zu erhöhen?}
+				\en{For a binary classification with more than two classes one needs a separate classifier for each class. For the used data set \texttt{food-50} in this thesis 50 classification models are created. Each of them is able to make a statement about the probability that an item to be classified belongs to its class or not.  Although this statement basically corresponds to the statement of a single 50 class classifier used so far, the recognitions are distributed to individual models here. In theory, this should increase the \ac{vc} dimension. The question that now arises: Is it possible to increase the top-1 model total accuracy by distributing the classification over 50 classifiers?}
+
+				\de{Um diese Frage beantworten zu können, wird das bestehende Datenset aus 50 Klassen modifiziert. Für jede Klasse wird ein eigenes Datenset erstellt, welches aus der Klasse ``True'' und der Klasse ``False'' besteht. In die Klasse ``True'' kommen alle Elemente der aktuell betrachteten Klasse, in die Klasse ``False'' alle anderen Elemente aus allen anderen Klassen. Man erhält damit 50 Trainings- und Validierungsdatensätze, welche entsprechend nach dem Standard-Setup einzeln trainiert werden. Am Ende erhält man jeweils 50 Klassifikationsmodelle. Eine Übersicht über das Ergebnis der einzelnen Modellgenauigkeiten kann der Tabelle \ref{tbl:table_binary_classification_overview} im Anhang entnommen werden. Die einzelnen Modellgenauigkeiten sehen auf den ersten Blick vielversprechend aus. Die schlechteste Modellgenauigkeit erreichte die Klasse \texttt{frittata} mit einer Genauigkeit von 98,47\%. Die beste Modellgenauigkeit von 100,00\% wurde für die Klasse \texttt{french\_fries} erreicht.}
+				\en{To answer this question, the existing data set of 50 classes will be modified. For each class a separate data set is created, which consists of the class ``True'' and the class ``False''. The class ``True'' contains all elements of the currently considered class, the class ``False'' contains all other elements from all other classes. The result is a set of 50 training and validation data sets (\texttt{food-50-1} to \texttt{food-50-50}), which are trained individually according to the standard setup. At the end you get 50 classification models for each class. An overview of the result of the individual model accuracies can be taken from the table \ref{tbl:table_binary_classification_overview} in the appendix. The individual model accuracies appear to look promising at first view. The worst model accuracy was achieved by the class \texttt{frittata} with an accuracy of 98.47\%. The best model accuracy of 100.00\% was achieved by the class \texttt{french\_fries}.}
+
+				\de{Die 50 erstellten Klassifikatoren werden nun auf die Trainingsdaten, als auch auf die Validierungsdaten angewendet um Lambda zu erhalten. Von den erhaltenden Wahrscheinlichkeitsvektoren wird der True verwendet, um damit den eigentlichen Wahrscheinlichkeitsvektor zu bestimmen (Gleichung \eqref{eq:equation_binary_probability_vector_50_norm}).}
+				\en{The 50 created classifiers are now applied to the training data as well as to the validation data to obtain \(\hat{\boldsymbol\lambda}_{class_{m}}\). From the obtained probability vectors \(\hat{\boldsymbol\lambda}_{class_{m}}\) the ``True'' value is used to determine the actual vector (Equation \eqref{eq:equation_binary_probability_vector_50} and \eqref{eq:equation_binary_probability_vector_50_norm}).}
+
+				\begin{equation}
+					\label{eq:equation_binary_probability_vector_50}
+					\boldsymbol\lambda_{class_{m}}^{*} =
+					\left(
+						\begin{array}{c}
+							p_{True,class_{1}}\\
+							p_{True,class_{2}}\\
+							\vdots\\
+							p_{True,class_{50}}
+						\end{array}
+					\right)
+				\end{equation}
+
+				\begin{equation}
+					\label{eq:equation_binary_probability_vector_50_norm}
+					\boldsymbol\lambda_{class_{m}} = 
+					\frac{\boldsymbol\lambda_{class_{m}}^{*}}{\| \boldsymbol\lambda_{class_{m}}^{*} \|}
+				\end{equation}
+
+				\de{Für den Datensatz \texttt{food-50} erhält man für den Trainingsteil 11.913 Wahrscheinlichkeitsvektoren \(\boldsymbol\lambda\) und für den Validierungsteil 2.953 Wahrscheinlichkeitsvektoren \(\boldsymbol\lambda\) mit der Dimension 50. Mittels dem \textit{k}-nearest neighbors Klassifizierungsalgorithmus\autocite{noauthor_k-nearest_2020} wird nun die Modellgenauigkeit bestimmt. Dabei wird eine Klassenzuordnung von \(\boldsymbol\lambda^{val}\) unter Berücksichtigung seiner nächsten \textit{k} Nachbarn von (\boldsymbol\lambda^{train}\) vorgenommen. Die dabei entstehenden Modellgenauigkeiten können der nachfolgenden Tabelle entnommen werden.}
+				\en{For the data set \texttt{food-50} one obtains for the training part 11,913 vectors \(\boldsymbol\lambda^{train}\) and for the validation part 2,953 vectors \(\boldsymbol\lambda^{val}\) with the dimension 50. Using the \textit{k}-nearest neighbors classification algorithm\autocite{noauthor_k-nearest_2020} the model accuracy is now determined. A class assignment of \(\boldsymbol\lambda^{val}\) is determined considering its next \textit{k} neighbours of \(\boldsymbol\lambda^{train}\). The resulting model accuracies at different k-values are shown in the following table (Table \ref{tbl:table_binary_classification_acc}).} % sec:section_supervised_learning
+				
+
+			\renewcommand\theadfont{\bfseries}
+			\begin{table}[htb]
+				\centering
+				{\def\arraystretch{1}\tabcolsep=5pt
+					{\setlength{\extrarowheight}{2pt}
+						\begin{tabularx}{\linewidth}{ r  r | r  r | r  r | r  r | r  r }
+							\thead[l]{\textit{k}} & \thead[l]{top-1 acc.} & \thead[l]{\textit{k}} & \thead[l]{top-1 acc.} & \thead[l]{\textit{k}} & \thead[l]{top-1 acc.} & \thead[l]{\textit{k}} & \thead[l]{top-1 acc.} & \thead[l]{\textit{k}} & \thead[l]{top-1 acc.} \\
+	\hline
+						1 & 73.42\% &
+						2 & 72.98\% &
+						3 & 74.84\% &
+						4 & 75.18\% &
+						5 & 75.14\% \\
+						6 & 75.28\% &
+						7 & 75.35\% &
+						8 & 75.45\% &
+						9 & 75.75\% &
+						10 & 75.65\% \\
+						11 & 75.55\% &
+						12 & 75.58\% &
+						13 & 75.58\% &
+						14 & 75.52\% &
+						15 & 75.52\% \\
+						16 & 75.52\% &
+						17 & 75.28\% &
+						18 & 75.58\% &
+						19 & 75.45\% &
+						20 & 75.62\% 
+						\end{tabularx}
+					}
 				}
-				
-				\begin{tabular}{ l r }
-1 & 73.4169\% \\
-2 & 72.9766\% \\
-3 & 74.8391\% \\
-4 & 75.1778\% \\
-5 & 75.1439\% \\
-6 & 75.2794\% \\
-7 & 75.3471\% \\
-8 & 75.4487\% \\
-9 & 75.7535\% \\
-10 & 75.6519\%
-				\end{tabular}
+				\captionof{table}{Comparison of the model accuracy at different k values.}\label{tbl:table_binary_classification_acc}
+			\end{table}
 
-				
-				\begin{tabular}{ l r r r r r r r r r }
-\texttt{baked\_beans} & 3 & 99.55\% & 0.0117 & 167 & 11.746 & 99.66\% & 0.0138 & 41 & 2.912 \\
-\texttt{baked\_salmon} & 1 & 99.12\% & 0.0390 & 65 & 11.848 & 99.76\% & 0.0170 & 16 & 2.937 \\
-\texttt{beef\_stew} & 2 & 98.71\% & 0.0339 & 300 & 11.613 & 99.11\% & 0.0339 & 74 & 2.879 \\
-\texttt{beef\_stroganoff} & 2 & 99.38\% & 0.0151 & 98 & 11.815 & 99.80\% & 0.0069 & 24 & 2.929 \\
-\texttt{brownies} & 4 & 99.82\% & 0.0053 & 334 & 11.579 & 99.22\% & 0.0261 & 83 & 2.870 \\
-\texttt{bundt\_cake} & 2 & 99.42\% & 0.0175 & 307 & 11.606 & 99.56\% & 0.0172 & 76 & 2.877 \\
-\texttt{burger} & 6 & 99.97\% & 0.0013 & 286 & 11.627 & 99.69\% & 0.0178 & 71 & 2.882 \\
-\texttt{burrito} & 4 & 99.89\% & 0.0039 & 268 & 11.645 & 99.46\% & 0.0223 & 67 & 2.886 \\
-\texttt{buttermilk\_biscuits} & 1 & 99.19\% & 0.0294 & 53 & 11.860 & 99.86\% & 0.0098 & 13 & 2.940 \\
-\texttt{caesar\_salad} & 2 & 99.28\% & 0.0216 & 185 & 11.728 & 99.11\% & 0.0322 & 46 & 2.907 \\
-\texttt{calzone} & 2 & 99.08\% & 0.0226 & 126 & 11.787 & 99.42\% & 0.0154 & 31 & 2.922 \\
-\texttt{cheesecake} & 2 & 98.74\% & 0.0334 & 318 & 11.595 & 98.84\% & 0.0363 & 79 & 2.874 \\
-\texttt{chicken\_piccata} & 1 & 99.24\% & 0.0311 & 49 & 11.864 & 99.90\% & 0.0088 & 12 & 2.941 \\
-\texttt{chicken\_wings} & 5 & 99.87\% & 0.0043 & 359 & 11.554 & 99.22\% & 0.0246 & 89 & 2.864 \\
-\texttt{cinnamon\_roll} & 3 & 99.77\% & 0.0075 & 304 & 11.609 & 99.32\% & 0.0284 & 76 & 2.877 \\
-\texttt{cobb\_salad} & 2 & 99.36\% & 0.0172 & 89 & 11.824 & 99.69\% & 0.0124 & 22 & 2.931 \\
-\texttt{coleslaw} & 2 & 99.05\% & 0.0278 & 301 & 11.612 & 99.28\% & 0.0199 & 75 & 2.878 \\
-\texttt{corn\_dog} & 1 & 99.32\% & 0.0236 & 40 & 11.873 & 99.97\% & 0.0066 & 10 & 2.943 \\
-\texttt{creamed\_spinach} & 1 & 99.20\% & 0.0310 & 52 & 11.861 & 99.90\% & 0.0083 & 12 & 2.941 \\
-\texttt{donut} & 3 & 99.77\% & 0.0070 & 278 & 11.635 & 99.49\% & 0.0213 & 69 & 2.884 \\
-\texttt{empanada} & 2 & 99.13\% & 0.0222 & 116 & 11.797 & 99.63\% & 0.0127 & 29 & 2.924 \\
-\texttt{french\_fries} & 1 & 99.34\% & 0.0257 & 36 & 11.877 & 100.00\% & 0.0032 & 8 & 2.945 \\
-\texttt{frittata} & 5 & 99.70\% & 0.0080 & 344 & 11.569 & 98.43\% & 0.0760 & 85 & 2.868 \\
-\texttt{granola\_bar} & 2 & 99.30\% & 0.0189 & 199 & 11.714 & 99.28\% & 0.0195 & 49 & 2.904 \\
-\texttt{grilled\_cheese\_sandwich} & 5 & 99.76\% & 0.0070 & 390 & 11.523 & 99.05\% & 0.0374 & 97 & 2.856 \\
-\texttt{guacamole} & 6 & 99.92\% & 0.0034 & 232 & 11.681 & 99.52\% & 0.0183 & 57 & 2.896 \\
-\texttt{ice\_cream} & 6 & 99.96\% & 0.0016 & 245 & 11.668 & 99.22\% & 0.0421 & 61 & 2.892 \\
-\texttt{kebabs} & 3 & 99.79\% & 0.0074 & 305 & 11.608 & 99.11\% & 0.0385 & 76 & 2.877 \\
-\texttt{key\_lime\_pie} & 1 & 99.13\% & 0.0355 & 63 & 11.850 & 99.80\% & 0.0109 & 15 & 2.938 \\
-\texttt{lasagne} & 5 & 99.82\% & 0.0067 & 301 & 11.612 & 99.01\% & 0.0385 & 75 & 2.878 \\
-\texttt{macaroni\_and\_cheese} & 2 & 99.00\% & 0.0281 & 259 & 11.654 & 99.25\% & 0.0256 & 64 & 2.889 \\
-\texttt{margarita} & 5 & 99.92\% & 0.0030 & 305 & 11.608 & 99.32\% & 0.0179 & 76 & 2.877 \\
-\texttt{martini} & 2 & 99.50\% & 0.0139 & 252 & 11.661 & 99.66\% & 0.0100 & 63 & 2.890 \\
-\texttt{mashed\_potatoes} & 2 & 99.29\% & 0.0210 & 284 & 11.629 & 99.15\% & 0.0290 & 70 & 2.883 \\
-\texttt{meatballs} & 3 & 99.26\% & 0.0209 & 339 & 11.574 & 98.81\% & 0.0410 & 84 & 2.869 \\
-\texttt{meatloaf} & 3 & 99.65\% & 0.0105 & 285 & 11.628 & 99.35\% & 0.0301 & 71 & 2.882 \\
-\texttt{muffin} & 3 & 99.72\% & 0.0095 & 320 & 11.593 & 98.98\% & 0.0430 & 79 & 2.874 \\
-\texttt{nachos} & 3 & 99.26\% & 0.0213 & 238 & 11.675 & 98.98\% & 0.0386 & 59 & 2.894 \\
-\texttt{omelet} & 3 & 99.14\% & 0.0256 & 288 & 11.625 & 98.50\% & 0.0608 & 71 & 2.882 \\
-\texttt{pancakes} & 3 & 99.75\% & 0.0080 & 312 & 11.601 & 99.42\% & 0.0214 & 78 & 2.875 \\
-\texttt{pizza} & 4 & 99.77\% & 0.0076 & 269 & 11.644 & 98.74\% & 0.0575 & 67 & 2.886 \\
-\texttt{popcorn} & 3 & 99.78\% & 0.0062 & 246 & 11.667 & 99.66\% & 0.0096 & 61 & 2.892 \\
-\texttt{quesadilla} & 5 & 99.82\% & 0.0047 & 321 & 11.592 & 99.32\% & 0.0342 & 80 & 2.873 \\
-\texttt{salad} & 6 & 99.83\% & 0.0064 & 358 & 11.555 & 98.47\% & 0.0721 & 89 & 2.864 \\
-\texttt{sloppy\_joe} & 6 & 99.95\% & 0.0012 & 172 & 11.741 & 99.76\% & 0.0160 & 43 & 2.910 \\
-\texttt{smoothie} & 3 & 99.77\% & 0.0067 & 332 & 11.581 & 99.73\% & 0.0083 & 82 & 2.871 \\
-\texttt{soup} & 5 & 99.70\% & 0.0088 & 362 & 11.551 & 98.50\% & 0.0625 & 90 & 2.863 \\
-\texttt{spaghetti} & 2 & 99.30\% & 0.0183 & 226 & 11.687 & 99.25\% & 0.0212 & 56 & 2.897 \\
-\texttt{stuffed\_pepper} & 3 & 99.87\% & 0.0053 & 180 & 11.733 & 99.80\% & 0.0067 & 44 & 2.909 \\
-\texttt{waffles} & 4 & 99.92\% & 0.0033 & 355 & 11.558 & 99.73\% & 0.0172 & 88 & 2.865 \\
-
-			\end{tabular}
-
-
+			\de{Das beste Ergebnis mit einer Modellgenauigkeit von 75,75\% konnte mit \(k=9\) erreicht werden. Darüber bzw. darunter fallen die Werte ab. Der Aufwand für den Modellaufbau um binäre Klassifikatoren zu erstellen, ist verglichen mit anderen Verfahren ist sehr hoch. Es benötigt 50 mal mehr Rechenzeit für die Erstellung der Modelle, wohingegen die Modellgenauigkeit, die damit erreicht werden kann, hingegen vergleichsweise gering ist. Beim Datensatz \texttt{food-50} brachte dieser Versuchsaufbau keine Verbesserungen. Das Ergebnis befindet sich im Gegenteil sogar unter den Erwartungen.}
+			\en{The best result with a model accuracy of 75.75\% was achieved with \(k=9\). Above or below this the accuracy decreases. The complexity of building models to create binary classifiers is very extensive and expensive compared to other methods. It requires 50 times more computing time to create the models compared to a single model, whereas the model accuracy that can be achieved is relatively low. For the data set \texttt{food-50} this experimental setup did not show any improvements. On the contrary, the result is actually below the expectations.}
 
 	% -------------------- %
 	% Summary and outlook %
@@ -2138,6 +2150,7 @@ user$ ml train \
 		\addcontentsline{toc}{section}{List of acronyms}
 		\begin{acronym}[General]
 			\setlength{\itemsep}{0em}
+			\acro{acc}[acc.]{accuracy}
 			\acro{ai}[AI]{artificial intelligence}
 			\acro{api}[API]{application programming interface}
 			\acro{ann}[ANN]{artificial neural network}
@@ -2270,7 +2283,7 @@ user$ ml train \
 			\end{figure}
 			
 			
-			
+		\clearpage
 		\subsection{Example of a dropout layer after the \ac{cnn} model (Python code example)}
 			\begin{lstlisting}[frame=single,caption={Example of a dropout layer after the \ac{cnn} model},captionpos=b,basicstyle=\small,language=Python,label=lst:lstlisting_python_dropout]
 # definition of some parameters
@@ -2365,6 +2378,81 @@ model = Model(inputs = base_model.input, outputs = predictions)
 					\end{tabularx}
 				}
 				\captionof{table}[Grouped classes with agglomerative hierarchical clustering]{Grouped classes with agglomerative hierarchical clustering. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes_ahc}
+			\end{table}
+
+
+
+		\clearpage
+		\subsection{Model accuracy of binary classification}
+			\renewcommand\theadfont{\bfseries}
+			\begin{table}[htb]
+				\footnotesize
+				\centering
+				{\def\arraystretch{1}\tabcolsep=5pt
+					{\setlength{\extrarowheight}{0.5pt}
+						\begin{tabularx}{\linewidth}{ l | r | r r r r | r r r r }
+							\hline
+							& & \multicolumn{4}{c}{\thead{Training}} & \multicolumn{4}{|c}{\thead{Validation}} \\
+							\hline
+							\thead[l]{Class\\ \ } & \thead[l]{Best\\ epoch} &
+							\thead[l]{Acc.\\ top-1} & \thead[l]{Loss\\ \ } & \thead[l]{nr. files\\ positive} & \thead[l]{nr. files\\ negative} &
+							\thead[l]{Acc.\\ top-1} & \thead[l]{Loss\\ \ } & \thead[l]{nr. files\\ positive} & \thead[l]{nr. files\\ negative} \\
+							\hline
+							\texttt{baked\_beans} & 3 & 99.55\% & 0.0117 & 167 & 11.746 & 99.66\% & 0.0138 & 41 & 2.912 \\
+							\texttt{baked\_salmon} & 1 & 99.12\% & 0.0390 & 65 & 11.848 & 99.76\% & 0.0170 & 16 & 2.937 \\
+							\texttt{beef\_stew} & 2 & 98.71\% & 0.0339 & 300 & 11.613 & 99.11\% & 0.0339 & 74 & 2.879 \\
+							\texttt{beef\_stroganoff} & 2 & 99.38\% & 0.0151 & 98 & 11.815 & 99.80\% & 0.0069 & 24 & 2.929 \\
+							\texttt{brownies} & 4 & 99.82\% & 0.0053 & 334 & 11.579 & 99.22\% & 0.0261 & 83 & 2.870 \\
+							\texttt{bundt\_cake} & 2 & 99.42\% & 0.0175 & 307 & 11.606 & 99.56\% & 0.0172 & 76 & 2.877 \\
+							\texttt{burger} & 6 & 99.97\% & 0.0013 & 286 & 11.627 & 99.69\% & 0.0178 & 71 & 2.882 \\
+							\texttt{burrito} & 4 & 99.89\% & 0.0039 & 268 & 11.645 & 99.46\% & 0.0223 & 67 & 2.886 \\
+							\texttt{buttermilk\_biscuits} & 1 & 99.19\% & 0.0294 & 53 & 11.860 & 99.86\% & 0.0098 & 13 & 2.940 \\
+							\texttt{caesar\_salad} & 2 & 99.28\% & 0.0216 & 185 & 11.728 & 99.11\% & 0.0322 & 46 & 2.907 \\
+							\texttt{calzone} & 2 & 99.08\% & 0.0226 & 126 & 11.787 & 99.42\% & 0.0154 & 31 & 2.922 \\
+							\texttt{cheesecake} & 2 & 98.74\% & 0.0334 & 318 & 11.595 & 98.84\% & 0.0363 & 79 & 2.874 \\
+							\texttt{chicken\_piccata} & 1 & 99.24\% & 0.0311 & 49 & 11.864 & 99.90\% & 0.0088 & 12 & 2.941 \\
+							\texttt{chicken\_wings} & 5 & 99.87\% & 0.0043 & 359 & 11.554 & 99.22\% & 0.0246 & 89 & 2.864 \\
+							\texttt{cinnamon\_roll} & 3 & 99.77\% & 0.0075 & 304 & 11.609 & 99.32\% & 0.0284 & 76 & 2.877 \\
+							\texttt{cobb\_salad} & 2 & 99.36\% & 0.0172 & 89 & 11.824 & 99.69\% & 0.0124 & 22 & 2.931 \\
+							\texttt{coleslaw} & 2 & 99.05\% & 0.0278 & 301 & 11.612 & 99.28\% & 0.0199 & 75 & 2.878 \\
+							\texttt{corn\_dog} & 1 & 99.32\% & 0.0236 & 40 & 11.873 & 99.97\% & 0.0066 & 10 & 2.943 \\
+							\texttt{creamed\_spinach} & 1 & 99.20\% & 0.0310 & 52 & 11.861 & 99.90\% & 0.0083 & 12 & 2.941 \\
+							\texttt{donut} & 3 & 99.77\% & 0.0070 & 278 & 11.635 & 99.49\% & 0.0213 & 69 & 2.884 \\
+							\texttt{empanada} & 2 & 99.13\% & 0.0222 & 116 & 11.797 & 99.63\% & 0.0127 & 29 & 2.924 \\
+							\texttt{french\_fries} & 1 & 99.34\% & 0.0257 & 36 & 11.877 & 100.00\% & 0.0032 & 8 & 2.945 \\
+							\texttt{frittata} & 5 & 99.70\% & 0.0080 & 344 & 11.569 & 98.43\% & 0.0760 & 85 & 2.868 \\
+							\texttt{granola\_bar} & 2 & 99.30\% & 0.0189 & 199 & 11.714 & 99.28\% & 0.0195 & 49 & 2.904 \\
+							\texttt{grilled\_cheese\_sandwich} & 5 & 99.76\% & 0.0070 & 390 & 11.523 & 99.05\% & 0.0374 & 97 & 2.856 \\
+							\texttt{guacamole} & 6 & 99.92\% & 0.0034 & 232 & 11.681 & 99.52\% & 0.0183 & 57 & 2.896 \\
+							\texttt{ice\_cream} & 6 & 99.96\% & 0.0016 & 245 & 11.668 & 99.22\% & 0.0421 & 61 & 2.892 \\
+							\texttt{kebabs} & 3 & 99.79\% & 0.0074 & 305 & 11.608 & 99.11\% & 0.0385 & 76 & 2.877 \\
+							\texttt{key\_lime\_pie} & 1 & 99.13\% & 0.0355 & 63 & 11.850 & 99.80\% & 0.0109 & 15 & 2.938 \\
+							\texttt{lasagne} & 5 & 99.82\% & 0.0067 & 301 & 11.612 & 99.01\% & 0.0385 & 75 & 2.878 \\
+							\texttt{macaroni\_and\_cheese} & 2 & 99.00\% & 0.0281 & 259 & 11.654 & 99.25\% & 0.0256 & 64 & 2.889 \\
+							\texttt{margarita} & 5 & 99.92\% & 0.0030 & 305 & 11.608 & 99.32\% & 0.0179 & 76 & 2.877 \\
+							\texttt{martini} & 2 & 99.50\% & 0.0139 & 252 & 11.661 & 99.66\% & 0.0100 & 63 & 2.890 \\
+							\texttt{mashed\_potatoes} & 2 & 99.29\% & 0.0210 & 284 & 11.629 & 99.15\% & 0.0290 & 70 & 2.883 \\
+							\texttt{meatballs} & 3 & 99.26\% & 0.0209 & 339 & 11.574 & 98.81\% & 0.0410 & 84 & 2.869 \\
+							\texttt{meatloaf} & 3 & 99.65\% & 0.0105 & 285 & 11.628 & 99.35\% & 0.0301 & 71 & 2.882 \\
+							\texttt{muffin} & 3 & 99.72\% & 0.0095 & 320 & 11.593 & 98.98\% & 0.0430 & 79 & 2.874 \\
+							\texttt{nachos} & 3 & 99.26\% & 0.0213 & 238 & 11.675 & 98.98\% & 0.0386 & 59 & 2.894 \\
+							\texttt{omelet} & 3 & 99.14\% & 0.0256 & 288 & 11.625 & 98.50\% & 0.0608 & 71 & 2.882 \\
+							\texttt{pancakes} & 3 & 99.75\% & 0.0080 & 312 & 11.601 & 99.42\% & 0.0214 & 78 & 2.875 \\
+							\texttt{pizza} & 4 & 99.77\% & 0.0076 & 269 & 11.644 & 98.74\% & 0.0575 & 67 & 2.886 \\
+							\texttt{popcorn} & 3 & 99.78\% & 0.0062 & 246 & 11.667 & 99.66\% & 0.0096 & 61 & 2.892 \\
+							\texttt{quesadilla} & 5 & 99.82\% & 0.0047 & 321 & 11.592 & 99.32\% & 0.0342 & 80 & 2.873 \\
+							\texttt{salad} & 6 & 99.83\% & 0.0064 & 358 & 11.555 & 98.47\% & 0.0721 & 89 & 2.864 \\
+							\texttt{sloppy\_joe} & 6 & 99.95\% & 0.0012 & 172 & 11.741 & 99.76\% & 0.0160 & 43 & 2.910 \\
+							\texttt{smoothie} & 3 & 99.77\% & 0.0067 & 332 & 11.581 & 99.73\% & 0.0083 & 82 & 2.871 \\
+							\texttt{soup} & 5 & 99.70\% & 0.0088 & 362 & 11.551 & 98.50\% & 0.0625 & 90 & 2.863 \\
+							\texttt{spaghetti} & 2 & 99.30\% & 0.0183 & 226 & 11.687 & 99.25\% & 0.0212 & 56 & 2.897 \\
+							\texttt{stuffed\_pepper} & 3 & 99.87\% & 0.0053 & 180 & 11.733 & 99.80\% & 0.0067 & 44 & 2.909 \\
+							\texttt{waffles} & 4 & 99.92\% & 0.0033 & 355 & 11.558 & 99.73\% & 0.0172 & 88 & 2.865 \\
+							\hline
+						\end{tabularx}
+					}
+				}
+				\captionof{table}{Overview binary classification}\label{tbl:table_binary_classification_overview}
 			\end{table}
 		
 		
