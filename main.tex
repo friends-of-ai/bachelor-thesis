@@ -1982,8 +1982,8 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 					\end{equation}
 					
 					\paragraph{\(k\)-means clustering}
-						\de{Das Ergebnis aller 50 Vektoren \(\overline{\boldsymbol\lambda}_{class_{m}}\) der Gleichung \eqref{eq:equation_hierarchical_classification_mean} werden nun mittels \(k\)-means clustering untersucht. Dabei werden sechs Gruppen geclustert (\(k=6\)). Die Verteilung ist wie nachfolgend dargestellt:}
-						\en{The result of all 50 vectors \(\overline{\boldsymbol\lambda}\) of the equation \eqref{eq:equation_hierarchical_classification_mean} are now examined by \(k\)-means clustering. Six groups are clustered (\(k=6\)). The distribution is as shown in Table \ref{tbl:table_grouped_classes_short_view} (a more detailed version can be found in Table \ref{fig:analysis_grouped_classes_with_k_means} in the appendix).}
+						\de{Das Ergebnis aller 50 Vektoren \(\overline{\boldsymbol\lambda}_{class_{m}}\) der Gleichung \eqref{eq:equation_hierarchical_classification_mean} werden nun mittels \(k\)-means clustering untersucht. Dabei werden sechs Gruppen geclustert (\(k=8\)). Die Verteilung ist wie nachfolgend dargestellt:}
+						\en{The result of all 50 vectors \(\overline{\boldsymbol\lambda}\) of the equation \eqref{eq:equation_hierarchical_classification_mean} are now examined by \(k\)-means clustering. Six groups are clustered (\(k=8\)). The distribution is as shown in Table \ref{tbl:table_grouped_classes_short_view} (a more detailed version can be found in Table \ref{fig:analysis_grouped_classes_with_k_means} in the appendix).}
 
 						\renewcommand\theadfont{\bfseries}
 						\begin{table}[htb]
@@ -1991,8 +1991,7 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 							{\def\arraystretch{1}\tabcolsep=5pt
 								{\setlength{\extrarowheight}{2pt}
 									\begin{tabular}{ l | r | r | r | r | r  }
-
-														\hline
+										\hline
 										\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} \\
 										\hline
 										preclassification & 8 & 2,953 & 100.0\% & 90.02\% & \\
@@ -2027,6 +2026,42 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 					\paragraph{Agglomerative hierarchical clustering}
 
 						Figure \ref{fig:analysis_grouped_classes_with_ahc}
+
+						\renewcommand\theadfont{\bfseries}
+						\begin{table}[htb]
+							\centering
+							{\def\arraystretch{1}\tabcolsep=5pt
+								{\setlength{\extrarowheight}{2pt}
+									\begin{tabular}{ l | r | r | r | r | r  }
+										\hline
+										\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} \\
+										\hline
+									preclassification & 8 & 2,953 & 100.0\% & \pbox[t]{20cm}{\flushRight 88.93\% \\ {\scriptsize @ ep. 14}} & \\
+									
+										\hline
+										\texttt{group\textsubscript{0}} & 22 & 1,267 & 42.91\% & \pbox[t]{20cm}{\flushRight 84.17\% \\ {\scriptsize @ ep. 18}} & 74.85\% \\
+				
+										\texttt{group\textsubscript{1}} & 5 & 296 & 10.02\% & \pbox[t]{20cm}{\flushRight 93.21\% \\ {\scriptsize @ ep. 16 }} & 82.89\% \\
+				
+										\texttt{group\textsubscript{2}} & 4 & 249 & 8.43\% & \pbox[t]{20cm}{\flushRight 94.85\% \\ {\scriptsize @ ep. 11 }} & 84.35\% \\
+				
+										\texttt{group\textsubscript{3}} & 1 & 63 & 2.13\% & 100.0\% & 88.93\% \\
+				
+										\texttt{group\textsubscript{4}} & 2 & 158 & 5.35\% & \pbox[t]{20cm}{\flushRight 99.30\% \\ {\scriptsize @ ep. 10 }} & 88.31\% \\
+				
+										\texttt{group\textsubscript{5}} & 12 & 677 & 22.93\% & \pbox[t]{20cm}{\flushRight 85.63\% \\ {\scriptsize @ ep. 11 }} & 76.15\% \\
+				
+										\texttt{group\textsubscript{6}} & 3 & 160 & 5.42\% & \pbox[t]{20cm}{\flushRight 93.13\% \\ {\scriptsize @ ep. 5 }} & 82.82\% \\
+				
+										\texttt{group\textsubscript{7}} & 1 & 83 & 2.81\% & 100.0\% & 88.93\% \\
+				
+										\hline
+										Overall & 50 & 2,953 & 100,0\% & \multicolumn{2}{r}{{\(acc_{top-1}\) = \large \textbf{78.60\%}}}
+									\end{tabular}
+								}
+							}
+							\captionof{table}[Grouped classes with agglomerative hierarchical clustering]{Grouped classes with agglomerative hierarchical clustering. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes_ahc_short_view}
+						\end{table}
 						
 						acctop-1 = 78.60\% (the model accuracy was calculated according to Equation \eqref{eqn:equation_statistic_top_1}, see also table in the appendix \ref{tbl:table_grouped_classes_ahc})
 						
