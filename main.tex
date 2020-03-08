@@ -2155,14 +2155,20 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 				\captionof{table}{Comparison of the model accuracy at different k values.}\label{tbl:table_binary_classification_acc}
 			\end{table}
 
-			\de{Das beste Ergebnis mit einer Modellgenauigkeit von 75,75\% konnte mit \(k=9\) erreicht werden. Darüber bzw. darunter fallen die Werte ab. Der Aufwand für den Modellaufbau um binäre Klassifikatoren zu erstellen, ist verglichen mit anderen Verfahren ist sehr hoch. Es benötigt 50 mal mehr Rechenzeit für die Erstellung der Modelle, wohingegen die Modellgenauigkeit, die damit erreicht werden kann, hingegen vergleichsweise gering ist. Beim Datensatz \texttt{food-50} brachte dieser Versuchsaufbau keine Verbesserungen. Das Ergebnis befindet sich im Gegenteil sogar unter den Erwartungen.}
-			\en{The best result with a model accuracy of 75.75\% was achieved with \(k=9\). Above or below this the accuracy decreases. The complexity of building models to create binary classifiers is very extensive and expensive compared to other methods. It requires 50 times more computing time to create the models compared to a single model, whereas the model accuracy that can be achieved is relatively low. For the data set \texttt{food-50} this experimental setup did not show any improvements. On the contrary, the result is actually below the expectations.}
+			\de{Das beste Ergebnis mit einer Modellgenauigkeit von 75,75\% konnte mit \(k=9\) erreicht werden. Darüber bzw. darunter fallen die Werte ab. Der Aufwand für den Modellaufbau um binäre Klassifikatoren zu erstellen, ist verglichen mit anderen Verfahren ist sehr hoch. Es benötigt 50 mal mehr Rechenzeit für die Erstellung der Modelle, wohingegen die Modellgenauigkeit, die damit erreicht werden kann, hingegen vergleichsweise gering ist. Beim Datensatz \texttt{food-50} brachte dieser Versuchsaufbau keine Verbesserungen. Das Ergebnis befindet sich im Gegenteil sogar unter den Erwartungen. Binäre Klassifkationen eigenen sich nicht dazu die Modellgenauigkeit von kleinen Datensets zu verbessern.}
+			\en{The best result with a model accuracy of 75.75\% was achieved with \(k=9\). Above or below this the accuracy decreases. The complexity of building models to create binary classifiers is very extensive and expensive compared to other methods. It requires 50 times more computing time to create the models compared to a single model, whereas the model accuracy that can be achieved is relatively low. For the data set \texttt{food-50} this experimental setup did not show any improvements. On the contrary, the result is actually below the expectations. Binary classifications are not well suited to improve the model accuracy of small data sets.}
 
 	% -------------------- %
 	% Summary and outlook %
 	% -------------------- %
 	\pagebreak
 	\section{Summary and outlook}
+		\de{Während dieser Arbeit wurden verschiedene Hyperparameter und Techniken zum Trainieren und Validieren von Bildklassifikatoren betrachtet und miteinander verglichen. Das Training fand mit den Standard-Einstellungen aus dem Kapitel ``\nameref{sec:section_default_setup}'' statt.}
+		\en{During this thesis different hyperparameters and techniques for training and validating of image classifiers were considered and compared. The training was performed with the default settings from the chapter ``\nameref{sec:section_default_setup}''.}
+		
+
+		
+
 		\hl{What's the outcome? What else is possible? How can this work be continued? In here!}
 		
 		\begin{itemize}
