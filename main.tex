@@ -1873,7 +1873,6 @@ user$ ml train \
 			\subsubsection{Comparison of different neural network types}
 				\de{In diesem Kapitel geht es um die letzten Schichten am Ende des Netzwerkes. Das \ac{cnn} Netzwerk für gewöhnlich am Ende mit einer oder mehreren Schichten von „normalen“ vollständig verbundenen Neuronen erweitert (\ac{dl} / Fully Connected Layer, siehe Kapitel ``\ref{sec:section_convolutional_neural_network}''). Diese Layer übersetzen die Eigenschaften aus dem \ac{cnn} in die Klassengenauigkeiten, welche vorhergesagt werden sollen. Bisher bestand in allen Experimenten diese Schicht aus einem einfachem Netzerk, bei dem eine Dropout Schicht gefolgt von einem Softmax Layer mit der Größe 50 verbunden wurde. Was passiert wenn man diese Schichten gegen komplexere bzw. noch einfachere Schichten tauscht (Figure \nameref{fig:evaluation_different_nn_types})?}
 				\en{This chapter deals with the last layers at the end of the network. The \ac{cnn} network at the end is usually completed with one or more layers of ``normal'' fully connected neurons (\ac{dl} / fully connected layer, see chapter ``\nameref{sec:section_convolutional_neural_network}''). These layers translate the properties from the convolutional part of the network into the class accuracies (see chapter ``\nameref{sec:section_loss_function}''). So far in all experiments this layer was a simple network, where a dropout layer followed by a softmax layer with size 50 was connected. What happens if you replace these layers with more complex or even simpler layers? (Figure \ref{fig:evaluation_different_nn_types})}
-
 			
 				\begin{figure}[H]
 					\begin{center}
@@ -1886,7 +1885,10 @@ user$ ml train \
 					\label{fig:evaluation_different_nn_types}
 				\end{figure}
 
-				Link\autocite{basha2020impact}
+				\de{In einem Artikel mit dem Titel ``Impact of Fully Connected Layers on Performance of
+Convolutional Neural Networks for Image Classification\autocite{basha2020impact}'' kam man zu dem Ergebnis, dass insbesondere tiefe CNNs weniger tiefe FC Layer am Ende benötigen um gute Ergebnisse zu erzielen. Das konnte mit diesem Experiment bestätigt werden. Das beste Ergebnis von 83,52\% liefert der Aufbau ohne Dropout Schicht und nur einem DL. Die Modellgenauigkeiten unterscheiden sich ansonsten in diesem Experiment nicht allzu stark. Überraschenderweise erreicht der komplexeste Aufbau das zweitbesteste Ergebnis von 83,43\%. Es besteht aus einem Dropout-Layer direkt nach der CNN Ausgabe und wird danach um drei weitere DL erweitert. Die jeweils letzte DL Schicht gibt den Wahrscheinlichkeitsvektor \(\boldsymbol\lambda\) zurück. Ein zusätzliches Hinzufügen von weiteren DLs und sogar einer Dropout Schicht ist bei aktuellen CNNs wie \texttt{InceptionV3} nicht notwendig.}
+				\en{In an article entitled ``Impact of Fully Connected Layers on Performance of
+Convolutional Neural Networks for Image Classification\autocite{basha2020impact}'' one came to the conclusion that especially deep \acp{cnn} need less deep \acp{fcl} at the end to achieve good results. This could be confirmed with this experiment.  The best result of 83.52\% is achieved by the setup without dropout layer and only one \ac{dl}. Otherwise the model accuracies do not differ too much in this experiment. Surprisingly, the most complex setup achieved the second best result of 83.43\%.  It consists of a dropout layer directly after the \ac{cnn} output and is extended by three more \ac{dl} afterwards.  The last \ac{dl} layer returns the probability vector \(\boldsymbol\lambda\). Adding more \acp{dl} and even a dropout layer is not necessary for current \acp{cnn} like \texttt{InceptionV3} for image classification on small data sets.}
 				
 
 	
@@ -2162,6 +2164,7 @@ user$ ml train \
 			\acro{ds}[DS]{data set}
 			\acro{fn}[FN]{false negative}
 			\acro{fp}[FP]{false positive}
+			\acro{fcl}[FCL]{fully connected layer}
 			\acro{gpu}[GPU]{graphics processing unit}
 			\acro{hp}[HP]{hyperparameter}
 			\acro{ml}[ML]{machine learning}
