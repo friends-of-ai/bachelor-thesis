@@ -2165,49 +2165,57 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 	\section{Summary and outlook}
 		\de{Während dieser Arbeit wurden verschiedene Hyperparameter und Techniken zum Trainieren und Validieren von Bildklassifikatoren betrachtet und miteinander verglichen. Das Training fand mit den Standard-Einstellungen aus dem Kapitel ``\nameref{sec:section_default_setup}'' statt.}
 		\en{During this thesis different hyperparameters and techniques for training and validating of image classifiers were considered and compared. The training was performed with the default settings from the chapter ``\nameref{sec:section_default_setup}''.}
+
+		\de{Es konnte gezeigt werden, dass mit einem unbalanciertem, händisch gelabelten Datensatz bestehen aus 11.913 Trainingsdaten und 2.953 Validierungsdaten eine Modellgenauigkeit bis zu 85,60\% erreicht wurde. Dabei wurden bis zu 10 Stunden Rechenzeit auf einer NVIDIA GeForce GTX 1060 mit 6GB Speicher benötigt. Bei einem durchschnittlichen Rechenaufwand von zweieinhalb Stunden konnten Modellgenauigkeite bis zu 83,59\% erreicht werden.}
+		\en{It could be demonstrated that a model accuracy up to 85.60\% was achieved with an unbalanced, manually labelled data set consisting of 11,913 training elements and 2,953 validation elements. This required up to 10 hours of computing time on a NVIDIA GeForce GTX 1060 with 6 GByte of memory. With an average of two and a half hours of computing time for 21 training epochs, model accuracies of up to 83.59\% were achieved.}
 		
 
-		
-
-		\hl{What's the outcome? What else is possible? How can this work be continued? In here!}
-		
-		\begin{itemize}
-			\setlength\itemsep{0em}
-			\item What are the best parameters?
-					\begin{itemize}
-						\setlength\itemsep{0em}
-						\item \textbf{model:} \texttt{InceptionV3}
-						\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
-						\item \textbf{epochs:} 21 (the learning rate \(\eta\) from epoch 15 to 21 is 0.00025)
-						\item \textbf{image size:} 299x299 pixels\footnote{The original image is reduced to 299 pixels. If it is not a square image, the larger side is scaled down to 299 pixels.}
-						\item \textbf{batch size:} 16
-						\item \textbf{drop out:} 50\%
-						\item \textbf{\ac{cnn} weights:} ImageNet
-						\item \textbf{activation function:} \ac{relu}
-						\item \textbf{optimizer:} \ac{sgd} with Nesterov
-						\item \textbf{momentum:} 0.9 (with decay 0.0)
-						\item the entire training and validation set (14,866 images - unless otherwise specified)
-					\end{itemize}
-			\item What is the best approach?
-			\item What else should be investigated?
-			\item For further research, it would be a good idea to find out from which number of training data sets no further significant increases in accuracy are possible.
+		\begin{comment}
+			Vergleich mit Google? Wieviel Prozent.
+			Domaine
+			Eigener Aufbau
+			
+	
+			\hl{What's the outcome? What else is possible? How can this work be continued? In here!}
+			
 			\begin{itemize}
 				\setlength\itemsep{0em}
-				\item More precise analysis of incorrectly classified data: Is there any room for improvement here?
+				\item What are the best parameters?
+						\begin{itemize}
+							\setlength\itemsep{0em}
+							\item \textbf{model:} \texttt{InceptionV3}
+							\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
+							\item \textbf{epochs:} 21 (the learning rate \(\eta\) from epoch 15 to 21 is 0.00025)
+							\item \textbf{image size:} 299x299 pixels\footnote{The original image is reduced to 299 pixels. If it is not a square image, the larger side is scaled down to 299 pixels.}
+							\item \textbf{batch size:} 16
+							\item \textbf{drop out:} 50\%
+							\item \textbf{\ac{cnn} weights:} ImageNet
+							\item \textbf{activation function:} \ac{relu}
+							\item \textbf{optimizer:} \ac{sgd} with Nesterov
+							\item \textbf{momentum:} 0.9 (with decay 0.0)
+							\item the entire training and validation set (14,866 images - unless otherwise specified)
+						\end{itemize}
+				\item What is the best approach?
+				\item What else should be investigated?
+				\item For further research, it would be a good idea to find out from which number of training data sets no further significant increases in accuracy are possible.
+				\begin{itemize}
+					\setlength\itemsep{0em}
+					\item More precise analysis of incorrectly classified data: Is there any room for improvement here?
+				\end{itemize}
+				\item What else is missing in this thesis?
+				\item Questions asked in this thesis:
+				\begin{itemize}
+					\setlength\itemsep{0em}
+					\item Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable?
+				\end{itemize}
+				\item More ideas
+				\begin{itemize}
+					\setlength\itemsep{0em}
+					\item Don't Decay the Learning Rate, Increase the Batch Size: https://arxiv.org/abs/1711.00489
+					\item Enrichment of the data set from other data sources
+				\end{itemize}
 			\end{itemize}
-			\item What else is missing in this thesis?
-			\item Questions asked in this thesis:
-			\begin{itemize}
-				\setlength\itemsep{0em}
-				\item Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable?
-			\end{itemize}
-			\item More ideas
-			\begin{itemize}
-				\setlength\itemsep{0em}
-				\item Don't Decay the Learning Rate, Increase the Batch Size: https://arxiv.org/abs/1711.00489
-				\item Enrichment of the data set from other data sources
-			\end{itemize}
-		\end{itemize}
+		\end{comment}
 		
 		
 
@@ -2337,7 +2345,7 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 				}
 				\captionof{table}{Performance comparison between \ac{gpu} and \ac{cpu}}\label{tbl:table_performance_comparison}
 			\end{table}
-			\footnotetext{Depending on the best result, which is marked with factor 1.0.}
+			\footnotetext{Depending on the best result, which is marked with factor 1.00x}
 	
 
 		\subsection{Number of training and validation files}
@@ -2552,11 +2560,10 @@ model = Model(inputs = base_model.input, outputs = predictions)
 							\texttt{spaghetti} & 2 & 99.30\% & 0.0183 & 226 & 11.687 & 99.25\% & 0.0212 & 56 & 2.897 \\
 							\texttt{stuffed\_pepper} & 3 & 99.87\% & 0.0053 & 180 & 11.733 & 99.80\% & 0.0067 & 44 & 2.909 \\
 							\texttt{waffles} & 4 & 99.92\% & 0.0033 & 355 & 11.558 & 99.73\% & 0.0172 & 88 & 2.865 \\
-							\hline
 						\end{tabularx}
 					}
 				}
-				\captionof{table}{Overview binary classification}\label{tbl:table_binary_classification_overview}
+				\captionof{table}{Overview of binary classification}\label{tbl:table_binary_classification_overview}
 			\end{table}
 		
 		
