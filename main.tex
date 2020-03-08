@@ -2179,58 +2179,15 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 		\de{In dieser Arbeit wurden die Modelle mit den Standard-Einstellungen aus dem Kapitel ``\nameref{sec:section_default_setup}'' trainiert. Es konnte gezeigt werden, dass viele der darin genannten Hyperparameter und Trainingseigenschaften als Basis für das erste Modell dienen können, um gute Modellgenauigkeiten zu erreichen: Die Anzahl der Lernepochen, die Aktivierungsfunktion, das Training aller CNN Layer, das Verwenden des TL Ansatzes und die Verwendung des kompletten Datensatz. Es gibt aber auch Ausnahmen, bei denen unter Umständen Verbesserungen erfolgen können, wenn man sie durch Vergleichstrainings ausprobiert. Es sei jedoch erwähnt, dass bei diesen Parametern keine großen Sprünge im Vergleich zum Standard-Setup zu erwarten sind. Als Beispiel genannt werden kann hier das Momentum, der Wert zum Verringern der Lernrate während der Epochen und die Batch Size. Ein interessanter Artikel zum Hyperparameter Batch Size aus dem Jahre 2018 bringt einen interessanten Ansatz, den man ebenfalls in zukünftige Untersuchungen mit einbeziehen könnte: ``Don’t decay the learning rate, increase the batch size''\autocite{smith2017don}.}
 		\en{In this thesis the models were trained with the default settings from the chapter ``\nameref{sec:section_default_setup}''. It could be shown that many of the hyper parameters and training properties mentioned there can be used as a basic for the first model to achieve good model accuracy: The number of learning epochs, the activation function, the training of all CNN layers, the use of the TL approach and the use of the complete data set. There are exceptions where improvements can be achieved if they are tried out through comparative training. It should be mentioned that no big jumps are expected in these parameters compared to the standard setup. Examples are the momentum, the value for reducing the learning rate during epochs and the batch size. An interesting article on the hyperparameter batch size from 2018 brings an interesting approach that could also be included in future investigations: ``Don't decay the learning rate, increase the batch size''\autocite{smith2017don}.}
 
+		\de{Desweiteren wurden in dieser Arbeit Optimierungstechniken untersucht. Einige funktionierten in gewissen Grenzen gut. Andere Ideen klangen auf den ersten Blick vielversprechend, waren es jedoch am Ende nicht. Zu den Techniken, die ein Verbesserungspotential aufweisen gehört auf jeden Fall die Data Augmentation (siehe Kapitel ``\nameref{sec:section_data_augmention}''). Es lohnt sich hier mehr Rechenzeit zu investieren, um das Modell nochmals etwas zu verbessern. Ob hier auch das Ausbalancieren des Datensatzes eine Rolle spielt, sollte weiterhin untersucht werden. Es konnte nicht ganz geklärt werden. Auch in welcher Größenordnung nicht ausbalancierte Datensätze die Modellgenauigkeit beeinflussen ist ein Punkte, den man in zukünftige Untersuchungen mit einplanen kann. Aktuelle CNNs sind gut darin Klassifkationen wie zum Beispiel von Bildern durchzuführen. Eine Einführung von hierarchischen Ebenen oder binären Klassifkationen ist hier nicht notwendig, auch wenn sie auf den ersten Blick logisch klingt und das Datensets, wie das hier verwendete \texttt{food-50} nur aus sehr wenigen Klassen besteht. Auch wurde gezeigt, dass es genügt ein einfaches DL mit der Größe der Anzahl von zu klassifizierenden Klassen am Ende des CNNs hinzuzufügen. Eine Dropout Schicht ist nicht notwendig.}
+		\en{Additionally, optimization techniques were investigated in this thesis. Some of them worked well within some limits.  Other ideas seemed promising at first sight, but in the end they were not.  One of the techniques with potential for improvement is data augmentation (see chapter ``\nameref{sec:section_data_augmention}'').  Investing more computing time is recommended here to improve the model accuracy a bit more.  If the balanced data set has also influenced the model accuracy, should be investigated further. It could not be clarified completely.  Also in which dimension unbalanced data sets influence the accuracy of the model is a point that can be included in future investigations. Current \acp{cnn} are good in performing classifications such as images.  An implementation of hierarchical levels or binary classifications is not necessary here, even if it sounds logical at first sight and the data set, like the data set \texttt{food-50} used here, consists of only a few classes. It was also shown that it is sufficient to add a simple \ac{dl} with the size of the number of classes to be classified at the end of the \ac{cnn}. A dropout layer is not necessary.}
 
+		\de{Bildklassifikationen sind ein brandaktuelles Thema in der Wirtschaft und Wissenschaft. Der Wunsch nach immer höheren Modellgenauigkeiten ist hoch, sodass auch hier viele Ideen und Verbesserungsansätze auftauchen. Wie wäre es zum Beispiel das hier genannte Datenset mit weiteren Daten aus weiteren Quellen anzureichern? Das ganze zusammen mit Data Augmentation?}
+		\en{Image classifications are a hot topic in business and science. The desire for increasingly higher model accuracies is huge, so many ideas and approaches for improvements are arising here as well. For instance, how about enriching the data set mentioned here with additional data sets from other sources, like Flickr or Google? All this together with data augmentation?}
 
-
-
-		\begin{comment}
-			Vergleich mit Google? Wieviel Prozent.
-			Domaine
-			Eigener Aufbau
-			
-	
-			\hl{What's the outcome? What else is possible? How can this work be continued? In here!}
-			
-			\begin{itemize}
-				\setlength\itemsep{0em}
-				\item What are the best parameters?
-						\begin{itemize}
-							\setlength\itemsep{0em}
-							\item \textbf{model:} \texttt{InceptionV3}
-							\item \textbf{learning rate:} 0,001 (decreases every 7 epochs to 50\% of the previous value)
-							\item \textbf{epochs:} 21 (the learning rate \(\eta\) from epoch 15 to 21 is 0.00025)
-							\item \textbf{image size:} 299x299 pixels\footnote{The original image is reduced to 299 pixels. If it is not a square image, the larger side is scaled down to 299 pixels.}
-							\item \textbf{batch size:} 16
-							\item \textbf{drop out:} 50\%
-							\item \textbf{\ac{cnn} weights:} ImageNet (\ac{tl})
-							\item \textbf{activation function:} \ac{relu}
-							\item \textbf{optimizer:} \ac{sgd} with Nesterov
-							\item \textbf{momentum:} 0.9 (with decay 0.0)
-							\item the entire training and validation set (14,866 images - unless otherwise specified)
-						\end{itemize}
-				\item What is the best approach?
-				\item What else should be investigated?
-				\item For further research, it would be a good idea to find out from which number of training data sets no further significant increases in accuracy are possible.
-				\begin{itemize}
-					\setlength\itemsep{0em}
-					\item More precise analysis of incorrectly classified data: Is there any room for improvement here?
-				\end{itemize}
-				\item What else is missing in this thesis?
-				\item Questions asked in this thesis:
-				\begin{itemize}
-					\setlength\itemsep{0em}
-					\item Is it a good idea to implement your own implementation or is the step to the software tools of company giants like Microsoft, Google and Co. unavoidable?
-				\end{itemize}
-				\item More ideas
-				\begin{itemize}
-					\setlength\itemsep{0em}
-					\item Don't Decay the Learning Rate, Increase the Batch Size: https://arxiv.org/abs/1711.00489
-					\item Enrichment of the data set from other data sources
-				\end{itemize}
-			\end{itemize}
-		\end{comment}
+		\de{Und zu guter Letzt stellt sich noch die Frage: ``Kann man auf die großen Dienste wie Google und Microsoft verzichten?'' Um diese Frage ganz genau beantworten zu können, müssen weitere Untersuchungen vorgenommen werden. Am besten vergleicht man hierzu den gleichen Validierungsdatensatz an, wie in dieser Arbeit verwendet. Die Frage die bei dieser Untersuchung geklärt werden muss: ``Verbessern sich die Modellgenauigkeiten mit diesen öffentlichen Diensten?'' Gerade wenn es um das Thema begrenzte Domänen geht, wie z.B. Essenserkennungen im Detail, so stellt sich die Frage, ob man nicht doch besser ein eigenes angepasstes Modell erstellt. Mit Erkennungsgenauigkeiten von 85,60\% kann es durchaus in Betracht gezogen werden, eigene Modelle zu erstellen, die auf die jeweilige Problemstellung angepasst sind. Zu erwähnen seien z.B. Produktklassifizierungen, die hier genannte Essensklassifizierung oder zum Beispiel auch datenschutzrelevante Themen wie Gesichtserkennung. Allerdings immer unter dem einen wichtigen Gesichtspunkt: Daten sind teuer zu beschaffen. Deshalb sollte man sie mit Bedacht und Sorgfalt beschaffen. Auch wenn es sich am Ende nur um einen kleinen Datensatz handelt.}
 		
-		
+
 
 	% -------------------- %
 	% List of acronyms %
