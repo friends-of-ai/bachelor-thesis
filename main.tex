@@ -1931,7 +1931,7 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 				\en{The human ability to classify objects does not only work on one level. Categories will naturally overlap and have a hierarchical structure. For example, a human will classify a picture under "pizza", "tuna pizza" or even "fast food", which is correct from this point of view. Depending on the classification, there will only be a "loss of information". However, a person will not mistake a "pizza" as a "martini", which is more likely to be classified as a "drink" or "cocktail"\autocite{rosch2004basic}.}
 				
 				\de{Um herauszufinden, ob eine Vorklassifizierung das Ergebnis verbessert, werden die Klassen in Gruppen aufgeteilt. Die Idee dabei ist, dass nicht mehr ein Modell alle Klassen vorhersagt, sondern die Bilder erstmal in eine Klasse vorsortiert werden. Die entsprechende Gruppe nimmt dann die eigentliche Klassifizierung vor. Dazu wird vorbereitend eine Principal component analysis vorgenommen, um die Ähnlichkeit der Klassen aus dem \texttt{food-50} Trainingsdatensatz zu analysieren. Mit dem Ergebnis werden dann Gruppen erstellt. Vorbereitend wird erneut ein Modell für alle Klassen trainiert: \texttt{InceptionV3}, 21 Epochen, Batch Size 16, Lernrate \(\eta = 0.001\) absteigend um Faktor 0.5 alle 7 Epochen. Mittels diesem Modell wird von allen Trainings- und Validierungsdaten eine Vorhersage durchgeführt und der Wahrscheinlichkeitsvektor bestimmt (One Hot Encoding):}
-				\en{In order to find out whether a pre-classification improves the result, the classes are divided into groups. The idea is that no longer one model predicts all classes, but rather the images are pre-sorted into a group. The corresponding group then carries out the actual classification. For this purpose, a principal component analysis is performed to analyze the similarity of the classes from the \texttt{food-50} training data set. The result will then be used to create groups. In preparation, a model will again be trained for all classes: \texttt{InceptionV3}, 21 epochs, batch size 16, learning rate \(\eta = 0.001\) decreasing by factor 0.5 every seven epochs. Using this model, a prediction is made of all training and validation data and the probability vector is determined (one hot encoding):}
+				\en{In order to find out whether a pre-classification improves the result, the classes are divided into groups. The idea is that no longer one model predicts all classes, but rather the images are pre-sorted into a group. The corresponding group then carries out the actual classification. For this purpose, a principal component analysis is performed to analyze the similarity of the classes from the \texttt{food-50} training data set. The result will then be used to create groups. In preparation, a model will again be trained for all classes: \texttt{InceptionV3}, 21 epochs, batch size 16, learning rate \(\eta = 0.001\) decreasing by factor 0.5 every seven epochs. Using this model, a prediction is made of all training and validation data and the probability vectors are determined:}
 				
 					\begin{equation}
 						\boldsymbol\lambda_{class_{m}} = 
@@ -1946,10 +1946,11 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 						\quad\Biggl\lvert \quad \sum_{i=1}^{50} p_i = 1
 					\end{equation}
 					
-					\de{Von diesen Wahrscheinlichkeitsvektoren wird nun jeweils für jede Klasse ein Durchschnittsvektor aller \(n\) Elemente bestimmt, welche zur entsprechenden Klasse wirklich gehören. Man erhält also für dieses 50 Klassenmodell entsprechend 50 Klassenvektoren mit der Dimension 50.}
-					\en{From these probability vectors, an average vector of all \(n\) elements is determined for each class, which really belong to the respective class. Thus, for this 50 class model, one obtains 50 class vectors with the dimension 50:}
+					\de{Von diesen Wahrscheinlichkeitsvektoren wird nun jeweils für jede Klasse ein Durchschnittsvektor aller \(n\) Elemente bestimmt, welche zur entsprechenden Klasse wirklich gehören. Somit erhält also für dieses 50 Klassenmodell entsprechend 50 Klassenvektoren mit der Dimension 50.}
+					\en{From these probability vectors, an average vector of all \(n\) elements is calculated for each class, which really belongs to the respective class. For this 50 class model, 50 class vectors with the dimension of 50 are obtained.:}
 					
 					\begin{equation}
+						\label{eq:equation_hierarchical_classification_mean}
 						\forall\ 50\ classes, m = 1 \dots 50:
 						\overline{\boldsymbol\lambda}_{class_{m}} =
 						\frac{1}{n} \cdot \sum_{i=1}^{n} \boldsymbol\lambda_{class_{m}}
@@ -1964,7 +1965,7 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 								\inputpgf{images/pgf}{pca.pgf}
 							}
 						\end{center}
-						\caption[Principal component analysis of the \texttt{food-50} model]{Principal component analysis of the \texttt{food-50} model. The x and y axis have no significance. They only stand for the space and the similarity between the classes.}
+						\caption[Principal component analysis of the \texttt{food-50} model]{Principal component analysis of the \texttt{food-50} model. The x and y axis stand for the space and the similarity between the classes. A more detailed and complete version can be found in the appendix (Figure \ref{fig:analysis_pca_food_50_big}).}
 						\label{fig:analysis_pca_food_50}
 					\end{figure}
 					
@@ -1981,30 +1982,51 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 					\end{equation}
 					
 					\paragraph{\(k\)-means clustering}
+						\de{Das Ergebnis aller 50 Vektoren \(\overline{\boldsymbol\lambda}_{class_{m}}\) der Gleichung \eqref{eq:equation_hierarchical_classification_mean} werden nun mittels \(k\)-means clustering untersucht. Dabei werden sechs Gruppen geclustert (\(k=6\)). Die Verteilung ist wie nachfolgend dargestellt:}
+						\en{The result of all 50 vectors \(\overline{\boldsymbol\lambda}\) of the equation \eqref{eq:equation_hierarchical_classification_mean} are now examined by \(k\)-means clustering. Six groups are clustered (\(k=6\)). The distribution is as shown in Table \ref{tbl:table_grouped_classes_short_view} (a more detailed version can be found in Table \ref{fig:analysis_grouped_classes_with_k_means} in the appendix).}
+
+						\renewcommand\theadfont{\bfseries}
+						\begin{table}[htb]
+							\centering
+							{\def\arraystretch{1}\tabcolsep=5pt
+								{\setlength{\extrarowheight}{2pt}
+									\begin{tabular}{ l | r | r | r | r | r  }
+
+														\hline
+										\thead[l]{Group} & \thead[l]{\(\#_{classes}\)} & \thead[l]{\(\#_{files_{val}}\)} & \thead[l]{\(ratio_{files_{val}}\)} & \thead[l]{\(acc\)\textsuperscript{*}} & \thead[l]{\(\widehat{acc}\)\textsuperscript{*}} \\
+										\hline
+										preclassification & 8 & 2,953 & 100.0\% & 90.02\% & \\
+										
+										\hline
+										\texttt{group\textsubscript{0}} & 18 & 919 & 31.1\% & 83.94\% & 75.56\% \\
+										
+										\texttt{group\textsubscript{1}} & 2 & 158 & 5.4\% & 99.30\% & 89.39\% \\
 				
-						\begin{figure}[H]
-							\begin{center}
-								\scalebox{0.5}{
-									\inputpgf{images/pgf}{pca-grouped.pgf}
+										\texttt{group\textsubscript{2}} & 5 & 296 & 10.0\% & 93.93\% & 84.56\% \\
+				
+										\texttt{group\textsubscript{3}} & 1 & 83 & 2,8\% & 100.0\% & 90.02\% \\
+				
+										\texttt{group\textsubscript{4}} & 1 & 63 & 2,1\% & 100.0\% & 90.02\% \\
+				
+										\texttt{group\textsubscript{5}} & 4 & 221 & 7.5\% & 92.68\% & 83.43\% \\
+				
+										\texttt{group\textsubscript{6}} & 12 & 723 & 24.5\% & 81.90\% & 73.73\% \\
+										
+										\texttt{group\textsubscript{7}} & 7 & 490& 16.6\% & 91.77\% & 82.61\% \\
+				
+										\hline
+										Overall & 50 & 2,953 & 100,0\% & \multicolumn{2}{r}{{\(acc_{top-1}\) = \large \textbf{79.23\%}}}
+									\end{tabular}
 								}
-							\end{center}
-							\caption{Grouped classes with k-means}
-							\label{fig:analysis_grouped_classes_with_k_means}
-						\end{figure}
-						
+							}
+							\captionof{table}[Grouped classes with \(k\)-means]{Grouped classes with \(k\)-means. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes_short_view}
+						\end{table}
+
 						acctop-1 = 79.23\% (the model accuracy was calculated according to Equation \eqref{eqn:equation_statistic_top_1}, see also table in the appendix \ref{tbl:table_grouped_classes_ahc})
 					
 					\paragraph{Agglomerative hierarchical clustering}
-					
-						\begin{figure}[H]
-							\begin{center}
-								\scalebox{0.5}{
-									\inputpgf{images/pgf}{pca-grouped-ahc.pgf}
-								}
-							\end{center}
-							\caption{Grouped classes with agglomerative hierarchical clustering}
-							\label{fig:analysis_grouped_classes_with_ahc}
-						\end{figure}
+
+						Figure \ref{fig:analysis_grouped_classes_with_ahc}
 						
 						acctop-1 = 78.60\% (the model accuracy was calculated according to Equation \eqref{eqn:equation_statistic_top_1}, see also table in the appendix \ref{tbl:table_grouped_classes_ahc})
 						
@@ -2056,8 +2078,8 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 					\frac{\boldsymbol\lambda_{class_{m}}^{*}}{\| \boldsymbol\lambda_{class_{m}}^{*} \|}
 				\end{equation}
 
-				\de{Für den Datensatz \texttt{food-50} erhält man für den Trainingsteil 11.913 Wahrscheinlichkeitsvektoren \(\boldsymbol\lambda\) und für den Validierungsteil 2.953 Wahrscheinlichkeitsvektoren \(\boldsymbol\lambda\) mit der Dimension 50. Mittels dem \textit{k}-nearest neighbors Klassifizierungsalgorithmus\autocite{noauthor_k-nearest_2020} wird nun die Modellgenauigkeit bestimmt. Dabei wird eine Klassenzuordnung von \(\boldsymbol\lambda^{val}\) unter Berücksichtigung seiner nächsten \textit{k} Nachbarn von (\boldsymbol\lambda^{train}\) vorgenommen. Die dabei entstehenden Modellgenauigkeiten können der nachfolgenden Tabelle entnommen werden.}
-				\en{For the data set \texttt{food-50} one obtains for the training part 11,913 vectors \(\boldsymbol\lambda^{train}\) and for the validation part 2,953 vectors \(\boldsymbol\lambda^{val}\) with the dimension 50. Using the \textit{k}-nearest neighbors classification algorithm\autocite{noauthor_k-nearest_2020} the model accuracy is now determined. A class assignment of \(\boldsymbol\lambda^{val}\) is determined considering its next \textit{k} neighbours of \(\boldsymbol\lambda^{train}\). The resulting model accuracies at different k-values are shown in the following table (Table \ref{tbl:table_binary_classification_acc}).} % sec:section_supervised_learning
+				\de{Für den Datensatz \texttt{food-50} erhält man für den Trainingsteil 11.913 Wahrscheinlichkeitsvektoren \(\boldsymbol\lambda\) und für den Validierungsteil 2.953 Wahrscheinlichkeitsvektoren \(\boldsymbol\lambda\) mit der Dimension 50. Mittels dem \(k\)-nearest neighbors Klassifizierungsalgorithmus\autocite{noauthor_k-nearest_2020} wird nun die Modellgenauigkeit bestimmt. Dabei wird eine Klassenzuordnung von \(\boldsymbol\lambda^{val}\) unter Berücksichtigung seiner nächsten \(k\) Nachbarn von (\boldsymbol\lambda^{train}\) vorgenommen. Die dabei entstehenden Modellgenauigkeiten können der nachfolgenden Tabelle entnommen werden.}
+				\en{For the data set \texttt{food-50} one obtains for the training part 11,913 vectors \(\boldsymbol\lambda^{train}\) and for the validation part 2,953 vectors \(\boldsymbol\lambda^{val}\) with the dimension 50. Using the \(k\)-nearest neighbors classification algorithm\autocite{noauthor_k-nearest_2020} the model accuracy is now determined. A class assignment of \(\boldsymbol\lambda^{val}\) is determined considering its next \(k\) neighbours of \(\boldsymbol\lambda^{train}\). The resulting model accuracies at different \(k\) values are shown in the following table (Table \ref{tbl:table_binary_classification_acc}).} % sec:section_supervised_learning
 				
 
 			\renewcommand\theadfont{\bfseries}
@@ -2304,9 +2326,34 @@ x = Dropout(dropout)(x)
 predictions = Dense(num_classes, activation= 'softmax')(x)
 model = Model(inputs = base_model.input, outputs = predictions)
 			\end{lstlisting}
+
+
+
+
+		\subsection{Principal component analysis of the \texttt{food-50} model}
+			\begin{figure}[H]
+				\begin{center}
+					\scalebox{0.75}{
+						\inputpgf{images/pgf}{pca-rotated.pgf}
+					}
+				\end{center}
+				\caption[Principal component analysis of the \texttt{food-50} model]{Principal component analysis of the \texttt{food-50} model. The x and y axis stand for the space and the similarity between the classes.}
+				\label{fig:analysis_pca_food_50_big}.
+			\end{figure}
 			
 			
-		%\clearpage
+		\clearpage
+		\subsection{Visualised representation of grouped classes with \(k\)-means}
+			\begin{figure}[H]
+				\begin{center}
+					\scalebox{0.5}{
+						\inputpgf{images/pgf}{pca-grouped.pgf}
+					}
+				\end{center}
+				\caption{Grouped classes with k-means}
+				\label{fig:analysis_grouped_classes_with_k_means}
+			\end{figure}
+
 		\subsection{Model accuracy of grouped classes with \(k\)-means}
 			\renewcommand\theadfont{\bfseries}
 			\begin{table}[htb]
@@ -2341,11 +2388,20 @@ model = Model(inputs = base_model.input, outputs = predictions)
 
 					\end{tabularx}
 				}
-				\captionof{table}[Grouped classes with k-means]{Grouped classes with k-means. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes}
+				\captionof{table}[Grouped classes with \(k\)-means]{Grouped classes with \(k\)-means. \textsuperscript{*}=All accuracies \(acc\) are top-1 accuracies.}\label{tbl:table_grouped_classes}
 			\end{table}
 			
+		\subsection{Visualised representation of grouped classes with agglomerative hierarchical clustering}
+			\begin{figure}[H]
+				\begin{center}
+					\scalebox{0.5}{
+						\inputpgf{images/pgf}{pca-grouped-ahc.pgf}
+					}
+				\end{center}
+				\caption{Grouped classes with agglomerative hierarchical clustering}
+				\label{fig:analysis_grouped_classes_with_ahc}
+			\end{figure}
 			
-		\clearpage
 		\subsection{Model accuracy of grouped classes with agglomerative hierarchical clustering}
 			\renewcommand\theadfont{\bfseries}
 			\begin{table}[htb]
