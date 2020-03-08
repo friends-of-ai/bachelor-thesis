@@ -2010,8 +2010,29 @@ user$ ml train \
 						\en{}
 			
 			\subsubsection{Binary classifiers}
-				\de{Was passiert, wenn man jede Klasse einzeln trainiert und jede Klasse sein eigenes Modell erhält? Das bestehende Datenset zu je 50 Klassen muss modifiziert werden.
-				}
+				\de{Ein binärer Klassifizierer kennt nur zwei Zustände. Entweder trifft eine Eigenschaft zu oder sie trifft nicht zu. Lässt man zum Beispiel mit einem Klassifikator der Klasse \texttt{salad} ein Element klassifizieren, so gibt dieser Klassifikator zurück, mit welcher Wahrscheinlichkeit dieses Bild Salat ist oder nicht:}
+				\en{A binary classifier knows only two states.  Either a property is true or it is not true. For example, if one uses a classifier of the class \texttt{salad} to classify an element, this classifier returns the probability returns the probability that this image is salad or not:}
+
+					\begin{equation}
+						\label{eq:equation_binary_probability vector}
+						\boldsymbol\lambda_{class_{m}} = 
+						\left(
+							\begin{array}{c}
+							p_{True}\\
+							p_{False}
+							\end{array}
+						\right)
+						\quad\Biggl\lvert \quad p_{True} + p_{Negative} = 1
+					\end{equation}
+
+				
+				\de{Für die binäre Klassifikation mit mehr als zwei Klassen benötigt man für jede Klasse einen eigenen Klassifizierer. Für den hier in der Arbeit verwendeten Essensdatensatz \texttt{food-50} werden 50 Klassifizierungsmodelle erstellt, welche jedes einzelne in der Lage ist eine Aussage zu treffen, mit welcher Wahrscheinlichkeit ein zu klassifizierendes Element zu seiner Klasse gehört oder nicht. Obwohl diese Aussage grundsätzlich der Aussage eines einzelnen bisher verwendeten 50 Klassen Klassifizierers entspricht, so werden hier die Erkennungen auf einzelne Modelle verteilt. Theoretisch sollte sich damit die Vapnik–Chervonenkis Dimension erhöhen. Die Frage die sich nun stellt: Ist es damit möglich die Modellgenauigkeit zu erhöhen?}
+				\en{For a binary classification with more than two classes one needs a separate classifier for each class. For the used data set \texttt{food-50} in this thesis 50 classification models are created. Each of them is able to make a statement about the probability that an item to be classified belongs to its class or not.  Although this statement basically corresponds to the statement of a single 50 class classifier used so far, the recognitions are distributed to individual models here. In theory, this should increase the \ac{vc} dimension. The question that now arises: Is it possible to increase the top-1 model total accuracy by distributing the classification over 50 classifiers?}
+
+				\de{Um diese Frage beantworten zu können, wird das bestehende Datenset aus 50 Klassen modifiziert. Für jede Klasse wird ein eigenes Datenset erstellt, welches aus der Klasse ``True'' und der Klasse ``False'' besteht. In die Klasse ``True'' kommen alle Elemente der aktuell betrachteten Klasse, in die Klasse ``False'' alle anderen Elemente aus allen anderen Klassen. Man erhält damit 50 Trainings- und Validierungsdatensätze, welche entsprechend nach dem Standard-Setup einzeln trainiert werden. Am Ende erhält man jeweils 50 Klassifikationsmodelle. Eine Übersicht über das Ergebnis der einzelnen Modellgenauigkeiten kann der Tabelle \ref{tbl:table_binary_classification_overview} im Anhang entnommen werden. Die einzelnen Modellgenauigkeiten sehen auf den ersten Blick vielversprechend aus. Die schlechteste Modellgenauigkeit erreichte die Klasse \texttt{frittata} mit einer Genauigkeit von 98,47\%. Die beste Modellgenauigkeit von 100,00\% wurde für die Klasse \texttt{french\_fries} erreicht.}
+				\en{To answer this question, the existing data set of 50 classes will be modified. For each class a separate dataset is created, which consists of the class ``True'' and the class ``False''. The class ``True'' contains all elements of the currently considered class, the class ``False'' contains all other elements from all other classes. The result is a set of 50 training and validation data sets (\texttt{food-50-1} to \texttt{food-50-50}), which are trained individually according to the standard setup. At the end you get 50 classification models for each class. An overview of the result of the individual model accuracies can be taken from the table \ref{tbl:table_binary_classification_overview} in the appendix. The individual model accuracies appear to look promising at first view. The worst model accuracy was achieved by the class \texttt{frittata} with an accuracy of 98.47\%. The best model accuracy of 100.00\% was achieved by the class \texttt{french\_fries}.}
+
+				\de{Die 50 erstellten Klassifikatoren werden nun auf die Trainingsdaten}
 				
 				\begin{tabular}{ l r }
 1 & 73.4169\% \\
@@ -2215,7 +2236,7 @@ user$ ml train \
 			\end{figure}
 			
 			
-			
+		\clearpage
 		\subsection{Example of a dropout layer after the \ac{cnn} model (Python code example)}
 			\begin{lstlisting}[frame=single,caption={Example of a dropout layer after the \ac{cnn} model},captionpos=b,basicstyle=\small,language=Python,label=lst:lstlisting_python_dropout]
 # definition of some parameters
