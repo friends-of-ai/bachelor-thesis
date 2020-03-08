@@ -1456,169 +1456,211 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.757713in,y=3.813093in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont baked\_salmon}%
+\pgftext[x=5.253369in,y=2.925835in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont baked\_beans}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=4.876296in,y=3.201865in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont beef\_stroganoff}%
+\pgftext[x=3.757713in,y=3.813093in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont baked\_salmon}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=4.588099in,y=1.872042in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont burger}%
+\pgftext[x=5.403340in,y=3.061811in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont beef\_stew}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.915386in,y=2.810102in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont burrito}%
+\pgftext[x=4.876296in,y=3.201865in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont beef\_stroganoff}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=6.266812in,y=2.294793in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont caesar\_salad}%
+\pgftext[x=4.588099in,y=1.872042in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont burger}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.664988in,y=4.319097in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont calzone}%
+\pgftext[x=2.915386in,y=2.810102in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont burrito}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=6.485891in,y=2.539757in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont cobb\_salad}%
+\pgftext[x=6.266812in,y=2.294793in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont caesar\_salad}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=6.396782in,y=2.111224in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont coleslaw}%
+\pgftext[x=1.664988in,y=4.319097in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont calzone}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.606345in,y=3.783694in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont corn\_dog}%
+\pgftext[x=3.184738in,y=3.208421in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont chicken\_piccata}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=5.806989in,y=2.971347in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont creamed\_spinach}%
+\pgftext[x=6.485891in,y=2.539757in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont cobb\_salad}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.945876in,y=2.937986in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont french\_fries}%
+\pgftext[x=6.396782in,y=2.111224in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont coleslaw}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.930396in,y=3.254404in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont frittata}%
+\pgftext[x=2.606345in,y=3.783694in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont corn\_dog}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=0.834607in,y=4.444296in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont grilled\_cheese\_sandwich}%
+\pgftext[x=5.806989in,y=2.971347in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont creamed\_spinach}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=1.871936in,y=3.733693in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont empanada}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=3.945876in,y=2.937986in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont french\_fries}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=3.930396in,y=3.254404in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont frittata}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=0.834607in,y=4.444296in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont grilled\_cheese\_sandwich}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{1.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=7.775453in,y=3.588780in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont guacamole}%
+\pgftext[x=7.775453in,y=3.588780in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont guacamole}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.460423in,y=3.049028in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont kebabs}%
+\pgftext[x=3.460423in,y=3.049028in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont kebabs}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.448611in,y=3.917046in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont lasagne}%
+\pgftext[x=3.448611in,y=3.917046in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont lasagne}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=6.000650in,y=3.111438in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont macaroni\_and\_cheese}%
+\pgftext[x=6.000650in,y=3.111438in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont macaroni\_and\_cheese}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.814816in,y=4.681530in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont meatloaf}%
+\pgftext[x=2.858167in,y=2.305412in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont meatballs}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=4.557759in,y=2.794379in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont nachos}%
+\pgftext[x=1.814816in,y=4.681530in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont meatloaf}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.936552in,y=4.894423in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont pancakes}%
+\pgftext[x=4.557759in,y=2.794379in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont nachos}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.472884in,y=3.539863in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont pizza}%
+\pgftext[x=3.665073in,y=3.500611in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont omelet}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=1.936552in,y=4.894423in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont pancakes}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=3.472884in,y=3.539863in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont pizza}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{1.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=4.703163in,y=5.392620in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont popcorn}%
+\pgftext[x=4.703163in,y=5.392620in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont popcorn}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.701580in,y=2.680655in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont quesadilla}%
+\pgftext[x=1.701580in,y=2.680655in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont quesadilla}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=7.107658in,y=1.505771in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont salad}%
+\pgftext[x=7.107658in,y=1.505771in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont salad}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{1.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=5.387775in,y=0.812504in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont sloppy\_joe}%
+\pgftext[x=5.387775in,y=0.812504in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont sloppy\_joe}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=6.070687in,y=3.504297in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont soup}%
+\pgftext[x=6.070687in,y=3.504297in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont soup}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.556639in,y=2.335994in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont spaghetti}%
+\pgftext[x=3.556639in,y=2.335994in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont spaghetti}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.464615in,y=4.185699in,left,base]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont stuffed\_pepper}%
+\pgftext[x=3.464615in,y=4.185699in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont stuffed\_pepper}%
+\end{pgfscope}%
+\begin{pgfscope}%
+\definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
+\pgfsetstrokecolor{textcolor}%
+\pgfsetfillcolor{textcolor}%
+\pgftext[x=2.872054in,y=3.574553in,left,base]{\color{textcolor}\sffamily\fontsize{8.000000}{9.600000}\selectfont waffles}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%
