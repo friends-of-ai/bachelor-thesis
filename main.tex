@@ -2171,7 +2171,7 @@ Convolutional Neural Networks for Image Classification\autocite{basha2020impact}
 		\en{It could be demonstrated that a model accuracy up to 85.60\% was achieved with an unbalanced, manually labelled data set consisting of 11,913 training elements and 2,953 validation elements. This required up to 10 hours of computing time on a NVIDIA GeForce GTX 1060 with 6 GByte of memory. With an average of two and a half hours of computing time for 21 training epochs, model accuracies of up to 83.59\% were achieved.}
 
 		\de{Die Wahl für die meisten Experimente viel auf das CNN Model \texttt{InceptionV3} (Modellgenauigkeit 83,59\%), obwohl das CNN Modell \texttt{Densenet201} mit 84,58\% genau 1\% weiter vorn liegt. Mit \texttt{InceptionV3} war es jedoch möglich mit weniger Speicherverbrauch in durchschnittlicher Zeit gute Ergebnisse zu erziehlen, während \texttt{Densenet201} deutlich langsamer arbeitet. Für zukunftige weitere Untersuchungen und mit deutlich mehr GPU Performance könnte man die hier genannten Experimente mit deutlich größeren CNN Modellen erneut durchführen.\autocite{upadhyaya2013parallel}\textsuperscript{,}\autocite{cavuoti2013genetic}}
-		\en{The choice for most experiments is based on the \ac{cnn} model \texttt{InceptionV3} (model accuracy 83.59\%), although the \ac{cnn} model \texttt{Densenet201} is 1\% ahead with 84.58\% model accuracy (see chapter ``\nameref{sec:section_validation_comparison_cnn_models}''). However, with \texttt{InceptionV3} it was possible to achieve good results with less memory consumption in average time, while \texttt{Densenet201} works significantly slower. For future investigations and with much more \ac{gpu} performance the experiments mentioned here could be repeated with much larger \ac{cnn} models like \texttt{Densenet201}. As an idea the \ac{gpu} parallel computing technology should be mentioned here.\autocite{upadhyaya2013parallel}\textsuperscript{,}\autocite{cavuoti2013genetic}}
+		\en{The choice for most experiments is based on the \ac{cnn} model \texttt{InceptionV3} (model accuracy 83.59\%), although the \ac{cnn} model \texttt{Densenet201} with 84.58\% model accuracy achieves a 1\% higher value with the standard setup (see chapter ``\nameref{sec:section_validation_comparison_cnn_models}''). However, with \texttt{InceptionV3} it was possible to achieve good results with less memory consumption in average time, while \texttt{Densenet201} works significantly slower. For future investigations and with much more \ac{gpu} performance the experiments mentioned here could be repeated with much larger \ac{cnn} models like \texttt{Densenet201}. As an idea the \ac{gpu} parallel computing technology should be mentioned here.\autocite{upadhyaya2013parallel}\textsuperscript{,}\autocite{cavuoti2013genetic}}
 
 		\de{Weiterhin konnte gezeigt werden, das mit steigender Datenmenge die Modellgenauigkeiten permanent verbessert werden konnten (siehe Kapitel ``\nameref{sec:section_validation_number_of_train_files}''). Es scheint so, dass das Maximum an Modellgenauigkeit mit 11,913 Trainingsbildern noch nicht erreicht wurde (siehe auch Kapitel Data Aumentation). Es sollte hier weiter untersucht werden, inwiefern eine weiter steigende Datenmenge die Modellgenauigkeit weiter verbessert und ab wann sie nicht mehr steigt oder steigen kann. Auch sollten weitere Untersuchungen näher auf die Fehlklassifizierungen eingegangen. Warum wurden diese falsch klassifiziert? Ist es vielleicht gar nicht möglich diese zu unterscheiden und sollten deshalb aus dem Datenset entfernt werden?}
 		\en{It could also be shown that the accuracy of the model could be permanently improved with an increasing number of data elements (see chapter ``\nameref{sec:section_validation_number_of_train_files}''). It seems that the maximum model accuracy with 11,913 training images has not yet been reached at the end (see also chapter ``\nameref{sec:section_data_augmention}''). It should be further investigated if further increasing data sets will improve the model accuracy and from which point the model accuracy does not or can not increase any more. Why were these images classified incorrectly? Is it perhaps not possible to differentiate these images? And should they therefore be removed from the data set?}
@@ -2586,12 +2586,9 @@ Angela Thränhardt mit dem wissenschaftlichen Anspruch und mehr als 100 geschrie
 		knowledge this work is original, except where indicated by references to other authors. No part of this
 		work has been submitted for any other degree or diploma. 
 		
-		\begin{displaymath}
-		% use packages: array
-		\begin{array}{ll}
-		Signature:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		& Place, Date:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		\end{array}
-		\end{displaymath}
+		\hfill
+
+		\noindent \textit{Signature:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
+		\textit{Place, Date:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}
 
 \end{document}
