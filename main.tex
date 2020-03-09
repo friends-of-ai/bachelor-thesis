@@ -635,6 +635,14 @@
 				\hat{L} = {{1}\over{k}}\sum_{i=1}^{k} L_r(\vartheta_i, \boldsymbol\lambda_i)
 			\end{equation}
 
+			\de{Für die Fehlerrückführung im Backpropagation-Algorithmus wird jedoch nicht die euklidische Norm (\(L_r(\vartheta, \boldsymbol\lambda)\)), sondern der Vektor selbst benötigt (\(\boldsymbol L(\vartheta, \boldsymbol\lambda)\)) und in dieser Arbeit nachfolgend weiter verwendet:}
+			\en{For the backpropagation algorithm not the euclidean norm \(L_r(\vartheta, \boldsymbol\lambda)\) is used, but the vector itself is needed and will be further used in this thesis:}
+
+			\begin{equation}
+				\label{eq:equation_loss_function}
+				\boldsymbol L(\vartheta, \boldsymbol\lambda) := \boldsymbol\lambda - \boldsymbol g(\vartheta)
+			\end{equation}
+
 
 
 		% -------------------- %
@@ -1649,7 +1657,7 @@ user$ ml train \
 				\en{The optimizer in the training process is used to minimize the value of the loss function. This is an attempt to reflect the value of the predictions as correctly as possible. The value of the loss function is the difference between the expected value and the estimated value of the classification function. The simplest approach is the gradient descent algorithm\footnote{\textit{Gradient descent}. en. Page Version ID: 943737051. Mar. 2020. \tiny\textbf{URL}\footnotesize: \url{https://en.wikipedia.org/w/index.php?title=Gradient_descent&oldid=943737051} (visited on 03/07/2020)}, which has been improved over time and further optimization algorithms have been developed. The learning rate \(\eta\) determines the value of the weighting with which the error is corrected (see also chapter ``\hyperref[sec:section_loss_function]{Loss function}''). The recalculated probability vector \(\boldsymbol \lambda_{new}\) is passed back to the backpropagation algorithm:}
 
 				\begin{equation}
-					\boldsymbol \lambda_{new} = \boldsymbol \lambda_{current} - \eta \cdot L_r(\vartheta, \boldsymbol \lambda_{current})
+					\boldsymbol \lambda_{new} = \boldsymbol \lambda_{current} - \eta \cdot \boldsymbol L(\vartheta, \boldsymbol \lambda_{current})
 				\end{equation}
 				
 				\de{\noindent Dieser Bereich beschäftigt sich mit dem Thema Optimierer und seinen Parametern (besonders der Lernrate \(\eta\)) und welchen entscheidenden Einfluss diese auf die Modellgenauigkeit haben.}
@@ -1695,7 +1703,7 @@ user$ ml train \
 
 					\begin{equation}
 						\label{eq:equation_momentum_lambda_difference}
-						\nabla \boldsymbol \lambda_{new} = \alpha \cdot \nabla \boldsymbol \lambda_{old} - \eta \cdot L_r(\vartheta, \boldsymbol \lambda_{current})
+						\nabla \boldsymbol \lambda_{new} = \alpha \cdot \nabla \boldsymbol \lambda_{old} - \eta \cdot \boldsymbol L(\vartheta, \boldsymbol \lambda_{current})
 					\end{equation}
 
 					\begin{equation}
@@ -1708,7 +1716,7 @@ user$ ml train \
 
 					\begin{equation}
 						\label{eq:equation_momentum_lambda_nesterov}
-						\boldsymbol \lambda_{new} = \boldsymbol \lambda_{current} + \alpha \cdot \nabla \boldsymbol \lambda_{old} - \eta \cdot L_r(\vartheta, \boldsymbol \lambda_{current} + \alpha \cdot \nabla \boldsymbol \lambda_{old})
+						\boldsymbol \lambda_{new} = \boldsymbol \lambda_{current} + \alpha \cdot \nabla \boldsymbol \lambda_{old} - \eta \cdot \boldsymbol L(\vartheta, \boldsymbol \lambda_{current} + \alpha \cdot \nabla \boldsymbol \lambda_{old})
 					\end{equation}
 
 					\de{Das Momentum wird in den nächsten beiden Experimenten von 0,5 bis in den Bereich von 0,98 variiert. Die Lernrate startet mit 0,001 und verringert sich nach jeweils 7 Epochen um 50\%. Das erste Experiment startet ohne das Nesterov Momentum (Abbildung \ref{fig:evaluation_momentum_without}), das zweite Experiment findet mit der Nesterov Momentum Methode statt (Abbildung \ref{fig:evaluation_momentum}). Das Ergebnis soll daraufhin verglichen und diskutiert werden.}
